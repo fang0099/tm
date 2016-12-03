@@ -69,6 +69,18 @@ create table article (
     del_flag tinyint not null default 0 comment '1=delete, 0=not'
 )engine=innodb charset=utf8 auto_increment=1;
 
+create table user_like_article (
+    user_id int not null default 0,
+    article_id int not null default 0,
+    primary key (`user_id`, `article_id`)
+)engine=innodb charset=utf8;
+
+create table user_collect_article (
+    user_id int not null default 0,
+    article_id int not null default 0,
+    primary key (`user_id`, `article_id`)
+)engine=innodb charset=utf8 comment '文章收藏';
+
 create table comments (
     id int primary key auto_increment,
     username varchar(32) not null default '',
@@ -87,21 +99,38 @@ create table comments (
 
 create table tag_article_rel (
     tag_id int not null default 0,
-    article_id int not null default 0
+    article_id int not null default 0,
     primary key (`tag_id`, `article_id`)
 )engine=innodb charset=utf8 comment '标签与文章关系表';
 
 
-create table article_collection (
-    user_id int not null default 0,
-    article_id int not null default 0,
-    primary key (`user_id`, `article_id`)
-)engine=innodb charset=utf8 comment '文章收藏';
+
 
 -- 站内信
 
 -- 时间轴
 
+
+
+-- auth
+CREATE TABLE `keys` (
+    app_key int not null default 0,
+    app_secret char(32) not null default '',
+    add_time DATETIME DEFAULT current_timestamp,
+    PRIMARY KEY (`app_key`)
+)ENGINE=innodb charset=utf8;
+
+CREATE TABLE `functions` (
+    id int primary key auto_increment,
+    name VARCHAR(16) not null DEFAULT '',
+    url VARCHAR(128) not null DEFAULT '',
+    pid int not NULL DEFAULT 0
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE `key_function_rel` (
+    app_key int not null DEFAULT 0,
+    function_id int not null DEFAULT 0
+)ENGINE = innodb charset=utf8;
 
 
 
