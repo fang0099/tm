@@ -17,59 +17,96 @@ use Log;
 abstract class BaseRepository
 {
 
-    protected  $model;
+    protected $model;
 
-    protected function get($primaryKey){
+    protected function get($primaryKey)
+    {
 
         Log::debug('get by primary key. table is ' .
-                    $this->model->getTable() .
-                    '. primary key is ' . $this->getPrimaryKey() . ' : ' . $primaryKey);
+            $this->model->getTable() .
+            '. primary key is ' . $this->getPrimaryKey() . ' : ' . $primaryKey);
 
         return $this->model->find($primaryKey);
     }
 
-    public function getById($id){
+    public function getById($id)
+    {
         $tmp = $this->get($id);
-        if($tmp == null){
+        if ($tmp == null) {
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'result is null');
-        }else {
+        } else {
             return $this->success($tmp);
         }
     }
 
-    public function batchDeleteInternal(array $ids){
-        foreach ($ids as $id){
+    public function batchDeleteInternal(array $ids)
+    {
+        foreach ($ids as $id) {
             $this->deleteById($id);
         }
         return $this->success();
     }
 
-    public function deleteById($id){
+    public function deleteById($id)
+    {
         $tmp = $this->get($id);
-        if($tmp != null){
-            $tmp->delete();
+        if ($tmp != null) {
+            //$tmp->delete();
+            $tmp->del_flag = 1;
+            $tmp->save();
             return $this->success();
         }
     }
 
-    public function getBusinessLine(){
+    public function getBusinessLine()
+    {
         return StatusCode::BUSINESS_LINE[$this->model->getTable()];
     }
 
-    public function getPrimaryKey(){
+    public function getPrimaryKey()
+    {
         return $this->model->getKeyName();
     }
 
-    protected function insertInternal($params){
+    protected function insertWithId($params)
+    {
+        if (!$params || empty($params)) {
+            return null;
+        }
+        $M = $this->fillParams($params);
+        $M->save();
+        return $M;
+    }
+
+    protected function insertInternal($params)
+    {
 
         Log::debug('insert internal for ' . $this->model->getTable() . '. params is ' . var_export($params, true));
 
-        if(!$params || empty($params)){
+        if (!$params || empty($params)) {
             return $this->fail(StatusCode::PARAMS_ERROR_EMPTY, 'params are null or empty');
         }
         $M = $this->fillParams($params);
         $M->save();
-        return $this->success();
+        return $this->success('', $M);
+    }
+
+
+    protected function updateWithId($params){
+        if(!$params || empty($params)){
+            return null;
+        }
+        $primaryKey = $this->getPrimaryKey();
+        if(isset($params[$primaryKey])) {
+            $M = $this->get($params[$primaryKey]);
+            unset($params[$primaryKey]);
+            foreach ($params as $k => $v) {
+                $M->$k = $v;
+            }
+            $M->save();
+            return $M;
+        }
+        return null;
     }
 
     protected function updateInternal($params){
@@ -120,7 +157,7 @@ abstract class BaseRepository
         $pageSize = $request->input('size', 20);
         $filter = $request->input('filter', array());
         $order = $request->input('order', '');
-        $where = ' where ';
+        $where = ' where del_flag = 0';
         $condition = '';
         $p = array();
         if($filter != null && !empty($filter)){
@@ -128,12 +165,12 @@ abstract class BaseRepository
                 $condition .= ' and ' . $k . " like ? ";
                 $p[] = '%'. $v . '%';
             }
-        }else {
-            $where .= ' 1=1 ';
         }
+        /*
         if(strlen($condition) > 0){
             $condition = substr($condition, 4);
         }
+        */
         $orderBy = '';
         if(strlen($order) != 0){
             $orderBy = ' order by ' . $order;

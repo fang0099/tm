@@ -12,4 +12,12 @@ namespace App\Model;
 class Tag extends BaseModel
 {
     protected $table = 'tag';
+
+    public function subscriber(){
+        return $this->belongsToMany('App\Model\User', 'tag_subscriber', 'tag_id', 'subscriber_id');
+    }
+
+    public function articles(){
+        return $this->belongsToMany('App\ModelArticle', 'tag_article_rel', 'tag_id', 'article_id');
+    }
 }

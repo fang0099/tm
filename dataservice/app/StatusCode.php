@@ -14,13 +14,15 @@ class StatusCode
     const BUSINESS_LINE = [
         'web_info' => '01',
         'friend_links' => '02',
-        'keys' => '03'
+        'keys' => '03',
+        'article' => '04'
     ];
 
     const OPERATE_SUCCESS = '00';
 
     const UPDATE_ERROR = '01';
     const UPDATE_ERROR_NO_PRIMARY_KEY = self::UPDATE_ERROR . '00';
+    const UPDATE_ERROR_ALREADY_EXIST = self::UPDATE_ERROR . '01';
 
 
     const INSERT_ERROR = '02';
@@ -31,4 +33,5 @@ class StatusCode
 
     const PARAMS_ERROR = '05';
     const PARAMS_ERROR_EMPTY = self::PARAMS_ERROR . '00';
+
 }

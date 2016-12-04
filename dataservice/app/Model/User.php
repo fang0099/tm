@@ -37,6 +37,10 @@ class User extends BaseModel
         return $this->belongsToMany('App\Model\Article', 'user_collect_article', 'user_id', 'article_id');
     }
 
+    public function subscribeTags(){
+        return $this->belongsToMany('App\Model\Tag', 'tag_subscriber', 'subscriber_id', 'tag_id');
+    }
+
 
 
 }

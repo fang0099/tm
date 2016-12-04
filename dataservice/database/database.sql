@@ -16,7 +16,8 @@ create table users (
     avatar varchar(128) not null default '',
     brief varchar(256) not null default '' comment '个人简介',
     is_auth tinyint not null default 0 comment '1,0',
-    register_time datetime default null
+    register_time datetime default null,
+    del_flag int not null default 0
 )engine=innodb charset=utf8 auto_increment=1;
 
 create table user_follows(
@@ -30,6 +31,12 @@ create table friend_links (
     title varchar(16) not null default '',
     url varchar(128) not null default '',
     del_flag tinyint not null default 0
+)engine=innodb charset=utf8 auto_increment=1;
+
+create table roles (
+    id int primary key auto_increment,
+    name VARCHAR(16) not null DEFAULT '',
+    del_flag TINYINT not null DEFAULT 0
 )engine=innodb charset=utf8 auto_increment=1;
 
 -- 文章数据
