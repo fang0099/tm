@@ -33,6 +33,12 @@ Route::post('/friendlink/update', 'FriendLinkController@update');
 Route::get('/friendlink/delete/{ids}', 'FriendLinkController@delete');
 
 // users
+Route::get('/user/get/{id}', 'UserController@get');
+Route::get('/user/create', 'UserController@create');
+Route::get('/user/list', 'UserController@list');
+Route::post('/user/update', 'UserController@update');
+Route::get('/user/delete/{ids}', 'UserController@delete');
+Route::get('/user/followers/{id}/{page?}', 'UserController@followers');
 
 
 // article

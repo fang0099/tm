@@ -55,9 +55,6 @@ class TagController extends Controller
         return $this->tagRep->articles($id, $page);
     }
 
-    public function articles($id, $page){
-        return $this->tagRep->articles($id, $page);
-    }
 
     public function subscriber($id, $page){
         return $this->tagRep->subscriber($id, $page);
