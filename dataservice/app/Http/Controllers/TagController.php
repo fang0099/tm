@@ -20,30 +20,46 @@ class TagController extends Controller
     }
 
     public function get($id){
-
+        return $this->tagRep->findById($id);
     }
 
     public function create(Request $request){
-
+        return $this->tagRep->create($request);
     }
 
     public function update(Request $request){
-
+        return $this->tagRep->update($request);
     }
 
     public function list(Request $request){
-
+        return $this->tagRep->list($request);
     }
 
     public function delete($ids){
+        return $this->tagRep->delete($ids);
+    }
 
+    public function check($id, $operator){
+        return $this->tagRep->check($id, $operator);
     }
 
     public function subscribe($id, $userid){
-
+        return $this->tagRep->subscribe($id, $userid);
     }
 
     public function unsubcribe($id, $userid){
+        return $this->tagRep->unscribe($id, $userid);
+    }
 
+    public function articles($id, $page){
+        return $this->tagRep->articles($id, $page);
+    }
+
+    public function articles($id, $page){
+        return $this->tagRep->articles($id, $page);
+    }
+
+    public function subscriber($id, $page){
+        return $this->tagRep->subscriber($id, $page);
     }
 }

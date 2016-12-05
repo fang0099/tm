@@ -54,6 +54,11 @@ Route::post('/tag/create', 'TagController@create');
 Route::get('/tag/list', 'TagController@list');
 Route::post('/tag/update', 'TagController@update');
 Route::get('/tag/delete/{ids}', 'TagController@delete');
+Route::get('/tag/check/{id}/{operator}', 'TagController@check');
+Route::get('/tag/subscribe/{id}/{operator}', 'TagController@subscribe');
+Route::get('/tag/unsubscribe/{id}/{operator}', 'TagController@unsubscribe');
+Route::get('/tag/articles/{id}/{page}', 'TagController@articles');
+Route::get('/tag/subscriber/{id}/{page}', 'TagController@get');
 
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
