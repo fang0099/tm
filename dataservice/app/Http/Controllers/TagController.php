@@ -51,12 +51,12 @@ class TagController extends Controller
         return $this->tagRep->unscribe($id, $userid);
     }
 
-    public function articles($id, $page){
+    public function articles($id, $page = 0){
         return $this->tagRep->articles($id, $page);
     }
 
 
-    public function subscriber($id, $page){
+    public function subscriber($id, $page = 0){
         return $this->tagRep->subscriber($id, $page);
     }
 }

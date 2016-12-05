@@ -35,7 +35,7 @@ abstract class BaseRepository
         if ($tmp == null) {
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'result is null');
         } else {
-            return $this->success($tmp);
+            return $this->success('', $tmp);
         }
     }
 
@@ -154,7 +154,7 @@ abstract class BaseRepository
     public function select(Request $request){
         $from = ' from ' . $this->model->getTable();
         $page = $request->input('page', 1);
-        $pageSize = $request->input('size', 20);
+        $pageSize = $request->input('pageSize', 20);
         $filter = $request->input('filter', array());
         $order = $request->input('order', '');
         $where = ' where del_flag = 0';

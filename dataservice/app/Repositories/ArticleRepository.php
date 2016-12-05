@@ -45,8 +45,8 @@ class ArticleRepository extends BaseRepository
     public function update(Request $request){
         $params = $this->getParams($request);
         $tagIds = $params['tags'];
-        $params['has_checked'] = 0;
-        $params['checker'] = 0;
+        //$params['has_checked'] = 0;
+        //$params['checker'] = 0;
         $operator = $params['operator'];
         // checke operator has permission?
         unset($params['tags']);

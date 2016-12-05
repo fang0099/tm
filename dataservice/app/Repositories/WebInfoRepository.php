@@ -23,6 +23,7 @@ class WebInfoRepository extends BaseRepository
 
     public function update(Request $request){
         $params = $this->getParams($request);
+        $params['id'] = 1;
         return $this->updateInternal($params);
     }
 

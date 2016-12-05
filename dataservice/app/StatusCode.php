@@ -15,7 +15,9 @@ class StatusCode
         'web_info' => '01',
         'friend_links' => '02',
         'keys' => '03',
-        'article' => '04'
+        'article' => '04',
+        'tag' => '05',
+        'users' => '06'
     ];
 
     const OPERATE_SUCCESS = '00';
