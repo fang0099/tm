@@ -110,8 +110,24 @@ create table tag_article_rel (
     primary key (`tag_id`, `article_id`)
 )engine=innodb charset=utf8 comment '标签与文章关系表';
 
+CREATE TABLE news_flash(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(128) not NULL DEFAULT '',
+    content TEXT DEFAULT NULL ,
+    publish_time DATETIME DEFAULT current_timestamp,
+    link VARCHAR(128) not null DEFAULT ''
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
+alter table article add column word_count int NOT NULL DEFAULT 0;
+alter table article add column hot_num int not null DEFAULT 0;
 
+CREATE TABLE sponsors (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(64) NOT NULL DEFAULT '',
+    face VARCHAR(128) NOT NULL DEFAULT '',
+    brief VARCHAR(256) NOT NULL DEFAULT '',
+    link VARCHAR(128) NOT NULL DEFAULT ''
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 -- 站内信
 

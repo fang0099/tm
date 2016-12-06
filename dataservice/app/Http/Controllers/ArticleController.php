@@ -64,4 +64,17 @@ class ArticleController
     public function comment(Request $request){
         return $this->articleRep->comment($request);
     }
+
+    public function latest($tagId = 0, $page = 1, $pageSize = 15){
+
+    }
+
+    public function hot($tagId = 0, $page = 1, $pageSize = 15){
+
+    }
+
+    public function recommend($page = 1, $pageSize = 15){
+
+    }
+
 }
