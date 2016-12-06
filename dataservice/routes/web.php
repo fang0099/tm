@@ -66,6 +66,12 @@ Route::get('/tag/unsubscribe/{id}/{userid}', 'TagController@unsubscribe');
 Route::get('/tag/articles/{id}/{page?}', 'TagController@articles');
 Route::get('/tag/subscriber/{id}/{page?}', 'TagController@get');
 
+// news flash
+Route::post('/newsflash/create', 'NewsFlashController@create');
+Route::get('/newsflash/list', 'NewsFlashController@list');
+Route::post('/newsflash/update', 'NewsFlashController@update');
+Route::get('/newsflash/delete/{ids}', 'NewsFlashController@delete');
+
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 
