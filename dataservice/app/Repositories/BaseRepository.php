@@ -10,12 +10,15 @@ namespace App\Repositories;
 
 
 use App\StatusCode;
+use App\Traits\FilterParser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Log;
 
 abstract class BaseRepository
 {
+
+    use FilterParser;
 
     protected $model;
 
@@ -158,6 +161,12 @@ abstract class BaseRepository
         $filter = $request->input('filter', array());
         $order = $request->input('order', '');
         $where = ' where del_flag = 0';
+        $filterArr = $this->parser($filter);
+        $p = $filterArr['params'];
+        $conditionArr = $filterArr['condition'];
+        $condition = implode(' and ', $conditionArr);
+        $condition = ' and ' . $condition;
+        /*
         $condition = '';
         $p = array();
         if($filter != null && !empty($filter)){
@@ -166,6 +175,7 @@ abstract class BaseRepository
                 $p[] = '%'. $v . '%';
             }
         }
+        */
         /*
         if(strlen($condition) > 0){
             $condition = substr($condition, 4);

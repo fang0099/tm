@@ -26,6 +26,7 @@ class UserRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
             $user->followers_count = $user->followers()->count();
+            $user->follow_count = $user->follows()->count();
             $user->password = '***';
             return $this->success('', $user);
         }
@@ -63,15 +64,38 @@ class UserRepository extends BaseRepository
         return $this->batchDeleteInternal($idsArr);
     }
 
-    public function followers($id, $page){
+    public function followers($id, $page, $pageSize){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
-            $pageSize = config('page_size', 15);
             $offset = ($page - 1) * $pageSize;
             $res = $user->followers()->offset($offset)->limit($pageSize)->get();
             return $this->success('', $res);
+        }
+    }
+
+    public function articles($order, Request $request){
+        $tagIds = $request->input('tags', '');
+        $userId = $request->input('userid');
+        if(!$userId){
+            return $this->fail(StatusCode::PARAMS_ERROR_EMPTY, 'user id can not be null');
+        }
+        $page  = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        $tagArr = explode(',', $tagIds);
+        $user = $this->get($userId);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $articles = $user->articles()->orderBy($order)->offset($offset)->limit($pageSize)->get();
+            /*
+            foreach ($tagArr as $t) {
+                $articles->where();
+            }
+            */
+            return $this->success('', $articles);
         }
     }
 

@@ -39,6 +39,8 @@ Route::get('/user/list', 'UserController@list');
 Route::post('/user/update', 'UserController@update');
 Route::get('/user/delete/{ids}', 'UserController@delete');
 Route::get('/user/followers/{id}/{page?}', 'UserController@followers');
+Route::get('user/lasted-articles', 'UserController@lastedArticles');
+Route::get('user/hotest-articles', 'UserController@hotestArticles');
 
 
 // article
@@ -72,6 +74,7 @@ Route::get('/newsflash/list', 'NewsFlashController@list');
 Route::post('/newsflash/update', 'NewsFlashController@update');
 Route::get('/newsflash/delete/{ids}', 'NewsFlashController@delete');
 
+// sponsors
 Route::post('/sponsors/create', 'SponsorsController@create');
 Route::get('/sponsors/list', 'SponsorsController@list');
 Route::post('/sponsors/update', 'SponsorsController@update');
@@ -79,10 +82,7 @@ Route::get('/sponsors/delete/{ids}', 'SponsorsController@delete');
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 
-
-
-
-
+Route::get('/test', 'KeyController@t');
 
 
 

@@ -17,4 +17,8 @@ class CommentRepository extends BaseRepository
     {
         $this->model = $model;
     }
+
+    public function list($articleId){
+        return [];
+    }
 }

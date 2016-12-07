@@ -129,7 +129,32 @@ CREATE TABLE sponsors (
     link VARCHAR(128) NOT NULL DEFAULT ''
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
+alter table users add column qq VARCHAR(18) not null DEFAULT '';
+alter table users add COLUMN email VARCHAR(18) not null DEFAULT '';
+alter table users add COLUMN weixin VARCHAR(18) not null DEFAULT '';
+alter table users add COLUMN weibo VARCHAR(32) NOT NULL DEFAULT '';
+
+alter table tag add COLUMN pid int not null DEFAULT 0;
+alter table article add COLUMN click_count int not null DEFAULT 0;
+alter table article add COLUMN type tinyint NOT NULL DEFAULT 0 COMMENT '0=text,1=media';
+
+-- alter table web_info add COLUMN time
+CREATE  TABLE `check_log` (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    checker int NOT NULL DEFAULT 0,
+    type tinyint NOT NULL DEFAULT 0 COMMENT '0=article, 1=tag',
+    ref_id int NOT NULL DEFAULT 0 COMMENT 'article id or tag id',
+    check_result TINYINT NOT NULL DEFAULT 0 COMMENT '0=reject, 1=approve',
+    message VARCHAR(128) not NULL DEFAULT '',
+    check_time DATETIME DEFAULT current_timestamp
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
+
+
 -- 站内信
+
+CREATE TABLE notice (
+
+)
 
 -- 时间轴
 

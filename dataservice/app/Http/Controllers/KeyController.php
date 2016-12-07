@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\KeysRepository;
+use App\Traits\FilterParser;
+use Illuminate\Http\Request;
 
 class KeyController extends Controller
 {
@@ -21,5 +23,11 @@ class KeyController extends Controller
 
     public function functionsCount(){
         return $this->keysRep->getByKey(1)->functions->count();
+    }
+    use FilterParser;
+    public function t(Request $request){
+        $filter = $this->parser($request->input('filter'));
+        $condition = $filter['condition'];
+        return implode(' and ', $condition);
     }
 }

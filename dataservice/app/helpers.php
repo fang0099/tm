@@ -18,5 +18,12 @@ if(!function_exists('json_result')){
     }
 }
 
+if (!function_exists('utf8_strlen')){
+    function utf8_strlen($string = null) {
+        preg_match_all("/./us", $string, $match);
+        return count($match[0]);
+    }
+}
+
 
 

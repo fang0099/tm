@@ -16,9 +16,13 @@ use DB;
 
 class ArticleRepository extends BaseRepository
 {
-    public function __construct(Article $model)
+
+    private $commentRep;
+
+    public function __construct(Article $model, CommentRepository $commentRep)
     {
         $this->model = $model;
+        $this->commentRep = $commentRep;
     }
 
     public function findById($id){
@@ -26,12 +30,27 @@ class ArticleRepository extends BaseRepository
         $t['author'] = $t->_author;
         $t['checker'] = $t->_checker;
         $t['tags'] = $t->tags;
-        $t['comments'] = $t->comments;
+        //$t['comments'] = $t->comments;
         return $this->success('', $t);
+    }
+
+    public function listComment($id){
+        $article = $this->get($id);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
+        }else {
+            return $this->success('', $this->commentRep->list($id));
+        }
     }
 
     public function create(Request $request){
         $params = $this->getParams($request);
+        $content = $params['content'];
+        if($content == null || $content == ''){
+            return $this->fail(StatusCode::INSERT_ERROR, 'content can not be empty', $params);
+        }
+        $word_count = utf8_strlen($content);
+        $params['word_count'] = $word_count;
         $tagIds = $params['tags'];
         $params['has_checked'] = 0;
         $params['checker'] = 0;
@@ -44,6 +63,11 @@ class ArticleRepository extends BaseRepository
 
     public function update(Request $request){
         $params = $this->getParams($request);
+        $content = $params['content'];
+        if($content != null && $content != ''){
+            $word_count = utf8_strlen($content);
+            $params['word_count'] = $word_count;
+        }
         $tagIds = $params['tags'];
         //$params['has_checked'] = 0;
         //$params['checker'] = 0;
@@ -152,8 +176,7 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $params);
         }else {
             $params['type'] = 0;
-            $c = new CommentRepository;
-            return $c->insertInternal($params);
+            return $this->commentRep->insertInternal($params);
         }
     }
 

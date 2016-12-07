@@ -13,4 +13,9 @@ class Comments extends BaseModel
 {
     protected $table = 'comments';
 
+    public function article(){
+        return $this->belongsTo('App\Model\Article', 'article_id');
+    }
+
+
 }
