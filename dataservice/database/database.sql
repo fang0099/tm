@@ -153,8 +153,20 @@ CREATE  TABLE `check_log` (
 -- 站内信
 
 CREATE TABLE notice (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    to_user int not NULL  DEFAULT 0,
+    type VARCHAR(16) not null DEFAULT '',
+    message VARCHAR(128) not null DEFAULT '',
+    publish_time DATETIME DEFAULT current_timestamp
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
-)
+CREATE TABLE opt_log (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    user_id int not NULL  DEFAULT 0,
+    type VARCHAR(16) not null DEFAULT '',
+    message VARCHAR(128) not null DEFAULT '',
+    publish_time DATETIME DEFAULT current_timestamp
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 -- 时间轴
 

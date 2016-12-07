@@ -41,7 +41,8 @@ Route::get('/user/delete/{ids}', 'UserController@delete');
 Route::get('/user/followers/{id}/{page?}', 'UserController@followers');
 Route::get('user/lasted-articles', 'UserController@lastedArticles');
 Route::get('user/hotest-articles', 'UserController@hotestArticles');
-
+Route::get('user/notice/{type}/{userid}/{page}/{pageSize}', 'UserController@notice');
+Route::get('user/optlog/{type}/{userid}/{page}/{pageSize}', 'UserController@optLog');
 
 // article
 Route::get('/article/get/{id}', 'ArticleController@get');

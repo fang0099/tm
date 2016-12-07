@@ -52,4 +52,12 @@ class UserController extends Controller
     public function hotestArticles(Request $request){
         return $this->userRep->articles('hot_num', $request);
     }
+
+    public function notice($type, $userid, $page, $pageSize){
+        return $this->userRep->notice($userid, $page, $pageSize);
+    }
+
+    public function optLog($type, $userid, $page, $pageSize){
+        return $this->userRep->optLog($userid, $page, $pageSize);
+    }
 }

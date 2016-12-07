@@ -41,6 +41,12 @@ class User extends BaseModel
         return $this->belongsToMany('App\Model\Tag', 'tag_subscriber', 'subscriber_id', 'tag_id');
     }
 
+    public function notices(){
+        return $this->hasMany('App\Model\Notice', 'to_user');
+    }
 
+    public function optLogs(){
+        return $this->hasMany('App\Model\OptLog', 'user_id');
+    }
 
 }
