@@ -29,7 +29,8 @@ class NewsFlashController extends Controller
         return $this->newsFlashRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         return $this->newsFlashRep->delete($ids);
     }
 

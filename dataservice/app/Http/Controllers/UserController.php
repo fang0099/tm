@@ -21,8 +21,14 @@ class UserController extends Controller
         $this->userRep = $userRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
         return $this->userRep->findById($id);
+    }
+
+    public function getByUsername(Request $request){
+        $username = $request->input('username');
+        return $this->userRep->findByUsername($username);
     }
 
     public function create(Request $request){
@@ -33,7 +39,8 @@ class UserController extends Controller
         return $this->userRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         return $this->userRep->delete($ids);
     }
 
@@ -41,7 +48,10 @@ class UserController extends Controller
         return $this->userRep->list($request);
     }
 
-    public function followers($id, $page = 1, $pageSize = 15){
+    public function followers(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
         return $this->userRep->followers($id, $page, $pageSize);
     }
 
@@ -53,11 +63,19 @@ class UserController extends Controller
         return $this->userRep->articles('hot_num', $request);
     }
 
-    public function notice($type, $userid, $page, $pageSize){
-        return $this->userRep->notice($userid, $page, $pageSize);
+    public function notice(Request $request){
+        $type = $request->input('type');
+        $userid = $request->input('userid');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->userRep->notice($type, $userid, $page, $pageSize);
     }
 
-    public function optLog($type, $userid, $page, $pageSize){
-        return $this->userRep->optLog($userid, $page, $pageSize);
+    public function optLog(Request $request){
+        $type = $request->input('type');
+        $userid = $request->input('userid');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->userRep->optLog($type, $userid, $page, $pageSize);
     }
 }

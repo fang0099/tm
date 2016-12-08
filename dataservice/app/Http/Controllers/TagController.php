@@ -19,7 +19,8 @@ class TagController extends Controller
         $this->tagRep = $tagRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
         return $this->tagRep->findById($id);
     }
 
@@ -35,28 +36,39 @@ class TagController extends Controller
         return $this->tagRep->list($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         return $this->tagRep->delete($ids);
     }
 
-    public function check($id, $operator){
+    public function check(Request $request){
+        $id = $request->input('id');
+        $operator = $request->input('operator');
         return $this->tagRep->check($id, $operator);
     }
 
-    public function subscribe($id, $userid){
+    public function subscribe(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->tagRep->subscribe($id, $userid);
     }
 
-    public function unsubcribe($id, $userid){
+    public function unsubcribe(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->tagRep->unscribe($id, $userid);
     }
 
-    public function articles($id, $page = 0){
+    public function articles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
         return $this->tagRep->articles($id, $page);
     }
 
 
-    public function subscriber($id, $page = 0){
+    public function subscriber(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
         return $this->tagRep->subscriber($id, $page);
     }
 }

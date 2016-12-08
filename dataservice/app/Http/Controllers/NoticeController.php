@@ -21,7 +21,8 @@ class NoticeController extends Controller
         $this->noticeRep = $noticeRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
         return $this->noticeRep->getById($id);
     }
 
@@ -33,7 +34,8 @@ class NoticeController extends Controller
         return $this->noticeRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         $idsArr = explode(',', $ids);
         return $this->noticeRep->batchDeleteInternal($idsArr);
     }

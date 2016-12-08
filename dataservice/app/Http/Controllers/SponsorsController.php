@@ -29,7 +29,8 @@ class SponsorsController extends Controller
         return $this->sponsorsRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         return $this->sponsorsRep->delete($ids);
     }
 

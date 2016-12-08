@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use app\Repositories\OptLogRepository;
+use Illuminate\Http\Request;
 
 class OptLogController extends Controller
 {
@@ -19,7 +20,8 @@ class OptLogController extends Controller
         $this->optLogRep = $optLogRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
         return $this->optLogRep->getById($id);
     }
 
@@ -31,7 +33,8 @@ class OptLogController extends Controller
         return $this->optLogRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         $idsArr = explode(',', $ids);
         return $this->optLogRep->batchDeleteInternal($idsArr);
     }

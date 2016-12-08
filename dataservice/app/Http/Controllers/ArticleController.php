@@ -21,7 +21,8 @@ class ArticleController
         $this->articleRep = $articleRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
         return $this->articleRep->findById($id);
     }
 
@@ -37,27 +38,38 @@ class ArticleController
         return $this->articleRep->update($request);
     }
 
-    public function check($id, $operator){
+    public function check(Request $request){
+        $id = $request->input('id');
+        $operator = $request->input('operator');
         return $this->articleRep->check($id, $operator);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         return $this->articleRep->delete($ids);
     }
 
-    public function collect($id, $userid){
+    public function collect(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->articleRep->collect($id, $userid);
     }
 
-    public function uncollect($id, $userid){
+    public function uncollect(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->articleRep->uncollect($id, $userid);
     }
 
-    public function like($id, $userid){
+    public function like(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->articleRep->like($id, $userid);
     }
 
-    public function unlike($id, $userid){
+    public function unlike(Request $request){
+        $id = $request->input('id');
+        $userid = $request->input('userid');
         return $this->articleRep->unlike($id, $userid);
     }
 

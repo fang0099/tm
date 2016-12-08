@@ -19,7 +19,9 @@ class FriendLinkController extends Controller
         $this->friendLinkRep = $friendLinkRep;
     }
 
-    public function get($id){
+    public function get(Request $request){
+        $id = $request->input('id');
+        echo $id;
         return $this->friendLinkRep->findById($id);
     }
 
@@ -35,7 +37,8 @@ class FriendLinkController extends Controller
         return $this->friendLinkRep->update($request);
     }
 
-    public function delete($ids){
+    public function delete(Request $request){
+        $ids = $request->input('ids');
         $idsArr = explode(',', $ids);
         return $this->friendLinkRep->batchDelete($idsArr);
     }
