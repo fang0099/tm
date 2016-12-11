@@ -161,11 +161,16 @@ abstract class BaseRepository
         $filter = $request->input('filter', array());
         $order = $request->input('order', '');
         $where = ' where del_flag = 0';
-        $filterArr = $this->parser($filter);
-        $p = $filterArr['params'];
-        $conditionArr = $filterArr['condition'];
-        $condition = implode(' and ', $conditionArr);
-        $condition = ' and ' . $condition;
+        $condition = '';
+        $p = array();
+        if(!isEmpty($filter)){
+            $filterArr = $this->parser($filter);
+            $p = $filterArr['params'];
+            $conditionArr = $filterArr['condition'];
+            $condition = implode(' and ', $conditionArr);
+            $condition = ' and ' . $condition;
+        }
+
         /*
         $condition = '';
         $p = array();
