@@ -58,7 +58,10 @@ class ArticleRepository extends BaseRepository
         unset($params['tags']);
         $article = $this->insertWithId($params);
         $tagIdsArr = explode(',', $tagIds);
-        $article->tags->sync($tagIdsArr);
+        foreach ($tagIdsArr as $t){
+            DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+        }
+        //$article->tags->sync($tagIdsArr);
         return $this->success();
     }
 
@@ -81,7 +84,11 @@ class ArticleRepository extends BaseRepository
             return $this->fail();
         }
         $tagIdsArr = explode(',', $tagIds);
-        $article->tags->sync($tagIdsArr);
+        //$article->tags->sync($tagIdsArr);
+        DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
+        foreach ($tagIdsArr as $t){
+            DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+        }
         return $this->success();
     }
 
