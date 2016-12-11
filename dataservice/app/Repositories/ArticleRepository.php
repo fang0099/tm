@@ -88,12 +88,15 @@ class ArticleRepository extends BaseRepository
     public function list(Request $request){
         $articles = $this->select($request);
         $res = [];
-        foreach ($articles as $a){
-            $a['author'] = $a->_author;
-            $a['checker'] = $a->_checker;
-            $a['tags'] = $a->tags;
-            $res[] = $a;
+        if($articles && !empty($articles)){
+            foreach ($articles as $a){
+                $a['author'] = $a->_author;
+                $a['checker'] = $a->_checker;
+                $a['tags'] = $a->tags;
+                $res[] = $a;
+            }
         }
+
         return $this->success('', $res);
     }
 
