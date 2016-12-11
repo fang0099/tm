@@ -163,7 +163,7 @@ abstract class BaseRepository
         $where = ' where del_flag = 0';
         $condition = '';
         $p = array();
-        if(!isEmpty($filter)){
+        if(!empty($filter)){
             $filterArr = $this->parser($filter);
             $p = $filterArr['params'];
             $conditionArr = $filterArr['condition'];
