@@ -45,7 +45,7 @@ class UserRepository extends BaseRepository
         $params = $this->getParams($request);
         $username = $params['username'];
         $count = DB::select('select count(*) as c from users where username = ?', [$username]);
-        $c = $count[0]['c'];
+        $c = $count[0]->c;
         if($c == 0){
             $params['password'] = md5($params['password']);
             $params['is_auth'] = 0;
