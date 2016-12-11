@@ -203,7 +203,8 @@ abstract class BaseRepository
             'filter' => $filter,
             'list' => $list,
         ];
-        return $this->success('', $res);
+        //return $this->success('', $res);
+        return $res;
     }
 
     public function success($message = '操作成功', $data = []){
