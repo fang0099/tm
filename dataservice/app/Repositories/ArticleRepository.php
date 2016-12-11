@@ -12,6 +12,7 @@ namespace App\Repositories;
 use App\Model\Article;
 use App\Model\Comments;
 use App\StatusCode;
+use Illuminate\Http\Request;
 use DB;
 
 class ArticleRepository extends BaseRepository
