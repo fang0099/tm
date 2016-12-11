@@ -93,13 +93,18 @@ class ArticleRepository extends BaseRepository
             'page_size' => $articles['page_size'],
             'filter' => $articles['filter'],
             'list' => array()];
-        foreach ($articles as $a){
-            $a['author'] = $a->_author;
-            $a['checker'] = $a->_checker;
-            $a['tags'] = $a->tags;
-            $res['list'][] = $a;
+        $list = $articles['list'];
+        $res['list'] = $articles['list'];
+        /*
+        if(!empty($list)){
+            foreach ($list as $a){
+                $a['author'] = $a->_author;
+                $a['checker'] = $a->_checker;
+                $a['tags'] = $a->tags;
+                $res['list'][] = $a;
+            }
         }
-
+        */
         return $this->success('', $res);
     }
 
