@@ -20,7 +20,7 @@ class BaseInvoker
 
     public function __call($name, $arguments)
     {
-        $this->invoke($this->module, $name, $arguments);
+        return $this->invoke($this->module, $name, $arguments);
     }
 
 }
