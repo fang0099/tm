@@ -48,8 +48,8 @@ trait ApiInvoker
             }
 
             $r = $res->getBody();
-            // $r = json_decode($r, true);
-            echo $r;
+            $r = json_decode($r, true);
+            return $r;
         }catch (ClientException $ce){
             Log::error($ce);
         }
