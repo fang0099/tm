@@ -44,7 +44,7 @@ class UserRepository extends BaseRepository
     public function create(Request $request){
         $params = $this->getParams($request);
         $username = $params['username'];
-        $count = DB::query('select count(*) as c from users where username = ?', $username);
+        $count = DB::select('select count(*) as c from users where username = ?', [$username]);
         $c = $count[0]['c'];
         if($c == 0){
             $params['password'] = md5($params['password']);

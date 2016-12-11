@@ -132,7 +132,7 @@ class ArticleRepository extends BaseRepository
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
-            DB::query('replace into user_collect_article (user_id, article_id) values (?, ?)', $userid, $id);
+            DB::update('replace into user_collect_article (user_id, article_id) values (?, ?)', [$userid, $id]);
             return $this->success();
         }
     }
@@ -142,7 +142,7 @@ class ArticleRepository extends BaseRepository
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
-            DB::query('delete from user_collect_article (user_id, article_id) values (?, ?)', $userid, $id);
+            DB::delete('delete from user_collect_article (user_id, article_id) values (?, ?)', [$userid, $id]);
             return $this->success();
         }
     }
@@ -152,9 +152,9 @@ class ArticleRepository extends BaseRepository
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
-            $count = DB::query('select count(*) as c from user_like_article where user_id = ? and article_id = ?', $userid, $id);
+            $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
             if($count[0]['c'] == 0){
-                DB::query('insert into user_like_article (user_id, article_id) values (?, ?)', $userid, $id);
+                DB::insert('insert into user_like_article (user_id, article_id) values (?, ?)', [$userid, $id]);
                 $article->likes = $article->likes+1;
                 $article->save();
                 return $this->success();
@@ -170,9 +170,9 @@ class ArticleRepository extends BaseRepository
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
-            $count = DB::query('select count(*) as c from user_like_article where user_id = ? and article_id = ?', $userid, $id);
+            $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
             if($count[0]['c'] > 0){
-                DB::query('delete from user_like_article where user_id = ? and article_id = ?', $userid, $id);
+                DB::delete('delete from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
                 $article->likes = $article->likes - $count[0]['c'];
                 $article->save();
             }

@@ -66,10 +66,10 @@ class TagRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
         }
         else {
-            $count = DB::query('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', $subscriber, $id);
+            $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
             $c = $count[0]['c'];
             if($c == 0){
-                DB::query('insert into tag_subscriber (subscriber_id, tag_id) values (?, ?)', $subscriber, $id);
+                DB::insert('insert into tag_subscriber (subscriber_id, tag_id) values (?, ?)', [$subscriber, $id]);
                 $tag->fans_num = $tag->fans_num + 1;
                 $tag->save();
             }
@@ -83,10 +83,10 @@ class TagRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
         }
         else {
-            $count = DB::query('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', $subscriber, $id);
+            $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
             $c = $count[0]['c'];
             if ($c > 0) {
-                DB::query('delete from tag_subscriber where subscriber_id = ? and tag_id = ?', $subscriber, $id);
+                DB::delete('delete from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
                 $tag->fans_num = $tag->fans_num - $c;
                 $tag->save();
             }
