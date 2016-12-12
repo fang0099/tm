@@ -37,6 +37,7 @@ trait ApiInvoker
             'update'=>'POST',
             'delete'=>'GET',
             'followers'=>'GET',
+            'lastedarticles' => 'GET',
         ],
         'tag' => [
             'get' => 'GET',
@@ -72,13 +73,14 @@ trait ApiInvoker
         }
 
         try{
-            if(isset($this->methodMap[$module]) && isset($this->methodMap[$module][$func])){
+            if(isset($this->methodMap[$module]) && isset($this->methodMap[$module][$func]) && $this->methodMap[$module][$func] !="GET"){
                 $method = $this->methodMap[$module][$func];
                 $res = $client->request($method, $url, [
                     'form_params' => $requestParam
                 ]);
             }else {
                 $method = 'GET';
+                //print_r ($requestParam);
                 $res = $client->request($method, $url, ['query' => $requestParam]);
             }
 
