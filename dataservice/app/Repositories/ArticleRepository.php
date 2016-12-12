@@ -84,7 +84,7 @@ class ArticleRepository extends BaseRepository
         }
 
         //$article->tags->sync($tagIdsArr);
-        if(!isset($params['tags'])){
+        if(isset($params['tags'])){
             $tagIds = $params['tags'];
             $tagIdsArr = explode(',', $tagIds);
             DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
