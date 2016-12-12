@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Front'], function (){
 });
 
 Route::group(['namespace' => 'Admin'], function (){
+    /*
     Route::get('/admin/login', 'LoginController@login');
     Route::get('/admin/dologin', 'LoginController@dologin');
     Route::get('/admin', 'LoginController@index');
@@ -56,5 +57,6 @@ Route::group(['namespace' => 'Admin'], function (){
         var_dump($m);
         return DB::select("select * from users");
     });
-    Route::get('/check', 'TestController@check');
+    Route::get('/check', 'TestController@check');\
+    */
 });
