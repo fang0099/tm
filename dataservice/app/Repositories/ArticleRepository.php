@@ -72,7 +72,6 @@ class ArticleRepository extends BaseRepository
             $word_count = utf8_strlen($content);
             $params['word_count'] = $word_count;
         }
-        $tagIds = isset($params['tags']) ? $params['tags'] : '';
         //$params['has_checked'] = 0;
         //$params['checker'] = 0;
         $operator = isset($params['operator']) ? $params['operator'] : 0;
@@ -83,9 +82,11 @@ class ArticleRepository extends BaseRepository
         if($article == null){
             return $this->fail();
         }
-        $tagIdsArr = explode(',', $tagIds);
+
         //$article->tags->sync($tagIdsArr);
-        if(!empty($tagIdsArr)){
+        if(!isset($params['tags'])){
+            $tagIds = $params['tags'];
+            $tagIdsArr = explode(',', $tagIds);
             DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
             foreach ($tagIdsArr as $t){
                 DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
