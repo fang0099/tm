@@ -67,7 +67,7 @@ class ArticleRepository extends BaseRepository
 
     public function update(Request $request){
         $params = $this->getParams($request);
-        $content = $params['content'];
+        $content = isset($params['content']) ? $params['content'] : '';
         if($content != null && $content != ''){
             $word_count = utf8_strlen($content);
             $params['word_count'] = $word_count;
