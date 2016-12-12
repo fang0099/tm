@@ -20,7 +20,8 @@
                         <div class="portlet light profile-sidebar-portlet ">
                             <!-- SIDEBAR USERPIC -->
                             <div class="profile-userpic">
-                                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+                                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                            </div>
                             <!-- END SIDEBAR USERPIC -->
                             <!-- SIDEBAR USER TITLE -->
                             <div class="profile-usertitle">
@@ -72,7 +73,7 @@
                                                 </a>
                                                 <div class="search-content">
                                                     <h2 class="search-title">
-                                                        <a href="javascript:;">{{ $person['title'] }}</a>
+                                                        <a href="/tm/web/public/article?id={{$person["id"]}}">{{ $person['title'] }}</a>
                                                     </h2>
                                                     <p class="search-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec efficitur pellentesque auctor. Morbi lobortis, leo in tristique scelerisque, mauris quam volutpat nunc </p>
 

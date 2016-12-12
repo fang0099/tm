@@ -2,6 +2,7 @@
     @section("page_level_plugins")
         @stop
     @section("page_level_style")
+        <link href="../assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
         @stop
     @section("content")
         <div class="blog-page blog-content-2">
@@ -9,22 +10,16 @@
                 <div class="col-lg-9">
                     <div class="blog-single-content bordered blog-container">
                         <div class="blog-single-head">
-                            <h1 class="blog-single-head-title">Metronic Blog Reborn</h1>
+                            <h1 class="blog-single-head-title">{{ $article["title"] }}</h1>
                             <div class="blog-single-head-date">
                                 <i class="icon-calendar font-blue"></i>
-                                <a href="javascript:;">Oct 24, 2015</a>
+                                <a href="javascript:;">{{ $article["publish_time"] }}</a>
                             </div>
                         </div>
-                        <div class="blog-single-img">
-                            <img src="../assets/pages/img/background/4.jpg" /> </div>
+                        <!--<div class="blog-single-img">
+                            <img src="../assets/pages/img/background/4.jpg" /> </div>-->
                         <div class="blog-single-desc">
-                            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore siat magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
-                            <p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla et facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-                                luptatum zzril delenit augue et duis dolore feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non
-                                habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. </p>
-                            <p> Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam et processus sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quame nunc
-                                putamus parum claram, siad anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum. </p>
+                            {{ $article["content"] }}
                         </div>
                         <div class="blog-single-foot">
                             <ul class="blog-post-tags">
@@ -108,26 +103,14 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="blog-single-sidebar bordered blog-container">
-                        <div class="blog-single-sidebar-search">
-                            <div class="input-icon right">
-                                <i class="icon-magnifier"></i>
-                                <input type="text" class="form-control" placeholder="Search Blog"> </div>
-                        </div>
                         <div class="blog-single-sidebar-recent">
                             <h3 class="blog-sidebar-title uppercase">Recent Posts</h3>
                             <ul>
+                                @foreach($recent_article_list as $a)
                                 <li>
-                                    <a href="javascript:;">Metronic Admin Progress</a>
+                                    <a href="/tm/web/public/article?id={{$a["id"]}}">{{ $a["title"] }}</a>
                                 </li>
-                                <li>
-                                    <a href="javascript:;">New UI Features</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Lorem Ipsum Dolore Amet</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Userfull Pages Released</a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="blog-single-sidebar-tags">
