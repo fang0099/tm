@@ -48,6 +48,14 @@ trait ApiInvoker
             'unsubscribe' => 'GET',
             'articles' => 'GET',
             'subscriber' => 'GET',
+        'newsflash' => [
+            'create' => 'POST',
+            'update' => 'POST'
+        ],
+        'sponsors' => [
+            'create' => 'POST',
+            'update' => 'POST'
+        ]
         ]
 
     ];
@@ -75,6 +83,7 @@ trait ApiInvoker
             }
 
             $r = $res->getBody();
+            //echo $r;
             $r = json_decode($r, true);
             return $r;
         }catch (ClientException $ce){

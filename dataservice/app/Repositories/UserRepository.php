@@ -62,7 +62,7 @@ class UserRepository extends BaseRepository
 
     public function update(Request $request){
         $params = $this->getParams($request);
-        if($params['password'] == '***'){
+        if(isset($params['password']) && $params['password'] == '***'){
             unset($params['password']);
         }
         return $this->updateInternal($params);
@@ -80,6 +80,17 @@ class UserRepository extends BaseRepository
         }else {
             $offset = ($page - 1) * $pageSize;
             $res = $user->followers()->offset($offset)->limit($pageSize)->get();
+            return $this->success('', $res);
+        }
+    }
+
+    public function follows($id, $page, $pageSize){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $res = $user->follows()->offset($offset)->limit($pageSize)->get();
             return $this->success('', $res);
         }
     }

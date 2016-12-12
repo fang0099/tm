@@ -53,10 +53,10 @@ class TagController extends Controller
         return $this->tagRep->subscribe($id, $userid);
     }
 
-    public function unsubcribe(Request $request){
+    public function unsubscribe(Request $request){
         $id = $request->input('id');
         $userid = $request->input('userid');
-        return $this->tagRep->unscribe($id, $userid);
+        return $this->tagRep->unsubscribe($id, $userid);
     }
 
     public function articles(Request $request){

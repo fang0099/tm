@@ -39,6 +39,7 @@ Route::get('/user/list', 'UserController@list');
 Route::post('/user/update', 'UserController@update');
 Route::get('/user/delete', 'UserController@delete');
 Route::get('/user/followers', 'UserController@followers');
+Route::get('/user/follow', 'UserController@follow');
 Route::get('user/lastedarticles', 'UserController@lastedArticles');
 Route::get('user/hotestarticles', 'UserController@hotestArticles');
 Route::get('user/notice', 'UserController@notice');
@@ -68,7 +69,7 @@ Route::get('/tag/check', 'TagController@check');
 Route::get('/tag/subscribe', 'TagController@subscribe');
 Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 Route::get('/tag/articles', 'TagController@articles');
-Route::get('/tag/subscriber', 'TagController@get');
+Route::get('/tag/subscriber', 'TagController@subscriber');
 
 // news flash
 Route::post('/newsflash/create', 'NewsFlashController@create');

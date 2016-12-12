@@ -18,6 +18,6 @@ class Tag extends BaseModel
     }
 
     public function articles(){
-        return $this->belongsToMany('App\ModelArticle', 'tag_article_rel', 'tag_id', 'article_id')->where('del_flag', '=', '0');
+        return $this->belongsToMany('App\Model\Article', 'tag_article_rel', 'tag_id', 'article_id')->where('del_flag', '=', '0');
     }
 }
