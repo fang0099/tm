@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{include file='admin/header.html'}
+	</head>
+	
+	<body>
+		{include file='admin/page-header.html'}
+
+		<div class="main-container" id="main-container">
+			{literal}
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+			{/literal}
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				{include file='admin/page-left.html'}
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						{literal}
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+						{/literal}
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+							<li class="active">控制台</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								旅游项目管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									{if $smarty.get.id}
+										修改旅游项目
+									{else}
+									 	添加旅游项目
+									 {/if}
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form action='index.php?a=adminDo&m=updateu' id='updateu' method='post'>
+										<table style='text-align : left;width : 800px;margin:auto'>
+											<tr>
+												<td width='20%'>
+													旅游项目名称:
+												</td>
+												<td width='80%'>
+													<input type='text' name='params[name]' />
+												</td>
+											</tr>
+											<tr>
+												<td width='20%'>
+													开始时间名称:
+												</td>
+												<td width='80%'>
+													<input type='text' name='params[pdate]'  class='date' data-date-format='yyyy-mm-dd'/>
+												</td>
+											</tr>
+											<tr>
+												<td width='20%'>
+													封面预览:
+												</td>
+												<td width='80%'>
+													<img src='' preview='face'  width='200' style='border:1px solide;'/>
+												</td>
+											</tr>
+											<tr>
+												<td width='20%'>
+													旅游项目简介:
+												</td>
+												<td width='80%'>
+													<textarea class='richtext col-xs-10 col-sm-5' required='required' name='params[intro]' id='content' ></textarea>
+												</td>
+											</tr>
+											<tr>
+												<td width='30%'>
+													上传景点图片:
+												</td>
+												<td width="70%">
+													<a href='#uploadModal' class='btn btn-primary' data-toggle='modal'><i class='icon-cloud-upload'></i>点击上传</a>
+												</td>
+											</tr>
+											<tr style='display:none' id='pics'>
+												
+											</tr>
+											<tr>
+												<td width='20%'>
+													图片预览
+												</td>
+												<td width='80%'>
+													<ul class="ace-thumbnails" id='gallery'>
+														<!-- 
+														<li>
+															<a href="public/assets/images/gallery/image-1.jpg" data-rel="colorbox">
+																<img alt="150x150" src="public/assets/images/gallery/thumb-1.jpg" />
+															</a>
+															<div class="tools">
+																<a href="javascript:;" class='remove-pic' data=''>
+																	<i class="icon-remove red"></i>
+																</a>
+															</div>
+														</li>
+														-->
+													</ul>
+												</td>
+											</tr>
+											<input type='hidden' name='params[face]' id='face' />
+											<input type='hidden' name='params[id]' id='id' value='{$smarty.get.id}'/>
+											<input type='hidden' name='model' value='{$smarty.get.model}'/>
+										</table>
+										<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<a href='javascript:window.history.go(-1);' class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</a>
+										</div>
+									</div>
+									</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+<div role="dialog" tabindex="-1" class="modal fade" aria-hidden="false" id='uploadModal'>
+			<div class="modal-dialog">
+				<div class="modal-content" style='width: 1000px; margin-right: 0px; right: 200px;'>
+					<div class="modal-header">
+						<button data-dismiss="modal" class="close" type="button">×</button>
+							<h4 class="blue bigger">请选择文件</h4>
+					</div>
+					<div class="modal-body">
+						<form action="index.php?a=adminDo&m=test" class="dropzone">
+										<div class="fallback">
+											<input name="file" type="file" multiple="" />
+										</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary" type="button" data-dismiss="modal" >确认</button>
+					</div>
+				</div>
+			</div>
+</div>
+
+
+		{include file='admin/script.html'}
+		<script src="public/assets/js/dropzone.min.js"></script>
+		<!-- inline scripts related to this page -->
+{include file='admin/image-preview.html'}
+<input type='hidden' id='data' value='{$json}'/>
+{literal}
+<script>
+	$(function(){
+		var id = $('#id').val();
+		var model = $('[name=model]').val();
+		
+		var model = $('input[name=model]').val();
+		var formval = $('#data').val();
+		if(formval){
+			formval = $.common.getJson(formval);
+			$.each(formval, function(k, v){
+				$("#updateu").find('[name=\'params['+k+']\']').val(v);
+			});
+			$('#updateu').find('[preview=face]').attr('src', formval['face']);
+			$('#updateu').find('#face').val(formval['face']);
+			var pics = formval.pics;
+			for(var i = 0 ; i < pics.length ; i++){
+				var html = "<input type='hidden' name='pics[]' value='"+pics[i].pic+"' />"
+				$('#pics').append(html);
+				var template = $('#template').html();
+				template = template.replace(RegExp('\\#path\\#','g'), pics[i].pic);
+				$('#gallery').append(template);
+			}
+		}
+		/*
+		if(id){
+			$.getJSON('index.php?a=adminIndex&m=get&id='+id + '&model='+model, {}, function(data){
+				$.each(data, function(k, v){
+					$('#updateu').find('[name=\'params['+k+']\']').val(v);						
+				})
+				$('#updateu').find('[preview=face]').attr('src', data['face']);
+				$('#updateu').find('#face').val(data['face']);
+				$('#intro').val(data['intro']);
+				pics = data.pics;
+				for(var i = 0 ; i < pics.length ; i++){
+					var html = "<input type='hidden' name='pics[]' value='"+pics[i].pic+"' />"
+					$('#pics').append(html);
+					var template = $('#template').html();
+					template = template.replace(RegExp('\\#path\\#','g'), pics[i].pic);
+					$('#gallery').append(template);
+				}
+			});
+		}
+		$('#updateu').find('[name=\'params[intro]\']').val();
+		*/
+		var src = $('[preview=face]').val();
+		if(!src){
+			//$('[preview=face]').fadeOut();
+		}
+		try {
+			  $(".dropzone").dropzone({
+			    paramName: "file", // The name that will be used to transfer the file
+			    maxFilesize: 5, // MB
+			  
+				addRemoveLinks : true,
+				dictDefaultMessage :
+				'<span class="bigger-150 bolder"><i class="icon-caret-right red"></i> Drop files</span> to upload \
+				<span class="smaller-80 grey">(or click)</span> <br /> \
+				<i class="upload-icon icon-cloud-upload blue icon-3x"></i>'
+				,
+				dictResponseError: 'Error while uploading file!',
+				//change the previewTemplate to use Bootstrap progress bars
+				previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"></div>\n</div>",
+				success: function(file, response){
+					var data = $.common.getJson(response);
+					var html = "<input type='hidden' name='pics[]' value='"+data.path+"' />"
+					$('#pics').append(html);
+					var template = $('#template').html();
+					template = template.replace(RegExp('\\#path\\#','g'), data.path);
+					$('#gallery').append(template);
+					return file.previewElement.classList.add("dz-success");;
+				}
+			  });
+		} catch(e) {
+			  alert('Dropzone.js does not support older browsers!');
+		}
+		
+		
+		$('body').on('click', '.remove-pic', function(){
+			var path = $(this).attr('data');
+			$('[value=\''+path+'\']').remove();
+			$(this).parents('li').remove();
+		});
+		
+		$('body').on('click', '.set-face', function(){
+			var path = $(this).attr('data');
+			$('[preview=face]').attr('src', path);
+			$('#face').val(path);
+			$('#face').fadeIn();
+		});
+		
+		$('#updateu').submit(function(){
+			var options = {
+					beforeSubmit : function(){
+						
+					},
+					type:'POST',
+					success: function(){
+						alert('操作成功');
+						window.history.go(-1);
+					},
+					dataType : 'text'
+				};
+			$(this).ajaxSubmit(options);
+			return false;
+		});
+		
+		
+		var colorbox_params = {
+				reposition:true,
+				scalePhotos:true,
+				scrolling:false,
+				previous:'<i class="icon-arrow-left"></i>',
+				next:'<i class="icon-arrow-right"></i>',
+				close:'&times;',
+				current:'{current} of {total}',
+				maxWidth:'100%',
+				maxHeight:'100%',
+				onOpen:function(){
+					document.body.style.overflow = 'hidden';
+				},
+				onClosed:function(){
+					document.body.style.overflow = 'auto';
+				},
+				onComplete:function(){
+					$.colorbox.resize();
+				}
+		};
+
+		$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+
+		
+	});
+</script>
+<script type="text/javascript">
+	var editor = new UE.ui.Editor({initialFrameHeight:300, initialFrameWidth:650});
+    editor.render("content");
+</script>
+
+{/literal}
+</body>
+</html>
+

@@ -6,10 +6,15 @@
  * Time: 上午12:24
  */
 
-namespace app\Http\Controllers\UI;
+namespace App\Http\Controllers\UI;
 
 
-class DataProvider
+abstract class DataProvider
 {
+    function __construct() {
+    }
 
+    public $param;
+
+    abstract public function getData();
 }

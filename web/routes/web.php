@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,10 +42,19 @@ Route::group(['namespace' => 'Front'], function (){
 });
 
 Route::group(['namespace' => 'Admin'], function (){
+    Route::get('/admin/login', 'LoginController@login');
+    Route::get('/admin/dologin', 'LoginController@dologin');
+    Route::get('/admin', 'LoginController@index');
+    Route::get('/admin/article/list', 'ArticleController@list');
+
     Route::get('/create', 'TestController@create');
     Route::get('/delete', 'TestController@delete');
     Route::get('/update', 'TestController@update');
     Route::get('/list', 'TestController@lists');
-    Route::get('/get', 'TestController@get');
+    Route::get('/get', function(){
+        $m = DB::select("select * from users");
+        var_dump($m);
+        return DB::select("select * from users");
+    });
     Route::get('/check', 'TestController@check');
 });

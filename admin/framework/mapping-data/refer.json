@@ -1,0 +1,32 @@
+{
+	"table" : "trefer",
+	"name" : "网站来源",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "来源名称",
+			"column" : "name",
+			"controlName" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		}
+	],
+	"attribute" : {
+		"id" : "refer-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}

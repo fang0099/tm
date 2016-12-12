@@ -6,10 +6,22 @@
  * Time: 上午12:24
  */
 
-namespace app\Http\Controllers\UI;
+namespace App\Http\Controllers\UI;
 
 
-class ArrayDataProvider
+class ArrayDataProvider extends DataProvider
 {
+    function __construct() {
+    }
 
+    public function getData() {
+        $data = $this->param;
+        $res = array();
+        foreach ($data as $d){
+            foreach ($d as $k=>$v){
+                $res[$v] = $k;
+            }
+        }
+        return $res;
+    }
 }

@@ -1,0 +1,49 @@
+{
+	"table" : "tpage",
+	"name" : "公司简介",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "英文标题",
+			"column" : "entitle",
+			"controlName" : "params[entitle]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "内容",
+			"column" : "content",
+			"controlName" : "params[content]",
+			"type" : "richtext",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "no"	
+		}
+	],
+	"attribute" : {
+		"id" : "company-form",
+		"callback" : "$.callback.stay"
+	},
+	"sort" : "id"
+}

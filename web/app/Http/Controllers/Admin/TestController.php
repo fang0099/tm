@@ -19,7 +19,7 @@ class TestController extends Controller
 
     private $invoker;
 
-    public function __construct(TagInvoker $invoker)
+    public function __construct(ArticleInvoker $invoker)
     {
         $this->invoker = $invoker;
     }
@@ -39,7 +39,7 @@ class TestController extends Controller
     }
 
     public function update(){
-        return $this->invoker->update(['params[id]' => '1', 'params[name]'=>'tag1']);
+        return $this->invoker->update(['params[id]' => '1', 'params[title]'=>'tag1']);
     }
 
     public function get(){
@@ -49,6 +49,7 @@ class TestController extends Controller
         //return $this->invoker->subscriber(['id' => 1]);
         //return $this->invoker->articles(['id' => 1]);
         //return $this->invoker->unsubscribe(['id' => 1, 'userid' => '1']);
+        return $this->invoker->get(['id'=> 1]);
     }
 
     public function check(){

@@ -6,10 +6,16 @@
  * Time: 上午12:01
  */
 
-namespace app\Http\Controllers\UI;
+namespace App\Http\Controllers\UI;
 
 
-class Control
+abstract class Control
 {
+    function __construct() {
+    }
 
+    public $attribute = array();
+
+
+    abstract public function render();
 }

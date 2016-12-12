@@ -1,0 +1,94 @@
+{
+	"table" : "article",
+	"name" : "文章",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "文章标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "文章封面",
+			"column" : "face",
+			"controlName" : "face",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			},
+			"showInTable" : "no"	
+		},
+		{
+			"columnName" : "图片预览",
+			"column" : "face",
+			"controlName" : "",
+			"type" : "preview",
+			"attribute" : {
+				"width" : "200"
+			},
+			"preview" : "face"
+		},
+		{
+			"columnName" : "封面",
+			"column" : "face",
+			"controlName" : "params[face]",
+			"type" : "hidden"
+		},
+		{
+			"columnName" : "点赞数",
+			"column" : "likes",
+			"controlName" : "params[likes]",
+			"type" : "text",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "浏览量",
+			"column" : "click_count",
+			"controlName" : "params[click_count]",
+			"type" : "text",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "热度",
+			"column" : "hot_num",
+			"controlName" : "params[hot_num]",
+			"type" : "text",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "发布时间",
+			"column" : "publish_time",
+			"controlName" : "params[publish_time]",
+			"type" : "hidden",
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "内容",
+			"column" : "content",
+			"controlName" : "params[content]",
+			"type" : "richtext",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "no"
+		}
+	],
+	"attribute" : {
+		"id" : "article-form",
+		"callback" : "$.callback.back"
+	},
+	"sort" : "id",
+	"operations" : ["add","batch-delete", "update", "delete", "back"] 
+}

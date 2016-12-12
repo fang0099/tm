@@ -1,0 +1,50 @@
+					<div class="property-filter" style='padding-top:10px;padding-bottom:20px'>
+                        <div class="content">
+                            <form method="post" action="index.php?a=index&m=order" id="order-form">
+                                <h4><font color='white'>酒店预订</font></h4>
+                                <div class=" control-group">
+                                    <label class="control-label" for="">
+                                       	 预订酒店
+                                    </label>
+                                    <div class="controls">
+                                        <select id="hid" name="hid">
+                                        	{foreach $hotels as $hotel}
+                                            	<option value="{$hotel.id}">{$hotel.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+                                <div class="location control-group">
+                                    <label class="control-label" for="">
+                                        	预订人数
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="pnums" name="pnums">
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="type control-group">
+                                    <label class="control-label" for="">
+                                        	预约时间
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" data-date-format="yyyy-mm-dd" class="date" id="odate" name="odate">
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+                                
+                                <div class="location control-group">
+                                    <label class="control-label" for="">
+                                        	联系电话
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="phone" name="phone">
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="form-actions">
+                                    <input type="submit" value="现在预订" class="btn btn-primary btn-large">
+                                </div><!-- /.form-actions -->
+                            </form>
+                        </div><!-- /.content -->
+                    </div><!-- /.property-filter -->
+                    

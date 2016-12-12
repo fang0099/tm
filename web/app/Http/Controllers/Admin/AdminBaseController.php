@@ -6,10 +6,25 @@
  * Time: 下午11:55
  */
 
-namespace app\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 
-class AdminBaseController
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class AdminBaseController extends Controller
 {
+
+    protected function jsonResult($success, $message = '', $data = []){
+        return json_encode([
+            'success' => $success,
+            'message' => $message,
+            'data' => $data
+        ]);
+    }
+
+    protected function getParams(Request $request){
+        return $request->input('params');
+    }
 
 }

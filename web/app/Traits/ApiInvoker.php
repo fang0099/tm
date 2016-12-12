@@ -29,6 +29,7 @@ trait ApiInvoker
             'like' => 'GET',
             'unlike' => 'GET',
             'comment' => 'POST',
+            'update' => 'POST'
         ],
         'user' => [
             'get' => 'GET',

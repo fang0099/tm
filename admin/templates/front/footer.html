@@ -1,0 +1,153 @@
+<div id="footer-wrapper">
+    <div id="footer-top">
+        <div id="footer-top-inner" class="container">
+            <div class="row">
+            
+            	<div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">常用链接</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <ul class="menu nav">
+                            <li><a href="./index.php">主页</a></li>
+                            <li><a href="./?a=list&m=lycity">选择地点</a></li>
+                            <li><a href="./?a=list&m=jt">交通指南</a></li>
+                            <li><a href="./?a=list&m=lyitem">旅游项目</a></li>
+                            <li><a href="./?a=list&m=house">房地产热线</a></li>
+                        </ul><!-- /.nav -->
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+            
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">联系我们</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <table class="contact">
+                            <tbody>
+                            <tr>
+                                <th class="address">地址:</th>
+                                <td>{$webinfo.address}</td>
+                            </tr>
+                            <tr>
+                                <th class="phone">电话:</th>
+                                <td>{$webinfo.phone}</td>
+                            </tr>
+                            <tr>
+                                <th class="email">E-mail:</th>
+                                <td><a href="#">{$webinfo.email}</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">友情链接</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <ul class="menu nav">
+                        	{foreach $flinks as $flink}
+	                            <li class="leaf"><a href="{$flink.url}">{$flink.name}</a></li>
+                            {/foreach}
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">Say hello!</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <form method="post" action="index.php?a=index&m=message" id="message-form">
+                        	{if !$smarty.session.id}
+                        		<div class="control-group">
+	                                <label class="control-label" for="inputName">
+	                                    	姓名
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	                                <div class="controls">
+	                                    <input type="text" id="name" name="name">
+	                                </div><!-- /.controls -->
+	                            </div><!-- /.control-group -->
+	
+	                            <div class="control-group">
+	                                <label class="control-label" for="inputEmail">
+	                                    	邮箱
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	                                <div class="controls">
+	                                    <input type="text" id="email" name="email">
+	                                </div><!-- /.controls -->
+	                            </div><!-- /.control-group -->
+	
+	                            <div class="control-group">
+	                                <label class="control-label" for="inputMessage">
+	                                    	内容
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	
+	                                <div class="controls">
+	                                    <textarea id="message" name="message"></textarea>
+	                                </div><!-- /.controls -->
+                            	</div><!-- /.control-group -->
+                        	{else}
+                        		<div class="control-group">
+	                                <label class="control-label" for="inputName">
+	                                    	姓名
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	                                <div class="controls">
+	                                    <input type="text" id="name" name="name" value="{$smarty.session.username}">
+	                                </div><!-- /.controls -->
+	                            </div><!-- /.control-group -->
+	
+	                            <div class="control-group">
+	                                <label class="control-label" for="inputEmail">
+	                                    	邮箱
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	                                <div class="controls">
+	                                    <input type="text" id="email" name="email" value="{$smarty.session.email}">
+	                                </div><!-- /.controls -->
+	                            </div><!-- /.control-group -->
+	
+	                            <div class="control-group">
+	                                <label class="control-label" for="inputMessage">
+	                                    	内容
+	                                    <span class="form-required" title="必填项.">*</span>
+	                                </label>
+	
+	                                <div class="controls">
+	                                    <textarea id="message" name="message"></textarea>
+	                                </div><!-- /.controls -->
+	                            </div><!-- /.control-group -->
+	                        {/if}
+                            
+
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary arrow-right" value="留言">
+                            </div><!-- /.form-actions -->
+                        </form>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+            </div><!-- /.row -->
+        </div><!-- /#footer-top-inner -->
+    </div><!-- /#footer-top -->
+
+    <div id="footer" class="footer container">
+        <div id="footer-inner">
+            <div class="row">
+                <div class="span9 copyright">
+                    <p>{$webinfo.copyright}</p>
+                </div><!-- /.copyright -->
+
+            </div><!-- /.row -->
+        </div><!-- /#footer-inner -->
+    </div><!-- /#footer -->
+</div><!-- /#footer-wrapper -->

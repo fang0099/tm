@@ -1,0 +1,40 @@
+{
+	"table" : "tsteps",
+	"name" : "房产购买流程",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "步数",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "内容",
+			"column" : "content",
+			"controlName" : "params[content]",
+			"type" : "richtext",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "no"	
+		}
+	],
+	"attribute" : {
+		"id" : "steps-form",
+		"callback" : "$.callback.back"
+	},
+	"sort" : "id",
+	"operations" : [ "update",  "back"] 
+}

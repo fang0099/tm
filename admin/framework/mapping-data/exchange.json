@@ -1,0 +1,42 @@
+{
+	"table" : "texchange",
+	"name" : "汇率换算字典",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "持有货币",
+			"column" : "toname",
+			"controlName" : "params[toname]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "到日元汇率",
+			"column" : "rate",
+			"controlName" : "params[rate]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"
+		}
+	],
+	"attribute" : {
+		"id" : "exchange-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}

@@ -1,0 +1,30 @@
+<ul class="pagination">
+									{if $all_page neq 0}		
+									{if $current_page neq 1}
+										<li><a  href='{$BASE_URL}&page={$pre_page}'>上一页</a></li>
+									{/if}
+									{if $left_index neq 1}
+										<li><a  href="{$BASE_URL}&page=1">1</a></li>
+										<li>...</li>					
+									{/if}
+									
+									{for $i=$left_index to $right_index}
+										{if $i eq $current_page}
+											<li class='active'>{$i}</li>
+										{else}
+											<li><a href='{$BASE_URL}&page={$i}'>{$i}</a></li>
+										{/if}
+									{/for}
+									{if $right_index neq $all_page}
+										<li>...</li>
+										<li><a href="{$BASE_URL}&page={$all_page}">{$all_page}</a></li>
+									{/if}				
+									{if $current_page neq $all_page}
+										<li><a href='{$BASE_URL}&page={$next_page}'>下一页</a></li>
+									{/if}									
+								{/if}
+		</ul>
+		
+		
+		
+          
