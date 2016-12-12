@@ -12,17 +12,24 @@ use App\Http\Controllers\Controller;
 
 use App\Invokers\FriendLinkInvoker;
 use App\Invokers\UserInvoker;
+use App\Invokers\WebInfoInvoker;
+use App\Invokers\ArticleInvoker;
 
 class IndexController extends Controller
 {
-    private $friendLinkInvoker;
+    private $articleInvoker;
+    private $userInvoker;
+    private $webInfoInvoker;
 
-    public function __construct(UserInvoker $friendLinkInvoker)
+    public function __construct(ArticleInvoker $articleInvoker)
     {
-        $this->friendLinkInvoker = $friendLinkInvoker;
+        $this->articleInvoker = $articleInvoker;
     }
 
     public function index(){
-        return $this->friendLinkInvoker->create(['params[title]'=>'hehe', 'params[url]' => 'http://xxx.com']);
+        //$r = $this->articleInvoker->get(['id' => 1]);
+        //print_r($r);
+        return view("front/index");
     }
+
 }
