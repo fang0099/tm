@@ -10,48 +10,67 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 
-use App\Invokers\FriendLinkInvoker;
-use App\Invokers\UserInvoker;
-use App\Invokers\WebInfoInvoker;
 use App\Invokers\ArticleInvoker;
+use App\Invokers\FriendLinkInvoker;
+use App\Invokers\WebInfoInvoker;
+use App\Invokers\UserInvoker;
+use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class UserController extends Controller
 {
+    private $userInvoker;
     private $articleInvoker;
 
-    public function __construct(ArticleInvoker $articleInvoker)
+    public function __construct(UserInvoker $userInvoker, ArticleInvoker $articleInvoker)
     {
+        $this->userInvoker = $userInvoker;
         $this->articleInvoker = $articleInvoker;
     }
 
-    public function index(){
-        $r = $this->articleInvoker->get(['id' => 1]);
+    public function index(Request $request){
+        $id = $request->get('id');
+        $r = $this->userInvoker->get(['id' => $id]);
+
+        $user_article = $this->articleInvoker->list(['filter[author]'=>$id]);
         print_r($r);
+        print_r($user_article);
     }
 
-    public function create()
+    public function login()
     {
-        $title = "test";
-        $face="123";
-        $abstracts="abstract";
-        $content="dsajifsjaiof";
-        $author=1;
-        $tags="fff";
-        $r = $this->articleInvoker->create(
-            ['title' => $title ,
-            'face' => $face,
-            'abstracts'=>$abstracts,
-            'content'=>$content,
-            'author'=>$author,
-            'tags'=>$tags
+        return view("front/user_login");
+    }
+
+    public function signin()
+    {
+
+    }
+
+    public function signup()
+    {
+        return view("front/user_signup");
+    }
+
+    public function create(Request $request)
+    {
+        $username = $request->get('username');
+        $password=$request->get("password");
+        $avatar="/tm/web/resources/assets/img/user.png";
+        $brief="这家伙很懒，什么也没留下";
+
+        $r = $this->userInvoker->create(
+            ['params[username]' => $username,
+            'params[password]' => $password,
+            'params[avatar]'=>$avatar,
+            'params[brief]'=>$brief,
         ]);
 
         print_r($r);
     }
 
-    public function article_list()
+    public function user_list()
     {
-        $r = $this->articleInvoker->list();
+        $r = $this->userInvoker->list();
         print_r($r);
     }
 }

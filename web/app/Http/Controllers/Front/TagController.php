@@ -12,19 +12,20 @@ use App\Http\Controllers\Controller;
 
 use App\Invokers\FriendLinkInvoker;
 use App\Invokers\WebInfoInvoker;
-use App\Invokers\UserInvoker;
+use App\Invokers\TagInvoker;
 
-class UserController extends Controller
+class TagController extends Controller
 {
     private $userInvoker;
 
-    public function __construct(UserInvoker $userInvoker)
+    public function __construct(TagInvoker $tagInvoker)
     {
-        $this->userInvoker = $userInvoker;
+        $this->tagInvoker = $tagInvoker;
     }
 
-    public function index(){
-        $r = $this->userInvoker->get(['id' => 1]);
+    public function index()
+    {
+        $r = $this->tagInvoker->get(['id' => 1]);
         print_r($r);
     }
 
@@ -35,7 +36,7 @@ class UserController extends Controller
         $avatar="abstract";
         $brief="dsajifsjaiof";
 
-        $r = $this->userInvoker->create(
+        $r = $this->tagInvoker->create(
             ['username' => $username,
             'password' => $password,
             'avatar'=>$avatar,
@@ -45,9 +46,9 @@ class UserController extends Controller
         print_r($r);
     }
 
-    public function user_list()
+    public function tag_list()
     {
-        $r = $this->user->list();
+        $r = $this->tag->list(['id'=>1]);
         print_r($r);
     }
 }
