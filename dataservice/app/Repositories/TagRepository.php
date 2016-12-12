@@ -67,7 +67,7 @@ class TagRepository extends BaseRepository
         }
         else {
             $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
-            $c = $count[0]['c'];
+            $c = $count[0]->c;
             if($c == 0){
                 DB::insert('insert into tag_subscriber (subscriber_id, tag_id) values (?, ?)', [$subscriber, $id]);
                 $tag->fans_num = $tag->fans_num + 1;
@@ -84,7 +84,7 @@ class TagRepository extends BaseRepository
         }
         else {
             $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
-            $c = $count[0]['c'];
+            $c = $count[0]->c;
             if ($c > 0) {
                 DB::delete('delete from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
                 $tag->fans_num = $tag->fans_num - $c;
@@ -100,9 +100,9 @@ class TagRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
         }
         else {
-            $pageSize = config('page_size', 15);
+            $pageSize = 15;
             $offset = ($page - 1) * $pageSize;
-            $articles = $tag->articles()->offset($offset)->limit()->get($pageSize);
+            $articles = $tag->articles()->offset($offset)->limit($pageSize)->get();
             return $this->success('', $articles);
         }
     }
@@ -113,9 +113,9 @@ class TagRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
         }
         else {
-            $pageSize = config('page_size', 15);
+            $pageSize = 15;
             $offset = ($page - 1) * $pageSize;
-            $subscriber = $tag->subscriber()->offset($offset)->limit()->get($pageSize);
+            $subscriber = $tag->subscriber()->offset($offset)->limit($pageSize)->get();
             return $this->success('', $subscriber);
         }
     }

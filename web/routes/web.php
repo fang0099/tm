@@ -19,3 +19,12 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Front'], function (){
     Route::get('/index', 'IndexController@index');
 });
+
+Route::group(['namespace' => 'Admin'], function (){
+    Route::get('/create', 'TestController@create');
+    Route::get('/delete', 'TestController@delete');
+    Route::get('/update', 'TestController@update');
+    Route::get('/list', 'TestController@lists');
+    Route::get('/get', 'TestController@get');
+    Route::get('/check', 'TestController@check');
+});

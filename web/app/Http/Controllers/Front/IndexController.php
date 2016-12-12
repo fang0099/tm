@@ -15,14 +15,14 @@ use App\Invokers\UserInvoker;
 
 class IndexController extends Controller
 {
-    private $userInvoker;
+    private $friendLinkInvoker;
 
-    public function __construct(FriendLinkInvoker $userInvoker)
+    public function __construct(UserInvoker $friendLinkInvoker)
     {
-        $this->userInvoker = $userInvoker;
+        $this->friendLinkInvoker = $friendLinkInvoker;
     }
 
     public function index(){
-        $this->userInvoker->get(['id' => 1]);
+        return $this->friendLinkInvoker->create(['params[title]'=>'hehe', 'params[url]' => 'http://xxx.com']);
     }
 }
