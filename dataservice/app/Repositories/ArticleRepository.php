@@ -72,10 +72,10 @@ class ArticleRepository extends BaseRepository
             $word_count = utf8_strlen($content);
             $params['word_count'] = $word_count;
         }
-        $tagIds = $params['tags'];
+        $tagIds = isset($params['tags']) ? $params['tags'] : '';
         //$params['has_checked'] = 0;
         //$params['checker'] = 0;
-        $operator = $params['operator'];
+        $operator = isset($params['operator']) ? $params['operator'] : 0;
         // checke operator has permission?
         unset($params['tags']);
         unset($params['operator']);
