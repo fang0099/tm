@@ -80,7 +80,7 @@ class ArticleRepository extends BaseRepository
         unset($params['operator']);
         $article = $this->updateWithId($params);
         if($article == null){
-            return $this->fail();
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
         }
 
         //$article->tags->sync($tagIdsArr);
