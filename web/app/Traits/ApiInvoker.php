@@ -10,7 +10,7 @@ namespace App\Traits;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use Log;
+//use Log;
 trait ApiInvoker
 {
     protected $methodMap = [
@@ -21,15 +21,42 @@ trait ApiInvoker
         'friendlink' => [
             'create' => 'POST',
             'update' => 'POST'
+        ],
+        'article' => [
+            'get' => 'GET',
+            'create' => 'POST',
+            'list' => 'GET',
+            'like' => 'GET',
+            'unlike' => 'GET',
+            'comment' => 'POST',
+        ],
+        'user' => [
+            'get' => 'GET',
+            'create'=> 'POST',
+            'list'=>'GET',
+            'update'=>'POST',
+            'delete'=>'GET',
+            'followers'=>'GET',
+        ],
+        'tag' => [
+            'get' => 'GET',
+            'create' => 'POST',
+            'list' => 'GET',
+            'update' =>  'POST',
+            'delete' => 'GET',
+            'subscribe' => 'GET',
+            'unsubscribe' => 'GET',
+            'articles' => 'GET',
+            'subscriber' => 'GET',
         ]
+
     ];
 
     protected function invoke($module, $func, $params){
         $baseUrl = env('BASE_URL');
         $url = $baseUrl . $module . '/' . $func ;
         $client = new Client();
-
-        Log::debug('api url is ' . $url . '. params is ' . var_export($params, true));
+        //Log::debug('api url is ' . $url . '. params is ' . var_export($params, true));
 
         $requestParam = [];
         foreach ($params as $p){
@@ -51,7 +78,7 @@ trait ApiInvoker
             $r = json_decode($r, true);
             return $r;
         }catch (ClientException $ce){
-            Log::error($ce);
+            //Log::error($ce);
         }
 
     }
