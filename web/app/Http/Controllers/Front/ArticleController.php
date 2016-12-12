@@ -11,21 +11,32 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 
 use App\Invokers\ArticleInvoker;
+use App\Invokers\UserInvoker;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
     private $articleInvoker;
+    private $userInvoker;
 
-    public function __construct(ArticleInvoker $articleInvoker)
+    public function __construct(ArticleInvoker $articleInvoker, UserInvoker $userInvoker)
     {
         $this->articleInvoker = $articleInvoker;
+        $this->userInvoker = $userInvoker;
     }
 
-    public function index(){
-        $r = $this->articleInvoker->get(['id' => 1]);
-        print_r($r);
-        return view("front/article");
+    public function index(Request $request){
+        $id = $request->get('id');
+        $r = $this->articleInvoker->get(['id' => $id]);
+
+        $authorid = $r["data"]["author"]["id"];
+        $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid]);
+//        print_r($r);
+
+       // print_r($article_list);
+        return view("front/article",['article' => $r["data"],
+                                    'recent_article_list' => $article_list["data"]
+        ]);
     }
 
     public function article()

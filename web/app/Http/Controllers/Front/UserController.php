@@ -31,7 +31,7 @@ class UserController extends Controller
         $id = $request->get('id');
         $r = $this->userInvoker->get(['id' => $id]);
 
-        $user_article = $this->articleInvoker->list(['filter[author]'=>$id]);
+        $user_article = $this->userInvoker->lastedarticles(['userid'=>$id]);
         print_r($r);
         print_r($user_article);
     }
