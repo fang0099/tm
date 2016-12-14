@@ -28,12 +28,8 @@ class ArticleController extends Controller
     public function index(Request $request){
         $id = $request->get('id');
         $r = $this->articleInvoker->get(['id' => $id]);
-
         $authorid = $r["data"]["author"]["id"];
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid]);
-//        print_r($r);
-
-       // print_r($article_list);
         return view("front/article",['article' => $r["data"],
                                     'recent_article_list' => $article_list["data"]
         ]);
@@ -42,6 +38,44 @@ class ArticleController extends Controller
     public function article()
     {
 
+    }
+
+    public function edit_article(Request $request)
+    {
+        $id = $request->get("id");
+        $r = $this->articleInvoker->get(['id'=>$id]);
+        return view("front/article_update", ['article'=>$r["data"]]);
+    }
+
+    public function update(Request $request)
+    {
+        //Request::
+        $id = $request->get("id");
+        $title = $request->get("title");
+        $content = $request->get("content");
+
+        $face = "123";
+        $abstracts = "abstract";
+        //$author = 1;
+        $tags = 1;
+        echo $id;
+        $r = $this->articleInvoker->update(
+            [
+                'params[id]' => $id ,
+                'params[title]' => $title ,
+                'params[face]' => $face,
+                'params[abstracts]'=>$abstracts,
+                'params[content]'=>$content,
+                //'params[author]'=>$author,
+                'params[tags]'=>$tags
+            ]);
+
+        print_r($r);
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->get("id");
     }
 
     public function create(Request $request)

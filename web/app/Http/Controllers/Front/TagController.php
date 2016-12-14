@@ -32,14 +32,14 @@ class TagController extends Controller
     public function create()
     {
         $username = "test";
-        $password="123456";
-        $avatar="abstract";
+        $face="123456";
+        $creator=1;
         $brief="dsajifsjaiof";
 
         $r = $this->tagInvoker->create(
             ['username' => $username,
-            'password' => $password,
-            'avatar'=>$avatar,
+            'face' => $face,
+            'creator'=>$creator,
             'brief'=>$brief,
         ]);
 

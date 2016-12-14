@@ -41,9 +41,16 @@ class UserController extends Controller
         return view("front/user_login");
     }
 
-    public function signin()
+    public function signin(Request $request)
     {
+        $username = $request->get('username');
+        $password=$request->get("password");
 
+        $r = $this->userInvoker->getbyname(
+            ['username'=>$username]
+        );
+
+        echo json_encode($r);
     }
 
     public function signup()
@@ -65,7 +72,7 @@ class UserController extends Controller
             'params[brief]'=>$brief,
         ]);
 
-        print_r($r);
+        echo json_encode($r);
     }
 
     public function user_list()
