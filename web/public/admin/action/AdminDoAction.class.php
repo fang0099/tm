@@ -189,7 +189,9 @@ class AdminDoAction extends Action {
 					$img_name = date ( "YmdHis" ) . "." . $prefix;
 					$url = "upload/" . $img_name;
 					$src = ROOT . "upload/" . $img_name;
+					$tmp = dirname(ROOT) . '/upload/' . $img_name;
 					move_uploaded_file ( $value ["tmp_name"], $src );
+					copy($src, $tmp);
 				}
 			} else {
 				$url = "upload/" . 'default.jpg';

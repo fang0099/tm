@@ -1,9 +1,30 @@
-<div class="sidebar" id="sidebar">
-					{literal}
+<?php /* Smarty version Smarty-3.1.14, created on 2016-12-14 22:12:26
+         compiled from "/var/www/html/tm/admin/templates/admin/page-left.html" */ ?>
+<?php /*%%SmartyHeaderCode:3087465785851534aa82163-53800202%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '787ec9fd694fd2c36c277502fdca707ee2cc43b1' => 
+    array (
+      0 => '/var/www/html/tm/admin/templates/admin/page-left.html',
+      1 => 1481566118,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '3087465785851534aa82163-53800202',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_5851534aa84897_43646335',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5851534aa84897_43646335')) {function content_5851534aa84897_43646335($_smarty_tpl) {?><div class="sidebar" id="sidebar">
+					
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
-					{/literal}
+					
 					<ul class="nav nav-list">
 						<li mdata='index'>
 							<a href="index.php?a=adminIndex&model=index">
@@ -47,18 +68,6 @@
 								<b class="arrow icon-angle-down"></b>
 							</a>
 							<ul class="submenu">
-								<li mdata='slider'>
-									<a href="index.php?a=adminIndex&m=ls&model=slider&type=form">
-										<i class="icon-double-angle-right"></i>
-										<span class="menu-text"> 首页幻灯管理 </span>
-									</a>
-								</li>
-								<li mdata='newsflash'>
-									<a href="index.php?a=adminIndex&m=ls&model=newsflash&type=form">
-										<i class="icon-double-angle-right"></i>
-										<span class="menu-text"> 快讯管理 </span>
-									</a>
-								</li>
 								<li mdata='article'>
 									<a href="index.php?a=adminIndex&m=ls&model=article&type=form">
 										<i class="icon-double-angle-right"></i>
@@ -105,9 +114,9 @@
 					<div class="sidebar-collapse" id="sidebar-collapse">
 						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
 					</div>
-					{literal}
+					
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 					</script>
-					{/literal}
-				</div>
+					
+				</div><?php }} ?>

@@ -83,6 +83,13 @@ Route::get('/sponsors/list', 'SponsorsController@list');
 Route::post('/sponsors/update', 'SponsorsController@update');
 Route::get('/sponsors/delete/{ids}', 'SponsorsController@delete');
 
+// slider
+Route::get('/slider/get', 'SliderController@get');
+Route::get('/slider/list', 'SliderController@list');
+Route::post('/slider/create', 'SliderController@create');
+Route::post('/slider/update', 'SliderController@update');
+Route::post('/slider/delete', 'SliderController@delete');
+
 Route::get('/key/fucs', 'KeyController@functionsCount');
 
 Route::get('/test', 'KeyController@t');

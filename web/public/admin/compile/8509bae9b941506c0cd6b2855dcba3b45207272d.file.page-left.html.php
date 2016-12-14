@@ -1,9 +1,30 @@
-<div class="sidebar" id="sidebar">
-					{literal}
+<?php /* Smarty version Smarty-3.1.14, created on 2016-12-14 23:12:02
+         compiled from "/var/www/html/tm/web/public/admin/templates/admin/page-left.html" */ ?>
+<?php /*%%SmartyHeaderCode:22065090858515432b755e7-34303312%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '8509bae9b941506c0cd6b2855dcba3b45207272d' => 
+    array (
+      0 => '/var/www/html/tm/web/public/admin/templates/admin/page-left.html',
+      1 => 1481728311,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '22065090858515432b755e7-34303312',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.14',
+  'unifunc' => 'content_58515432b77893_16516104',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_58515432b77893_16516104')) {function content_58515432b77893_16516104($_smarty_tpl) {?><div class="sidebar" id="sidebar">
+					
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
-					{/literal}
+					
 					<ul class="nav nav-list">
 						<li mdata='index'>
 							<a href="index.php?a=adminIndex&model=index">
@@ -105,9 +126,9 @@
 					<div class="sidebar-collapse" id="sidebar-collapse">
 						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
 					</div>
-					{literal}
+					
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 					</script>
-					{/literal}
-				</div>
+					
+				</div><?php }} ?>
