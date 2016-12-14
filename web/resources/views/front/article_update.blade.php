@@ -6,16 +6,11 @@
         <link rel="stylesheet" type="text/css" href="../simditor/styles/simditor-fullscreen.css" />
         @stop
     @section("content")
-        <form action="create" method="post" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" name="title" placeholder="标题">
-            </div>
-            <div class="form-group">
-                <textarea id="editor" name="content" placeholder="Balabala" autofocus></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="提交"/>
-            </div>
+        <form action="update" method="post">
+            <input type="text" class="form-control" name="title" placeholder="Default Input" value="{{ $article["title"] }}">
+            <input type="text" class="form-control" name="id" placeholder="Default Input" value="{{ $article["id"] }}" style="display:none;">
+            <textarea id="editor" name="content" placeholder="Balabala" autofocus>{!! $article["content"] !!}</textarea>
+            <input type="submit" class="btn btn-primary" value="保存"/>
         </form>
         @stop
     @section("page_level_plugins_js")
@@ -33,29 +28,9 @@
         <script>
             var editor = new Simditor({
                 textarea: $('#editor'),
-                placeholder: '正文...',
+                placeholder: '这里输入文字...',
                 pasteImage: true,
-                toolbar: [
-                    'title',
-                    'bold',
-                    'italic',
-                    'underline',
-                    'strikethrough',
-                    'fontScale',
-                    'color',
-                    'ol',
-                    'ul',
-                    'blockquote',
-                    'code',
-                    'table',
-                    'link',
-                    'image',
-                    'hr',
-                    'indent',
-                    'outdent',
-                    'alignment',
-                    'fullscreen',
-                    ],
+                toolbar: ['title', 'bold', 'italic', 'image', 'link'],
                 upload: {
                     url: '/upload'
                 },
