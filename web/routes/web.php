@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::post('/article/create', 'ArticleController@create');
     Route::post('/article/update', 'ArticleController@update');
     Route::get('/article/delete', 'ArticleController@delete');
+    Route::get('/article/edit', 'ArticleController@edit_article');
     //创建用户
     Route::post('/user/create', 'UserController@create');
     Route::get('/article/write', 'ArticleController@write');
