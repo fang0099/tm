@@ -13,7 +13,7 @@ class Slider extends BaseModel
 {
     protected $table = 'sliders';
 
-    public function article(){
-        return $this->hasOne('App\Model\Article', 'article_id');
+    public function _article(){
+        return $this->hasOne('App\Model\Article', 'id');
     }
 }

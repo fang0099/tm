@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\Model\Slider;
 use Illuminate\Http\Request;
+use App\StatusCode;
 
 class SliderRepository extends BaseRepository
 {
@@ -24,6 +25,7 @@ class SliderRepository extends BaseRepository
         if($s == null || $s->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'result is null');
         }else {
+            $s->article = $s->_article;
             return $this->success('', $s);
         }
     }
@@ -36,7 +38,8 @@ class SliderRepository extends BaseRepository
     public function list(){
         $sliders = Slider::all();
         foreach ($sliders as $s){
-            //$s->article
+            $article = $s->_article;
+            $s->article = $article;
         }
         return $this->success('', $sliders);
     }
