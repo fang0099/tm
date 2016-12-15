@@ -656,3 +656,61 @@
 2016-12-14 23:23:03:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
 2016-12-14 23:23:03:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
 2016-12-14 23:23:03:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:35:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:37=>Undefined index: filter
+2016-12-14 23:38:35:SQL=>select title, link,  id from news_flash order by id desc 	Param=>NULL
+2016-12-14 23:38:35:Error:::1=>=>line:=>filemtime(): stat failed for /var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php
+2016-12-14 23:38:35:Error:::1=>=>line:=>filemtime(): stat failed for /var/www/html/tm/web/public/admin/compile/8c69d5f21e36259409de1db701ff527cf270a04a.file.header.html.php
+2016-12-14 23:38:35:Error:::1=>=>line:=>filemtime(): stat failed for /var/www/html/tm/web/public/admin/compile/ede224a8d67e3a951a49ba665155aa5ce8197579.file.page-header.html.php
+2016-12-14 23:38:35:Error:::1=>=>line:=>filemtime(): stat failed for /var/www/html/tm/web/public/admin/compile/8509bae9b941506c0cd6b2855dcba3b45207272d.file.page-left.html.php
+2016-12-14 23:38:35:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:35:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:35:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:35:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:35:Error:::1=>=>line:=>filemtime(): stat failed for /var/www/html/tm/web/public/admin/compile/e239c0f9e20eef5fe2313dc8cd16c26a6a472280.file.script.html.php
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:28=>Undefined index: showInTable
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:37=>Undefined index: filter
+2016-12-14 23:38:36:SQL=>select image, article_id,  id from sliders order by id desc 	Param=>NULL
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:47=>Undefined index: tableColumn
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:49=>Use of undefined constant tableColumn - assumed 'tableColumn'
+2016-12-14 23:38:36:SQL=>select id as value , title as `key` from article where del_flag = 0	Param=>NULL
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:133=>Undefined index: showInTable
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:36:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:37:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:37=>Undefined index: filter
+2016-12-14 23:38:37:SQL=>select title, link,  id from news_flash order by id desc 	Param=>NULL
+2016-12-14 23:38:37:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:37:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:37:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:37:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:28=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:28=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/action/AdminIndexAction.class.php=>line:37=>Undefined index: filter
+2016-12-14 23:38:38:SQL=>select title, likes, click_count, hot_num, publish_time,  id from article order by id desc 	Param=>NULL
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:133=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:133=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:164=>Undefined index: showInTable
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:166=>Undefined index: tableColumn
+2016-12-14 23:38:38:Error:::1=>/var/www/html/tm/web/public/admin/compile/04d0f7f940a74af160c7f79821edd57709704e74.file.list.html.php=>line:170=>Undefined index: preview
