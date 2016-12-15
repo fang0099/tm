@@ -19,7 +19,7 @@
                         <!--<div class="blog-single-img">
                             <img src="../assets/pages/img/background/4.jpg" /> </div>-->
                         <div class="blog-single-desc">
-                            {{ $article["content"] }}
+                            {!! $article["content"] !!}
                         </div>
                         <div class="blog-single-foot">
                             <ul class="blog-post-tags">
