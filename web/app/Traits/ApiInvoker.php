@@ -25,6 +25,7 @@ trait ApiInvoker
         'article' => [
             'get' => 'GET',
             'create' => 'POST',
+            'update'=> 'POST',
             'list' => 'GET',
             'like' => 'GET',
             'unlike' => 'GET',
@@ -33,6 +34,7 @@ trait ApiInvoker
         ],
         'user' => [
             'get' => 'GET',
+            'getbyname' => 'GET',
             'create'=> 'POST',
             'list'=>'GET',
             'update'=>'POST',
@@ -81,7 +83,6 @@ trait ApiInvoker
                 ]);
             }else {
                 $method = 'GET';
-                //print_r ($requestParam);
                 $res = $client->request($method, $url, ['query' => $requestParam]);
             }
 

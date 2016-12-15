@@ -1,22 +1,10 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 4.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <!--[if IE 8]> <html lang="zh-cn" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="zh-cn" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="zh-cn">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
-
     <head>
         <meta charset="utf-8" />
         <title>钛媒体_网罗天下创新事</title>
@@ -24,8 +12,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
+
+        @yield("outer")
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />-->
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,7 +32,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN PAGE LEVEL STYLES -->
         @yield("page_level_style")
-        <!--<link href="../assets/pages/css/search.min.css" rel="stylesheet" type="text/css" />-->
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="../assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -54,13 +43,16 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <body class="page-container-bg-solid page-boxed page-header-menu-fixed">
         <!-- BEGIN HEADER -->
+        <div>
+            @yield("slider")
+        </div>
         <div class="page-header">
             <!-- BEGIN HEADER TOP -->
             <div class="page-header-top">
                 <div class="container">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.html">
+                        <a href="/tm/web/public/index">
                             <img src="../assets/layouts/layout3/img/logo-default.jpg" alt="logo" class="logo-default">
                         </a>
                     </div>
@@ -88,7 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <li class="dropdown dropdown-user dropdown-light">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="../../resources/assets/img/user.png">
+                                    <img alt="" class="img-circle" src="/tm/web/resources/assets/img/user.png">
                                     <span class="username username-hide-mobile">Andy</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
@@ -186,8 +178,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 <div class="page-content">
                     <div class="container">
-                        <!-- BEGIN PAGE BREADCRUMBS -->
-                        <!-- END PAGE BREADCRUMBS -->
                         <!-- BEGIN PAGE CONTENT INNER -->
                         <div class="page-content-inner">
                             @yield("content")
@@ -204,11 +194,9 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
-        <!-- BEGIN PRE-FOOTER -->
-        <!-- END PRE-FOOTER -->
         <!-- BEGIN INNER FOOTER -->
         <div class="page-footer">
-            <div class="container"> 2016 &copy; TM.
+            <div class="container"> 2016 &copy; 链媒体.
                 <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="" target="_blank"></a>
             </div>
         </div>

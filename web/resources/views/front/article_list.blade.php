@@ -8,6 +8,7 @@
         @stop
     @section("page_level_style")
         <link href="../assets/pages/css/search.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
         @stop
     @section("content")
@@ -62,21 +63,52 @@
                     </div>
                     <!-- END BEGIN PROFILE SIDEBAR -->
                     <div class="profile-content">
+                        <div class="blog-page blog-content-2 blog-content-1">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="search-container ">
                                     <ul>
                                         @foreach($people as $person)
                                             <li class="search-item clearfix">
-                                                <a href="javascriptt:;">
+                                                <div class="blog-post-lg bordered blog-container">
+                                                <!--<a href="javascriptt:;">
                                                     <img src="../assets/pages/img/page_general_search/01.jpg" />
-                                                </a>
-                                                <div class="search-content">
+                                                </a>-->
+
+                                                <div class="blog-post-content">
+                                                    <h2 class="blog-title blog-post-title">
+                                                        <a href="/tm/web/public/article?id={{$person["id"]}}">{{ $person['title'] }}</a>
+                                                    </h2>
+                                                    <p class="blog-post-desc">  </p>
+                                                    <div class="blog-post-foot">
+                                                        <ul class="blog-post-tags">
+                                                            <li class="uppercase">
+                                                                <a href="javascript:;">Bootstrap</a>
+                                                            </li>
+                                                            <li class="uppercase">
+                                                                <a href="javascript:;">Sass</a>
+                                                            </li>
+                                                            <li class="uppercase">
+                                                                <a href="javascript:;">HTML</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="blog-post-meta">
+                                                            <i class="icon-calendar font-blue"></i>
+                                                            <a href="javascript:;">Oct 24, 2015</a>
+                                                        </div>
+                                                        <div class="blog-post-meta">
+                                                            <i class="icon-bubble font-blue"></i>
+                                                            <a href="javascript:;">14 Comments</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               <!-- <div class="search-content">
                                                     <h2 class="search-title">
                                                         <a href="/tm/web/public/article?id={{$person["id"]}}">{{ $person['title'] }}</a>
                                                     </h2>
                                                     <p class="search-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec efficitur pellentesque auctor. Morbi lobortis, leo in tristique scelerisque, mauris quam volutpat nunc </p>
 
+                                                </div> -->
                                                 </div>
                                             </li>
                                         @endforeach
@@ -100,6 +132,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

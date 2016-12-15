@@ -21,14 +21,17 @@ class IndexController extends Controller
     private $userInvoker;
     private $webInfoInvoker;
 
-    public function __construct(ArticleInvoker $articleInvoker)
+    public function __construct(ArticleInvoker $articleInvoker,
+                                UserInvoker $userInvoker,
+                                WebInfoInvoker $webInfoInvoker
+                                )
     {
         $this->articleInvoker = $articleInvoker;
+        $this->userInvoker = $userInvoker;
+        $this->webInfoInvoker = $webInfoInvoker;
     }
 
     public function index(){
-        //$r = $this->articleInvoker->get(['id' => 1]);
-        //print_r($r);
         return view("front/index");
     }
 
