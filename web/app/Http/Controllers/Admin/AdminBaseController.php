@@ -27,4 +27,8 @@ class AdminBaseController extends Controller
         return $request->input('params');
     }
 
+    protected function getInvoker($voker){
+        return app('App\Invokers\\'. $voker);
+    }
+
 }

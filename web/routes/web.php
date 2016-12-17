@@ -43,6 +43,17 @@ Route::group(['namespace' => 'Front'], function (){
 });
 
 Route::group(['namespace' => 'Admin'], function (){
+    Route::get('admin/form', 'AdminIndexController@form');
+    Route::get('admin/do/{action}', 'AdminIndexController@formDo');
+    Route::get('/admin/list', 'AdminIndexController@list');
+    Route::get('/admin/delete', 'AdminIndexController@delete');
+    Route::get('/admin/welcome', function(){
+        return view('admin.welcome');
+    });
+    Route::get('/admin/index', function(){
+        return view('admin.index');
+    });
+
     /*
     Route::get('/admin/login', 'LoginController@login');
     Route::get('/admin/dologin', 'LoginController@dologin');

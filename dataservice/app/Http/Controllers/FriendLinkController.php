@@ -21,7 +21,6 @@ class FriendLinkController extends Controller
 
     public function get(Request $request){
         $id = $request->input('id');
-        echo $id;
         return $this->friendLinkRep->findById($id);
     }
 

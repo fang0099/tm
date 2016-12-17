@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 4.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -69,62 +58,33 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content-iframe">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+                    
+                    <!-- END THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="welcome">Home</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>404</span>
+                            </li>
+                        </ul>
 
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+                    
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- BEGIN VALIDATION STATES-->
-                            <div class="portlet light portlet-fit portlet-form">
-                                <div class="portlet-body">
-                                    <!-- BEGIN FORM-->
-                                    <form action="do/{{ $action }}" class="form-horizontal" id='form' callback="{{ $config['callback'] or 'closeAndRefreshMain' }}">
-                                        <div class="form-body">
-                                            <input type="hidden" value="{{ $_GET['model'] }}" name="model" />
-                                            @foreach($config['fields'] as $f)
-                                                @if($f['type'] == 'hidden')
-                                                    <input type="hidden" name="{{ $f['name'] }}"
-                                                       @if($action == 'update')
-                                                       value = "{{ $data[$f['value']] }}"
-                                                       @endif
-                                                    />
-                                                @else
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-3" for="{{ $f['name']  }}">{{ $f['label'] }}</label>
-                                                        <div class="col-xs-6">
-                                                            <?php
-                                                                $atts = 'id="' . $f['name'] . '" name="' . $f['name'] . '" ';
-                                                                if(isset($f['attribute'])){
-                                                                    foreach ($f['attribute'] as $k => $v){
-                                                                        $atts .= $k . ' = "' . $v . '" ';
-                                                                    }
-                                                                }
-                                                            ?>
-                                                            @if($f['type'] == 'text')
-                                                            <input type="text" class="form-control" {!! $atts !!}
-                                                                @if($action == 'update')
-                                                                    value = "{{ $data[$f['value']] }}"
-                                                                @endif
-                                                            />
-                                                            @elseif($f['type'] == 'textarea')
-                                                            <textarea class="form-control" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-
-                                        </div>
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="col-xs-offset-3 col-xs-6">
-                                                    <button type="submit" class="btn green">Submit</button>
-                                                    <button type="reset" class="btn default cancle">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!-- END FORM-->
-                                </div>
-                            </div>
+                            <h3>404!</h3>
                             <!-- END VALIDATION STATES-->
                         </div>
                     </div>

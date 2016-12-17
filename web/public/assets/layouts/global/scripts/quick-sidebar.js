@@ -6,10 +6,20 @@ var QuickSidebar = function () {
     // Handles quick sidebar toggler
     var handleQuickSidebarToggler = function () {
         // quick sidebar toggler
-        $('.dropdown-quick-sidebar-toggler a, .page-quick-sidebar-toggler, .quick-sidebar-toggler').click(function (e) {
+        $('.dropdown-quick-sidebar-toggler a, .page-quick-sidebar a.page-quick-sidebar-back-to-list,.page-quick-sidebar-toggler, .quick-sidebar-toggler').click(function (e) {
             $('body').toggleClass('page-quick-sidebar-open'); 
         });
+
     };
+
+    var bindQuickSiderbar = function(){
+        $('.open-slider-bar').click(function(){
+            $('body').removeClass('page-quick-sidebar-open');
+        });
+        $('.close-slider-bar').click(function() {
+           $('body').addClass('page-quick-sidebar-open'); 
+        });
+    }
 
     // Handles quick sidebar chats
     var handleQuickSidebarChat = function () {
@@ -157,9 +167,10 @@ var QuickSidebar = function () {
         init: function () {
             //layout handlers
             handleQuickSidebarToggler(); // handles quick sidebar's toggler
-            handleQuickSidebarChat(); // handles quick sidebar's chats
-            handleQuickSidebarAlerts(); // handles quick sidebar's alerts
-            handleQuickSidebarSettings(); // handles quick sidebar's setting
+            bindQuickSiderbar();
+            //handleQuickSidebarChat(); // handles quick sidebar's chats
+            //handleQuickSidebarAlerts(); // handles quick sidebar's alerts
+            //handleQuickSidebarSettings(); // handles quick sidebar's setting
         }
     };
 
