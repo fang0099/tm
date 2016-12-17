@@ -1,0 +1,53 @@
+{
+	"table" : "friend_links",
+	"invoker" : "FriendLinkInvoker",
+	"name" : "友情链接",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"label" : "站点名称",
+			"value" : "title",
+			"name" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"label" : "站点网址",
+			"value" : "url",
+			"name" : "params[url]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		}
+	],
+	"list" : [
+		{
+			"head" : "站点名称",
+			"value" : "title",
+			"type" : "text"
+		},
+		{
+			"head" : "站点网址",
+			"value" : "url",
+			"type" : "text"
+		}
+	],
+	"attribute" : {
+		"id" : "flink-form"
+	},
+	"sort" : "id",
+	"before" : "",
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}

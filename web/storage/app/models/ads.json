@@ -1,0 +1,80 @@
+{
+	"table" : "tads",
+	"name" : "广告",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "广告标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "广告图片",
+			"column" : "pic",
+			"controlName" : "pic",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			},
+			"showInTable" : "no"	
+		},
+		{
+			"columnName" : "图片预览",
+			"column" : "pic",
+			"controlName" : "",
+			"type" : "preview",
+			"attribute" : {
+				"width" : "200"
+			},
+			"preview" : "pic",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "图片",
+			"column" : "pic",
+			"controlName" : "params[pic]",
+			"type" : "hidden"
+		},
+		{
+			"columnName" : "广告地址",
+			"column" : "href",
+			"controlName" : "params[href]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "显示位置",
+			"column" : "position",
+			"controlName" : "params[position]",
+			"type" : "select",
+			"data" : [{"0":"首页"}, {"1":"地点页面"}, {"2":"交通信息页面"}, {"3":"旅游项目页面"}, {"4":"房地产信息页面"}],
+			"showInTable" : "yes",
+			"tableColumn" : "positionName"	
+		},
+		{
+			"columnName" : "排序",
+			"column" : "sortby",
+			"controlName" : "params[sortby]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		}
+	],
+	"attribute" : {
+		"id" : "ads-form",
+		"callback" : "$.callback.back"
+	},
+	"sort" : "id",
+	"operations" : ["add","batch-delete", "update", "delete", "back"] 
+}

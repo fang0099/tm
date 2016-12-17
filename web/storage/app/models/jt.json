@@ -1,0 +1,39 @@
+{
+	"table" : "tjt",
+	"name" : "交通",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "交通名称",
+			"column" : "name",
+			"controlName" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "描述",
+			"column" : "intro",
+			"controlName" : "params[intro]",
+			"type" : "richtext",
+			"showInTable" : "no"
+		}
+	],
+	"attribute" : {
+		"id" : "hotel-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}
