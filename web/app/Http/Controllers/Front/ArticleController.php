@@ -31,11 +31,31 @@ class ArticleController extends Controller
         $authorid = $r["data"]["author"]["id"];
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid]);
         return view("front/article",['article' => $r["data"],
-                                    'recent_article_list' => $article_list["data"]
+            'recent_article_list' => $article_list["data"]
         ]);
     }
 
     public function article()
+    {
+
+    }
+
+    public function like_article(Request $request)
+    {
+
+    }
+
+    public function unlike_article(Request $request)
+    {
+
+    }
+
+    public function collect_article(Request $request)
+    {
+
+    }
+
+    public function uncollect_article(Request $request)
     {
 
     }
@@ -49,14 +69,12 @@ class ArticleController extends Controller
 
     public function update(Request $request)
     {
-        //Request::
         $id = $request->get("id");
         $title = $request->get("title");
         $content = $request->get("content");
 
         $face = "123";
         $abstracts = "abstract";
-        //$author = 1;
         $tags = 1;
         echo $id;
         $r = $this->articleInvoker->update(
@@ -76,17 +94,24 @@ class ArticleController extends Controller
     public function delete(Request $request)
     {
         $id = $request->get("id");
+        $id = (string)$id;
+        $r = $this->articleInvoker->delete(
+          [
+              'ids'=>$id,
+          ]
+        );
+        print_r($r);
+        //return redirect("/");
     }
 
     public function create(Request $request)
     {
-        //Request::
         $title = $request->get("title");
         $content = $request->get("content");
 
         $face = "123";
         $abstracts = "abstract";
-        $author = 1;
+        $author = session("id");
         $tags = 1;
         $r = $this->articleInvoker->create(
             [
@@ -103,7 +128,13 @@ class ArticleController extends Controller
 
     public function write()
     {
-        return view("front/write_article");
+        if (session("username")!=null) {
+            return view("front/write_article");
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
     public function article_list()

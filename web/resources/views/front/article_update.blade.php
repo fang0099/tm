@@ -6,11 +6,27 @@
         <link rel="stylesheet" type="text/css" href="../simditor/styles/simditor-fullscreen.css" />
         @stop
     @section("content")
-        <form action="update" method="post">
-            <input type="text" class="form-control" name="title" placeholder="Default Input" value="{{ $article["title"] }}">
+        <form action="update" class="form-horizontal" method="post">
+            <div class="form-body">
+                <div class="form-group form-md-line-input">
+
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" id="form_control_1" placeholder="标题" value="{{ $article["title"] }}">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                </div>
+
             <input type="text" class="form-control" name="id" placeholder="Default Input" value="{{ $article["id"] }}" style="display:none;">
             <textarea id="editor" name="content" placeholder="Balabala" autofocus>{!! $article["content"] !!}</textarea>
-            <input type="submit" class="btn btn-primary" value="保存"/>
+            </div>
+            <!--<input type="submit" class="btn btn-primary" value="保存"/>-->
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-10">
+                        <button type="submit" class="btn blue">提交</button>
+                    </div>
+                </div>
+            </div>
         </form>
         @stop
     @section("page_level_plugins_js")

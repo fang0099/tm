@@ -15,6 +15,9 @@
                                 <i class="icon-calendar font-blue"></i>
                                 <a href="javascript:;">{{ $article["publish_time"] }}</a>
                             </div>
+                            <a href="/tm/web/public/article/edit?id={{$article["id"]}}" class="btn btn-circle green">修改</a>
+                            <a href="" class="btn btn-circle yellow">喜欢</a>
+                            <a href="/tm/web/public/article/delete?id={{$article["id"]}}" class="btn btn-circle red">删除</a>
                         </div>
                         <!--<div class="blog-single-img">
                             <img src="../assets/pages/img/background/4.jpg" /> </div>-->
@@ -22,6 +25,7 @@
                             {!! $article["content"] !!}
                         </div>
                         <div class="blog-single-foot">
+
                             <ul class="blog-post-tags">
                                 <li class="uppercase">
                                     <a href="javascript:;">Bootstrap</a>
@@ -32,10 +36,10 @@
                                 <li class="uppercase">
                                     <a href="javascript:;">HTML</a>
                                 </li>
-                            </ul>
+
                         </div>
                         <div class="blog-comments">
-                            <h3 class="sbold blog-comments-title">Comments(30)</h3>
+                            <h3 class="sbold blog-comments-title">评论数(30)</h3>
                             <div class="c-comment-list">
                                 <div class="media">
                                     <div class="media-left">
@@ -83,19 +87,13 @@
                                         </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. </div>
                                 </div>
                             </div>
-                            <h3 class="sbold blog-comments-title">Leave A Comment</h3>
+                            <h3 class="sbold blog-comments-title">评论</h3>
                             <form action="#">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Your Name" class="form-control c-square"> </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your Email" class="form-control c-square"> </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your Website" class="form-control c-square"> </div>
-                                <div class="form-group">
-                                    <textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control c-square"></textarea>
+                                    <textarea rows="8" name="message" placeholder="写评论 ..." class="form-control c-square"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn blue uppercase btn-md sbold btn-block">Submit</button>
+                                    <button type="submit" class="btn blue uppercase btn-md sbold btn-block">评论</button>
                                 </div>
                             </form>
                         </div>
@@ -104,7 +102,7 @@
                 <div class="col-lg-3">
                     <div class="blog-single-sidebar bordered blog-container">
                         <div class="blog-single-sidebar-recent">
-                            <h3 class="blog-sidebar-title uppercase">Recent Posts</h3>
+                            <h3 class="blog-sidebar-title uppercase">最近文章</h3>
                             <ul>
                                 @foreach($recent_article_list as $a)
                                 <li>

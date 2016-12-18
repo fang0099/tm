@@ -6,7 +6,7 @@
         <div class="login-content">
             <h1>登录</h1>
             <p> 网罗天下创新事. 没有账号？<a href="signup">注册</a></p>
-            <form action="javascript:;" class="login-form" method="post">
+            <form action="user/signin" class="login-form" method="post">
                 <div class="row">
                     <div class="col-xs-6">
                         <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名/手机号/邮箱" name="username" required/> </div>
@@ -29,7 +29,7 @@
                         <div class="forgot-password">
                             <a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>
                         </div>
-                        <button class="btn blue" type="submit">登录</button>
+                        <button id="login" class="btn blue" type="submit">登录</button>
                     </div>
                 </div>
             </form>
@@ -96,7 +96,7 @@
 
             $('.login-form input').keypress(function(e) {
                 if (e.which == 13) {
-                    $("#register").click();
+                    $("#login").click();
                 }
             });
 
@@ -106,8 +106,8 @@
                     var obj =  eval('(' + data + ')');
                     if (true == obj.success)
                     {
-                        toastr.success("注册成功");
-                        setTimeout("window.location.href='/tm/web/public/article/list';",3000);
+                        toastr.success("登录成功");
+                        setTimeout("window.location.href='/tm/web/public/index';",3000);
                     }
                     else{
                         toastr.error(obj.message);

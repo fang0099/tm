@@ -7,7 +7,7 @@
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8" />
-        <title>钛媒体_网罗天下创新事</title>
+        <title>链媒体_网罗天下创新事</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -43,9 +43,7 @@
 
     <body class="page-container-bg-solid page-boxed page-header-menu-fixed">
         <!-- BEGIN HEADER -->
-        <div>
-            @yield("slider")
-        </div>
+
         <div class="page-header">
             <!-- BEGIN HEADER TOP -->
             <div class="page-header-top">
@@ -78,19 +76,21 @@
                             <!-- BEGIN INBOX DROPDOWN -->
                             <!-- END INBOX DROPDOWN -->
                             <!-- BEGIN USER LOGIN DROPDOWN -->
+
+                            @if( session("username")!=null)
                             <li class="dropdown dropdown-user dropdown-light">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="/tm/web/resources/assets/img/user.png">
-                                    <span class="username username-hide-mobile">Andy</span>
+                                    <img alt="" class="img-circle" src="{{session("avatar")}}">
+                                    <span class="username username-hide-mobile">{{session("username")}}</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile_1.html">
+                                        <a href="/tm/web/public/user/profile">
                                             <i class="icon-user"></i> 我的主页 </a>
                                     </li>
                                     <li>
-                                        <a href="app_calendar.html">
-                                            <i class="icon-calendar"></i> 我的文章 </a>
+                                        <a href="/tm/web/public/tag/add">
+                                            <i class="icon-calendar"></i> 创建标签 </a>
                                     </li>
                                     <li>
                                         <a href="app_calendar.html">
@@ -105,11 +105,29 @@
                                             <i class="icon-calendar"></i> 账号设置 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_login_1.html">
+                                        <a href="/tm/web/public/user/logout">
                                             <i class="icon-key"></i> 退出 </a>
                                     </li>
                                 </ul>
                             </li>
+                            @else
+                            <li class="dropdown dropdown-user dropdown-light">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="/tm/web/resources/assets/img/user.png">
+                                    <span class="username username-hide-mobile">未登录</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                    <li>
+                                        <a href="/tm/web/public/login">
+                                            <i class="icon-user"></i> 登录 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/tm/web/public/signup">
+                                            <i class="icon-calendar"></i> 注册 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
                             <!-- END USER LOGIN DROPDOWN -->
                             <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                             <!-- END QUICK SIDEBAR TOGGLER -->
@@ -125,7 +143,7 @@
                     <!-- BEGIN HEADER SEARCH BOX -->
                     <form class="search-form" action="page_general_search.html" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="query">
+                            <input type="text" class="form-control" placeholder="搜索" name="query">
                             <span class="input-group-btn">
                                 <a href="javascript:;" class="btn submit">
                                     <i class="icon-magnifier"></i>
@@ -139,26 +157,31 @@
                     <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
                     <div class="hor-menu  ">
                         <ul class="nav navbar-nav">
+
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="javascript:;"> tag1
+                                <a href="/tm/web/public/tag/index?id=1}">tag1
                                     <span class="arrow"></span>
                                 </a>
                             </li>
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="javascript:;"> tag2
+                                <a href="/tm/web/public/tag/index?id=1}">tag2
                                     <span class="arrow"></span>
                                 </a>
                             </li>
+
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="javascript:;"> tag3
+                                <a href="/tm/web/public/tag/index?id=1}">tag3
                                     <span class="arrow"></span>
                                 </a>
                             </li>
+
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="javascript:;"> tag4
+                                <a href="/tm/web/public/tag/index?id=1}">tag4
                                     <span class="arrow"></span>
                                 </a>
                             </li>
+
+
                         </ul>
                     </div>
                     <!-- END MEGA MENU -->
@@ -167,6 +190,9 @@
             <!-- END HEADER MENU -->
         </div>
         <!-- END HEADER -->
+        <div class="row">
+            @yield("slider")
+        </div>
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN CONTENT -->
@@ -228,7 +254,8 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         @yield("page_level_js")
         <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+
+                        <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
