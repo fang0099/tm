@@ -111,7 +111,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <textarea class="form-control" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
                                                             @elseif($f['type'] == 'file')
                                                             <input class="form-control ajax" type="file" id="{{$f['value']}}" name="{{$f['value']}}" ref="{{ $f['value'] }}" />
-                                                            <input class="form-control" {!! $atts !!} type="hidden" />
+                                                            <input class="form-control" {!! $atts !!} type="hidden" value="@if($action == 'update'){{ $data[$f['value']] }}@endif"/>
                                                             @elseif($f['type'] == 'preview')
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                                                 <img src="@if($action == 'update')../../{{ $data[$f['value']] }}@else http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image @endif" alt="" preview="{{ $f['value'] }}">
