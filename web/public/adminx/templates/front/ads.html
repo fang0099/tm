@@ -1,0 +1,23 @@
+<div class="title">
+    <!-- <h2>广告区</h2>-->
+    <h2></h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+    	{foreach $ads as $ad}
+	        <div class="property">
+	            <div class="image">
+	                <a href="{$ad.href}"></a>
+	                <img src="{$ad.pic}" alt="">
+	            </div><!-- /.image -->
+	
+	            <div class="wrapper">
+	                <div class="title">
+	                    <h3>
+	                        <a href="{$ad.href}">{$ad.title}</a>
+	                    </h3>
+	                </div><!-- /.title -->
+	            </div><!-- /.wrapper -->
+	        </div><!-- /.property -->
+		{/foreach}
+    </div><!-- /.content -->

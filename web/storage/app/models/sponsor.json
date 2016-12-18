@@ -1,0 +1,69 @@
+{
+	"table" : "sponsors",
+	"name" : "赞助商",
+	"invoker" : "SponsorsInvoker",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
+		},
+		{
+			"label" : "赞助商标题",
+			"value" : "name",
+			"name" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "赞助商图片",
+			"value" : "face",
+			"name" : "params[face]",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			}
+		},
+		{
+			"label" : "图片预览",
+			"value" : "face",
+			"name" : "preview[face]",
+			"type" : "preview"
+		},
+		{
+			"label" : "赞助商地址",
+			"value" : "link",
+			"name" : "params[link]",
+			"type" : "text"
+		},
+		{
+			"label" : "赞助商简介",
+			"value" : "brief",
+			"name" : "params[brief]",
+			"type" : "textarea"
+		}
+	],
+	"list" : [
+		{
+			"head" : "赞助商标题",
+			"value" : "name",
+			"type" : "text"
+		},
+		{
+			"head" : "赞助商图片",
+			"value" : "face",
+			"type" : "image"
+		},
+		{
+			"head" : "赞助商地址",
+			"value" : "link",
+			"type" : "text"
+		}
+	],
+	"sort" : "id",
+	"operations" : ["add","batch-delete", "update", "delete", "back"] 
+}

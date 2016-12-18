@@ -1,0 +1,99 @@
+{
+	"table" : "tag",
+	"name" : "标签",
+	"invoker" : "TagInvoker",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
+		},
+		{
+			"label" : "标签名",
+			"value" : "name",
+			"name" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "标签图片",
+			"value" : "face",
+			"name" : "params[face]",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			}
+		},
+		{
+			"label" : "图片预览",
+			"value" : "face",
+			"name" : "preview[face]",
+			"type" : "preview"
+		},
+		{
+			"label" : "标签简介",
+			"value" : "brief",
+			"name" : "params[brief]",
+			"type" : "textarea"
+		},
+		{
+			"label" : "关注数",
+			"value" : "fans_num",
+			"name" : "params[fans_num]",
+			"type" : "text"
+		},
+		{
+			"label" : "显示在菜单栏",
+			"value" : "show_menu",
+			"name" : "params[show_menu]",
+			"type" : "select",
+			"select" : {
+				"type" : "json",
+				"data" : {
+					"不显示" : "0",
+					"显示" : "1"
+				}
+			}
+		},
+		{
+			"label" : "是否审核",
+			"value" : "has_checked",
+			"name" : "params[has_checked]",
+			"type" : "select",
+			"select" : {
+				"type" : "json",
+				"data" : {
+					"审核不通过" : "0",
+					"审核通过" : "1"
+				}
+			}
+		}
+	],
+	"list" : [
+		{
+			"head" : "标签名",
+			"value" : "name",
+			"type" : "text"
+		},
+		{
+			"head" : "标签图片",
+			"value" : "face",
+			"type" : "image"
+		},
+		{
+			"head" : "关注数",
+			"value" : "fans_num",
+			"type" : "text"
+		}
+	],
+	"attribute" : {
+		"id" : "tag-form",
+		"callback" : "$.callback.back"
+	},
+	"sort" : "id",
+	"operations" : ["add", "batch-delete", "update", "delete", "back"]
+}

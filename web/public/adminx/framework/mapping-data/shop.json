@@ -1,0 +1,39 @@
+{
+	"table" : "tshop",
+	"name" : "推荐店铺",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "店铺名称",
+			"column" : "name",
+			"controlName" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "店铺描述",
+			"column" : "intro",
+			"controlName" : "params[intro]",
+			"type" : "richtext",
+			"showInTable" : "no"
+		}
+	],
+	"attribute" : {
+		"id" : "shop-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}

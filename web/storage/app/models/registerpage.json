@@ -1,0 +1,39 @@
+{
+	"table" : "tpage",
+	"name" : "会员守则",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "会员守则内容",
+			"column" : "content",
+			"controlName" : "params[content]",
+			"type" : "richtext",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "no"	
+		}
+	],
+	"attribute" : {
+		"id" : "registerpage-form",
+		"callback" : "$.callback.stay"
+	},
+	"sort" : "id"
+}

@@ -1,0 +1,63 @@
+{
+	"table" : "tproblem",
+	"name" : "问题管理",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "问题类别",
+			"column" : "type",
+			"controlName" : "params[type]",
+			"type" : "select",
+			"attribute" : {
+				"required" : "required"
+			},
+			"data" : [
+				{"1" : "国籍"},
+				{"2" : "房产权利登记"},
+				{"3" : "税收"},
+				{"4" : "房租"}
+			],
+			"tableColumn" : "typeName",
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "提问",
+			"column" : "question",
+			"controlName" : "params[question]",
+			"type" : "textarea",
+			"attribute" : {
+				"required" : "required",
+				"cols" : "10",
+				"rows" : "5"
+			},
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "回答",
+			"column" : "answer",
+			"controlName" : "params[answer]",
+			"type" : "textarea",
+			"attribute" : {
+				"required" : "required",
+				"cols" : "10",
+				"rows" : "5"
+			},
+			"showInTable" : "yes"
+		}
+	],
+	"attribute" : {
+		"id" : "problem-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete","update", "delete"] 
+}

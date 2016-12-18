@@ -28,8 +28,17 @@ class ArticleRepository extends BaseRepository
 
     public function findById($id){
         $t = $this->get($id);
-        $t['author'] = $t->_author;
-        $t['checker'] = $t->_checker;
+        if($t == null || $t->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
+        }
+        $author = $t->_author;
+        $author->password = '***';
+        $t['author'] = $author;
+        $checker = $t->_checker;
+        if($checker){
+            $checker->password = '***';
+        }
+        $t['checker'] = $checker;
         $t['tags'] = $t->tags;
         //$t['comments'] = $t->comments;
         return $this->success('', $t);
@@ -67,27 +76,30 @@ class ArticleRepository extends BaseRepository
 
     public function update(Request $request){
         $params = $this->getParams($request);
-        $content = $params['content'];
+        $content = isset($params['content']) ? $params['content'] : '';
         if($content != null && $content != ''){
             $word_count = utf8_strlen($content);
             $params['word_count'] = $word_count;
         }
-        $tagIds = $params['tags'];
         //$params['has_checked'] = 0;
         //$params['checker'] = 0;
-        $operator = $params['operator'];
+        $operator = isset($params['operator']) ? $params['operator'] : 0;
         // checke operator has permission?
         unset($params['tags']);
         unset($params['operator']);
         $article = $this->updateWithId($params);
         if($article == null){
-            return $this->fail();
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
         }
-        $tagIdsArr = explode(',', $tagIds);
+
         //$article->tags->sync($tagIdsArr);
-        DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
-        foreach ($tagIdsArr as $t){
-            DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+        if(isset($params['tags'])){
+            $tagIds = $params['tags'];
+            $tagIdsArr = explode(',', $tagIds);
+            DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
+            foreach ($tagIdsArr as $t){
+                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+            }
         }
         return $this->success();
     }
@@ -195,11 +207,21 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $params);
         }else {
             $params['type'] = 0;
+            $article->comment_num = $article->comment_num + 1;
+            $article->save();
             return $this->commentRep->insertInternal($params);
         }
     }
 
-
+    public function upArticles($size = 3){
+        $articles = $this->model->where('up_flag', '=', '1')->orderBy('publish_time', 'desc')->take($size)->get();
+        foreach ($articles as $a){
+            $author = $a->_author;
+            $author->password = '***';
+            $a->author = $author;
+        }
+        return $this->success('', $articles);
+    }
 
 
 }

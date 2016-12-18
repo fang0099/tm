@@ -1,0 +1,47 @@
+{
+	"table" : "news_flash",
+	"name" : "快讯",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "快讯标题",
+			"column" : "title",
+			"controlName" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "摘要",
+			"column" : "content",
+			"controlName" : "params[content]",
+			"type" : "richtext",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "快讯地址",
+			"column" : "link",
+			"controlName" : "params[link]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		}
+	],
+	"attribute" : {
+		"id" : "newsflash-form",
+		"callback" : "$.callback.back"
+	},
+	"sort" : "id",
+	"operations" : ["add","batch-delete", "update", "delete", "back"] 
+}

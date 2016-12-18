@@ -38,6 +38,11 @@ class ArticleController
         return $this->articleRep->update($request);
     }
 
+    public function listComment(Request $request){
+        $id = $request->input('id');
+        return $this->articleRep->listComment($id);
+    }
+
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');
@@ -87,6 +92,11 @@ class ArticleController
 
     public function recommend($page = 1, $pageSize = 15){
 
+    }
+
+    public function upArticles(Request $request){
+        $size = $request->input('size', '3');
+        return $this->articleRep->upArticles($size);
     }
 
 }

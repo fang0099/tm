@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-US">
+{include file='front/header.html'}
+<body>
+<div id="wrapper-outer" >
+    <div id="wrapper">
+        <div id="wrapper-inner">
+          {include file='front/navigation.html'}
+
+            <!-- CONTENT -->
+            <div id="content">
+<div class="container">
+
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header"></h1>
+				{if $smarty.get.m == 'lycity'}
+                <div class="properties-rows">
+					<div class="filter">
+					    <form action="" method="post" class="form-horizontal" >
+					        <div class="control-group">
+					            <label class="control-label" for="inputOrder">
+					                	按城市搜索
+					                <span class="form-required" title="必填项">*</span>
+					            </label>
+					            <div class="controls">
+					                <select id="cityId" name="cityId">
+					                	<option value=0>所有</option>
+					                	{foreach $cities as $city}
+					                		{if $city.id == $cityId}
+					                			<option value={$city.id} selected>{$city.name}</option>
+					                		{else}
+					                    		<option value={$city.id}>{$city.name}</option>
+					                    	{/if}
+					                    {/foreach}
+					                </select>
+					            </div><!-- /.controls -->
+					        </div><!-- /.control-group -->
+					    </form>
+					</div><!-- /.filter -->
+				</div><!-- /.properties-rows --> 
+				{/if}
+	<div class="properties-rows">
+    <div class="row">
+    	{if $listShops != null}
+    		{foreach $listShops as $shop}
+		        <div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=shop&id={$shop.id}"></a>
+		                        <img src="{$shop.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=shop&id={$shop.id}">{$shop.name}</a></h2>
+		                        </div><!-- /.title -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location"></div><!-- /.location -->
+		                    <p>{$shop.intro}</p>
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+		    {/foreach}
+		{/if}
+
+		{if $listJt != null}
+    		{foreach $listJt as $shop}
+		        <div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=jt&id={$shop.id}"></a>
+		                        <img src="{$shop.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=jt&id={$shop.id}">{$shop.name}</a></h2>
+		                        </div><!-- /.title -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location"></div><!-- /.location -->
+		                    <p>{$shop.intro}</p>
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+		    {/foreach}
+		{/if}
+		
+		{if $listLyitem != null}
+    		{foreach $listLyitem as $shop}
+		        <div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=lyitem&id={$shop.id}"></a>
+		                        <img src="{$shop.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=lyitem&id={$shop.id}">{$shop.name}</a></h2>
+		                        </div><!-- /.title -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location"></div><!-- /.location -->
+		                    <p>{$shop.intro}</p>
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+		    {/foreach}
+		{/if}
+		
+		{if $listHouse != null}
+			{foreach $listHouse as $house}
+		        <div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=house&id={$house.id}"></a>
+		                        <img src="{$house.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=house&id={$house.id}">{$house.name}</a></h2>
+		                        </div><!-- /.title -->
+		
+		                        <div class="price">
+		                            {$house.price}
+		                        </div><!-- /.price -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location">{$house.address}</div><!-- /.location -->
+		                    <p>{$house.intro}</p>
+		                    <div class="area">
+		                        <span class="key">利率:</span><!-- /.key -->
+		                        <span class="value">{$house.rate}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <div class="area">
+		                        <span class="key">土地面积:</span><!-- /.key -->
+		                        <span class="value">{$house.area1}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <div class="area">
+		                        <span class="key">建筑物面积:</span><!-- /.key -->
+		                        <span class="value">{$house.area2}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <!--  <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+		                    <!-- <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+        	{/foreach}
+        {/if}
+
+		{if $listLycity != null}
+    		{foreach $listLycity as $shop}
+		        <div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=lycity&id={$shop.id}"></a>
+		                        <img src="{$shop.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=lycity&id={$shop.id}">{$shop.name}</a></h2>
+		                        </div><!-- /.title -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location"></div><!-- /.location -->
+		                    <p>{$shop.intro}</p>
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+		    {/foreach}
+		{/if}
+		
+		{if $lycitySearchResults != null}
+			{foreach $lycitySearchResults as $result}
+					<div class="property span9">
+			            <div class="row">
+			                <div class="image span3">
+			                    <div class="content">
+			                        <a href="./?a=detail&m=lycity&id={$result.id}"></a>
+			                        <img src="{$result.face}" alt="">
+			                    </div><!-- /.content -->
+			                </div><!-- /.image -->
+			
+			                <div class="body span6">
+			                    <div class="title-price row">
+			                        <div class="title span4">
+			                            <h2><a href="./?a=detail&m=lycity&id={$result.id}">{$result.name}</a></h2>
+			                        </div><!-- /.title -->
+			                    </div><!-- /.title -->
+			
+			                    <div class="location"></div><!-- /.location -->
+			                    <p>{$result.intro}</p>
+			                </div><!-- /.body -->
+			            </div><!-- /.property -->
+			        </div><!-- /.row -->
+			{/foreach}
+		{/if}
+		
+		{if $lyitemSearchResults != null}
+			{foreach $lyitemSearchResults as $result}
+					<div class="property span9">
+			            <div class="row">
+			                <div class="image span3">
+			                    <div class="content">
+			                        <a href="./?a=detail&m=lyitem&id={$result.id}"></a>
+			                        <img src="{$result.face}" alt="">
+			                    </div><!-- /.content -->
+			                </div><!-- /.image -->
+			
+			                <div class="body span6">
+			                    <div class="title-price row">
+			                        <div class="title span4">
+			                            <h2><a href="./?a=detail&m=lyitem&id={$result.id}">{$result.name}</a></h2>
+			                        </div><!-- /.title -->
+			                    </div><!-- /.title -->
+			
+			                    <div class="location"></div><!-- /.location -->
+			                    <p>{$result.intro}</p>
+			                </div><!-- /.body -->
+			            </div><!-- /.property -->
+			        </div><!-- /.row -->
+			{/foreach}
+		{/if}
+		
+		{if $jtSearchResults != null}
+			{foreach $jtSearchResults as $result}
+					<div class="property span9">
+			            <div class="row">
+			                <div class="image span3">
+			                    <div class="content">
+			                        <a href="./?a=detail&m=jt&id={$result.id}"></a>
+			                        <img src="{$result.face}" alt="">
+			                    </div><!-- /.content -->
+			                </div><!-- /.image -->
+			
+			                <div class="body span6">
+			                    <div class="title-price row">
+			                        <div class="title span4">
+			                            <h2><a href="./?a=detail&m=jt&id={$result.id}">{$result.name}</a></h2>
+			                        </div><!-- /.title -->
+			                    </div><!-- /.title -->
+			
+			                    <div class="location"></div><!-- /.location -->
+			                    <p>{$result.intro}</p>
+			                </div><!-- /.body -->
+			            </div><!-- /.property -->
+			        </div><!-- /.row -->
+			{/foreach}
+		{/if}
+		
+		{if $houseSearchResults != null}
+			{foreach $houseSearchResults as $house}
+					<div class="property span9">
+		            <div class="row">
+		                <div class="image span3">
+		                    <div class="content">
+		                        <a href="./?a=detail&m=house&id={$house.id}"></a>
+		                        <img src="{$house.face}" alt="">
+		                    </div><!-- /.content -->
+		                </div><!-- /.image -->
+		
+		                <div class="body span6">
+		                    <div class="title-price row">
+		                        <div class="title span4">
+		                            <h2><a href="./?a=detail&m=house&id={$house.id}">{$house.name}</a></h2>
+		                        </div><!-- /.title -->
+		
+		                        <div class="price">
+		                            {$house.price}
+		                        </div><!-- /.price -->
+		                    </div><!-- /.title -->
+		
+		                    <div class="location">{$house.address}</div><!-- /.location -->
+		                    <p>{$house.intro}</p>
+		                    <div class="area">
+		                        <span class="key">利率:</span><!-- /.key -->
+		                        <span class="value">{$house.rate}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <div class="area">
+		                        <span class="key">土地面积:</span><!-- /.key -->
+		                        <span class="value">{$house.area1}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <div class="area">
+		                        <span class="key">建筑物面积:</span><!-- /.key -->
+		                        <span class="value">{$house.area2}</span><!-- /.value -->
+		                    </div><!-- /.area -->
+		                    <!--  <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+		                    <!-- <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+		                </div><!-- /.body -->
+		            </div><!-- /.property -->
+		        </div><!-- /.row -->
+			{/foreach}
+		{/if}
+
+    </div><!-- /.row -->
+</div><!-- /.properties-rows -->
+                <div class="pagination pagination-centered">
+				    <ul>
+				        {include file = 'front/pagination.html'}
+				    </ul>
+				</div><!-- /.pagination -->            
+			</div>
+            <div class="sidebar span3">
+                <div class="hidden-tablet">
+                    <div class="widget properties last">
+					    {include file='front/ads.html'}
+					</div><!-- /.properties -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
+
+{include file='front/footer.html'}
+</div><!-- /#wrapper -->
+</div><!-- /#wrapper-outer -->
+
+
+
+{include file='front/scripter.html'}
+</body>
+</html>

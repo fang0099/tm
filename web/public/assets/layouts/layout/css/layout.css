@@ -1830,8 +1830,8 @@ Page Quick Sidebar
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 320px;
-  right: -320px;
+  width: 720px;
+  right: -720px;
   overflow: hidden;
   color: #99a8b5;
   background: #21282e; }
@@ -1866,8 +1866,8 @@ Page Quick Sidebar
           text-align: center;
           border: 0;
           height: auto;
-          font-size: 14px;
-          padding: 45px 15px 8px;
+          font-size: 16px;
+          padding: 16px 15px 8px;
           text-transform: uppercase;
           background: none;
           margin-right: 0;
@@ -2140,3 +2140,12 @@ Page Loading
   .page-on-load > .clearfix {
     display: none;
     transition: all 2s; }
+.page-content-iframe {
+  margin-top: 0px;
+  min-height: 600px;
+  padding: 25px 20px 10px 20px; 
+  background: #fff
+}
+.page-content-iframe .page-bar {
+  border-bottom: 1px solid #e7ecf1;
+}

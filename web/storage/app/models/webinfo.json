@@ -1,0 +1,51 @@
+{
+	"table" : "web_info",
+	"invoker" : "WebInfoInvoker",
+	"name" : "站点设置",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"name" : "params[id]",
+			"value" : "id",
+			"type" : "hidden"
+		},
+		{
+			"label" : "网站标题",
+			"name" : "params[title]",
+			"value" : "title",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "网站描述",
+			"name" : "params[description]",
+			"value" : "description",
+			"type" : "textarea"
+		},
+		{
+			"label" : "网站关键词",
+			"name" : "params[keywords]",
+			"value" : "keywords",
+			"type" : "textarea"
+		},
+		{
+			"label" : "Email",
+			"name" : "params[email]",
+			"value" : "email",
+			"type" : "text"
+		},
+		{
+			"label" : "备案信息",
+			"name" : "params[icp]",
+			"value" : "icp",
+			"type" : "text"
+		}
+	],
+	"updater" : "update",
+	"inserter" : "create",
+	"callback" : "reminder",
+	"sort" : "id"
+}

@@ -17,7 +17,11 @@ class StatusCode
         'keys' => '03',
         'article' => '04',
         'tag' => '05',
-        'users' => '06'
+        'users' => '06',
+        'sliders' => '07',
+        'sponsors' => '08',
+        'notice' => '09',
+        'news_flash' => '10'
     ];
 
     const OPERATE_SUCCESS = '00';

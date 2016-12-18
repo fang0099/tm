@@ -120,5 +120,14 @@ class TagRepository extends BaseRepository
         }
     }
 
+    public function menuTags($size){
+        $tags = $this->model->where('show_menu', '=', '1')->take($size)->get();
+        return $this->success('', $tags);
+    }
+
+    public function indexTags($size){
+        $tags = $this->model->where('show_index', '=', '1')->take($size)->get();
+        return $this->success('', $tags);
+    }
 
 }

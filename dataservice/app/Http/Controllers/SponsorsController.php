@@ -21,6 +21,11 @@ class SponsorsController extends Controller
         $this->sponsorsRep = $sponsorsRep;
     }
 
+    public function get(Request $request){
+        $id = $request->input('id');
+        return $this->sponsorsRep->getById($id);
+    }
+
     public function create(Request $request){
         return $this->sponsorsRep->create($request);
     }
