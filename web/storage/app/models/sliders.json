@@ -13,7 +13,7 @@
 		{
 			"label" : "幻灯图片",
 			"value" : "image",
-			"name" : "image",
+			"name" : "params[image]",
 			"type" : "file",
 			"attribute" : {
 				"upload" : "ajax"
@@ -32,7 +32,7 @@
 			"type" : "select",
 			"select" : {
 				"type" : "ajax",
-				"data" : "select/articles"
+				"data" : "../select/articles"
 			}
 		}
 	],
@@ -48,7 +48,7 @@
 			"type" : "selectRender",
 			"select" : {
 				"type" : "ajax",
-				"data" : "select/articles"
+				"data" : "../select/articles"
 			}
 		}
 	],

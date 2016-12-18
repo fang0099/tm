@@ -36,7 +36,7 @@ class SliderRepository extends BaseRepository
     }
 
     public function list(){
-        $sliders = Slider::all();
+        $sliders = Slider::where('del_flag', '=', '0')->get();
         foreach ($sliders as $s){
             $article = $s->_article;
             $s->article = $article;

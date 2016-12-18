@@ -60,6 +60,10 @@ trait ApiInvoker
         'sponsors' => [
             'create' => 'POST',
             'update' => 'POST'
+        ],
+        'slider' => [
+            'create' => 'POST',
+            'update' => 'POST'
         ]
 
     ];

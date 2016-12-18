@@ -44,6 +44,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../../assets/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="../../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="../../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
@@ -90,8 +91,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     />
                                                 @else
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-3" for="{{ $f['name']  }}">{{ $f['label'] }}</label>
-                                                        <div class="col-xs-6">
+                                                        <label class="control-label col-xs-2" for="{{ $f['name']  }}">{{ $f['label'] }}</label>
+                                                        <div class="col-xs-10">
                                                             <?php
                                                                 $atts = 'id="' . $f['name'] . '" name="' . $f['name'] . '" ';
                                                                 if(isset($f['attribute'])){
@@ -116,11 +117,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <img src="@if($action == 'update')../../{{ $data[$f['value']] }}@else http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image @endif" alt="" preview="{{ $f['value'] }}">
                                                             </div>
                                                             @elseif($f['type'] == 'select')
-                                                                    <select class="bs-select form-control">
-                                                                        <option>Mustard</option>
-                                                                        <option>Ketchup</option>
-                                                                        <option>Relish</option>
+                                                                    @if($f['select']['type'] == 'ajax')
+                                                                    <select class="bs-select form-control" select-type="ajax" url="{{$f['select']['data']}}" {!! $atts !!}>
+
                                                                     </select>
+                                                                    @else
+                                                                    <select class="bs-select form-control"  {!! $atts !!}>
+                                                                        @foreach($f['select']['data'] as $k => $v)
+                                                                            <option value="{{$v}}">{{$k}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @endif
+                                                            @elseif($f['type'] == 'wysihtml5')
+                                                                    <textarea class="wysihtml5 form-control" rows="6" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
                                                             @endif
                                                         </div>
                                                     </div>

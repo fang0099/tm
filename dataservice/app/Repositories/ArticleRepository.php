@@ -28,6 +28,9 @@ class ArticleRepository extends BaseRepository
 
     public function findById($id){
         $t = $this->get($id);
+        if($t == null || $t->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
+        }
         $author = $t->_author;
         $author->password = '***';
         $t['author'] = $author;

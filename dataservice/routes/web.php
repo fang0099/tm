@@ -94,7 +94,7 @@ Route::get('/slider/get', 'SliderController@get');
 Route::get('/slider/list', 'SliderController@list');
 Route::post('/slider/create', 'SliderController@create');
 Route::post('/slider/update', 'SliderController@update');
-Route::post('/slider/delete', 'SliderController@delete');
+Route::get('/slider/delete', 'SliderController@delete');
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 

@@ -147,6 +147,7 @@
                                                     {{$d[$l['value']]}}
                                                     @elseif($l['type'] == 'image')
                                                     <img src="../../{{$d[$l['value']]}}" width="100" />
+                                                    @elseif($l['type'] == 'select')
                                                     @endif
                                                 </td>
                                                 @endforeach

@@ -152,8 +152,23 @@
                                         <span class="title"> 首页幻灯管理 </span>
                                     </a>
                                 </li>
-
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=newsflash" class="nav-link link">
+                                        <span class="title"> 快讯管理 </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=article" class="nav-link link">
+                                        <span class="title"> 文章管理 </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=tag" class="nav-link link">
+                                        <span class="title"> 标签管理 </span>
+                                    </a>
+                                </li>
                             </ul>
+
                         </li>
 
                     </ul>

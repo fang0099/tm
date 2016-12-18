@@ -20,7 +20,8 @@ class StatusCode
         'users' => '06',
         'sliders' => '07',
         'sponsors' => '08',
-        'notice' => '09'
+        'notice' => '09',
+        'news_flash' => '10'
     ];
 
     const OPERATE_SUCCESS = '00';

@@ -74,6 +74,8 @@ __.services.form = __.services.form || {};
             });
             return false;
         });
+
+
 	};
 
 	__.services.form.init = init;
@@ -81,4 +83,20 @@ __.services.form = __.services.form || {};
 
 $(document).ready(function(){
 	__.services.form.init();
+    $('[select-type=ajax]').each(function(k, v){
+        var url = $(v).attr('url');
+        var $this = $(v);
+        $.ajax({
+            type : 'GET',
+            url : url,
+            dataType : 'json',
+            success : function (data) {
+                var html = "";
+                for(var i = 0; i < data.length ; i++){
+                    html += "<option value='" + data[i].value + "'>" + data[i].key + "</option>";
+                }
+                $this.html(html);
+            }
+        })
+    });
 });
