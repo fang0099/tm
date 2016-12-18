@@ -1,0 +1,44 @@
+{
+	"table" : "tsubway",
+	"name" : "轨道线路",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "线路名称",
+			"column" : "name",
+			"controlName" : "params[name]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			},
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "所属站点",
+			"column" : "station",
+			"controlName" : "params[station]",
+			"type" : "select",
+			"attribute" : {
+				"required" : "required"
+			},
+			"data" : "select id as value , name as `key` from tstation",
+			"tableColumn" : "stationName",
+			"showInTable" : "yes"
+		}
+	],
+	"attribute" : {
+		"id" : "subway-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add","batch-delete", "update", "delete"] 
+}

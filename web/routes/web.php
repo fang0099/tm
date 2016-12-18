@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,10 +55,30 @@ Route::group(['namespace' => 'Front'], function (){
 });
 
 Route::group(['namespace' => 'Admin'], function (){
-    Route::get('/create', 'TestController@create');
-    Route::get('/delete', 'TestController@delete');
-    Route::get('/update', 'TestController@update');
-    Route::get('/list', 'TestController@lists');
-    Route::get('/get', 'TestController@get');
-    Route::get('/check', 'TestController@check');
+    Route::get('admin/form', 'AdminIndexController@form');
+
+    Route::post('admin/do/{action}', 'AdminIndexController@formDo');
+
+    Route::get('/admin/list', 'AdminIndexController@list');
+    Route::get('/admin/delete', 'AdminIndexController@delete');
+    Route::post('/admin/upload', 'AdminUploadController@upload');
+
+    Route::get('/admin/welcome', function(){
+        return view('admin.welcome');
+    });
+    Route::get('/admin/index', function(){
+        return view('admin.index');
+    });
+
+    Route::get('/select/articles', 'AdminSelectController@articles');
+
+    /*
+    Route::get('/admin/login', 'LoginController@login');
+    Route::get('/admin/dologin', 'LoginController@dologin');
+    Route::get('/admin', 'LoginController@index');
+    Route::get('/admin/article/list', 'ArticleController@list');
+
+
+    Route::get('/check', 'TestController@check');\
+    */
 });

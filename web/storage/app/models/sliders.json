@@ -1,0 +1,63 @@
+{
+	"table" : "slider",
+	"invoker" : "SliderInvoker",
+	"name" : "首页幻灯",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
+		},
+		{
+			"label" : "幻灯图片",
+			"value" : "image",
+			"name" : "image",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			}
+		},
+		{
+			"label" : "图片预览",
+			"value" : "image",
+			"name" : "preview[image]",
+			"type" : "preview"
+		},
+		{
+			"label" : "关联文章",
+			"value" : "article_id",
+			"name" : "params[article_id]",
+			"type" : "select",
+			"select" : {
+				"type" : "ajax",
+				"data" : "select/articles"
+			}
+		}
+	],
+	"list" : [
+		{
+			"head" : "图片预览",
+			"value" : "image",
+			"type" : "image"
+		},
+		{
+			"head" : "关联文章",
+			"value" : "article_id",
+			"type" : "selectRender",
+			"select" : {
+				"type" : "ajax",
+				"data" : "select/articles"
+			}
+		}
+	],
+	"attribute" : {
+		"id" : "sliders-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["add", "update", "delete", "batch-delete"] 
+}

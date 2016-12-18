@@ -21,7 +21,7 @@ class UserRepository extends BaseRepository
     }
 
     public function findByUsername($username){
-        $user = $this->model->where('user_name', '=', $username)->find();
+        $user = $this->model->where('username', '=', $username)->first();
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['username'=>$username]);
         }else {

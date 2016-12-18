@@ -58,6 +58,8 @@ Route::get('/article/uncollect', 'ArticleController@uncollect');
 Route::get('/article/like', 'ArticleController@like');
 Route::get('/article/unlike', 'ArticleController@unlike');
 Route::post('/article/comment', 'ArticleController@comment');
+Route::get('/article/lscomment', 'ArticleController@listComment');
+Route::get('/article/up', 'ArticleController@upArticles');
 
 // tag
 Route::get('/tag/get', 'TagController@get');
@@ -70,18 +72,29 @@ Route::get('/tag/subscribe', 'TagController@subscribe');
 Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 Route::get('/tag/articles', 'TagController@articles');
 Route::get('/tag/subscriber', 'TagController@subscriber');
+Route::get('/tag/menu-tags', 'TagController@menuTags');
+Route::get('/tag/index-tags', 'TagController@indexTags');
 
 // news flash
+Route::get('/newsflash/get', 'NewsFlashController@get');
 Route::post('/newsflash/create', 'NewsFlashController@create');
 Route::get('/newsflash/list', 'NewsFlashController@list');
 Route::post('/newsflash/update', 'NewsFlashController@update');
-Route::get('/newsflash/delete/{ids}', 'NewsFlashController@delete');
+Route::get('/newsflash/delete', 'NewsFlashController@delete');
 
 // sponsors
 Route::post('/sponsors/create', 'SponsorsController@create');
+Route::get('/sponsors/get', 'SponsorsController@get');
 Route::get('/sponsors/list', 'SponsorsController@list');
 Route::post('/sponsors/update', 'SponsorsController@update');
-Route::get('/sponsors/delete/{ids}', 'SponsorsController@delete');
+Route::get('/sponsors/delete', 'SponsorsController@delete');
+
+// slider
+Route::get('/slider/get', 'SliderController@get');
+Route::get('/slider/list', 'SliderController@list');
+Route::post('/slider/create', 'SliderController@create');
+Route::post('/slider/update', 'SliderController@update');
+Route::post('/slider/delete', 'SliderController@delete');
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 

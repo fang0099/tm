@@ -115,7 +115,8 @@ CREATE TABLE news_flash(
     title VARCHAR(128) not NULL DEFAULT '',
     content TEXT DEFAULT NULL ,
     publish_time DATETIME DEFAULT current_timestamp,
-    link VARCHAR(128) not null DEFAULT ''
+    link VARCHAR(128) not null DEFAULT '',
+    del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 alter table article add column word_count int NOT NULL DEFAULT 0;
@@ -126,7 +127,8 @@ CREATE TABLE sponsors (
     name VARCHAR(64) NOT NULL DEFAULT '',
     face VARCHAR(128) NOT NULL DEFAULT '',
     brief VARCHAR(256) NOT NULL DEFAULT '',
-    link VARCHAR(128) NOT NULL DEFAULT ''
+    link VARCHAR(128) NOT NULL DEFAULT '',
+    del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 alter table users add column qq VARCHAR(18) not null DEFAULT '';
@@ -146,7 +148,8 @@ CREATE  TABLE `check_log` (
     ref_id int NOT NULL DEFAULT 0 COMMENT 'article id or tag id',
     check_result TINYINT NOT NULL DEFAULT 0 COMMENT '0=reject, 1=approve',
     message VARCHAR(128) not NULL DEFAULT '',
-    check_time DATETIME DEFAULT current_timestamp
+    check_time DATETIME DEFAULT current_timestamp,
+    del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 
@@ -157,7 +160,8 @@ CREATE TABLE notice (
     to_user int not NULL  DEFAULT 0,
     type VARCHAR(16) not null DEFAULT '',
     message VARCHAR(128) not null DEFAULT '',
-    publish_time DATETIME DEFAULT current_timestamp
+    publish_time DATETIME DEFAULT current_timestamp,
+    del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE opt_log (
@@ -165,7 +169,8 @@ CREATE TABLE opt_log (
     user_id int not NULL  DEFAULT 0,
     type VARCHAR(16) not null DEFAULT '',
     message VARCHAR(128) not null DEFAULT '',
-    publish_time DATETIME DEFAULT current_timestamp
+    publish_time DATETIME DEFAULT current_timestamp,
+    del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 -- 时间轴
@@ -193,11 +198,19 @@ CREATE TABLE `key_function_rel` (
 )ENGINE = innodb charset=utf8;
 
 
+-- sliders
+CREATE TABLE sliders (
+    id int primary key auto_increment,
+    image VARCHAR(128) not NULL  DEFAULT '',
+    article_id int NOT NULL DEFAULT 0,
+    del_flag int not NULL DEFAULT 0
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 
 
-
-
+alter table article add column up_flag int not null default 0;
+alter table tag add column show_menu int not null default 0;
+alter table tag add column show_index int not null default 0;
 
 
 

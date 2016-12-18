@@ -136,7 +136,9 @@ abstract class BaseRepository
     private function fillParams($params){
         $M = new $this->model;
         foreach ($params as $k => $v){
-            $M->$k = $v;
+            if($k != 'id'){
+                $M->$k = $v;
+            }
         }
         return $M;
     }
@@ -197,6 +199,7 @@ abstract class BaseRepository
         $listSql = 'select * '  . $from . $where . $condition . $orderBy . $limit;
         $list = DB::select($listSql, $p);
         $res = [
+            'success' => 'true',
             'count' => $count,
             'current_page' => $page,
             'page_size' => $pageSize,

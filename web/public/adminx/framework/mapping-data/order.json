@@ -1,0 +1,55 @@
+{
+	"table" : "torder",
+	"name" : "预约",
+	"primaryKey" : ["id"],
+	"columns" : [
+		{
+			"columnName" : "id",
+			"column" : "id",
+			"controlName" : "params[id]",
+			"type" : "hidden",
+			"showInTable" : "no"
+		},
+		{
+			"columnName" : "预约酒店",
+			"column" : "hid",
+			"controlName" : "params[hid]",
+			"type" : "select",
+			"attribute" : {
+				"required" : "required"
+			},
+			"data" : "select id as value , name as `key` from thotel",
+			"tableColumn" : "hotelName",
+			"showInTable" : "yes"
+		},
+		{
+			"columnName" : "预定人数",
+			"column" : "pnums",
+			"controlName" : "params[pnums]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "预定时间",
+			"column" : "odate",
+			"controlName" : "params[odate]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		},
+		{
+			"columnName" : "联系电话",
+			"column" : "phone",
+			"controlName" : "params[phone]",
+			"type" : "text",
+			"showInTable" : "yes"	
+		}
+	],
+	"attribute" : {
+		"id" : "subway-form"
+	},
+	"sort" : "id",
+	"check" : {
+		"name" : "checkUnique"
+	},
+	"operations" : ["batch-delete", "delete"] 
+}
