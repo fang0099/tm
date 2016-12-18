@@ -44,7 +44,9 @@ Route::group(['namespace' => 'Front'], function (){
 
 Route::group(['namespace' => 'Admin'], function (){
     Route::get('admin/form', 'AdminIndexController@form');
-    Route::get('admin/do/{action}', 'AdminIndexController@formDo');
+
+    Route::post('admin/do/{action}', 'AdminIndexController@formDo');
+
     Route::get('/admin/list', 'AdminIndexController@list');
     Route::get('/admin/delete', 'AdminIndexController@delete');
     Route::post('/admin/upload', 'AdminUploadController@upload');

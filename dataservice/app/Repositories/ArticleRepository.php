@@ -28,8 +28,14 @@ class ArticleRepository extends BaseRepository
 
     public function findById($id){
         $t = $this->get($id);
-        $t['author'] = $t->_author;
-        $t['checker'] = $t->_checker;
+        $author = $t->_author;
+        $author->password = '***';
+        $t['author'] = $author;
+        $checker = $t->_checker;
+        if($checker){
+            $checker->password = '***';
+        }
+        $t['checker'] = $checker;
         $t['tags'] = $t->tags;
         //$t['comments'] = $t->comments;
         return $this->success('', $t);
@@ -198,6 +204,8 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $params);
         }else {
             $params['type'] = 0;
+            $article->comment_num = $article->comment_num + 1;
+            $article->save();
             return $this->commentRep->insertInternal($params);
         }
     }

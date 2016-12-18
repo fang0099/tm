@@ -1,10 +1,11 @@
 {
-	"table" : "tslider",
+	"table" : "slider",
+	"invoker" : "SliderInvoker",
 	"name" : "首页幻灯",
 	"primaryKey" : ["id"],
-	"columns" : [
+	"fields" : [
 		{
-			"columnName" : "id",
+			"label" : "id",
 			"column" : "id",
 			"controlName" : "params[id]",
 			"type" : "hidden",

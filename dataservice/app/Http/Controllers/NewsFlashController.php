@@ -21,6 +21,11 @@ class NewsFlashController extends Controller
         $this->newsFlashRep = $newsFlashRep;
     }
 
+    public function get(Request $request){
+        $id = $request->input('id');
+        return $this->newsFlashRep->getById($id);
+    }
+
     public function create(Request $request){
         return $this->newsFlashRep->create($request);
     }

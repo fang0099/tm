@@ -146,7 +146,7 @@
                                                     @if($l['type'] == 'text')
                                                     {{$d[$l['value']]}}
                                                     @elseif($l['type'] == 'image')
-                                                    <img src="{{$d[$l['value']]}}" width="200" />
+                                                    <img src="../../{{$d[$l['value']]}}" width="100" />
                                                     @endif
                                                 </td>
                                                 @endforeach

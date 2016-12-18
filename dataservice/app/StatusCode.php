@@ -18,7 +18,9 @@ class StatusCode
         'article' => '04',
         'tag' => '05',
         'users' => '06',
-        'sliders' => '07'
+        'sliders' => '07',
+        'sponsors' => '08',
+        'notice' => '09'
     ];
 
     const OPERATE_SUCCESS = '00';

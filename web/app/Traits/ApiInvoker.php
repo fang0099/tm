@@ -51,7 +51,8 @@ trait ApiInvoker
             'subscribe' => 'GET',
             'unsubscribe' => 'GET',
             'articles' => 'GET',
-            'subscriber' => 'GET',
+            'subscriber' => 'GET'
+        ],
         'newsflash' => [
             'create' => 'POST',
             'update' => 'POST'
@@ -59,7 +60,6 @@ trait ApiInvoker
         'sponsors' => [
             'create' => 'POST',
             'update' => 'POST'
-        ]
         ]
 
     ];

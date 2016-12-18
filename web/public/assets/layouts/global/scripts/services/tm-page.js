@@ -47,7 +47,12 @@ __.services.page = __.services.page || {};
 			$('.checkboxes:checked').each(function (k, v) {
                 ids += $(v).val() + ",";
             });
-			deleteData(deleteUrl, ids);
+			if(ids == ''){
+                alert('nothing selected');
+            }else {
+                deleteData(deleteUrl, ids);
+            }
+
 		});
 
     }

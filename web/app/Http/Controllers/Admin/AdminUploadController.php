@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class AdminUploadController extends AdminBaseController
 {
@@ -18,8 +19,11 @@ class AdminUploadController extends AdminBaseController
         $files = $request->file();
         $path = '';
         foreach ($files as $file){
-            $path = $file->store(public_path('upload'));
+            $uuid = Uuid::generate();
+            $fileName = $uuid . '.' . $file->getClientOriginalExtension();
+            $path = 'upload/' . $fileName;
+            $file->move(public_path('upload'), $fileName);
         }
-        return ['success' => true, 'path' => $path];
+        return response()->json(['success' => true, 'path' => $path]);
     }
 }

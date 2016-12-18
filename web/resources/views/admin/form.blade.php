@@ -77,7 +77,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="portlet light portlet-fit portlet-form">
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="do/{{ $action }}" class="form-horizontal" id='form' callback="{{ $config['callback'] or 'closeAndRefreshMain' }}">
+                                    <form action="do/{{ $action }}" method = "POST" class="form-horizontal" id='form' callback="{{ $config['callback'] or 'closeAndRefreshMain' }}">
                                         <div class="form-body">
                                             <input type="hidden" value="{{ $_GET['model'] }}" name="model" />
                                             @foreach($config['fields'] as $f)
@@ -112,7 +112,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <input class="form-control" {!! $atts !!} type="hidden" />
                                                             @elseif($f['type'] == 'preview')
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" name="{{ $f['name'] }}">
+                                                                <img src="@if($action == 'update')../../{{ $data[$f['value']] }}@else http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image @endif" alt="" preview="{{ $f['value'] }}">
                                                             </div>
                                                             @endif
                                                         </div>

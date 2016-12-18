@@ -75,16 +75,18 @@ Route::get('/tag/menu-tags', 'TagController@menuTags');
 Route::get('/tag/index-tags', 'TagController@indexTags');
 
 // news flash
+Route::get('/newsflash/get', 'NewsFlashController@get');
 Route::post('/newsflash/create', 'NewsFlashController@create');
 Route::get('/newsflash/list', 'NewsFlashController@list');
 Route::post('/newsflash/update', 'NewsFlashController@update');
-Route::get('/newsflash/delete/{ids}', 'NewsFlashController@delete');
+Route::get('/newsflash/delete', 'NewsFlashController@delete');
 
 // sponsors
 Route::post('/sponsors/create', 'SponsorsController@create');
+Route::get('/sponsors/get', 'SponsorsController@get');
 Route::get('/sponsors/list', 'SponsorsController@list');
 Route::post('/sponsors/update', 'SponsorsController@update');
-Route::get('/sponsors/delete/{ids}', 'SponsorsController@delete');
+Route::get('/sponsors/delete', 'SponsorsController@delete');
 
 // slider
 Route::get('/slider/get', 'SliderController@get');

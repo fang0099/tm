@@ -62,7 +62,8 @@ __.services.form = __.services.form || {};
                 dataType: 'json',
                 success: function (data){
                 	if(data.success){
-                        $('[preview='+name+']').attr('src', data.path);
+                		var path = '../../' + data.path;
+                        $('img[preview='+name+']').attr('src', path);
                         $('[name=\'params['+name+']\']').val(data.path);
 					}else {
                 		alert('upload error');
