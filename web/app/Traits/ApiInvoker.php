@@ -23,6 +23,9 @@ trait ApiInvoker
             'update' => 'POST'
         ],
         'article' => [
+            //置顶列表
+            'up' => 'GET',
+            'lscomment'=>'GET',
             'get' => 'GET',
             'create' => 'POST',
             'update'=> 'POST',
@@ -30,6 +33,7 @@ trait ApiInvoker
             'like' => 'GET',
             'unlike' => 'GET',
             'comment' => 'POST',
+            'delete'=>'GET',
         ],
         'user' => [
             'get' => 'GET',
