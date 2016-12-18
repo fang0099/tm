@@ -67,7 +67,7 @@
     @section("page_level_js")
         <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
         <script src="../assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/third-party/jquery.form.js" type="text/javascript"></script>
+        <script src="../assets/global/scripts/third-party/jquery.form.js" type="text/javascript"></script>
         <script>
 
             $(function () {
