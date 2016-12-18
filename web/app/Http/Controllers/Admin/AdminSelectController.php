@@ -21,8 +21,27 @@ class AdminSelectController extends AdminBaseController
     }
 
     public function articles(){
-        return $this->articleInvoker->list([
+        $articles = $this->articleInvoker->list([
             'order' => 'publish_time desc'
         ]);
+        if($articles['success']){
+            if($articles['data']){
+                $as = [];
+                if($articles['data']['list']){
+                    $as = $articles['data']['list'];
+                }else {
+                    $as = $articles['data'];
+                }
+                $res = [];
+                foreach ($as as $a) {
+                    $res[] = ['key' => $a['title'], 'value' => $a['id']];
+                }
+                return $res;
+            }else {
+                return [];
+            }
+        }else {
+            return [];
+        }
     }
 }

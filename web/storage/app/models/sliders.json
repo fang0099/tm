@@ -45,7 +45,6 @@
 		{
 			"head" : "关联文章",
 			"value" : "article_id",
-			"name" : "params[article_id]",
 			"type" : "selectRender",
 			"select" : {
 				"type" : "ajax",
