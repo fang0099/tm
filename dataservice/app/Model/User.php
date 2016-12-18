@@ -22,7 +22,7 @@ class User extends BaseModel
     }
 
     public function articles(){
-        return $this->hasMany('App\Model\Article', 'author');
+        return $this->hasMany('App\Model\Article', 'author')->where('del_flag', '=', '0');
     }
 
     public function checkedArticles(){
