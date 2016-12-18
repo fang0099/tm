@@ -1,0 +1,112 @@
+{
+	"table" : "article",
+	"name" : "文章",
+	"invoker" : "ArticleInvoker",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
+		},
+		{
+			"label" : "文章标题",
+			"value" : "title",
+			"name" : "params[title]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "文章封面",
+			"value" : "face",
+			"name" : "params[face]",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			}
+		},
+		{
+			"label" : "图片预览",
+			"value" : "face",
+			"name" : "preview[face]",
+			"type" : "preview"
+		},
+		{
+			"label" : "点赞数",
+			"value" : "likes",
+			"name" : "params[likes]",
+			"type" : "text"
+		},
+		{
+			"label" : "浏览量",
+			"value" : "click_count",
+			"name" : "params[click_count]",
+			"type" : "text"
+		},
+		{
+			"label" : "热度",
+			"value" : "hot_num",
+			"name" : "params[hot_num]",
+			"type" : "text"
+		},
+		{
+			"label" : "内容",
+			"value" : "content",
+			"name" : "params[content]",
+			"type" : "wysihtml5",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "审核结果",
+			"value" : "has_checked",
+			"name" : "params[has_checked]",
+			"type" : "select",
+			"select" : {
+				"type" : "json",
+				"data" : {
+					"审核不通过" : "0",
+					"审核通过" : "1"
+				}
+			}
+		}
+	],
+	"list" : [
+		{
+			"head" : "文章标题",
+			"value" : "title",
+			"type" : "text"
+		},
+		{
+			"head" : "文章封面",
+			"value" : "face",
+			"type" : "image"
+		},
+		{
+			"head" : "点赞数",
+			"value" : "likes",
+			"type" : "text"
+		},
+		{
+			"head" : "浏览量",
+			"value" : "click_count",
+			"type" : "text"
+		},
+		{
+			"head" : "热度",
+			"value" : "hot_num",
+			"type" : "text"
+		},
+		{
+			"head" : "发布时间",
+			"value" : "publish_time",
+			"type" : "text"
+		}
+	],
+	"sort" : "id",
+	"operations" : ["add","batch-delete", "update", "delete", "back"] 
+}
