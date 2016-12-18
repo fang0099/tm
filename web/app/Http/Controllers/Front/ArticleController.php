@@ -88,6 +88,7 @@ class ArticleController extends Controller
                 'params[tags]'=>$tags
             ]);
 
+        return redirect("/");
         print_r($r);
     }
 
@@ -100,6 +101,7 @@ class ArticleController extends Controller
               'ids'=>$id,
           ]
         );
+        return redirect("/");
         print_r($r);
         //return redirect("/");
     }
@@ -122,7 +124,7 @@ class ArticleController extends Controller
                 'params[author]'=>$author,
                 'params[tags]'=>$tags
             ]);
-
+        return redirect("/");
         print_r($r);
     }
 

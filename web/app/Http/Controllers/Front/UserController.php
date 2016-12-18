@@ -162,6 +162,7 @@ class UserController extends Controller
             'params[brief]'=>$brief,
         ]);
 
+        //return redirect("/");
         echo json_encode($r);
     }
 
