@@ -113,7 +113,7 @@
                             @else
                             <li class="dropdown dropdown-user dropdown-light">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="/tm/web/resources/assets/img/user.png">
+                                    <img alt="" class="img-circle" src="<?php echo env('APP_URL');?>/assets/global/img/user.png">
                                     <span class="username username-hide-mobile">未登录</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
@@ -159,24 +159,24 @@
                         <ul class="nav navbar-nav">
 
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag1
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag1
                                     <span class="arrow"></span>
                                 </a>
                             </li>
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag2
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag3
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag2
                                     <span class="arrow"></span>
                                 </a>
                             </li>
 
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag4
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag3
+                                    <span class="arrow"></span>
+                                </a>
+                            </li>
+
+                            <li class="menu-dropdown classic-menu-dropdown ">
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag4
                                     <span class="arrow"></span>
                                 </a>
                             </li>
