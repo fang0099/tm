@@ -28,7 +28,7 @@ class TagRepository extends BaseRepository
         $params = $this->getParams($request);
         $params['has_checked'] = 0;
         $params['checker'] = 0;
-        $params['fans_num'] = 0;
+        //$params['fans_num'] = 0;
         return $this->insertInternal($params);
     }
 
