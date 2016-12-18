@@ -5,8 +5,8 @@
     @section("content")
         <div class="login-content">
             <h1>登录</h1>
-            <p> 网罗天下创新事. 没有账号？<a href="signup">注册</a></p>
-            <form action="user/signin" class="login-form" method="post">
+            <p> 网罗天下创新事. 没有账号？<a href="<?php echo env('APP_URL');?>/signup">注册</a></p>
+            <form action="<?php echo env("APP_URL")?>/user/signin" class="login-form" method="post">
                 <div class="row">
                     <div class="col-xs-6">
                         <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名/手机号/邮箱" name="username" required/> </div>
@@ -107,7 +107,7 @@
                     if (true == obj.success)
                     {
                         toastr.success("登录成功");
-                        setTimeout("window.location.href='<?php echo env('APP_URL');?>/index';",3000);
+                        setTimeout("window.location.href='/';",3000);
                     }
                     else{
                         toastr.error(obj.message);

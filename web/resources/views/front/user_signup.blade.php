@@ -67,7 +67,7 @@
     @section("page_level_js")
         <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
         <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/scripts/third-party/jquery.form.js" type="text/javascript"></script>
+        <script src="<?php echo env('APP_URL');?>/assets/global/scripts/jquery.form.js" type="text/javascript"></script>
         <script>
 
             $(function () {
@@ -99,7 +99,7 @@
                             if (true == obj.success)
                             {
                                 toastr.success("注册成功");
-                                setTimeout("window.location.href='<?php echo env('APP_URL');?>/login';",3000);
+                                setTimeout("window.location.href='/login';",3000);
                             }
                             else{
                                 toastr.error(obj.message);
