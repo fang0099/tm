@@ -64,7 +64,7 @@
                             </div>-->
                             <div class="blog-post-content">
                                 <h2 class="blog-title blog-post-title">
-                                    <a href="/tm/web/public/article?id={{$article["id"]}}">{{ $article['title'] }}</a>
+                                    <a href="<?php echo env('APP_URL');?>/article?id={{$article["id"]}}">{{ $article['title'] }}</a>
                                 </h2>
                                 <p class="blog-post-desc">{{$article["abstracts"]}}</p>
                                 <div class="blog-post-foot">

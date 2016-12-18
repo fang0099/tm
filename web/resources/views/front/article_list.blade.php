@@ -25,7 +25,7 @@
                         </div>
                         <div class="blog-post-content">
                             <h2 class="blog-title blog-post-title">
-                                <a href="/tm/web/public/article?id={{$person["id"]}}">{{ $person['title'] }}</a>
+                                <a href="<?php echo env('APP_URL');?>/article?id={{$person["id"]}}">{{ $person['title'] }}</a>
                                 <!--<a href="javascript:;">Metronic Blog Post</a>-->
                             </h2>
                             <p class="blog-post-desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
