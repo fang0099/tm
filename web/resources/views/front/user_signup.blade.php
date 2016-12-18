@@ -99,7 +99,7 @@
                             if (true == obj.success)
                             {
                                 toastr.success("注册成功");
-                                setTimeout("window.location.href='/tm/web/public/article/list';",3000);
+                                setTimeout("window.location.href='/tm/web/public/login';",3000);
                             }
                             else{
                                 toastr.error(obj.message);
