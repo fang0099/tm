@@ -93,16 +93,16 @@
                                             <i class="icon-calendar"></i> 创建标签 </a>
                                     </li>
                                     <li>
-                                        <a href="app_calendar.html">
+                                        <a href="#">
                                             <i class="icon-calendar"></i> 我的收藏 </a>
                                     </li>
                                     <li>
-                                        <a href="app_calendar.html">
+                                        <a href="#">
                                             <i class="icon-calendar"></i> 我的订阅 </a>
                                     </li>
                                     <li>
-                                        <a href="app_calendar.html">
-                                            <i class="icon-calendar"></i> 账号设置 </a>
+                                        <a href="<?php echo env('APP_URL');?>/index.php/admin/index">
+                                            <i class="icon-calendar"></i> 后台管理 </a>
                                     </li>
                                     <li>
                                         <a href="<?php echo env('APP_URL');?>/user/logout">
