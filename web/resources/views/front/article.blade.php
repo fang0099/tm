@@ -2,7 +2,7 @@
     @section("page_level_plugins")
         @stop
     @section("page_level_style")
-        <link href="../assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
         @stop
     @section("content")
         <div class="blog-page blog-content-2">
@@ -20,7 +20,7 @@
                             <a href="<?php echo env('APP_URL');?>/article/delete?id={{$article["id"]}}" class="btn btn-circle red">删除</a>
                         </div>
                         <!--<div class="blog-single-img">
-                            <img src="../assets/pages/img/background/4.jpg" /> </div>-->
+                            <img src="/assets/pages/img/background/4.jpg" /> </div>-->
                         <div class="blog-single-desc">
                             {!! $article["content"] !!}
                         </div>
@@ -44,7 +44,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
-                                            <img class="media-object" alt="" src="../assets/pages/img/avatars/team1.jpg"> </a>
+                                            <img class="media-object" alt="" src="<?php echo env('APP_URL');?>/pages/img/avatars/team1.jpg"> </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -55,7 +55,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
-                                            <img class="media-object" alt="" src="../assets/pages/img/avatars/team3.jpg"> </a>
+                                            <img class="media-object" alt="" src="<?php echo env('APP_URL');?>/pages/img/avatars/team3.jpg"> </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -65,7 +65,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <a href="#">
-                                                    <img class="media-object" alt="" src="../assets/pages/img/avatars/team4.jpg"> </a>
+                                                    <img class="media-object" alt="" src="<?php echo env('APP_URL');?>/pages/img/avatars/team4.jpg"> </a>
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="media-heading">
@@ -78,7 +78,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
-                                            <img class="media-object" alt="" src="../assets/pages/img/avatars/team7.jpg"> </a>
+                                            <img class="media-object" alt="" src="<?php echo env('APP_URL');?>/pages/img/avatars/team7.jpg"> </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -165,32 +165,32 @@
                             <div class="row ui-margin">
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/1.jpg" />
+                                        <img src="<?php echo env("APP_URL");?>/assets/pages/img/background/1.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/37.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/37.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/57.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/57.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/53.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/53.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/59.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/59.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/42.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/42.jpg" />
                                     </a>
                                 </div>
                             </div>
