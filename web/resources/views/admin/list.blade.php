@@ -143,7 +143,11 @@
                                                 </td>
                                                 @foreach($config['list'] as $l)
                                                 <td>
+                                                    @if($l['type'] == 'text')
                                                     {{$d[$l['value']]}}
+                                                    @elseif($l['type'] == 'image')
+                                                    <img src="{{$d[$l['value']]}}" width="200" />
+                                                    @endif
                                                 </td>
                                                 @endforeach
                                                 <td>
@@ -194,6 +198,7 @@
         <script src="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
         <script src="../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+
         <script src="../../assets/global/scripts/datatable.js" type="text/javascript"></script>
         
         <script src="../../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>

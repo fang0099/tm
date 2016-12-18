@@ -71,4 +71,14 @@ class TagController extends Controller
         $page = $request->input('page', 1);
         return $this->tagRep->subscriber($id, $page);
     }
+
+    public function menuTags(Request $request){
+        $size = $request->input('size', 10);
+        return $this->tagRep->menuTags($size);
+    }
+
+    public function indexTags(Request $request){
+        $size = $request->input('size', 10);
+        return $this->tagRep->indexTags($size);
+    }
 }

@@ -38,6 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="../../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../../assets/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -106,6 +107,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             />
                                                             @elseif($f['type'] == 'textarea')
                                                             <textarea class="form-control" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
+                                                            @elseif($f['type'] == 'file')
+                                                            <input class="form-control ajax" type="file" id="{{$f['value']}}" name="{{$f['value']}}" ref="{{ $f['value'] }}" />
+                                                            <input class="form-control" {!! $atts !!} type="hidden" />
+                                                            @elseif($f['type'] == 'preview')
+                                                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" name="{{ $f['name'] }}">
+                                                            </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -171,6 +179,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="../../assets/pages/scripts/form-validation.min.js" type="text/javascript"></script>
+        <script src="../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <script src="../../assets/global/plugins/ajaxfileupload.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>

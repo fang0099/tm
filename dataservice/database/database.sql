@@ -208,7 +208,9 @@ CREATE TABLE sliders (
 
 
 
-
+alter table article add column up_flag int not null default 0;
+alter table tag add column show_menu int not null default 0;
+alter table tag add column show_index int not null default 0;
 
 
 

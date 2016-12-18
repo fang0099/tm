@@ -49,6 +49,7 @@ __.services.page = __.services.page || {};
             });
 			deleteData(deleteUrl, ids);
 		});
+
     }
 
     __.services.page.init = bind;

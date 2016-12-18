@@ -48,6 +48,31 @@ __.services.form = __.services.form || {};
 		$cancle.click(function(){
 			iframe.outCloseRightSlider();
 		});
+
+
+        // file upload
+		var fileUploadUrl = "upload";
+        $('input.ajax').change(function () {
+        	console.log('upload file');
+        	var name = $(this).attr('name');
+            $.ajaxFileUpload({
+                url: fileUploadUrl,
+                secureuri:false,
+                fileElementId: name,
+                dataType: 'json',
+                success: function (data){
+                	if(data.success){
+                        $('[preview='+name+']').attr('src', data.path);
+                        $('[name=\'params['+name+']\']').val(data.path);
+					}else {
+                		alert('upload error');
+                		console.log(data);
+					}
+
+                }
+            });
+            return false;
+        });
 	};
 
 	__.services.form.init = init;

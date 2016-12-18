@@ -47,11 +47,17 @@ Route::group(['namespace' => 'Admin'], function (){
     Route::get('admin/do/{action}', 'AdminIndexController@formDo');
     Route::get('/admin/list', 'AdminIndexController@list');
     Route::get('/admin/delete', 'AdminIndexController@delete');
+    Route::post('/admin/upload', 'AdminUploadController@upload');
+
     Route::get('/admin/welcome', function(){
         return view('admin.welcome');
     });
     Route::get('/admin/index', function(){
         return view('admin.index');
+    });
+
+    Route::get('/admin/t', function (){
+        return public_path("upload");
     });
 
     /*
@@ -60,15 +66,7 @@ Route::group(['namespace' => 'Admin'], function (){
     Route::get('/admin', 'LoginController@index');
     Route::get('/admin/article/list', 'ArticleController@list');
 
-    Route::get('/create', 'TestController@create');
-    Route::get('/delete', 'TestController@delete');
-    Route::get('/update', 'TestController@update');
-    Route::get('/list', 'TestController@lists');
-    Route::get('/get', function(){
-        $m = DB::select("select * from users");
-        var_dump($m);
-        return DB::select("select * from users");
-    });
+
     Route::get('/check', 'TestController@check');\
     */
 });

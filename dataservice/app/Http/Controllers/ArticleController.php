@@ -89,4 +89,9 @@ class ArticleController
 
     }
 
+    public function upArticles(Request $request){
+        $size = $request->input('size', '3');
+        return $this->articleRep->upArticles($size);
+    }
+
 }

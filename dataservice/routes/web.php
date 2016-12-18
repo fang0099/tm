@@ -58,6 +58,7 @@ Route::get('/article/uncollect', 'ArticleController@uncollect');
 Route::get('/article/like', 'ArticleController@like');
 Route::get('/article/unlike', 'ArticleController@unlike');
 Route::post('/article/comment', 'ArticleController@comment');
+Route::get('/article/up', 'ArticleController@upArticles');
 
 // tag
 Route::get('/tag/get', 'TagController@get');
@@ -70,6 +71,8 @@ Route::get('/tag/subscribe', 'TagController@subscribe');
 Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 Route::get('/tag/articles', 'TagController@articles');
 Route::get('/tag/subscriber', 'TagController@subscriber');
+Route::get('/tag/menu-tags', 'TagController@menuTags');
+Route::get('/tag/index-tags', 'TagController@indexTags');
 
 // news flash
 Route::post('/newsflash/create', 'NewsFlashController@create');

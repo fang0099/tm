@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item start ">
-                                    <a href="javascript:;" data="list?model=sponsor" class="nav-link ">
+                                    <a href="javascript:;" data="list?model=sponsor" class="nav-link link">
                                         <i class="icon-graph"></i>
                                         <span class="title"> 赞助商管理 </span>
                                     </a>

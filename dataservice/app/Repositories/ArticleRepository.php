@@ -202,7 +202,15 @@ class ArticleRepository extends BaseRepository
         }
     }
 
-
+    public function upArticles($size = 3){
+        $articles = $this->model->where('up_flag', '=', '1')->orderBy('publish_time', 'desc')->take($size)->get();
+        foreach ($articles as $a){
+            $author = $a->_author;
+            $author->password = '***';
+            $a->author = $author;
+        }
+        return $this->success('', $articles);
+    }
 
 
 }
