@@ -2,15 +2,15 @@
     @section("outer")
         @stop
     @section("page_level_plugins")
-        <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
 
-        <link href="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
         @stop
     @section("page_level_style")
-        <link href="../assets/pages/css/search.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/pages/css/search.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
         @stop
     @section("slider")
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -25,13 +25,13 @@
             <div class="carousel-inner">
                 @foreach($slider_article_list as $index=>$slider_article)
                 <div class="item @if ($index == 0) active @endif">
-                    <img src="img/1.jpg" style="width:100%" data-src=" " alt="First slide">
+                    <img src="{{$slider_article["image"]}}" style="width:100%" data-src=" " alt="First slide">
                     <div class="container">
                         <div class="carousel-caption">
                             <img class="img-circle" src="../resources/assets/img/user2.jpeg" style="width: 100px;height:100px;">
-                            <h1>{{$slider_article["title"]}}</h1>
-                            <p>{{$slider_article["abstracts"]}}</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">阅读</a></p>
+                            <h1>{{$slider_article["article"]["title"]}}</h1>
+                            <p>{{$slider_article["article"]["abstracts"]}}</p>
+                            <p><a class="btn btn-lg btn-primary" href="<?php echo env('APP_URL');?>/article?id={{$slider_article['article']['id']}}" role="button">阅读</a></p>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <div class="blog-post-lg bordered blog-container">
                             <!--<div class="blog-img-thumb">
                                 <a href="javascript:;">
-                                    <img src="../assets/pages/img/page_general_search/5.jpg" />
+                                    <img src="<?php echo env('APP_URL');?>/assets/pages/img/page_general_search/5.jpg" />
                                 </a>
                             </div>-->
                             <div class="blog-post-content">
@@ -129,32 +129,32 @@
                             <div class="row ui-margin">
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/1.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/1.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/37.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/37.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/57.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/57.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/53.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/53.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/59.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/59.jpg" />
                                     </a>
                                 </div>
                                 <div class="col-xs-4 ui-padding">
                                     <a href="javascript:;">
-                                        <img src="../assets/pages/img/background/42.jpg" />
+                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/42.jpg" />
                                     </a>
                                 </div>
                             </div>
@@ -167,15 +167,15 @@
 
     @stop
 @section("page_level_plugins_js")
-    <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
 
-    <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 @stop
 @section("page_level_js")
-    <script src="../assets/pages/scripts/search.min.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/search.min.js" type="text/javascript"></script>
 
-    <script src="../assets/pages/scripts/profile.min.js" type="text/javascript"></script>
-    <!--<script src="../assets/pages/scripts/timeline.min.js" type="text/javascript"></script>-->
+    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/profile.min.js" type="text/javascript"></script>
+    <!--<script src="<?php echo env('APP_URL');?>/assets/pages/scripts/timeline.min.js" type="text/javascript"></script>-->
 @stop

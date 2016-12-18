@@ -1,6 +1,6 @@
 @extends("front/login_master")
     @section("page_level_style")
-        <link href="../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
         @stop
     @section("content")
         <div class="login-content">
@@ -65,9 +65,9 @@
 
     @stop
     @section("page_level_js")
-        <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
-        <script src="../assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/third-party/jquery.form.js" type="text/javascript"></script>
+        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+        <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+        <script src="<?php echo env('APP_URL');?>/assets/global/scripts/jquery.form.js" type="text/javascript"></script>
         <script>
 
             $(function () {
@@ -99,7 +99,7 @@
                             if (true == obj.success)
                             {
                                 toastr.success("注册成功");
-                                setTimeout("window.location.href='<?php echo env('APP_URL');?>/login';",3000);
+                                setTimeout("window.location.href='/login';",3000);
                             }
                             else{
                                 toastr.error(obj.message);
