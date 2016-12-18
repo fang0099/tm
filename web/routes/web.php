@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 
 Route::group(['namespace' => 'Front'], function (){
     //首页
-    Route::get('/index', 'IndexController@index');
+    Route::get('/', 'IndexController@show_index');
+    Route::get('/index', 'IndexController@show_index');
+
     //登录
     Route::get('/login', 'UserController@login');
     //注册
@@ -30,15 +32,25 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/article/edit', 'ArticleController@edit_article');
     //创建用户
     Route::post('/user/create', 'UserController@create');
+    Route::post('/user/signin', 'UserController@signin');
     Route::get('/article/write', 'ArticleController@write');
     Route::get('/article/list', 'ArticleController@article_list');
 
     Route::get('/user', 'UserController@index');
+    Route::get('/user/logout', 'UserController@logout');
     Route::get('/article', 'ArticleController@index');
     Route::get('/article/list', 'ArticleController@article_list');
 
     Route::get('/user/list', 'UserController@user_list');
-    Route::get('/user/update', 'UserController@update');
+    Route::get('/user/profile', 'UserController@show_edit');
+    Route::post('/user/update', 'UserController@update');
+
+    Route::get('/tag/index','TagController@index');
+    Route::get('/tag/list','TagController@tag_list');
+    Route::get('/tag/add', 'TagController@show_create');
+    Route::get('/tag/edit', 'TagController@show_edit');
+    Route::post('/tag/create', 'TagController@create');
+    Route::post('/tag/update', 'TagController@update');
 });
 
 Route::group(['namespace' => 'Admin'], function (){
