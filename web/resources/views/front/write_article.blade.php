@@ -6,17 +6,50 @@
         <link rel="stylesheet" type="text/css" href="../simditor/styles/simditor-fullscreen.css" />
         @stop
     @section("content")
-        <form action="create" method="post" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" name="title" placeholder="标题">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet light ">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            <i class="icon-settings font-green-haze"></i>
+                            <span class="caption-subject bold uppercase"> 写稿</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+
+
+        <form action="create" method="post" role="form" class="form-horizontal" >
+            <div class="form-body">
+                <div class="form-group form-md-line-input">
+
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" id="form_control_1" placeholder="标题" name="title">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                </div>
+                <div class="form-group form-md-line-input">
+                    <div class="col-md-12">
+                    <textarea id="editor" name="content" placeholder="Balabala" autofocus></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <textarea id="editor" name="content" placeholder="Balabala" autofocus></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="提交"/>
+            <div class="form-action">
+                <div class="form-group form-md-line-input">
+                    <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary" value="提交"/>
+                    </div>
+                </div>
             </div>
         </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         @stop
     @section("page_level_plugins_js")
         @stop
