@@ -66,7 +66,8 @@ trait ApiInvoker
         ],
         'slider' => [
             'create' => 'POST',
-            'update' => 'POST'
+            'update' => 'POST',
+            'list'=>'GET'
         ]
 
     ];
