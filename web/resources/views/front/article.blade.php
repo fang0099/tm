@@ -15,9 +15,9 @@
                                 <i class="icon-calendar font-blue"></i>
                                 <a href="javascript:;">{{ $article["publish_time"] }}</a>
                             </div>
-                            <a href="/tm/web/public/article/edit?id={{$article["id"]}}" class="btn btn-circle green">修改</a>
+                            <a href="<?php echo env('APP_URL');?>/article/edit?id={{$article["id"]}}" class="btn btn-circle green">修改</a>
                             <a href="" class="btn btn-circle yellow">喜欢</a>
-                            <a href="/tm/web/public/article/delete?id={{$article["id"]}}" class="btn btn-circle red">删除</a>
+                            <a href="<?php echo env('APP_URL');?>/article/delete?id={{$article["id"]}}" class="btn btn-circle red">删除</a>
                         </div>
                         <!--<div class="blog-single-img">
                             <img src="../assets/pages/img/background/4.jpg" /> </div>-->
@@ -106,7 +106,7 @@
                             <ul>
                                 @foreach($recent_article_list as $a)
                                 <li>
-                                    <a href="/tm/web/public/article?id={{$a["id"]}}">{{ $a["title"] }}</a>
+                                    <a href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}">{{ $a["title"] }}</a>
                                 </li>
                                 @endforeach
                             </ul>
