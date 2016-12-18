@@ -50,7 +50,7 @@
                 <div class="container">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="/tm/web/public/index">
+                        <a href="<?php echo env('APP_URL');?>/index">
                             <img src="../assets/layouts/layout3/img/logo-default.jpg" alt="logo" class="logo-default">
                         </a>
                     </div>
@@ -65,7 +65,7 @@
                             <!-- END NOTIFICATION DROPDOWN -->
                             <!-- BEGIN TODO DROPDOWN -->
                             <li class="dropdown dropdown-extended dropdown-tasks dropdown-light" id="header_task_bar">
-                                <a href="/tm/web/public/article/write" class="btn btn-circle green"> 写稿
+                                <a href="<?php echo env('APP_URL');?>/article/write" class="btn btn-circle green"> 写稿
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </li>
@@ -85,11 +85,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="/tm/web/public/user/profile">
+                                        <a href="<?php echo env('APP_URL');?>/user/profile">
                                             <i class="icon-user"></i> 我的主页 </a>
                                     </li>
                                     <li>
-                                        <a href="/tm/web/public/tag/add">
+                                        <a href="<?php echo env('APP_URL');?>/tag/add">
                                             <i class="icon-calendar"></i> 创建标签 </a>
                                     </li>
                                     <li>
@@ -105,7 +105,7 @@
                                             <i class="icon-calendar"></i> 账号设置 </a>
                                     </li>
                                     <li>
-                                        <a href="/tm/web/public/user/logout">
+                                        <a href="<?php echo env('APP_URL');?>/user/logout">
                                             <i class="icon-key"></i> 退出 </a>
                                     </li>
                                 </ul>
@@ -118,11 +118,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="/tm/web/public/login">
+                                        <a href="<?php echo env('APP_URL');?>/login">
                                             <i class="icon-user"></i> 登录 </a>
                                     </li>
                                     <li>
-                                        <a href="/tm/web/public/signup">
+                                        <a href="<?php echo env('APP_URL');?>/signup">
                                             <i class="icon-calendar"></i> 注册 </a>
                                     </li>
                                 </ul>
@@ -159,24 +159,24 @@
                         <ul class="nav navbar-nav">
 
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="/tm/web/public/tag/index?id=1}">tag1
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag1
                                     <span class="arrow"></span>
                                 </a>
                             </li>
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="/tm/web/public/tag/index?id=1}">tag2
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="/tm/web/public/tag/index?id=1}">tag3
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag2
                                     <span class="arrow"></span>
                                 </a>
                             </li>
 
                             <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="/tm/web/public/tag/index?id=1}">tag4
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag3
+                                    <span class="arrow"></span>
+                                </a>
+                            </li>
+
+                            <li class="menu-dropdown classic-menu-dropdown ">
+                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1}">tag4
                                     <span class="arrow"></span>
                                 </a>
                             </li>

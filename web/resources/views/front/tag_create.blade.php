@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    <form role="form" class="form-horizontal" action="/tm/web/public/tag/create" method="post" enctype="multipart/form-data">
+                    <form role="form" class="form-horizontal" action="<?php echo env('APP_URL');?>/tag/create" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="form-group form-md-line-input">
                                 <label class="col-md-2 control-label" for="form_control_1">标签名</label>
