@@ -6,47 +6,51 @@
 	"fields" : [
 		{
 			"label" : "id",
-			"column" : "id",
-			"controlName" : "params[id]",
-			"type" : "hidden",
-			"showInTable" : "no"
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
 		},
 		{
-			"columnName" : "幻灯标题",
-			"column" : "title",
-			"controlName" : "params[title]",
-			"type" : "text",
-			"attribute" : {
-				"required" : "required"
-			},
-			"showInTable" : "yes"	
-		},
-		{
-			"columnName" : "幻灯跳转网址",
-			"column" : "href",
-			"controlName" : "params[href]",
-			"type" : "text",
-			"attribute" : {
-				"required" : "required"
-			},
-			"showInTable" : "yes"	
-		},
-		{
-			"columnName" : "上传图片",
-			"column" : "pic",
-			"controlName" : "pic",
+			"label" : "幻灯图片",
+			"value" : "image",
+			"name" : "image",
 			"type" : "file",
 			"attribute" : {
 				"upload" : "ajax"
-			},
-			"showInTable" : "no"	
+			}
 		},
 		{
-			"columnName" : "图片地址",
-			"column" : "pic",
-			"controlName" : "params[pic]",
-			"type" : "text",
-			"showInTable" : "yes"
+			"label" : "图片预览",
+			"value" : "image",
+			"name" : "preview[image]",
+			"type" : "preview"
+		},
+		{
+			"label" : "关联文章",
+			"value" : "article_id",
+			"name" : "params[article_id]",
+			"type" : "select",
+			"select" : {
+				"type" : "ajax",
+				"data" : "select/articles"
+			}
+		}
+	],
+	"list" : [
+		{
+			"head" : "图片预览",
+			"value" : "image",
+			"type" : "image"
+		},
+		{
+			"head" : "关联文章",
+			"value" : "article_id",
+			"name" : "params[article_id]",
+			"type" : "selectRender",
+			"select" : {
+				"type" : "ajax",
+				"data" : "select/articles"
+			}
 		}
 	],
 	"attribute" : {

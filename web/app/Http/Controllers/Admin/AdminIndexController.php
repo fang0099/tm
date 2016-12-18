@@ -102,7 +102,7 @@ class AdminIndexController extends AdminBaseController
                         return view('admin.list', [
                             'config' => $m,
                             'action' => 'update',
-                            'data' => isset($data['data']) ? $data['data']['list'] : $data['list'],
+                            'data' => isset($data['data']) ? (isset($data['data']['list']) ? $data['data']['list'] : $data['data']) : $data['list'],
                             'model' => $model
                         ]);
                     }else {

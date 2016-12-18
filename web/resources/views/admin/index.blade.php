@@ -148,7 +148,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="ui_colors.html"  class="nav-link link">
+                                    <a href="javascript:;" data="list?model=sliders" class="nav-link link">
                                         <span class="title"> 首页幻灯管理 </span>
                                     </a>
                                 </li>

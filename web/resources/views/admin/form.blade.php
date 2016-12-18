@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="../../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../../assets/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -114,6 +115,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                                                 <img src="@if($action == 'update')../../{{ $data[$f['value']] }}@else http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image @endif" alt="" preview="{{ $f['value'] }}">
                                                             </div>
+                                                            @elseif($f['type'] == 'select')
+                                                                    <select class="bs-select form-control">
+                                                                        <option>Mustard</option>
+                                                                        <option>Ketchup</option>
+                                                                        <option>Relish</option>
+                                                                    </select>
                                                             @endif
                                                         </div>
                                                     </div>

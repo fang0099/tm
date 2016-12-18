@@ -38,6 +38,11 @@ class ArticleController
         return $this->articleRep->update($request);
     }
 
+    public function listComment(Request $request){
+        $id = $request->input('id');
+        return $this->articleRep->listComment($id);
+    }
+
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');

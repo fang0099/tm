@@ -58,9 +58,7 @@ Route::group(['namespace' => 'Admin'], function (){
         return view('admin.index');
     });
 
-    Route::get('/admin/t', function (){
-        return public_path("upload");
-    });
+    Route::get('/select/articles', 'AdminSelectController@articles');
 
     /*
     Route::get('/admin/login', 'LoginController@login');

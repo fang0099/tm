@@ -58,6 +58,7 @@ Route::get('/article/uncollect', 'ArticleController@uncollect');
 Route::get('/article/like', 'ArticleController@like');
 Route::get('/article/unlike', 'ArticleController@unlike');
 Route::post('/article/comment', 'ArticleController@comment');
+Route::post('/article/lscomment', 'ArticleController@listComment');
 Route::get('/article/up', 'ArticleController@upArticles');
 
 // tag

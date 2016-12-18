@@ -9,7 +9,20 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Invokers\ArticleInvoker;
+
 class AdminSelectController extends AdminBaseController
 {
+    private $articleInvoker;
 
+    public function __construct(ArticleInvoker $articleInvoker)
+    {
+        $this->articleInvoker = $articleInvoker;
+    }
+
+    public function articles(){
+        return $this->articleInvoker->list([
+            'order' => 'publish_time desc'
+        ]);
+    }
 }
