@@ -71,7 +71,7 @@ class UserController extends Controller
                 // 使用我们新建的uploads本地存储空间（目录）
                 $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 var_dump($bool);
-                $bool = "/tm/web/storage/app/uploads/".$filename;
+                $bool = env("APP_URL")."/uploads/".$filename;
             }
             else
             {
@@ -152,7 +152,7 @@ class UserController extends Controller
     {
         $username = $request->get('username');
         $password=$request->get("password");
-        $avatar="/tm/web/resources/assets/img/user.png";
+        $avatar="/resources/assets/img/user.png";
         $brief="这家伙很懒，什么也没留下";
 
         $r = $this->userInvoker->create(
@@ -162,6 +162,7 @@ class UserController extends Controller
             'params[brief]'=>$brief,
         ]);
 
+        //return redirect("/");
         echo json_encode($r);
     }
 

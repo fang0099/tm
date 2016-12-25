@@ -85,7 +85,7 @@ class TagController extends Controller
                 // 使用我们新建的uploads本地存储空间（目录）
                 $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 var_dump($bool);
-                $bool = "/tm/web/storage/app/uploads/".$filename;
+                $bool = env("APP_URL")."/uploads/".$filename;
             }
             else
             {
@@ -144,7 +144,7 @@ class TagController extends Controller
                 // 使用我们新建的uploads本地存储空间（目录）
                 $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 var_dump($bool);
-                $bool = "/tm/web/storage/app/uploads/".$filename;
+                $bool = env("APP_URL")."/uploads/".$filename;
             }
             else
             {
