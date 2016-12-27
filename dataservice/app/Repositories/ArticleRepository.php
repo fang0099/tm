@@ -71,7 +71,7 @@ class ArticleRepository extends BaseRepository
             DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
         }
         //$article->tags->sync($tagIdsArr);
-        return $this->success();
+        return $this->success('', $article);
     }
 
     public function update(Request $request){
@@ -101,7 +101,7 @@ class ArticleRepository extends BaseRepository
                 DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
             }
         }
-        return $this->success();
+        return $this->success('', $article);
     }
 
     public function list(Request $request){
