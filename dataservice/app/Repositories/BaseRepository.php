@@ -172,26 +172,26 @@ abstract class BaseRepository
         $filter = $request->input('filter', array());
         $order = $request->input('order', '');
         $condition = array();
-        $this->model->where('del_flag', '=', 0);
+        $builder = $this->model->where('del_flag', '=', 0);
         if(!empty($filter)){
             $condition = $this->parser($filter);
             if(!empty($condition)){
                 $condition = $condition['raw'];
             }
             foreach ($condition as $con){
-                $this->model->where($con['field'], $con['opt'], $con['param']);
+                $builder->where($con['field'], $con['opt'], $con['param']);
             }
         }
         if(strlen($order) != 0){
             $od = explode(' ', $order);
             if(count($od) > 1){
-                $this->model->orderBy($od[0], $od[1]);
+                $builder->orderBy($od[0], $od[1]);
             }else {
-                $this->model->orderBy($od[0]);
+                $builder->orderBy($od[0]);
             }
         }
         $offset = ($page - 1) * $pageSize;
-        $ls = $this->model->offset($offset)->limit($pageSize)->get();
+        $ls = $builder->offset($offset)->limit($pageSize)->get();
         foreach ($ls as $l){
             $this->invokeMyMagicMethod($l);
         }

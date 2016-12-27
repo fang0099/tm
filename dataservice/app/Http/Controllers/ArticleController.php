@@ -34,6 +34,10 @@ class ArticleController
         return $this->articleRep->list($request);
     }
 
+    public function page(Request $request){
+        return $this->articleRep->page($request);
+    }
+
     public function update(Request $request){
         return $this->articleRep->update($request);
     }

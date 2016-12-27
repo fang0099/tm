@@ -55,6 +55,15 @@ __.services.page = __.services.page || {};
 
 		});
 
+		$('.show-page').click(function(){
+		    var dataStr = $(this).attr('data');
+		    console.log(dataStr);
+		    //var data = JSON.parse(dataStr);
+            var data = eval('(' + dataStr + ')')
+		    var pageUrl = 'page?model=' + data.model + '&id=' + data.id;
+            components.iframe.outOpenRightSlider(pageUrl);
+        });
+
     }
 
     __.services.page.init = bind;

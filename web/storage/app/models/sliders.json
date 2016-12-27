@@ -44,11 +44,18 @@
 		},
 		{
 			"head" : "关联文章",
-			"value" : "article_id",
-			"type" : "selectRender",
-			"select" : {
-				"type" : "ajax",
-				"data" : "../select/articles"
+			"value" : "article",
+			"type" : "rel",
+			"rel" : {
+				"type" : "one",
+				"value" : "title",
+				"relation" : {
+					"from" : "article_id",
+					"to" : "id"
+				},
+				"ref" : {
+					"model" : "article"
+				}
 			}
 		}
 	],

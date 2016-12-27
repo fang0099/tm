@@ -149,7 +149,12 @@
                                                     {{$d[$l['value']]}}
                                                     @elseif($l['type'] == 'image')
                                                     <img src="../../{{$d[$l['value']]}}" width="100" />
-                                                    @elseif($l['type'] == 'select')
+                                                    @elseif($l['type'] == 'rel')
+                                                        @if($l['rel']['type'] == 'one')
+                                                            <a href="javascript:;" class="show-page" data="{'model' : '{{ $l['rel']['ref']['model'] }}', 'id': {{ $d[$l['rel']['relation']['from']] }}}">{{ $d[$l['value']][$l['rel']['value']] }}</a>
+                                                        @elseif($l['rel']['type'] == 'many')
+                                                            <a href="javascript:;" class="show-list">{{ $l['rel']['value'] }}({{ $d[$l['value']] }})</a>
+                                                        @endif
                                                     @endif
                                                 </td>
                                                 @endforeach

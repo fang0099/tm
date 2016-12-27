@@ -29,6 +29,7 @@ Route::post('/webinfo/update', 'WebInfoController@update');
 Route::get('/friendlink/get', 'FriendLinkController@get');
 Route::post('/friendlink/create', 'FriendLinkController@create');
 Route::get('/friendlink/list', 'FriendLinkController@list');
+Route::get('/friendlink/page', 'FriendLinkController@page');
 Route::post('/friendlink/update', 'FriendLinkController@update');
 Route::get('/friendlink/delete', 'FriendLinkController@delete');
 
@@ -36,6 +37,7 @@ Route::get('/friendlink/delete', 'FriendLinkController@delete');
 Route::get('/user/get', 'UserController@get');
 Route::post('/user/create', 'UserController@create');
 Route::get('/user/list', 'UserController@list');
+Route::get('/user/page', 'UserController@page');
 Route::post('/user/update', 'UserController@update');
 Route::get('/user/delete', 'UserController@delete');
 Route::get('/user/followers', 'UserController@followers');
@@ -50,6 +52,7 @@ Route::get('user/getbyname', 'UserController@getByUsername');
 Route::get('/article/get', 'ArticleController@get');
 Route::post('/article/create', 'ArticleController@create');
 Route::get('/article/list', 'ArticleController@list');
+Route::get('/article/page', 'ArticleController@page');
 Route::post('/article/update', 'ArticleController@update');
 Route::get('/article/delete', 'ArticleController@delete');
 Route::get('/article/check', 'ArticleController@check');
@@ -82,6 +85,7 @@ Route::get('/tag/index-tags', 'TagController@indexTags');
 Route::get('/newsflash/get', 'NewsFlashController@get');
 Route::post('/newsflash/create', 'NewsFlashController@create');
 Route::get('/newsflash/list', 'NewsFlashController@list');
+Route::get('/newsflash/page', 'NewsFlashController@page');
 Route::post('/newsflash/update', 'NewsFlashController@update');
 Route::get('/newsflash/delete', 'NewsFlashController@delete');
 
@@ -89,12 +93,14 @@ Route::get('/newsflash/delete', 'NewsFlashController@delete');
 Route::post('/sponsors/create', 'SponsorsController@create');
 Route::get('/sponsors/get', 'SponsorsController@get');
 Route::get('/sponsors/list', 'SponsorsController@list');
+Route::get('/sponsors/page', 'SponsorsController@page');
 Route::post('/sponsors/update', 'SponsorsController@update');
 Route::get('/sponsors/delete', 'SponsorsController@delete');
 
 // slider
 Route::get('/slider/get', 'SliderController@get');
 Route::get('/slider/list', 'SliderController@list');
+Route::get('/slider/page', 'SliderController@page');
 Route::post('/slider/create', 'SliderController@create');
 Route::post('/slider/update', 'SliderController@update');
 Route::get('/slider/delete', 'SliderController@delete');

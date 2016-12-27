@@ -42,4 +42,8 @@ class SponsorsController extends Controller
     public function list(Request $request){
         return $this->sponsorsRep->list($request);
     }
+
+    public function page(Request $request){
+        return $this->sponsorsRep->page($request);
+    }
 }

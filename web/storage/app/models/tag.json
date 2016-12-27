@@ -80,11 +80,6 @@
 			"type" : "text"
 		},
 		{
-			"head" : "标签图片",
-			"value" : "face",
-			"type" : "image"
-		},
-		{
 			"head" : "关注数",
 			"value" : "fans_num",
 			"type" : "text"

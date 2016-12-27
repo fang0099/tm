@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Front'], function (){
 
 Route::group(['namespace' => 'Admin'], function (){
     Route::get('admin/form', 'AdminIndexController@form');
+    Route::get('admin/page', 'AdminIndexController@page');
 
     Route::post('admin/do/{action}', 'AdminIndexController@formDo');
 

@@ -48,6 +48,10 @@ class UserController extends Controller
         return $this->userRep->list($request);
     }
 
+    public function page(Request $request){
+        return $this->userRep->page($request);
+    }
+
     public function followers(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);

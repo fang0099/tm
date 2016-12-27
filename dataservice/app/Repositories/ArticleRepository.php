@@ -51,6 +51,7 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+
     public function create(Request $request){
         $params = $this->getParams($request);
         $content = $params['content'];
@@ -114,10 +115,10 @@ class ArticleRepository extends BaseRepository
         //$res['list'] = $articles['list'];
         if(!empty($list)){
             foreach ($list as $a){
-                $article = $this->get($a['id']);
-                $a['author'] = $article->author;
-                $a['checker'] = $article->checker;
-                $a['tags'] = $article->tags;
+                $article = $this->get($a->id);
+                $a->author = $article->author;
+                $a->checker = $article->checker;
+                $a->tags = $article->tags;
                 $res['list'][] = $a;
             }
         }
