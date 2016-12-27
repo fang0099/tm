@@ -98,5 +98,16 @@ class ArticleController
         $size = $request->input('size', '3');
         return $this->articleRep->upArticles($size);
     }
+    public function addTags(Request $request){
+        $articleId = $request->input("articleId");
+        $tagIds = $request->input('tags');
+        return $this->articleRep->addTags($articleId, $tagIds);
+    }
+
+    public function delTags(Request $request){
+        $articleId = $request->input("articleId");
+        $tagIds = $request->input('tags');
+        return $this->articleRep->delTags($articleId, $tagIds);
+    }
 
 }

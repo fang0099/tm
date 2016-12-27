@@ -12,15 +12,21 @@ namespace App\Traits;
 trait FilterParser
 {
     public function parser($filter){
+        $raw = array();
         $condition = array();
         $params = array();
         foreach ($filter as $f => $v){
             $fs = explode(' ', $f);
             $opt = $this->getOperator($fs[1]);
             $condition[] = $fs[0] . ' ' . $opt . ' ? ';
+            $raw[] = [
+                'field' => $fs[0],
+                'opt' => $opt,
+                '$param' => $v
+            ];
             $params[] = $v;
         }
-        return ['condition' => $condition, 'params' => $params];
+        return ['condition' => $condition, 'params' => $params, 'raw' => $raw];
     }
 
     private function getOperator($opt){

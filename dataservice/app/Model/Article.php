@@ -21,16 +21,20 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Model\User', 'user_collect_article', 'article_id', 'user_id');
     }
 
-    public function _author(){
-        return $this->belongsTo('App\Model\User', 'author');
+    public function author(){
+        return $this->belongsTo('App\Model\User', 'author_id');
     }
 
-    public function _checker(){
-        return $this->belongsTo('App\Model\User', 'checker');
+    public function checker(){
+        return $this->belongsTo('App\Model\User', 'checker_id');
     }
 
     public function tags(){
         return $this->belongsToMany('App\Model\Tag', 'tag_article_rel', 'article_id', 'tag_id');
+    }
+
+    public function _tagsCount(){
+        return $this->tags()->count();
     }
 
     public function comments(){

@@ -31,15 +31,13 @@ class ArticleRepository extends BaseRepository
         if($t == null || $t->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }
-        $author = $t->_author;
+        $author = $t->author;
         $author->password = '***';
-        $t['author'] = $author;
-        $checker = $t->_checker;
+        $checker = $t->checker;
         if($checker){
             $checker->password = '***';
         }
-        $t['checker'] = $checker;
-        $t['tags'] = $t->tags;
+        $t->tags;
         //$t['comments'] = $t->comments;
         return $this->success('', $t);
     }
@@ -113,17 +111,16 @@ class ArticleRepository extends BaseRepository
             'filter' => $articles['filter'],
             'list' => array()];
         $list = $articles['list'];
-        $res['list'] = $articles['list'];
-        /*
+        //$res['list'] = $articles['list'];
         if(!empty($list)){
             foreach ($list as $a){
-                $a['author'] = $a->_author;
-                $a['checker'] = $a->_checker;
-                $a['tags'] = $a->tags;
+                $article = $this->get($a['id']);
+                $a['author'] = $article->author;
+                $a['checker'] = $article->checker;
+                $a['tags'] = $article->tags;
                 $res['list'][] = $a;
             }
         }
-        */
         return $this->success('', $res);
     }
 
@@ -133,7 +130,6 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }else {
             // if operator has permission?
-
             $article->checker = $operator;
             $article->has_checker = 1;
             $article->save();
@@ -216,12 +212,38 @@ class ArticleRepository extends BaseRepository
     public function upArticles($size = 3){
         $articles = $this->model->where('up_flag', '=', '1')->orderBy('publish_time', 'desc')->take($size)->get();
         foreach ($articles as $a){
-            $author = $a->_author;
+            $author = $a->author;
             $author->password = '***';
-            $a->author = $author;
+            $a->tags;
         }
         return $this->success('', $articles);
     }
+
+    public function addTags($articleId, $tagIds){
+        $article = $this->get($articleId);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $articleId);
+        }else {
+            $idsArr = explode(',', $tagIds);
+            foreach ($idsArr as $t){
+                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+            }
+        }
+    }
+
+    public function delTags($articleId, $tagIds){
+        $article = $this->get($articleId);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $articleId);
+        }else {
+            $idsArr = explode(',', $tagIds);
+            foreach ($idsArr as $t){
+                DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+            }
+        }
+    }
+
+
 
 
 }

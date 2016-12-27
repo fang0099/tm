@@ -36,6 +36,10 @@ class TagController extends Controller
         return $this->tagRep->list($request);
     }
 
+    public function page(Request $request){
+        return $this->tagRep->page($request);
+    }
+
     public function delete(Request $request){
         $ids = $request->input('ids');
         return $this->tagRep->delete($ids);

@@ -60,9 +60,12 @@ Route::get('/article/unlike', 'ArticleController@unlike');
 Route::post('/article/comment', 'ArticleController@comment');
 Route::get('/article/lscomment', 'ArticleController@listComment');
 Route::get('/article/up', 'ArticleController@upArticles');
+Route::get('/article/addtags', 'ArticleController@addTags');
+Route::get('/article/deltags', 'ArticleController@delTags');
 
 // tag
 Route::get('/tag/get', 'TagController@get');
+Route::get('/tag/page', 'TagController@page');
 Route::post('/tag/create', 'TagController@create');
 Route::get('/tag/list', 'TagController@list');
 Route::post('/tag/update', 'TagController@update');

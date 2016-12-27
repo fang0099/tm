@@ -21,8 +21,18 @@ class TagRepository extends BaseRepository
     }
 
     public function findById($id){
-        return $this->getById($id);
+        $tag = $this->get($id);
+        if($tag == null || $tag->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id]);
+        }
+        return $this->success('', $tag);
     }
+
+    /*
+    public function page(Request $request){
+        return $this->success('', $this->page($request));
+    }
+    */
 
     public function create(Request $request){
         $params = $this->getParams($request);

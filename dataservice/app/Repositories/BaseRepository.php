@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\StatusCode;
 use App\Traits\FilterParser;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Log;
@@ -30,6 +31,15 @@ abstract class BaseRepository
             '. primary key is ' . $this->getPrimaryKey() . ' : ' . $primaryKey);
 
         return $this->model->find($primaryKey);
+    }
+
+    protected function getExcludeDelete($id){
+        $m = $this->get($id);
+        if($m == null || $m->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, ' id not exist', $id);
+        }else {
+            return $m;
+        }
     }
 
     public function getById($id)
@@ -156,6 +166,45 @@ abstract class BaseRepository
         return $request->input('params');
     }
 
+    public function page(Request $request){
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 20);
+        $filter = $request->input('filter', array());
+        $order = $request->input('order', '');
+        $condition = array();
+        $this->model->where('del_flag', '=', 0);
+        if(!empty($filter)){
+            $condition = $this->parser($filter);
+            if(!empty($condition)){
+                $condition = $condition['raw'];
+            }
+            foreach ($condition as $con){
+                $this->model->where($con['field'], $con['opt'], $con['param']);
+            }
+        }
+        if(strlen($order) != 0){
+            $od = explode(' ', $order);
+            if(count($od) > 1){
+                $this->model->orderBy($od[0], $od[1]);
+            }else {
+                $this->model->orderBy($od[0]);
+            }
+        }
+        $offset = ($page - 1) * $pageSize;
+        $ls = $this->model->offset($offset)->limit($pageSize)->get();
+        foreach ($ls as $l){
+            $this->invokeMyMagicMethod($l);
+        }
+        return [
+            'success' => 'true',
+            'count' => $this->model->all()->count(),
+            'current_page' => $page,
+            'page_size' => $pageSize,
+            'filter' => $filter,
+            'list' => $ls
+        ];
+    }
+
     public function select(Request $request){
         $from = ' from ' . $this->model->getTable();
         $page = $request->input('page', 1);
@@ -173,21 +222,6 @@ abstract class BaseRepository
             $condition = ' and ' . $condition;
         }
 
-        /*
-        $condition = '';
-        $p = array();
-        if($filter != null && !empty($filter)){
-            foreach ($filter as $k => $v){
-                $condition .= ' and ' . $k . " like ? ";
-                $p[] = '%'. $v . '%';
-            }
-        }
-        */
-        /*
-        if(strlen($condition) > 0){
-            $condition = substr($condition, 4);
-        }
-        */
         $orderBy = '';
         if(strlen($order) != 0){
             $orderBy = ' order by ' . $order;
@@ -211,11 +245,27 @@ abstract class BaseRepository
     }
 
     public function success($message = '操作成功', $data = []){
+        if($data instanceof Model){
+            $this->invokeMyMagicMethod($data);
+        }
         return json_result($this->getBusinessLine(), StatusCode::OPERATE_SUCCESS, $message, $data);
     }
 
     public function fail($code, $message = '操作失败', $data = []){
         return json_result($this->getBusinessLine(), $code, $message, $data);
+    }
+
+    private function invokeMyMagicMethod($m){
+        $clazzName = get_class($m);
+        $methods = get_class_methods($clazzName);
+        foreach ($methods as $method){
+            $f = substr($method, 0, 1);
+            $s = substr($method, 1, 1);
+            if($f == '_' && $s != '_'){
+                $field = substr($method, 1);
+                $m->$field = $m->$method();
+            }
+        }
     }
 
 }
