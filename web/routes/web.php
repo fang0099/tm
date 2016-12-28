@@ -48,6 +48,9 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/user', 'UserController@index');
     Route::get('/user/logout', 'UserController@logout');
+    Route::get('/user/follow', 'UserController@follow');
+    Route::get('/user/unfollow', 'UserController@unfollow');
+    Route::get('/user/follow', 'UserController@follow');
     //Route::get('/article', 'ArticleController@index');
     //Route::get('/article/list', 'ArticleController@article_list');
 
@@ -65,8 +68,8 @@ Route::group(['namespace' => 'Front'], function (){
     Route::post('/tag/create', 'TagController@create');
     Route::post('/tag/update', 'TagController@update');
     Route::get('/tag/article', 'ArticleController@tag_article_list');
-    Route::get('/tag/subscribe', 'TagController@tag_subscribe');
-    Route::get('/tag/unsubscribe', 'TagController@tag_unsubscribe');
+    Route::get('/tag/subscribe', 'TagController@subscribe');
+    Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 });
 
 Route::group(['namespace' => 'Admin'], function (){
