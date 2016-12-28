@@ -79,7 +79,7 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                
                                 <li>
-                                    <a href="page_user_login_1.html">
+                                    <a href="#">
                                         <i class="icon-key"></i> Log Out </a>
                                 </li>
                             </ul>

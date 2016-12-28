@@ -62,7 +62,7 @@ class ArticleRepository extends BaseRepository
         $params['word_count'] = $word_count;
         $tagIds = $params['tags'];
         $params['has_checked'] = 0;
-        $params['checker'] = 0;
+        $params['checker_id'] = 0;
         unset($params['tags']);
         $article = $this->insertWithId($params);
         $tagIdsArr = explode(',', $tagIds);
