@@ -59,11 +59,23 @@ class UserController extends Controller
         return $this->userRep->followers($id, $page, $pageSize);
     }
 
-    public function follow(Request $request){
+    public function follows(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
         return $this->userRep->follows($id, $page, $pageSize);
+    }
+
+    public function follow(Request $request){
+        $id = $request->input('id');
+        $follower = $request->input('follower');
+        return $this->userRep->follow($id, $follower);
+    }
+
+    public function unfollow(Request $request){
+        $id = $request->input('id');
+        $follower = $request->input('follower');
+        return $this->userRep->unfollow($id, $follower);
     }
 
     public function lastedArticles(Request $request){

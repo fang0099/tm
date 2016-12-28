@@ -140,6 +140,29 @@ class UserRepository extends BaseRepository
         }
     }
 
+    public function follow($id, $follower){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$id, $follower]);
+            $c = $count[0]->c;
+            if($c == 0){
+                DB::insert('insert into user_follows (user_id, follower_id) values (?, ?)', [$id, $follower]);
+            }
+            return $this->success();
+        }
+    }
+
+    public function unfollow($id, $follower){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            DB::delete('delete from user_followes where user_id = ? and follower_id = ?', [$id, $follower]);
+            return $this->success();
+        }
+    }
 
     public function articles($order, Request $request){
         $tagIds = $request->input('tags', '');
