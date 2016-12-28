@@ -79,11 +79,11 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo env('APP_URL');?>">
-                                        <i class="icon-key"></i> 返回前台 </a>
+                                         返回前台 </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo env('APP_URL');?>/logout">
-                                        <i class="icon-key"></i> 退出 </a>
+                                         退出 </a>
                                 </li>
                             </ul>
                         </li>
