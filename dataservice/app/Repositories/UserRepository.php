@@ -106,7 +106,7 @@ class UserRepository extends BaseRepository
         $tagArr = explode(',', $tagIds);
         $user = $this->get($userId);
         if($user == null || $user->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
         }else {
             $offset = ($page - 1) * $pageSize;
             $articles = $user->articles()->orderBy($order)->offset($offset)->limit($pageSize)->get();
