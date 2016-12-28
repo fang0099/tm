@@ -22,11 +22,11 @@ class User extends BaseModel
     }
 
     public function articles(){
-        return $this->hasMany('App\Model\Article', 'author')->where('del_flag', '=', '0');
+        return $this->hasMany('App\Model\Article', 'author_id')->where('del_flag', '=', '0');
     }
 
     public function checkedArticles(){
-        return $this->hasMany('App\Model\Article', 'checker');
+        return $this->hasMany('App\Model\Article', 'checker_id');
     }
 
     public function likeArticles(){
