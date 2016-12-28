@@ -154,7 +154,6 @@ class ArticleController extends Controller
     {
         $page_class = "";
         $username = session("username");
-        //$article_list = $this->articleInvoker->list(["order"=>'publish_time desc','pageSize'=>6]);
         $user_list = $this->userInvoker->list(['pageSize'=>50]);
         //print_r($article_list);
         $params = ['page_class'=>$page_class,
@@ -321,16 +320,38 @@ class ArticleController extends Controller
     public function show_list(Request $request)
     {
         $id = $request->get('id');
-        $user = $this->userInvoker->get(['id' => $id]);
-        //print_r($user);
-        $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
-        $page_class = "column-view";
-        $params = [
-            'page_class'=>$page_class,
-            'user'=>$user["data"],
-            'articles'=>$article["data"],
-        ];
         $username = session("username");
+        $userid = session("id");
+        $params = Array();
+        $type = $request->get('type');
+        $page_class = "column-view";
+        //标签文章列表
+        if ($type=="tag")
+        {
+            $tag = $this->tagInvoker->get(['id' => $id]);
+            $article = $this->tagInvoker->articles(['id'=>$id]);
+            $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
+            $params = [
+                'page_class'=>$page_class,
+                'tag'=>$tag["data"],
+                'articles'=>$article["data"],
+                'is_follower'=>$is_follower["success"],
+            ];
+        }
+        //用户文章列表
+        else {
+            $user = $this->userInvoker->get(['id' => $id]);
+            $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
+            $is_follower = $this->userInvoker->hasfollower(['id'=>$id, 'userid'=>$userid]);
+            //print_r($is_follower);
+            $params = [
+                'page_class'=>$page_class,
+                'user'=>$user["data"],
+                'articles'=>$article["data"],
+                'is_follower'=>$is_follower["success"],
+            ];
+        }
+
         if ($username!=null)
         {
             $params["username"] = $username;

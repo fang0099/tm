@@ -45,7 +45,12 @@ trait ApiInvoker
             'update'=>'POST',
             'delete'=>'GET',
             'followers'=>'GET',
+            'follow'=>'GET',
+            'unfollow'=>'GET',
             'lastedarticles' => 'GET',
+            'hasfollower'=>'GET',
+            'hascollect'=>'GET',
+            'haslike'=>'GET',
         ],
         'tag' => [
             'get' => 'GET',
@@ -56,7 +61,8 @@ trait ApiInvoker
             'subscribe' => 'GET',
             'unsubscribe' => 'GET',
             'articles' => 'GET',
-            'subscriber' => 'GET'
+            'subscriber' => 'GET',
+            'hassubscriber'=> 'GET',
         ],
         'newsflash' => [
             'create' => 'POST',
