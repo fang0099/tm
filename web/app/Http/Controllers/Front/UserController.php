@@ -118,6 +118,36 @@ class UserController extends Controller
         return redirect("/index");
     }
 
+    public function follow(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->userInvoker->follow(['id'=>$id, 'follower'=> session('id')]);
+            print_r($r);
+        }
+        else
+        {
+
+        }
+        return redirect("article/list?id=".$id);
+    }
+
+    public function unfollow(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->userInvoker->unfollow(['id'=>$id, 'follower'=> session('id')]);
+            print_r($r);
+        }
+        else
+        {
+
+        }
+        return redirect("article/list?id=".$id);
+    }
+
 
     public function signin(Request $request)
     {

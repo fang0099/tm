@@ -4,13 +4,26 @@
             <div class="main receptacle ng-scope">
                 <div class="column-about" ng-switch="columnType == &#39;user&#39;">
                     <div class="avatar-link">
-                        <img class="avatar-big" src="{{$user["avatar"]}}"></div>
-                    <div href="#" class="title ng-binding">{{$user["username"]}}</div>
-                    <div class="description ng-binding" ng-bind-html="column.intro | linky">{{$user["brief"]}}…</div>
+                        <img class="avatar-big" src="{{$user["avatar"] or $tag["face"]}}"></div>
+                    <div href="#" class="title ng-binding">{{$user["username"] or $tag["name"]}}</div>
+                    <div class="description ng-binding" ng-bind-html="column.intro | linky">{{$user["brief"] or $tag["brief"]}}…</div>
 
                     <div class="functions ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
 
-                        <button ui-follow-button="" ng-model="column.following" ng-click="toggleFollow()" class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" ng-if="!column.canManage">关注</button>
+                        <!--<button ui-follow-button="" ng-model="column.following" ng-click="toggleFollow()" class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" ng-if="!column.canManage">关注</button>-->
+                       @if(isset($is_follower) and $is_follower===false)
+                        @if(isset($tag))
+                            <a class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" href="<?php echo env('APP_URL');?>/tag/subscribe?id={{$tag["id"]}}">订阅</a>
+                        @elseif(isset($user))
+                            <a class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" href="<?php echo env('APP_URL');?>/user/follow?id={{$user["id"]}}">关注</a>
+                            @endif
+                        @else
+                            @if(isset($tag))
+                                <a class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-red" href="<?php echo env('APP_URL');?>/tag/unsubscribe?id={{$tag["id"]}}">取消订阅</a>
+                            @elseif(isset($user))
+                                <a class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-red" href="<?php echo env('APP_URL');?>/user/unfollow?id={{$user["id"]}}">取消关注</a>
+                            @endif
+                        @endif
 
                     <!--<div ng-transclude="" class="more-funcs menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="">
                         <span class="menu-button ng-scope">
@@ -26,7 +39,7 @@
                     </div>
 
                     <div class="followers ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
-                        <a ui-open-blank="" ng-if="column.followersCount" class="ng-binding ng-scope">{{$user["followers_count"]}} 人关注</a>
+                        <a ui-open-blank="" ng-if="column.followersCount" class="ng-binding ng-scope">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
                     </div>
                     <!--
                     <div class="tags ng-scope" ng-if="!currentAuthor &amp;&amp; column.postTopics.length">
