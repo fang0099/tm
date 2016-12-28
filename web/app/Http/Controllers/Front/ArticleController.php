@@ -205,7 +205,6 @@ class ArticleController extends Controller
         $authorid = $r["data"]["author"]["id"];
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>4]);
 
-        //print_r($article_list);
         return view("front/article",
             [
                 'article' => $r["data"],
@@ -308,7 +307,7 @@ class ArticleController extends Controller
                     'params[face]' => $face,
                     'params[abstracts]' => $abstracts,
                     'params[content]' => $content,
-                    'params[author]' => $author,
+                    'params[author_id]' => $author,
                     'params[tags]' => $tags
                 ]);
             return redirect("article/list?id=".$author);
@@ -324,7 +323,7 @@ class ArticleController extends Controller
         $id = $request->get('id');
         $user = $this->userInvoker->get(['id' => $id]);
         //print_r($user);
-        $article = $this->userInvoker->lastedarticles(['userid'=>$id,"order"=>'publish_time desc']);
+        $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
         $page_class = "column-view";
         $params = [
             'page_class'=>$page_class,

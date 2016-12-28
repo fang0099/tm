@@ -39,25 +39,6 @@ class IndexController extends Controller
         $this->sliderInvoker = $sliderInvoker;
     }
 
-    //首页
-    //TODO 修改幻灯，置顶文章
-    /*
-    public function show_index()
-    {
-        $article_list = $this->articleInvoker->list(["order"=>'publish_time desc']);
-        $slider_article_list = $this->sliderInvoker->list();
-        $second_article_list = $this->articleInvoker->list(["order"=>'publish_time desc','pageSize'=>3]);
-
-        $menu_tags = $this->tagInvoker->list();
-
-        return view("front/index", [
-            'articles'=> $article_list["data"]["list"],
-            'slider_article_list' => $slider_article_list["data"],
-            'second_article_list' => $second_article_list["data"]["list"],
-            'menu_tags'=>$menu_tags["list"],
-        ]);
-    }*/
-
     public function show_index()
     {
         $page_class = "home";
