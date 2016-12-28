@@ -159,7 +159,7 @@ class UserRepository extends BaseRepository
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
-            DB::delete('delete from user_followes where user_id = ? and follower_id = ?', [$id, $follower]);
+            DB::delete('delete from user_follows where user_id = ? and follower_id = ?', [$id, $follower]);
             return $this->success();
         }
     }
