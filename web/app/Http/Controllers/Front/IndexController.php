@@ -41,6 +41,7 @@ class IndexController extends Controller
 
     //首页
     //TODO 修改幻灯，置顶文章
+    /*
     public function show_index()
     {
         $article_list = $this->articleInvoker->list(["order"=>'publish_time desc']);
@@ -55,6 +56,24 @@ class IndexController extends Controller
             'second_article_list' => $second_article_list["data"]["list"],
             'menu_tags'=>$menu_tags["list"],
         ]);
+    }*/
+
+    public function show_index()
+    {
+        $page_class = "home";
+        $username = session("username");
+        $article_list = $this->articleInvoker->list(["order"=>'publish_time desc','pageSize'=>6]);
+        $user_list = $this->userInvoker->list(['pageSize'=>8]);
+
+        $params = ['page_class'=>$page_class,
+            'articles'=>$article_list["data"]["list"],
+            'users'=>$user_list["list"]
+        ];
+        if ($username!=null)
+        {
+            $params["username"] = $username;
+        }
+        return view("front/index", $params);
     }
 
 }

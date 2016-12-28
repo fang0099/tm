@@ -1,265 +1,89 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="zh-cn" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="zh-cn" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="zh-cn">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
-    <head>
-        <meta charset="utf-8" />
-        <title>链媒体_网罗天下创新事</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+       /* @charset "UTF-8";*/
+        [ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide {
+            display: none !important;
+        }
 
-        @yield("outer")
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />-->
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        @yield("page_level_plugins")
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL STYLES -->
+        ng\:form {
+            display: block;
+        }
 
-        <link href="<?php echo env('APP_URL');?>/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME GLOBAL STYLES -->
-        <!-- BEGIN PAGE LEVEL STYLES -->
-        @yield("page_level_style")
-        <!-- END PAGE LEVEL STYLES -->
-        <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="<?php echo env('APP_URL');?>/assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="<?php echo env('APP_URL');?>/assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
-    <!-- END HEAD -->
+        .ng-animate-block-transitions {
+            transition: 0s all!important;
+            -webkit-transition: 0s all!important;
+        }
 
-    <body class="page-container-bg-solid page-boxed page-header-menu-fixed">
-        <!-- BEGIN HEADER -->
-
-        <div class="page-header">
-            <!-- BEGIN HEADER TOP -->
-            <div class="page-header-top">
-                <div class="container">
-                    <!-- BEGIN LOGO -->
-                    <div class="page-logo">
-                        <a href="<?php echo env('APP_URL');?>/index">
-                            <img src="<?php echo env('APP_URL');?>/assets/layouts/layout3/img/logo-default.jpg" alt="logo" class="logo-default">
-                        </a>
-                    </div>
-                    <!-- END LOGO -->
-                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                    <a href="javascript:;" class="menu-toggler"></a>
-                    <!-- END RESPONSIVE MENU TOGGLER -->
-                    <!-- BEGIN TOP NAVIGATION MENU -->
-                    <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right">
-                            <!-- BEGIN NOTIFICATION DROPDOWN -->
-                            <!-- END NOTIFICATION DROPDOWN -->
-                            <!-- BEGIN TODO DROPDOWN -->
-                            <li class="dropdown dropdown-extended dropdown-tasks dropdown-light" id="header_task_bar">
-                                <a href="<?php echo env('APP_URL');?>/article/write" class="btn btn-circle green"> 写稿
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                            </li>
-                            <!-- END TODO DROPDOWN -->
-                            <li class="droddown dropdown-separator">
-                                <span class="separator"></span>
-                            </li>
-                            <!-- BEGIN INBOX DROPDOWN -->
-                            <!-- END INBOX DROPDOWN -->
-                            <!-- BEGIN USER LOGIN DROPDOWN -->
-
-                            @if( session("username")!=null)
-                            <li class="dropdown dropdown-user dropdown-light">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="{{session("avatar")}}">
-                                    <span class="username username-hide-mobile">{{session("username")}}</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/user/profile">
-                                            <i class="icon-user"></i> 我的主页 </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/tag/add">
-                                            <i class="icon-calendar"></i> 创建标签 </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-calendar"></i> 我的收藏 </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-calendar"></i> 我的订阅 </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/index.php/admin/index">
-                                            <i class="icon-calendar"></i> 后台管理 </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/user/logout">
-                                            <i class="icon-key"></i> 退出 </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            @else
-                            <li class="dropdown dropdown-user dropdown-light">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="<?php echo env('APP_URL');?>/assets/global/img/user.png">
-                                    <span class="username username-hide-mobile">未登录</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/login">
-                                            <i class="icon-user"></i> 登录 </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo env('APP_URL');?>/signup">
-                                            <i class="icon-calendar"></i> 注册 </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            @endif
-                            <!-- END USER LOGIN DROPDOWN -->
-                            <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-                            <!-- END QUICK SIDEBAR TOGGLER -->
-                        </ul>
-                    </div>
-                    <!-- END TOP NAVIGATION MENU -->
-                </div>
-            </div>
-            <!-- END HEADER TOP -->
-            <!-- BEGIN HEADER MENU -->
-            <div class="page-header-menu">
-                <div class="container">
-                    <!-- BEGIN HEADER SEARCH BOX -->
-                    <form class="search-form" action="page_general_search.html" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="搜索" name="query">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- END HEADER SEARCH BOX -->
-                    <!-- BEGIN MEGA MENU -->
-                    <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
-                    <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
-                    <div class="hor-menu  ">
-                        <ul class="nav navbar-nav">
-
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag1
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag2
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag3
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="<?php echo env('APP_URL');?>/tag/index?id=1">tag4
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                    <!-- END MEGA MENU -->
-                </div>
-            </div>
-            <!-- END HEADER MENU -->
-        </div>
-        <!-- END HEADER -->
-        <div class="row">
-            @yield("slider")
-        </div>
-        <!-- BEGIN CONTAINER -->
-        <div class="page-container">
-            <!-- BEGIN CONTENT -->
-            <div class="page-content-wrapper">
-                <!-- BEGIN CONTENT BODY -->
-                <!-- BEGIN PAGE HEAD-->
-                <!-- END PAGE HEAD-->
-                <!-- BEGIN PAGE CONTENT BODY -->
-
-                <div class="page-content">
-                    <div class="container">
-                        <!-- BEGIN PAGE CONTENT INNER -->
-                        <div class="page-content-inner">
-                            @yield("content")
-                        </div>
-                        <!-- END PAGE CONTENT INNER -->
-                    </div>
-                </div>
-                <!-- END PAGE CONTENT BODY -->
-                <!-- END CONTENT BODY -->
-            </div>
-            <!-- END CONTENT -->
-            <!-- BEGIN QUICK SIDEBAR -->
-            <!-- END QUICK SIDEBAR -->
-        </div>
-        <!-- END CONTAINER -->
-        <!-- BEGIN FOOTER -->
-        <!-- BEGIN INNER FOOTER -->
-        <div class="page-footer">
-            <div class="container"> 2016 &copy; 链媒体.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="" target="_blank"></a>
-            </div>
-        </div>
-        <div class="scroll-to-top">
-            <i class="icon-arrow-up"></i>
-        </div>
-        <!-- END INNER FOOTER -->
-        <!-- END FOOTER -->
-        <!--[if lt IE 9]>
-<script src="<?php echo env('APP_URL');?>/assets/global/plugins/respond.min.js"></script>
-<script src="<?php echo env('APP_URL');?>/assets/global/plugins/excanvas.min.js"></script>
+        .ng-hide-add-active,.ng-hide-remove {
+            display: block!important;
+        }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ $title or '链媒体 - 随心写作，自由表达' }}</title>
+    <base href=".">
+    <meta name="fragment" content="!">
+    <meta name="description" content="链媒体专栏">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <!--[if lt IE 9]>
+    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/es5-shim.js"></script>
+    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/json3.min.js"></script>
+    <![endif]-->
+    <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
+    @yield("page_level_css")
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
+</head>
+<body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">
+<!--[if lt IE 8]>
+<p class="browsehappy">你正在使用一个
+    <strong>过时</strong>的浏览器。请
+    <a class="link" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。</p></p>
 <![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        @yield("page_level_plugins_js")
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<?php echo env('APP_URL');?>/assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        @yield("page_level_js")
-        <!-- END PAGE LEVEL SCRIPTS -->
-
-                        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="<?php echo env('APP_URL');?>/assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
-    </body>
+<div id="header-holder">
+    <header id="header" class="navbar ng-scope ng-isolate-scope" ng-controller="NavbarCtrl" ui-scroll-back-fixed="" fixed="scrollBackFixedNavbar">
+        <div class="navbar-logo-container">
+            <a href="<?php echo env('APP_URL');?>" class="logo icon-ic_zhihu_logo" aria-label="首页"></a>
+        </div>
+        <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
+            <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
+            </div>
+        </div>
+        @if( !isset($username) )
+        <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
+        @else
+        <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
+            <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
+                <i class="icon-ic_nav_more"></i>
+            </a>
+            <menu class="menu navbar-menu ng-scope" id="navbar_menu">
+                <!--<a class="menu-item" href="https://zhuanlan.zhihu.com/drafts" tabindex="0">草稿</a>-->
+                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?id=<?php echo session('id');?>" tabindex="0">我的文章</a>
+                <a class="menu-item" href="<?php echo env('APP_URL');?>/logout" target="_blank" tabindex="0">退出</a>
+            </menu>
+        </div>
+        @endif
+        <div class="navbar-write-container ng-scope">
+            <a href="<?php echo env('APP_URL');?>/article/edit" >
+                <i class="icon-ic_nav_new"></i>写文章</a>
+        </div>
+        <div class="navbar-content"></div>
+    </header>
+</div>
+<div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
+    <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
+</div>
+@yield("content")
+<script src="<?php echo env('APP_URL');?>/zhuanlan/js/jquery.min.js"></script>
+@yield("page_level_js")
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
+</body>
 
 </html>

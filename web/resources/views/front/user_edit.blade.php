@@ -1,4 +1,4 @@
-@extends("front/master")
+@extends("front.master_")
     @section("content")
         <div class="row">
             <div class="col-md-12">
