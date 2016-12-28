@@ -69,7 +69,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/tag/unsubscribe', 'TagController@tag_unsubscribe');
 });
 
-Route::group(['namespace' => 'Admin'], function (){
+Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
     Route::get('admin/form', 'AdminIndexController@form');
     Route::get('admin/page', 'AdminIndexController@page');
 
