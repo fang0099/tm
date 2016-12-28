@@ -36,7 +36,7 @@ class TagController extends Controller
         print_r($r);
     }
 
-    public function tag_subscribe(Request $request)
+    public function subscribe(Request $request)
     {
         $id = $request->get("id");
         if(session("username")!=null)
@@ -48,9 +48,10 @@ class TagController extends Controller
         {
 
         }
+        return redirect("article/list?type=tag&id=".$id);
     }
 
-    public function tag_unsubscribe(Request $request)
+    public function unsubscribe(Request $request)
     {
         $id = $request->get("id");
         if(session("username")!=null)
@@ -62,9 +63,15 @@ class TagController extends Controller
         {
 
         }
+        return redirect("article/list?type=tag&id=".$id);
     }
 
     public function tag_article_list(Request $request)
+    {
+
+    }
+
+    public function article_list(Request $request)
     {
 
     }
