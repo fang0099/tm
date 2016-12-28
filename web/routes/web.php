@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/user/follow', 'UserController@follow');
     Route::get('/user/unfollow', 'UserController@unfollow');
     Route::get('/user/follow', 'UserController@follow');
+    Route::get('/user/follower', 'UserController@show_subscribers_list');
     //Route::get('/article', 'ArticleController@index');
     //Route::get('/article/list', 'ArticleController@article_list');
 
@@ -70,6 +71,8 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/tag/article', 'ArticleController@tag_article_list');
     Route::get('/tag/subscribe', 'TagController@subscribe');
     Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
+
+    Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 });
 
 Route::group(['namespace' => 'Admin'], function (){

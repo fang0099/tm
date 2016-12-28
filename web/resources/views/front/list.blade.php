@@ -39,7 +39,13 @@
                     </div>
 
                     <div class="followers ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
-                        <a ui-open-blank="" ng-if="column.followersCount" class="ng-binding ng-scope">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
+                        <a ui-open-blank="" ng-if="column.followersCount" class="ng-binding ng-scope" href="
+                    @if(isset($user))
+                        <?php echo env('APP_URL');?>/user/follower?id={{$user["id"]}}
+                                @elseif(isset($tag))
+                        <?php echo env('APP_URL');?>/tag/subscribers?id={{$tag["id"]}}
+                                @endif
+">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
                     </div>
                     <!--
                     <div class="tags ng-scope" ng-if="!currentAuthor &amp;&amp; column.postTopics.length">

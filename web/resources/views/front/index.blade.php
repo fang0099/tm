@@ -15,15 +15,15 @@
                         @foreach($tags as $tag)
         <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
             <p class="avatar">
-                <a href="article/list?id={{$tag["id"]}}" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <a href="article/list?type=tag&id={{$tag["id"]}}" ui-open-blank="" ng-click="handleRecommendColumnClick()">
                                     <img alt="" ng-src="https://pic4.zhimg.com/66aab91d7_l.jpg" src="{{$tag["face"]}}"></a>
                             </p>
                             <p class="title">
                                 <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?type=tag&id={{$tag["id"]}}" class="ng-binding">{{$tag["name"]}}</a></p>
                             <p class="description">
                                 <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?type=tag&id={{$tag["id"]}}" class="ng-binding">{{$tag["brief"]}}</a></p>
-                            <p class="meta ng-binding">-1 人关注
-                                <span class="split">|</span>-1 篇文章</p>
+                            <p class="meta ng-binding">{{$tag["subscriberCount"]}} 人关注
+                                <span class="split">|</span>{{$tag["articleCount"] }} 篇文章</p>
                             <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="article/list?type=tag&id={{$tag["id"]}}">进入页面</a>
                         </li>
                             @endforeach
@@ -48,8 +48,8 @@
                                     <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?id={{$user["id"]}}" class="ng-binding">{{$user["username"]}}</a></p>
                                 <p class="description">
                                     <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?id={{$user["id"]}}" class="ng-binding">{{$user["brief"]}}</a></p>
-                                <p class="meta ng-binding">-1 人关注
-                                    <span class="split">|</span>-1 篇文章</p>
+                                <p class="meta ng-binding">{{$user["followersCount"]}} 人关注
+                                    <span class="split">|</span>{{$user["articlesCount"]}} 篇文章</p>
                                 <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="article/list?id={{$user["id"]}}">进入页面</a>
                             </li>
                         @endforeach
@@ -79,7 +79,7 @@
                     <span class="author ellipsis">
                     <a target="_blank" href="article/list?id={{$article["author"]["id"]}}" class="ng-binding">{{$article["author"]["username"]}}</a>
                     </span><span ng-if="post.column" class="source ellipsis ng-scope">发表于
-                    <a ui-open-blank="" href="https://zhuanlan.zhihu.com/hemingke" class="ng-binding">xxx</a>
+                    <a ui-open-blank="" href="article?id={{$article["id"]}}" class="ng-binding">{{$article["publish_time"]}}</a>
                         </span>
                     </p>
                 </li>

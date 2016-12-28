@@ -51,6 +51,7 @@ trait ApiInvoker
             'hasfollower'=>'GET',
             'hascollect'=>'GET',
             'haslike'=>'GET',
+            'page'=>'GET',
         ],
         'tag' => [
             'get' => 'GET',
@@ -63,6 +64,7 @@ trait ApiInvoker
             'articles' => 'GET',
             'subscriber' => 'GET',
             'hassubscriber'=> 'GET',
+            'page'=>'GET',
         ],
         'newsflash' => [
             'create' => 'POST',

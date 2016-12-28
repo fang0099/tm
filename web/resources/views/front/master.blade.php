@@ -66,6 +66,7 @@
             <menu class="menu navbar-menu ng-scope" id="navbar_menu">
                 <!--<a class="menu-item" href="https://zhuanlan.zhihu.com/drafts" tabindex="0">草稿</a>-->
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?id=<?php echo session('id');?>" tabindex="0">我的文章</a>
+                <a class="menu-item" href="<?php echo env('APP_URL');?>/user/follower?id=<?php echo session('id');?>" tabindex="0">我的粉丝</a>
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/logout" target="_blank" tabindex="0">退出</a>
             </menu>
         </div>

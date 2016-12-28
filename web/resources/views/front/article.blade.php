@@ -129,15 +129,14 @@
 
 
                                     <!-- ngIf: likers && isPublished --></div>
-                                <!-- ngIf: contributes.length && isPublished -->
-                                <!-- ngInclude: '/views/post-includes.html' -->
+
                                 <div ng-include="&#39;/views/post-includes.html&#39;" class="included included-pc fx-item-fade ng-scope" ng-if="contributes.length &amp;&amp; isPublished">
                                     <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
               <span ng-transclude="">
-                <span class="ng-scope">文章被以下专栏收录</span></span>
-                                        <!-- ngIf: help --></div>
+                <!--<span class="ng-scope">文章被以下专栏收录</span></span>
+                                        </div>
                                     <ul class="included-items ng-scope" ng-click="handleContributeClick($event)">
-                                        <!-- ngRepeat: contribute in contributes -->
+
                                         <li class="column-list-item fx-item-fade ng-isolate-scope" column="contribute.column" ng-repeat="contribute in contributes" contribute-info="contribute" index="$index">
                                             <p class="avatar">
                                                 <a href="https://zhuanlan.zhihu.com/yysaag">
@@ -149,187 +148,118 @@
                                                 <a ng-show="contributeInfo.state == &#39;need_approved&#39;" href="javascript:;" class="cancel-contribute ng-hide" ng-click="handleCancelContribute()">投稿中</a></p>
                                             <p class="intro ng-binding"></p>
                                             <a href="https://zhuanlan.zhihu.com/yysaag" class="btn btn-green-nborder enter">进入专栏</a></li>
-                                        <!-- end ngRepeat: contribute in contributes --></ul>
-                                </div>
-                                <!-- end ngIf: contributes.length && isPublished -->
-                                <!-- ngIf: isPublished && !isQQNews -->
-                                <div class="entry-comments post-comments comment-box ng-isolate-scope" ng-show="expanded" ng-class="{ empty: !pending &amp;&amp; !comments.length }" ng-switch="pending" id="comments" ui-post-comments="" comments-placeholder="写下你的评论" comment-need-review="commentNeedReview" comments-href="post.links.comments" comments-expanded="true" comments-post-owner="post.author" comments-status="commentsStatus" ng-if="isPublished &amp;&amp; !isQQNews" comments-style="pagination" locate-comment-id="locateCommentId">
+                                        </ul>
+                                </div>-->
+
+                               <!-- <div class="entry-comments post-comments comment-box ng-isolate-scope" ng-show="expanded" ng-class="{ empty: !pending &amp;&amp; !comments.length }" ng-switch="pending" id="comments" ui-post-comments="" comments-placeholder="写下你的评论" comment-need-review="commentNeedReview" comments-href="post.links.comments" comments-expanded="true" comments-post-owner="post.author" comments-status="commentsStatus" ng-if="isPublished &amp;&amp; !isQQNews" comments-style="pagination" locate-comment-id="locateCommentId">
                                     <div class="box-header" ng-switch="!!(isPostOwner(me) &amp;&amp; me.isOrg)">
-                                        <!-- ngSwitchWhen: false -->
+
                                         <div ng-switch-when="false" class="ng-scope">
                                             <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
-                  <span ng-transclude="">
-                    <span class="ng-binding ng-scope">{{$article["comment_num"]}} 条评论</span>
-                      <!-- ngInclude: '/views/post-comments-settings.html' -->
-                    <span ng-include="&#39;/views/post-comments-settings.html&#39;" class="ng-scope">
-                      <!-- ngIf: isPostOwner(me) --></span>
-                  </span>
-                                                <!-- ngIf: help --></div>
+                                              <span ng-transclude="">
+                                                <span class="ng-binding ng-scope">{{$article["comment_num"]}} 条评论</span>
+
+                                                <span ng-include="&#39;/views/post-comments-settings.html&#39;" class="ng-scope">
+                                                  </span>
+                                              </span>
+                                            </div>
                                         </div>
-                                        <!-- ngSwitchWhen: true --></div>
-                                    <!-- ngSwitchWhen: false -->
+                                       </div>
+
                                     <div ng-switch-when="false" class="ng-scope">
-                                        <!-- ngIf: (status.canComment || status.forceShowCommentForm) && state===' normal' -->
+
                                         <form class="comment-form comment-box-ft ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-class="{ &#39;expanded&#39;: formExpanded }" name="commentForm" ng-if="(status.canComment || status.forceShowCommentForm) &amp;&amp; state === &#39;normal&#39;">
-                                            <!-- ngIf: me.authed() -->
-                                            <!--<img class="avatar avatar-small ng-scope" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" ng-if="me.authed()" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">-->
-                                            <!-- end ngIf: me.authed() -->
-                                            <textarea class="editable ng-invalid ng-invalid-content-required ng-dirty" name="content" style="width:100%;"></textarea>
-                                           <!-- <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" ui-events="{focus:&#39;handleInputFocus($event)&#39;}" ui-ctrl-enter="addComment()" contenteditable="true" content-required="" ng-model="editingComment.content" holdertext="写下你的评论" name="content" toggle-delay="250">
-                                                </div>-->
-                                            <!-- ngIf: me.authed() -->
+                                            <img class="avatar avatar-small ng-scope" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" ng-if="me.authed()" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+
+
+                                           <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" ui-events="{focus:&#39;handleInputFocus($event)&#39;}" ui-ctrl-enter="addComment()" contenteditable="true" content-required="" ng-model="editingComment.content" holdertext="写下你的评论" name="content" toggle-delay="250">
+                                                </div>
+
                                             <div class="command clearfix ng-scope" ng-if="me.authed()">
                                                 <button ng-disabled="savePending || !editingComment.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="addComment()" class="save btn btn-blue" disabled="disabled">评论</button>
                                                 <button ng-click="expandForm(false, $event)" class="cancel btn btn-grey-nborder">取消</button></div>
-                                            <!-- end ngIf: me.authed() --></form>
+                                           </form>
                                         <div class="comment-list-container ng-scope ng-isolate-scope ui-pagination" ng-if="loadStyle == &#39;pagination&#39;" url="commentHrefMap[state]" data="oriComments" extra="commentCountMap[state]" index="locateItemIndex" ui-pagination="">
                                             <ul class="comment-list">
                                                 <li class="comment-item" id="comment-192689150" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
-                                                    <!-- ngSwitchWhen: false -->
+
                                                     <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
                                                         <a ui-hovercard="" target="_blank" class="avatar-link" title="砰砰博士" href="https://www.zhihu.com/people/ceng-sheng-pu" tabindex="-1">
                                                             <img ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg"></a>
                                                         <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
-                                                            <!-- ngIf: comment.inReplyToCommentId -->
+
                                                             <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
                                                                 <a href="https://www.zhihu.com/people/ceng-sheng-pu" target="_blank" class="ng-binding">砰砰博士</a>
-                                                                <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                                <!-- ngIf: isPostOwner(comment.author) -->
+
                                                                 <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
                             <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
-                                                                    <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                                    <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
-                                                                <!-- ngIf: comment.reviewing --></div>
+                                                                    </span>
+                                                                </div>
                                                             <div class="comment-content ng-binding" ng-bind-html="comment.content">扫地扫地我扫地
                                                                 <br>地上还有西瓜皮
                                                                 <br>婆婆家中欠打扫
                                                                 <br>尘土满天难呼吸</div>
                                                             <div class="comment-ft clearfix">
-                                                                <!-- ngIf: timeStyle !=' shor' -->
+
                                                                 <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 09 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:09:37+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
-                                                                <!-- end ngIf: timeStyle !=' shor' -->
+
                                                                 <span class="like-num liked" title="91 人觉得这个很赞">
-                            <span class="ng-binding">91</span>
-                            <span>赞</span></span>
-                                                                <!-- ngIf: state===' reviewing' && comment.reviewing -->
-                                                                <!-- ngIf: canRemove(comment) && state===' normal' -->
-                                                                <!-- ngIf: canReply(comment) && state===' normal' -->
+                                                                <span class="ng-binding">91</span>
+                                                                <span>赞</span></span>
+
                                                                 <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
                                                                     <i class="icon-ic_column_reply"></i>回复</a>
-                                                                <!-- end ngIf: canReply(comment) && state===' normal' -->
-                                                                <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+
                                                                 <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
                                                                     <i class="icon-ic_comment_like"></i>赞</a>
-                                                                <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
-                                                                <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
-                                                                <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+
                                                                 <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
                                                                     <i class="icon-ic_column_report"></i>举报</a>
-                                                                <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
-                                                            <!-- ngIf: canReply(comment) -->
+
                                                             <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
                                                                 <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
                                                                 <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
                                                                     <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
-                                                                <!-- ngIf: me.authed() -->
+
                                                                 <div class="command clearfix ng-scope" ng-if="me.authed()">
                                                                     <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
                                                                     <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
-                                                                <!-- end ngIf: me.authed() --></form>
-                                                            <!-- end ngIf: canReply(comment) --></div>
+                                                                </form>
+                                                            </div>
                                                     </div>
-                                                    <!-- ngSwitchWhen: true --></li>
-                                                <li class="comment-item" id="comment-192732041" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
-                                                    <!-- ngSwitchWhen: false -->
-                                                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
-                                                        <a ui-hovercard="" target="_blank" class="avatar-link" title="范坚强" href="https://www.zhihu.com/people/plantman" tabindex="-1">
-                                                            <img ng-src="https://pic1.zhimg.com/v2-cd84bc469d6d8a99d492ab9a863b49b8_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/v2-cd84bc469d6d8a99d492ab9a863b49b8_l.jpg"></a>
-                                                        <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
-                                                            <!-- ngIf: comment.inReplyToCommentId -->
-                                                            <a href="javascript:;" class="btn-conversation ng-scope" ng-click="viewConversation(comment)" ng-if="comment.inReplyToCommentId">
-                                                                <i class="icon-ic_conversations"></i>查看对话</a>
-                                                            <!-- end ngIf: comment.inReplyToCommentId -->
-                                                            <div class="comment-hd comment-hd-conversation" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
-                                                                <a href="https://www.zhihu.com/people/plantman" target="_blank" class="ng-binding">范坚强</a>
-                                                                <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                                <!-- ngIf: isPostOwner(comment.author) -->
-                                                                <span class="in-reply-to" ng-show="comment.inReplyToUser">回复
-                            <a href="https://www.zhihu.com/people/Renkai" class="ng-binding">笋干太咸</a>
-                                                                    <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                                    <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
-                                                                <!-- ngIf: comment.reviewing --></div>
-                                                            <div class="comment-content ng-binding" ng-bind-html="comment.content">肯定是游戏的编者不认识伝字，然后就打成了坛，于是就这么下去了……</div>
-                                                            <div class="comment-ft clearfix">
-                                                                <!-- ngIf: timeStyle !=' shor' -->
-                                                                <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 4 点 11 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T16:11:12+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
-                                                                <!-- end ngIf: timeStyle !=' shor' -->
-                                                                <span class="like-num liked" title="21 人觉得这个很赞">
-                            <span class="ng-binding">21</span>
-                            <span>赞</span></span>
-                                                                <!-- ngIf: state===' reviewing' && comment.reviewing -->
-                                                                <!-- ngIf: canRemove(comment) && state===' normal' -->
-                                                                <!-- ngIf: canReply(comment) && state===' normal' -->
-                                                                <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
-                                                                    <i class="icon-ic_column_reply"></i>回复</a>
-                                                                <!-- end ngIf: canReply(comment) && state===' normal' -->
-                                                                <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
-                                                                <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
-                                                                    <i class="icon-ic_comment_like"></i>赞</a>
-                                                                <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
-                                                                <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
-                                                                <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
-                                                                <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
-                                                                    <i class="icon-ic_column_report"></i>举报</a>
-                                                                <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
-                                                            <!-- ngIf: canReply(comment) -->
-                                                            <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
-                                                                <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
-                                                                <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
-                                                                    <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
-                                                                <!-- ngIf: me.authed() -->
-                                                                <div class="command clearfix ng-scope" ng-if="me.authed()">
-                                                                    <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
-                                                                    <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
-                                                                <!-- end ngIf: me.authed() --></form>
-                                                            <!-- end ngIf: canReply(comment) --></div>
-                                                    </div>
-                                                    <!-- ngSwitchWhen: true --></li>
-                                                <!-- end ngRepeat: comment in comments track by comment.id --></ul>
+                                                </li>
+
+                                                </ul>
                                             <div class="ui-spinner-container ng-scope" style="display: none;">
                                                 <div class="ui-spinner use-css" ui-spinner=""></div>
                                             </div>
-                                            <!-- ngIf: pages -->
+
                                             <div class="pagination ng-scope" ng-if="pages" ng-show="total&gt;1">
-                                                <!-- ngIf: current !=1 && total !=1 -->
-                                                <!-- ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope current btn-circle" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">1</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">2</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">3</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">4</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope disabled btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="-1">...</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
+
                                                 <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">11</button>
-                                                <!-- end ngRepeat: p in pages track by $index -->
-                                                <!-- ngIf: current !=t otal && total !=1 -->
+
                                                 <button tabindex="0" class="next btn btn-grey-nborder ng-scope" ng-if="current != total &amp;&amp; total != 1" ng-click="changeTo(current+1, $event)">下一页</button>
-                                                <!-- end ngIf: current !=t otal && total !=1 --></div>
-                                            <!-- end ngIf: pages --></div>
-                                        <!-- end ngIf: loadStyle==' pagination' --></div>
-                                </div>
-                                <!-- end ngIf: isPublished && !isQQNews -->
-                                <!-- ngIf: contributes.length && isPublished -->
-                                <!-- ngInclude: '/views/post-includes.html' -->
-                                <div ng-include="&#39;/views/post-includes.html&#39;" class="included included-mobile fx-item-fade ng-scope" ng-if="contributes.length &amp;&amp; isPublished">
+                                            </div>
+                                            </div>
+                                        </div>
+                                </div>-->
+                                <!--<div ng-include="&#39;/views/post-includes.html&#39;" class="included included-mobile fx-item-fade ng-scope" ng-if="contributes.length &amp;&amp; isPublished">
                                     <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
-              <span ng-transclude="">
-                <span class="ng-scope">文章被以下专栏收录</span></span>
-                                        <!-- ngIf: help --></div>
+                                      <span ng-transclude="">
+                                        <span class="ng-scope">文章tag</span></span>
+                                       </div>
                                     <ul class="included-items ng-scope" ng-click="handleContributeClick($event)">
-                                        <!-- ngRepeat: contribute in contributes -->
+
                                         <li class="column-list-item fx-item-fade ng-isolate-scope" column="contribute.column" ng-repeat="contribute in contributes" contribute-info="contribute" index="$index">
                                             <p class="avatar">
                                                 <a href="https://zhuanlan.zhihu.com/yysaag">
@@ -341,15 +271,12 @@
                                                 <a ng-show="contributeInfo.state == &#39;need_approved&#39;" href="javascript:;" class="cancel-contribute ng-hide" ng-click="handleCancelContribute()">投稿中</a></p>
                                             <p class="intro ng-binding"></p>
                                             <a href="https://zhuanlan.zhihu.com/yysaag" class="btn btn-green-nborder enter">进入专栏</a></li>
-                                        <!-- end ngRepeat: contribute in contributes --></ul>
-                                </div>
-                                <!-- end ngIf: contributes.length && isPublished --></footer>
+                                    </ul>
+                                </div>-->
+                                </footer>
                     <div ng-show="zoomed" ng-animate="{show: &#39;in&#39;, hide: &#39;out&#39;}" class="lightbox-overlay ng-scope ng-hide"></div>
                 </article>
             </div>
-            <!-- end ngIf: !notFound -->
-            <!-- ngIf: notFound -->
-            <!-- ngIf: isPublished && (!userColumn || isContributesAvailable()) -->
             <div class="recommend-posts ng-scope" ng-if="isPublished &amp;&amp; (!userColumn || isContributesAvailable())">
                 <div class="receptacle" ng-switch="recommendPending">
                     <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
@@ -358,7 +285,7 @@
                     </div>
 
                     <ul ng-switch-when="false" class="recommend-post-list ng-scope">
-                        <!-- ngRepeat: post in recommendPosts -->
+
                         @foreach($recent_article_list as $a)
                         <li class="item ng-isolate-scope item-with-narrow-img" ng-class="itemClass" ng-repeat="post in recommendPosts" post="post" type="narrow" show-source="true" show-recommend="post.showRecommend">
                             <article class="hentry">
@@ -381,16 +308,14 @@
                                         <a target="_blank" href="https://www.zhihu.com/people/you-yan-she-48" class="author name ng-binding">小研</a>
                                         <span class="bull" ng-click="test()">·</span>
                                         <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 29 日星期二下午 1 点 52 分" ui-time="" datetime="2016-11-29T13:52:37+08:00" class="published ng-binding ng-isolate-scope hover-title">1 个月前</time>
-                                        <!-- ngIf: showRecommend -->
-                                        <!-- ngIf: showRecommend --></div>
-                                    <!-- ngIf: !showSource -->
-                                    <!-- ngIf: showSource && post.column -->
+                                    </div>
+
                                     <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
                                         <span class="source-prefix">发表于</span>
-                                        <!-- ngIf: post.column -->
+
                                         <a href="https://zhuanlan.zhihu.com/yysaag" ng-if="post.column" class="ng-binding ng-scope">游研社</a>
-                                        <!-- end ngIf: post.column --></div>
-                                    <!-- end ngIf: showSource && post.column --></footer>
+                                        </div>
+                                    </footer>
                             </article>
                         </li>
                         @endforeach
