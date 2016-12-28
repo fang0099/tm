@@ -91,7 +91,7 @@ class UserRepository extends BaseRepository
         }else {
             $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$id, $follower]);
             $c = $count[0]->c;
-            if($c > 1){
+            if($c > 0){
                 return $this->success();
             }else {
                 return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
