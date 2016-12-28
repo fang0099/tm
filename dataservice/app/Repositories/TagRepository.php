@@ -112,7 +112,7 @@ class TagRepository extends BaseRepository
         else {
             $pageSize = 15;
             $offset = ($page - 1) * $pageSize;
-            $articles = $tag->articles()->offset($offset)->limit($pageSize)->get();
+            $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
             return $this->success('', $articles);
         }
     }
