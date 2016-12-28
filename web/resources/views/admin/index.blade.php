@@ -172,6 +172,11 @@
                                         <span class="title"> 标签管理 </span>
                                     </a>
                                 </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=user" class="nav-link link">
+                                        <span class="title"> 用户管理 </span>
+                                    </a>
+                                </li>
                             </ul>
 
                         </li>
