@@ -109,7 +109,7 @@ class UserRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
         }else {
             $offset = ($page - 1) * $pageSize;
-            $articles = $user->articles()->orderBy($order)->offset($offset)->limit($pageSize)->get();
+            $articles = $user->articles()->orderBy($order, 'desc')->offset($offset)->limit($pageSize)->get();
             /*
             foreach ($tagArr as $t) {
                 $articles->where();
