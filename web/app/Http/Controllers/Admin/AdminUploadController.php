@@ -21,7 +21,7 @@ class AdminUploadController extends AdminBaseController
         foreach ($files as $file){
             $uuid = Uuid::generate();
             $fileName = $uuid . '.' . $file->getClientOriginalExtension();
-            $path = 'upload/' . $fileName;
+            $path = '/upload/' . $fileName;
             $file->move(public_path('upload'), $fileName);
         }
         return response()->json(['success' => true, 'path' => $path]);
