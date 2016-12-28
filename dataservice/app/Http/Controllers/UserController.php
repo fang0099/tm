@@ -89,4 +89,22 @@ class UserController extends Controller
         $pageSize = $request->input('pageSize', 15);
         return $this->userRep->optLog($type, $userid, $page, $pageSize);
     }
+
+    public function hasFollower(Request $request){
+        $id = $request->input("id");
+        $userid = $request->input("userid");
+        return $this->userRep->hasFollower($id, $userid);
+    }
+
+    public function hasLike(Request $request){
+        $id = $request->input("id");
+        $articleid = $request->input("articleid");
+        return $this->userRep->hasLike($id, $articleid);
+    }
+
+    public function hasCollect(Request $request){
+        $id = $request->input("id");
+        $articleid = $request->input("articleid");
+        return $this->userRep->hasCollect($id, $articleid);
+    }
 }

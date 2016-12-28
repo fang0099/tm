@@ -130,6 +130,21 @@ class TagRepository extends BaseRepository
         }
     }
 
+    public function hasSunscribe($id, $userId){
+        $tag = $this->get($id);
+        if($tag == null || $tag->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
+        }
+        else {
+            $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$userId, $id]);
+            $c = $count[0]->c;
+            if ($c > 0) {
+                return $this->success();
+            }
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
+        }
+    }
+
     public function menuTags($size){
         $tags = $this->model->where('show_menu', '=', '1')->take($size)->get();
         return $this->success('', $tags);

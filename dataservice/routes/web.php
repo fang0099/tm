@@ -47,6 +47,9 @@ Route::get('user/hotestarticles', 'UserController@hotestArticles');
 Route::get('user/notice', 'UserController@notice');
 Route::get('user/optlog', 'UserController@optLog');
 Route::get('user/getbyname', 'UserController@getByUsername');
+Route::get('/user/hasfollower', 'UserController@hasFollower');
+Route::get('/user/haslike', 'UserController@hasLike');
+Route::get('/user/hascollect', 'UserController@hasCollect');
 
 // article
 Route::get('/article/get', 'ArticleController@get');
@@ -66,6 +69,7 @@ Route::get('/article/up', 'ArticleController@upArticles');
 Route::get('/article/addtags', 'ArticleController@addTags');
 Route::get('/article/deltags', 'ArticleController@delTags');
 
+
 // tag
 Route::get('/tag/get', 'TagController@get');
 Route::get('/tag/page', 'TagController@page');
@@ -80,6 +84,7 @@ Route::get('/tag/articles', 'TagController@articles');
 Route::get('/tag/subscriber', 'TagController@subscriber');
 Route::get('/tag/menu-tags', 'TagController@menuTags');
 Route::get('/tag/index-tags', 'TagController@indexTags');
+Route::get('/tag/hassubscriber', 'TagController@hasSubscribe');
 
 // news flash
 Route::get('/newsflash/get', 'NewsFlashController@get');

@@ -76,6 +76,12 @@ class TagController extends Controller
         return $this->tagRep->subscriber($id, $page);
     }
 
+    public function hasSubscribe(Request $request){
+        $id = $request->input('id');
+        $userId = $request->input('userid');
+        return $this->hasSubscribe($id, $userId);
+    }
+
     public function menuTags(Request $request){
         $size = $request->input('size', 10);
         return $this->tagRep->menuTags($size);

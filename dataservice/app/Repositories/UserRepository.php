@@ -84,6 +84,51 @@ class UserRepository extends BaseRepository
         }
     }
 
+    public function hasFollower($id, $follower){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$id, $follower]);
+            $c = $count[0]->c;
+            if($c > 1){
+                return $this->success();
+            }else {
+                return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
+            }
+        }
+    }
+
+    public function hasLike($id, $articleId){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$id, $articleId]);
+            $c = $count[0]->c;
+            if($c > 1){
+                return $this->success();
+            }else {
+                return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
+            }
+        }
+    }
+
+    public function hasCollect($id, $articleId){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $count = DB::select('select count(*) as c from user_collect_article where user_id = ? and article_id = ?', [$id, $articleId]);
+            $c = $count[0]->c;
+            if($c > 1){
+                return $this->success();
+            }else {
+                return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL);
+            }
+        }
+    }
+
     public function follows($id, $page, $pageSize){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
@@ -94,6 +139,7 @@ class UserRepository extends BaseRepository
             return $this->success('', $res);
         }
     }
+
 
     public function articles($order, Request $request){
         $tagIds = $request->input('tags', '');
