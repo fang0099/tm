@@ -1,0 +1,17 @@
+.simditor
+{
+	border:none;
+}
+
+.entry-content
+{
+	margin-top: 0px;
+}
+.icon-ic_zhihu_logo:before {
+    content: "链";
+}
+
+.post-view .entry-controls {
+    margin: 40px 0;
+    text-align: left;
+}

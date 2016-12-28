@@ -1,181 +1,76 @@
-@extends("front/master")
-    @section("outer")
-        @stop
-    @section("page_level_plugins")
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+@extends("front.master")
+@section("content")
+     <main class="main-container ng-scope" ng-view="">
+            <div ng-show="recommendColumnsInited &amp;&amp; recommendPostsInited" class="ng-scope">
+                <div class="top">
+                    <h1>知乎
+                        <span class="bull">·</span>专栏</h1>
+                    <h2>随心写作，自由表达</h2>
+                    <a href="<?php echo env('APP_URL');?>/article/edit" class="btn btn-black write-btn">开始写文章</a></div>
+                <section class="l-receptacle">
+                    <h3>
+                        <span>专栏 · 发现</span>
+                    </h3>
+                    <ul class="column-card-list clearfix">
+                        @foreach($users as $user)
+        <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+                <a href="article/list?id={{$user["id"]}}" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                                    <img alt="" ng-src="https://pic4.zhimg.com/66aab91d7_l.jpg" src="{{$user["avatar"]}}"></a>
+                            </p>
+                            <p class="title">
+                                <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?id={{$user["id"]}}" class="ng-binding">{{$user["username"]}}</a></p>
+                            <p class="description">
+                                <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?id={{$user["id"]}}" class="ng-binding">{{$user["brief"]}}</a></p>
+                            <p class="meta ng-binding">-1 人关注
+                                <span class="split">|</span>-1 篇文章</p>
+                            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="article/list?id={{$user["id"]}}">进入页面</a>
+                        </li>
+                            @endforeach
+            </ul>
+            <p class="random">
+                <a class="btn btn-black btn-90_32" href="javascript:;" ng-click="nextRecommendColumn($event)">
+                    <i class="icon-ic_refresh"></i>换一换</a>
+            </p>
+        </section>
+        <section class="l-receptacle">
+            <h3>
+                <span>文章 · 发现</span></h3>
+            <ul class="post-card-list clearfix">
+            @foreach($articles as $article)
+            <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+                <a ui-open-blank="" href="article?id={{$article["id"]}}">
 
-        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
-        @stop
-    @section("page_level_style")
-        <link href="<?php echo env('APP_URL');?>/assets/pages/css/search.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo env('APP_URL');?>/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
-        @stop
-    @section("slider")
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
+                        <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;{{$article["face"]}}&quot;);"></p>
 
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-
-            <div class="carousel-inner">
-                @foreach($slider_article_list as $index=>$slider_article)
-                <div class="item @if ($index == 0) active @endif">
-                    <img src="{{$slider_article["image"]}}" style="width:100%" data-src=" " alt="First slide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <img class="img-circle" src="../resources/assets/img/user2.jpeg" style="width: 100px;height:100px;">
-                            <h1>{{$slider_article["article"]["title"]}}</h1>
-                            <p>{{$slider_article["article"]["abstracts"]}}</p>
-                            <p><a class="btn btn-lg btn-primary" href="<?php echo env('APP_URL');?>/article?id={{$slider_article['article']['id']}}" role="button">阅读</a></p>
-                        </div>
-                    </div>
-                </div>
-                    @endforeach
-            </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        </div>
-        @stop
-    @section("content")
-        <div class="row">
-            @foreach($second_article_list as $a)
-            <div class="col-md-4">
-                <h2>{{$a["title"]}}</h2>
-                <p>{{$a["abstracts"]}}</p>
-                <p><a class="btn" href="#">View details »</a></p>
-            </div>
+                        <p class="title ng-binding">{{$article["title"]}}</p>
+                        <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">{{$article["abstracts"]}}…
+                            <span class="read-all">查看全文
+                            <i class="icon-ic_unfold"></i></span>
+                        </p>
+                    </a>
+                    <p class="meta">
+                    <span class="author ellipsis">
+                    <a target="_blank" href="article/list?id={{$article["author"]["id"]}}" class="ng-binding">{{$article["author"]["username"]}}</a>
+                    </span><span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                    <a ui-open-blank="" href="https://zhuanlan.zhihu.com/hemingke" class="ng-binding">xxx</a>
+                        </span>
+                    </p>
+                </li>
                 @endforeach
+            </ul>
+            <p class="random">
+                <a class="btn btn-black btn-90_32" href="javascript:;" ng-click="nextRecommendPost($event)">
+                    <i class="icon-ic_refresh"></i>换一换</a>
+            </p>
+        </section>
+        <div class="bottom">
+            <h3>在链媒体创作</h3>
+            <a ng-click="handleLoginBeforeJump($event, true)" class="btn btn-black" href="https://zhuanlan.zhihu.com/request">申请专栏</a>
+            <p class="copyright">
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/20635074" class="about">关于专栏</a>
+                <span>©️2016 链媒体</span></p>
         </div>
-
-        <div class="blog-page blog-content-2 blog-content-1">
-            <div class="row">
-                <div class="col-lg-9">
-                    @foreach($articles as $article)
-                        <div class="blog-post-lg bordered blog-container">
-                            <!--<div class="blog-img-thumb">
-                                <a href="javascript:;">
-                                    <img src="<?php echo env('APP_URL');?>/assets/pages/img/page_general_search/5.jpg" />
-                                </a>
-                            </div>-->
-                            <div class="blog-post-content">
-                                <h2 class="blog-title blog-post-title">
-                                    <a href="<?php echo env('APP_URL');?>/article?id={{$article["id"]}}">{{ $article['title'] }}</a>
-                                </h2>
-                                <p class="blog-post-desc">{{$article["abstracts"]}}</p>
-                                <div class="blog-post-foot">
-                                    <ul class="blog-post-tags">
-                                        <li class="uppercase">
-                                            <a href="javascript:;">Bootstrap</a>
-                                        </li>
-                                        <li class="uppercase">
-                                            <a href="javascript:;">Sass</a>
-                                        </li>
-                                        <li class="uppercase">
-                                            <a href="javascript:;">HTML</a>
-                                        </li>
-                                    </ul>
-                                    <div class="blog-post-meta">
-                                        <i class="icon-calendar font-blue"></i>
-                                        <a href="javascript:;">{{$article["publish_time"]}}</a>
-                                    </div>
-                                    <div class="blog-post-meta">
-                                        <i class="icon-bubble font-blue"></i>
-                                        <a href="javascript:;">{{$article["comment_num"]}} 条评论</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="blog-single-sidebar bordered blog-container">
-                        <div class="blog-single-sidebar-tags">
-                            <h3 class="blog-sidebar-title uppercase">热门标签</h3>
-                            <ul class="blog-post-tags">
-                                <li class="uppercase">
-                                    <a href="javascript:;">Bootstrap</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Sass</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">HTML</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">CSS</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Gulp</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Framework</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Admin Theme</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">UI Features</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="blog-single-sidebar-ui">
-                            <h3 class="blog-sidebar-title uppercase">热门人物</h3>
-                            <div class="row ui-margin">
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/1.jpg" />
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/37.jpg" />
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/57.jpg" />
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/53.jpg" />
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/59.jpg" />
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 ui-padding">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo env('APP_URL');?>/assets/pages/img/background/42.jpg" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    @stop
-@section("page_level_plugins_js")
-    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
-
-    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-@stop
-@section("page_level_js")
-    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/search.min.js" type="text/javascript"></script>
-
-    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/profile.min.js" type="text/javascript"></script>
-    <!--<script src="<?php echo env('APP_URL');?>/assets/pages/scripts/timeline.min.js" type="text/javascript"></script>-->
+    </div>
+</main>
 @stop

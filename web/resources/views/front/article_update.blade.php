@@ -1,4 +1,4 @@
-@extends("front/master")
+@extends("front.master_")
     @section("page_level_plugins")
         @stop
     @section("page_level_style")

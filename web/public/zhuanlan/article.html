@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html>
+<!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>链媒体 - 随心写作，自由表达</title>
+  <!--<base href="/">-->
+  <base href=".">
+  <meta name="fragment" content="!">
+  <meta name="description" content="知乎专栏">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="address=no">
+  <!--[if lt IE 9]>
+    <script src="https://z1.zhimg.com/components/es5-shim/es5-shim.js"></script>
+    <script src="https://z1.zhimg.com/components/html5shiv/dist/html5shiv.js"></script>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <script src="https://z1.zhimg.com/components/json3/lib/json3.min.js"></script>
+  <![endif]-->
+  <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/mine.css">
+</head>
+<body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope page-post-view">
+  <!--[if lt IE 8]>
+    <p class="browsehappy">你正在使用一个
+      <strong>过时</strong>的浏览器。请
+      <a class="link" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。</p></p>
+  <![endif]-->
+  <div id="header-holder">
+    <!-- ngInclude: navbarTemplateUrl -->
+    <div ng-include="navbarTemplateUrl" class="ng-scope">
+      <header id="header" class="navbar ng-scope ng-isolate-scope" ng-controller="NavbarCtrl" ui-scroll-back-fixed="" fixed="scrollBackFixedNavbar">
+        <div class="navbar-logo-container">
+          <a href="https://www.zhihu.com/" target="_blank" class="logo icon-ic_zhihu_logo" aria-label="知乎首页"></a>
+        </div>
+        <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
+          <!-- ngIf: title.img -->
+          <div class="img ng-scope" ng-if="title.img">
+            <!-- ngIf: !title.imghref -->
+            <!-- ngIf: title.imghref -->
+            <a href="https://zhuanlan.zhihu.com/yysaag" ng-if="title.imghref" ng-attr-aria-label="{{title.ariaLabel}}" class="ng-scope" aria-label="游研社">
+              <img class="avatar avatar-small" alt="" ng-src="https://pic2.zhimg.com/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg"></a>
+            <!-- end ngIf: title.imghref --></div>
+          <!-- end ngIf: title.img -->
+          <div class="titles" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
+            <!-- ngIf: title.subtitle -->
+            <div class="subtitle ng-binding ng-scope" ng-if="title.subtitle" ng-bind-html="title.subtitle">首发于</div>
+            <!-- end ngIf: title.subtitle -->
+            <!-- ngIf: title.main -->
+            <div class="main-title ng-binding ng-scope" ng-if="title.main" ng-bind-html="title.main">
+              <a href="https://zhuanlan.zhihu.com/yysaag">游研社</a></div>
+            <!-- end ngIf: title.main --></div>
+          <!-- ngIf: title.buttons -->
+          <div class="functions ng-scope" ng-if="title.buttons">
+            <button ui-follow-button="" class="btn btn-sm  ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" ng-click="column.toggleFollow()" ng-model="column.following">关注专栏</button></div>
+          <!-- end ngIf: title.buttons -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: status --></div>
+        <!-- ngIf: !me.authed() && me.$resolved -->
+        <!-- ngIf: me.authed() -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/menu.html&#39;" ng-if="me.authed()" class="ng-scope">
+          <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
+            <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
+              <i class="icon-ic_nav_more"></i>
+            </a>
+            <menu class="menu navbar-menu ng-scope" id="navbar_menu">
+              <!-- ngRepeat: column in me.columns -->
+              <!-- ngIf: me.columns.length -->
+              <!-- ngIf: inWrite && draftId -->
+              <a class="menu-item" href="https://zhuanlan.zhihu.com/drafts" tabindex="0">草稿</a>
+              <a class="menu-item" href="https://www.zhihu.com/people/fangyonghao/posts" target="_blank" tabindex="0">我的文章</a>
+              <!-- ngIf: !inIndex -->
+              <!-- ngIf: inWrite && !hideDelete -->
+              <!-- ngIf: inWrite && !hideDelete --></menu>
+          </div>
+        </ng-include>
+        <!-- end ngIf: me.authed() -->
+        <!-- ngIf: !inWrite && me.$resolved -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/write.html&#39;" ng-if="!inWrite &amp;&amp; me.$resolved" class="ng-scope">
+          <div class="navbar-write-container ng-scope">
+            <a href="edit.html" >
+              <i class="icon-ic_nav_new"></i>写文章</a>
+          </div>
+        </ng-include>
+        <!-- end ngIf: !inWrite && me.$resolved -->
+        <div class="navbar-content"></div>
+      </header>
+    </div>
+  </div>
+  <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
+    <!-- ngIf: alert.type==' info' -->
+    <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
+    <!-- end ngIf: alert.type==' info' -->
+    <!-- ngIf: alert.type==' error' --></div>
+
+  <main class="main-container ng-scope" ng-view="">
+    <!-- ngIf: !notFound -->
+    <div class="main receptacle post-view ng-scope" ng-class="post.isTitleImageFullScreen &amp;&amp; winType != &#39;small&#39; &amp;&amp; !isCensoring &amp;&amp; &#39;full-screen-cover&#39;" ng-if="!notFound" data-za-module="PostItem">
+      <article class="entry" ui-lightbox="">
+        <header>
+          <!-- ngIf: post.titleImage && !isCensoring -->
+          <div class="entry-title-image ng-scope" ng-if="post.titleImage &amp;&amp; !isCensoring" ng-switch="!!(post.titleImageSize.width || (winType != &#39;small&#39; &amp;&amp; post.isTitleImageFullScreen))">
+            <!-- ngSwitchWhen: true -->
+            <!-- ngSwitchWhen: false -->
+            <img ng-switch-when="false" ng-src="https://pic3.zhimg.com/v2-0f3f7ab8ab6f6e0bf01fa1622842f6ee_b.jpg" class="ng-scope" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/v2-0f3f7ab8ab6f6e0bf01fa1622842f6ee_b.jpg"></div>
+          <!-- end ngIf: post.titleImage && !isCensoring -->
+          <div class="placeholder"></div>
+          <h1 class="multiline2 entry-title">一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它</h1>
+          <div class="entry-meta">
+            <a target="_blank" href="https://www.zhihu.com/people/you-yan-she-48" class="author name ng-binding">
+              <img ng-src="https://pic4.zhimg.com/f5daea5bec82e658f5995568e35e397f_m.jpg" alt="" class="avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/f5daea5bec82e658f5995568e35e397f_m.jpg">小研</a>
+            <ui-badge is-org="post.author.isOrg" badge="post.author.badge" size="14" class="ng-isolate-scope">
+              <!-- ngIf: isOrg -->
+              <!-- ngIf: badge -->
+              <span ng-if="badge" class="ng-scope">
+                <!-- ngIf: badge.identity && badge.best_answerer -->
+                <!-- ngIf: badge.identity && !badge.best_answerer -->
+                <!-- ngIf: !badge.identity && badge.best_answerer --></span>
+              <!-- end ngIf: badge --></ui-badge>
+            <span class="bull">·</span>
+            <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 04 分" ui-time="" datetime="2016-11-28T15:04:43+08:00" class="published ng-binding ng-isolate-scope hover-title">1 个月前</time></div>
+        </header>
+        <!-- ngIf: isCensoring -->
+        <!-- ngIf: ownPost(post) || !isCensoring -->
+        <section class="entry-content ng-binding ng-scope" ng-bind-html="postContentTrustedHtml" ui-copyright-check="" data-entry-url="/p/24002150" data-author-name="小研" ng-if="ownPost(post) || !isCensoring">
+        </section>
+        <!-- end ngIf: ownPost(post) || !isCensoring -->
+        <footer>
+          <!-- ngIf: !forceHideTipjar && !isCensoring && (post.tipjarState==' activated' || (ownPost(post) && post.tipjarState !=' closed' && !me.isOrg)) -->
+          <div class="tipjar-container" ng-class="{&#39;owner-tipjar-container&#39;: ownPost(post)}" ng-switch="post.tipjarState == &#39;activated&#39;" id="tipjar" ng-if="!forceHideTipjar &amp;&amp; !isCensoring &amp;&amp; (post.tipjarState == &#39;activated&#39; || (ownPost(post) &amp;&amp; post.tipjarState != &#39;closed&#39; &amp;&amp; !me.isOrg))">
+            <!-- ngSwitchWhen: true -->
+
+          <!-- end ngIf: !forceHideTipjar && !isCensoring && (post.tipjarState==' activated' || (ownPost(post) && post.tipjarState !=' closed' && !me.isOrg)) -->
+          <!-- ngIf: isPublished -->
+          <div class="entry-exinfo clearfix ng-scope" ng-if="isPublished">
+            <!-- ngIf: post.reviewers -->
+            <!-- ngIf: post.topics.length -->
+            <p class="tags ng-scope full-screen" ng-if="post.topics.length" ng-class="{&#39;full-screen&#39;: !post.reviewers.length}">
+              <!-- ngRepeat: topic in post.topics | limitTo:3 -->
+              <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">文曲星</span>
+              <!-- end ngRepeat: topic in post.topics | limitTo:3 -->
+              <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">小霸王游戏机</span>
+              <!-- end ngRepeat: topic in post.topics | limitTo:3 -->
+              <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">中央处理器 (CPU)</span>
+              <!-- end ngRepeat: topic in post.topics | limitTo:3 --></p>
+            <!-- end ngIf: post.topics.length --></div>
+          <!-- end ngIf: isPublished -->
+          <div class="entry-controls clearfix">
+            <div class="right-section">
+              <!-- ngIf: isPublished && !supportTouch -->
+              <div ng-transclude="" class="post-share-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" onbeforeopen="beforeShareMenuOpen()" ng-if="isPublished &amp;&amp; !supportTouch">
+                <a href="javascript:;" class="menu-button control-item share ng-scope">
+                  <i class="icon-ic_column_share"></i>分享</a>
+                <menu class="menu ng-scope">
+                  <!-- ngRepeat: item in shareMenuItems -->
+                  <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-sina" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                    <i class="icon icon-ic_share_sina"></i>新浪微博
+                    <!-- ngIf: item.html --></button>
+                  <!-- end ngRepeat: item in shareMenuItems -->
+                  <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-wechat" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                    <i class="icon icon-ic_share_wechat"></i>微信扫一扫
+                    <!-- ngIf: item.html -->
+                    <div class="extra ng-binding ng-scope" ng-if="item.html" ng-bind-html="item.html">
+                      <div class="ShareQRCode"></div></div>
+                    <!-- end ngIf: item.html --></button>
+                  <!-- end ngRepeat: item in shareMenuItems -->
+                  <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-dudu" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                    <i class="icon icon-ic_share_dudu"></i>读读日报
+                    <!-- ngIf: item.html --></button>
+                  <!-- end ngRepeat: item in shareMenuItems --></menu>
+              </div>
+              <!-- end ngIf: isPublished && !supportTouch -->
+              <!-- ngIf: supportTouch -->
+              <!-- ngIf: ownPost(post) -->
+              <!-- ngIf: ownPost(post) -->
+              <!-- ngIf: !ownPost(post) && isPublished -->
+              <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="javascript:;" class="control-item report ng-scope">
+                <i class="icon-ic_column_report"></i>举报</a>
+              <!-- end ngIf: !ownPost(post) && isPublished --></div>
+            <!-- ngIf: isPublished -->
+            <div class="left-section ng-scope" ng-if="isPublished">
+              <div class="votes">
+                <!-- ngIf: !ownPost(post) -->
+                <a ng-if="!ownPost(post)" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" href="javascript:;" ng-class="{ active: post.rating == &#39;like&#39; }">
+                  <i class="icon-ic_column_like"></i>1814</a>
+                <!-- end ngIf: !ownPost(post) -->
+                <!-- ngIf: ownPost(post) --></div>
+
+
+      <div class="entry-controls clearfix" style="text-align: left">
+        <div class="right-section">
+          <!-- ngIf: isPublished && !supportTouch --><div ng-transclude="" class="post-share-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope close" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" onbeforeopen="beforeShareMenuOpen()" ng-if="isPublished &amp;&amp; !supportTouch">
+            <a href="javascript:;" class="menu-button control-item share ng-scope"><i class="icon-ic_column_share"></i>分享</a>
+            <menu class="menu ng-scope">
+              <!-- ngRepeat: item in shareMenuItems --><button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-sina" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                <i class="icon icon-ic_share_sina"></i>新浪微博
+                <!-- ngIf: item.html -->
+              </button><!-- end ngRepeat: item in shareMenuItems --><button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-wechat" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                <i class="icon icon-ic_share_wechat"></i>微信扫一扫
+                <!-- ngIf: item.html --><div class="extra ng-binding ng-scope" ng-if="item.html" ng-bind-html="item.html"><div class="ShareQRCode" title="https://zhuanlan.zhihu.com/p/24555811#showWechatShareTip"><canvas width="100" height="100" style="display: none;"></canvas><img style="display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAHfklEQVR4Xu2d0XrqOAyE2/d/6O4HhW1wpNE/SqB0V+eO4tiORhqN5JDz+fHx8fXR/Pf1lV/6+fl5nfU+5v55u9T6Xfb5cs06X7TlbIxa+z5PdO163Xq/2+/VfTrmvVhtAEkA/1VAlLevCBNPzDxmu04WRdG1yjvv+6u8VK2tIi6bP7IZieTMnlcmuEfIALKHJIsQZfTTAYn4tvIQwtEO55OxivMz53Ly2HYPVSSTsdE9RRG9i5ABZJ9S/ywgjuraKqdMhUScv45111xV1Rr9ytuzayM1WeWzTIGeGiGucVQ0bjeswHPX/F8AojzH0eBESTnzkbHEkzvzkHmflkMGkH0BPIAQNw7GEMORqauuQ1tlkcWdwnCNHlIYdhKtm4xVm2a1gVNbOGMjZnl6YTiA1C6+FTen9LJIkdYZo5p3qr1C6oYzxrxtc7Fj7K2UJfx7xhhCl86YpwDy5TSxiugjLZSq9sgKpiOc73QftrdYNUgjQGqC0iM+B5DvVgnpc61i46WAHN1gtnnSAnfW7npk5f3dedV1Wff4QSFmEeIYRWl5RTVEPiuvPGK0twVkPTFU7YvsO0fxREZEnnM7Eia0cRbQZ7dySB7cyd4B5MdlBpCbLSLhl0URqVWiiphQ4a8AUqmsozKVGCOr5omMVhRI8hdp06xrKIchvTE1ppS9A8ge8pcCQhJspm6ILu8C7FDMEXojUXl0jLLBLkIGkO8H/KKKvUO/0TwSkEz2nl2HqJupDHD5nkRWFrmE11VNg+QqkOUkylPZO4Ds5W9W30QO4xTLW2dI2+9kwo7Xdz29KkpJwUnoI2rtZEpMSe5oP+QeBpCEapTXR45IaHEAWYz9JyLkXhiu/BjxJZGTWeJSxy7Z2iTsFVWRZLxeTyp/kl9Jfy+iwn9l7wDybZ63AUR5SpbUiC5XdU3VlVVnJ6Q464gOVxxkkp0wTLhW5zzEAW8A+Xl4myhMq1J3cogjFVdP7nZ7O5FMijWijjIndXLnlTLXCCEeTW5iAHn8jSURHxIQpRKIRxP+zrxHVcRk3ozXt3931sjUmqO2IkCie0kjZADZ//KXyPOjUrtVqWeURfhy6ymdEznnhknnmoxxRAyNhMu4yOkHENE6yYzrSO6IJlUOHkDeFRAi7SoOPftos0uBmd4nhSZZ86gsV6Ij/TmCqjSzzuYA8mNq0v2NSoNDlOXIy4iPO7KXVLtVgUh4nYxx9rJN4kokDCAgh3Q6FB0HvBaG66s1FOqVR0eSlsjKqskYScQO10edXFXkOhHQsU1YvQ8g32bpdmcrenQlcpnUlderIo2cr0StA1VYVRFYFY1uhDj7I+0VUggPIDerq94Woa4B5PY2u8jrnZykcsivRogq58/gSdIZdWQ0SerVviNp262lSFKvKPVBZQ0g+flF1aGgNYYFiFNZ0sTraHE6J+HzsyIjozNnD5EQkVLbkb3UaGqcohoyv2MMstaRgyqy38OAqEWqZOk274gx1v0QNYSoofEaWwIAcQJpY+clmANIDclpgDgKJxMAUYR0xIJDSw49qsIwmqezj050Pqi97EXKnZ7/AJK/yAxL7OzZ3jo4f0Z0PClKdmQe1X5wzmlWpUPul9Q+pJ0kc8gAsv8JW2awASSwzH8+Qpw6pEMJmWxVRaNzJkNaMtG+nUKYNA4zUUTa79sxrQMqcuiUhT0xNhmjcgAx4NsDcgRhUkyu8vfy2QGWjK3GONEUqaLoHhxxQJygdabuFD/KSJUBjxqFHAg5dcNLASHoVVGkWiek8HKMQxSPI2WjLkTV2lFnMSRHRja3csgA8miBpwKShaNqN5BGH/FSRQUrR6tIzijK6ToczYdOYRju68w3yinOJ8AQGhpANg+SHfHAAYSpyt3PorM84Xr/EYVTJdOtZCZCokutTiG8rqFEgrLxAHLwbQ9VjoscxgLE4ehOAiTKxNmDU+y53eRsPMl1XYou3+SwnfiMgnAA+bFoqLKcl2BWnKqM7XgViRC3aXcxg8o3Tt5yKnZCWQ/5eQB5fPd7x3Foi4dQZpnUCWWR7qzjgV2jZGuQaCKtnTUySNEc2U/ZawAR2bdK6k8BJHsMiKgX0vJY75eEbafRSZp5RPm8Yh6pTgeQGqazHWQAEcVfDUf8xgVyHel67BikUllk4W5Sr5Kwkowk8R/uvC6Pmyr6zfbj1F3XltAA8m1m1aJ3jE1AWx34wfGyJxdJZBBuJU1GJSezfURrk/1U99XtRmTRSNjjoY4ZQB4hehtAOhtR3v+syCBSu8pNqlgjuUlJ447MDyNkAOGv5HspIITzssOYyPPufyMHNk5UVblA7eWqZhr/m8F6L84eiG2u+zryKCnpyg4ge9iU4w0gN3t1nOtPRkjnPFtJWmUEcq7tGLHquxEBYJ+HPJuyBhDzzdZnABIlO9W2yKQhuebZoqMSAw8SVTwi1RUAp+SQASRuvURqrqLM9G1ADlc7gKhDHbLmWhg6EeMWhOSU04kE0toZQERH91cBqULJqU5V4RVxMPGcdX1X4WT3RyJM1VJVPnTtmv5gh0xEjLJSzACiLTuAgEdJXxkh/wDQF5ZD3Ec/xAAAAABJRU5ErkJggg=="></div></div><!-- end ngIf: item.html -->
+              </button><!-- end ngRepeat: item in shareMenuItems --><button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-dudu" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
+                <i class="icon icon-ic_share_dudu"></i>读读日报
+                <!-- ngIf: item.html -->
+              </button><!-- end ngRepeat: item in shareMenuItems -->
+            </menu>
+          </div><!-- end ngIf: isPublished && !supportTouch -->
+          <!-- ngIf: supportTouch -->
+
+          <!-- ngIf: ownPost(post) --><a href="https://zhuanlan.zhihu.com/p/24555811/edit" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a><!-- end ngIf: ownPost(post) -->
+
+          <!-- ngIf: ownPost(post) --><div ng-transclude="" class="post-options-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope close" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ng-if="ownPost(post)" toggle-delay="250">
+            <a href="javascript:;" class="menu-button control-item options ng-scope">
+              <i class="icon-ic_column_more"></i><span class="hide-text">设置</span>
+            </a>
+            <menu class="menu ng-scope">
+              <a href="javascript:;" ng-click="removePost()" class="menu-item" tabindex="0">删除文章</a>
+              <!-- ngIf: !me.isOrg && !isCensoring && post.tipjarState == 'activated' -->
+              <!-- ngIf: !me.isOrg && !isCensoring && post.tipjarState != 'activated' && post.tipjarState != 'closed' -->
+            </menu>
+          </div><!-- end ngIf: ownPost(post) -->
+
+          <!-- ngIf: !ownPost(post) && isPublished -->
+
+        </div>
+
+        <!-- ngIf: isPublished --><div class="left-section ng-scope" ng-if="isPublished">
+          <div class="votes">
+            <!-- ngIf: !ownPost(post) -->
+            <!-- ngIf: ownPost(post) --><a ng-if="ownPost(post)" class="control-item disabled ng-binding ng-scope" href="javascript:;"><i class="icon-ic_column_like"></i>0</a><!-- end ngIf: ownPost(post) -->
+          </div>
+        </div>
+
+            </div>
+            <!-- end ngIf: isPublished -->
+            <!-- ngIf: post.lastestLikers.length && !likers && isPublished -->
+            <div class="voters clearfix ng-scope" ng-if="post.lastestLikers.length &amp;&amp; !likers &amp;&amp; isPublished">
+              <!-- ngRepeat: user in post.lastestLikers -->
+              <a href="https://www.zhihu.com/people/pu-rui-61-24" target="_blank" data-title="椰子兄" class="voter ng-scope" ng-repeat="user in post.lastestLikers">
+                <img ng-src="https://pic1.zhimg.com/da8e974dc_im.jpg" alt="椰子兄" class="avatar avatar-xs" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_im.jpg"></a>
+              <!-- end ngRepeat: user in post.lastestLikers -->
+              <a href="https://www.zhihu.com/people/luo-tuo-94-56" target="_blank" data-title="骆驼" class="voter ng-scope" ng-repeat="user in post.lastestLikers">
+                <img ng-src="https://pic1.zhimg.com/da8e974dc_im.jpg" alt="骆驼" class="avatar avatar-xs" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_im.jpg"></a>
+              <!-- end ngRepeat: user in post.lastestLikers -->
+              <a href="https://www.zhihu.com/people/yumitongxue" target="_blank" data-title="玉米同学" class="voter ng-scope" ng-repeat="user in post.lastestLikers">
+                <img ng-src="https://pic4.zhimg.com/9e6833cfbb504df549964f30e46984cf_im.jpg" alt="玉米同学" class="avatar avatar-xs" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/9e6833cfbb504df549964f30e46984cf_im.jpg"></a>
+              <!-- end ngRepeat: user in post.lastestLikers -->
+              <a href="https://www.zhihu.com/people/han-yi-hong-98" target="_blank" data-title="韩毅弘" class="voter ng-scope" ng-repeat="user in post.lastestLikers">
+                <img ng-src="https://pic4.zhimg.com/v2-da6a726e3fee6e6a14ea6e7c06be7c0b_im.jpg" alt="韩毅弘" class="avatar avatar-xs" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/v2-da6a726e3fee6e6a14ea6e7c06be7c0b_im.jpg"></a>
+              <!-- end ngRepeat: user in post.lastestLikers -->
+              <a href="https://www.zhihu.com/people/charles-yan-76" target="_blank" data-title="Charles Yan" class="voter ng-scope" ng-repeat="user in post.lastestLikers">
+                <img ng-src="https://pic1.zhimg.com/da8e974dc_im.jpg" alt="Charles Yan" class="avatar avatar-xs" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_im.jpg"></a>
+              <!-- end ngRepeat: user in post.lastestLikers -->
+              <!-- ngIf: post.lastestLikers.length < post.likesCount && !fetchLikersPending -->
+              <a href="https://zhuanlan.zhihu.com/p/24002150/voters" title="查看全部" class="more-voters ng-scope" ui-open-blank="" ng-if="post.lastestLikers.length &lt; post.likesCount &amp;&amp; !fetchLikersPending">
+                <i class="icon-ic_like_more"></i>
+              </a>
+              <!-- end ngIf: post.lastestLikers.length < post.likesCount && !fetchLikersPending -->
+              <!-- ngIf: fetchLikersPending --></div>
+            <!-- end ngIf: post.lastestLikers.length && !likers && isPublished -->
+            <!-- ngIf: likers && isPublished --></div>
+          <!-- ngIf: contributes.length && isPublished -->
+          <!-- ngInclude: '/views/post-includes.html' -->
+          <div ng-include="&#39;/views/post-includes.html&#39;" class="included included-pc fx-item-fade ng-scope" ng-if="contributes.length &amp;&amp; isPublished">
+            <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
+              <span ng-transclude="">
+                <span class="ng-scope">文章被以下专栏收录</span></span>
+              <!-- ngIf: help --></div>
+            <ul class="included-items ng-scope" ng-click="handleContributeClick($event)">
+              <!-- ngRepeat: contribute in contributes -->
+              <li class="column-list-item fx-item-fade ng-isolate-scope" column="contribute.column" ng-repeat="contribute in contributes" contribute-info="contribute" index="$index">
+                <p class="avatar">
+                  <a href="https://zhuanlan.zhihu.com/yysaag">
+                    <img alt="" ng-src="https://pic2.zhimg.com/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg" class="avatar-mid" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg"></a>
+                </p>
+                <p class="title">
+                  <a class="column-name ng-binding" href="https://zhuanlan.zhihu.com/yysaag">游研社</a>
+                  <span ng-show="contributeInfo.state == &#39;need_approved&#39;" class="bull ng-hide">·</span>
+                  <a ng-show="contributeInfo.state == &#39;need_approved&#39;" href="javascript:;" class="cancel-contribute ng-hide" ng-click="handleCancelContribute()">投稿中</a></p>
+                <p class="intro ng-binding"></p>
+                <a href="https://zhuanlan.zhihu.com/yysaag" class="btn btn-green-nborder enter">进入专栏</a></li>
+              <!-- end ngRepeat: contribute in contributes --></ul>
+          </div>
+          <!-- end ngIf: contributes.length && isPublished -->
+          <!-- ngIf: isPublished && !isQQNews -->
+          <div class="entry-comments post-comments comment-box ng-isolate-scope" ng-show="expanded" ng-class="{ empty: !pending &amp;&amp; !comments.length }" ng-switch="pending" id="comments" ui-post-comments="" comments-placeholder="写下你的评论" comment-need-review="commentNeedReview" comments-href="post.links.comments" comments-expanded="true" comments-post-owner="post.author" comments-status="commentsStatus" ng-if="isPublished &amp;&amp; !isQQNews" comments-style="pagination" locate-comment-id="locateCommentId">
+            <div class="box-header" ng-switch="!!(isPostOwner(me) &amp;&amp; me.isOrg)">
+              <!-- ngSwitchWhen: false -->
+              <div ng-switch-when="false" class="ng-scope">
+                <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
+                  <span ng-transclude="">
+                    <span class="ng-binding ng-scope">103 条评论</span>
+                    <!-- ngInclude: '/views/post-comments-settings.html' -->
+                    <span ng-include="&#39;/views/post-comments-settings.html&#39;" class="ng-scope">
+                      <!-- ngIf: isPostOwner(me) --></span>
+                  </span>
+                  <!-- ngIf: help --></div>
+              </div>
+              <!-- ngSwitchWhen: true --></div>
+            <!-- ngSwitchWhen: false -->
+            <div ng-switch-when="false" class="ng-scope">
+              <!-- ngIf: (status.canComment || status.forceShowCommentForm) && state===' normal' -->
+              <form class="comment-form comment-box-ft ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-class="{ &#39;expanded&#39;: formExpanded }" name="commentForm" ng-if="(status.canComment || status.forceShowCommentForm) &amp;&amp; state === &#39;normal&#39;">
+                <!-- ngIf: me.authed() -->
+                <img class="avatar avatar-small ng-scope" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" ng-if="me.authed()" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                <!-- end ngIf: me.authed() -->
+                <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" ui-events="{focus:&#39;handleInputFocus($event)&#39;}" ui-ctrl-enter="addComment()" contenteditable="true" content-required="" ng-model="editingComment.content" holdertext="写下你的评论" name="content" toggle-delay="250">
+                  <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                <!-- ngIf: me.authed() -->
+                <div class="command clearfix ng-scope" ng-if="me.authed()">
+                  <button ng-disabled="savePending || !editingComment.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="addComment()" class="save btn btn-blue" disabled="disabled">评论</button>
+                  <button ng-click="expandForm(false, $event)" class="cancel btn btn-grey-nborder">取消</button></div>
+                <!-- end ngIf: me.authed() --></form>
+              <!-- end ngIf: (status.canComment || status.forceShowCommentForm) && state===' normal' -->
+              <!-- ngIf: (me.authed() && !isPostOwner(me) && !status.canComment) || status.permission==' none' -->
+              <!-- ngIf: loadStyle==' infinite' -->
+              <!-- ngIf: loadStyle==' pagination' -->
+              <div class="comment-list-container ng-scope ng-isolate-scope ui-pagination" ng-if="loadStyle == &#39;pagination&#39;" url="commentHrefMap[state]" data="oriComments" extra="commentCountMap[state]" index="locateItemIndex" ui-pagination="">
+                <ul class="comment-list">
+                  <!-- ngRepeat: comment in featureComments track by comment.id -->
+                  <!-- ngIf: featureComments.length -->
+                  <!-- ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192689150" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="砰砰博士" href="https://www.zhihu.com/people/ceng-sheng-pu" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/ceng-sheng-pu" target="_blank" class="ng-binding">砰砰博士</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">扫地扫地我扫地
+                          <br>地上还有西瓜皮
+                          <br>婆婆家中欠打扫
+                          <br>尘土满天难呼吸</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 09 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:09:37+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="91 人觉得这个很赞">
+                            <span class="ng-binding">91</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192694486" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="PEBKAC" href="https://www.zhihu.com/people/pebkac" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/5fcd5e927ce82b74ed534f1b57386228_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/5fcd5e927ce82b74ed534f1b57386228_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/pebkac" target="_blank" class="ng-binding">PEBKAC</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">80x160像素，POKE, PEEK, POKE, PEEK</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 17 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:17:20+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="15 人觉得这个很赞">
+                            <span class="ng-binding">15</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192696501" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="pig-10" href="https://www.zhihu.com/people/pig_10" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/pig_10" target="_blank" class="ng-binding">pig-10</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">2A03倒也不光是6502改了个名字换了个频率，还集成了SN76489DCSG（比AY-3-8910高级点的东西），一个DPCM解码器（输出7bit PCM可用CPU直接控制），和一系列IO接口</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 20 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:20:23+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="11 人觉得这个很赞">
+                            <span class="ng-binding">11</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192697340" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="MegaNormalZ" href="https://www.zhihu.com/people/zmsware" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/95f92fdc593d294f5263f0e95dc12780_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/95f92fdc593d294f5263f0e95dc12780_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/zmsware" target="_blank" class="ng-binding">MegaNormalZ</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">挑水挑水我挑水
+                          <br>倒水进缸满天飞
+                          <br>一桶两桶三四桶
+                          <br>反正不用交水费</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 21 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:21:23+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="72 人觉得这个很赞">
+                            <span class="ng-binding">72</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192701103" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="魏魔龙" href="https://www.zhihu.com/people/momo-lolo" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/fed3b9be97a75875943eb57a5777d400_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/fed3b9be97a75875943eb57a5777d400_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/momo-lolo" target="_blank" class="ng-binding">魏魔龙</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">英雄传说出门切jj能练葵花宝典</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 26 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:26:26+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="19 人觉得这个很赞">
+                            <span class="ng-binding">19</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192702612" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="笋干太咸" href="https://www.zhihu.com/people/Renkai" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/cb1aa42de4b6f770ba49d3544bed33a4_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/cb1aa42de4b6f770ba49d3544bed33a4_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/Renkai" target="_blank" class="ng-binding">笋干太咸</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">是"英雄伝说"吧</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 28 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:28:28+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="5 人觉得这个很赞">
+                            <span class="ng-binding">5</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192705659" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="a38047" href="https://www.zhihu.com/people/a38047" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/a38047" target="_blank" class="ng-binding">a38047</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">劈柴劈柴我劈柴，
+                          <br>抡起斧子劈起来。
+                          <br>爱护树木讲环境，
+                          <br>婆婆没事别乱烧。</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 32 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:32:36+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="48 人觉得这个很赞">
+                            <span class="ng-binding">48</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192706648" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="武让" href="https://www.zhihu.com/people/wurang" tabindex="-1">
+                        <img ng-src="https://pic2.zhimg.com/d52a5b0a9_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/d52a5b0a9_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/wurang" target="_blank" class="ng-binding">武让</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">yobdc</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 34 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:34:05+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="6 人觉得这个很赞">
+                            <span class="ng-binding">6</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192723279" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="王凌" href="https://www.zhihu.com/people/wang-ling-63-49-7" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/e48cf206ac1a6e3cd151a300959be95c_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/e48cf206ac1a6e3cd151a300959be95c_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/wang-ling-63-49-7" target="_blank" class="ng-binding">王凌</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">回复
+                            <a href="https://zhuanlan.zhihu.com/" class="ng-binding"></a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">写的真是深入浅出 感谢！写下去 会有更多人看的</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 3 点 58 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T15:58:16+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="5 人觉得这个很赞">
+                            <span class="ng-binding">5</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id -->
+                  <li class="comment-item" id="comment-192732041" ui-events="{focusin: &#39;focusin = true&#39;, focusout: &#39;focusin = false&#39;}" ng-class="{focusin: focusin, &#39;comment-item-deleted&#39;: comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
+                    <!-- ngSwitchWhen: false -->
+                    <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
+                      <a ui-hovercard="" target="_blank" class="avatar-link" title="范坚强" href="https://www.zhihu.com/people/plantman" tabindex="-1">
+                        <img ng-src="https://pic1.zhimg.com/v2-cd84bc469d6d8a99d492ab9a863b49b8_l.jpg" class="avatar avatar-small" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/v2-cd84bc469d6d8a99d492ab9a863b49b8_l.jpg"></a>
+                      <div class="comment-body" ng-init="reply = {content: &#39;&#39;, hidden: true}">
+                        <!-- ngIf: comment.inReplyToCommentId -->
+                        <a href="javascript:;" class="btn-conversation ng-scope" ng-click="viewConversation(comment)" ng-if="comment.inReplyToCommentId">
+                          <i class="icon-ic_conversations"></i>查看对话</a>
+                        <!-- end ngIf: comment.inReplyToCommentId -->
+                        <div class="comment-hd comment-hd-conversation" ng-class="{&#39;comment-hd-conversation&#39;: comment.inReplyToCommentId}">
+                          <a href="https://www.zhihu.com/people/plantman" target="_blank" class="ng-binding">范坚强</a>
+                          <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                          <!-- ngIf: isPostOwner(comment.author) -->
+                          <span class="in-reply-to" ng-show="comment.inReplyToUser">回复
+                            <a href="https://www.zhihu.com/people/Renkai" class="ng-binding">笋干太咸</a>
+                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
+                            <!-- ngIf: isPostOwner(comment.inReplyToUser) --></span>
+                          <!-- ngIf: comment.reviewing --></div>
+                        <div class="comment-content ng-binding" ng-bind-html="comment.content">肯定是游戏的编者不认识伝字，然后就打成了坛，于是就这么下去了……</div>
+                        <div class="comment-ft clearfix">
+                          <!-- ngIf: timeStyle !=' shor' -->
+                          <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 28 日星期一下午 4 点 11 分" ng-if="timeStyle != &#39;shor&#39;" ui-time="" datetime="2016-11-28T16:11:12+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">1 个月前</time>
+                          <!-- end ngIf: timeStyle !=' shor' -->
+                          <span class="like-num liked" title="21 人觉得这个很赞">
+                            <span class="ng-binding">21</span>
+                            <span>赞</span></span>
+                          <!-- ngIf: state===' reviewing' && comment.reviewing -->
+                          <!-- ngIf: canRemove(comment) && state===' normal' -->
+                          <!-- ngIf: canReply(comment) && state===' normal' -->
+                          <a ng-if="canReply(comment) &amp;&amp; state === &#39;normal&#39;" ng-click="toggleReplyForm(reply)" href="javascript:;" class="reply op-link ng-scope">
+                            <i class="icon-ic_column_reply"></i>回复</a>
+                          <!-- end ngIf: canReply(comment) && state===' normal' -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="like(comment)" href="javascript:;" class="like op-link">
+                            <i class="icon-ic_comment_like"></i>赞</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: ownPost() && state===' normal' && !comment.reviewing -->
+                          <!-- ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing -->
+                          <a ng-if="!ownComment(comment) &amp;&amp; state === &#39;normal&#39; &amp;&amp; !comment.reviewing" ng-click="report(comment)" href="javascript:;" class="report op-link ng-scope">
+                            <i class="icon-ic_column_report"></i>举报</a>
+                          <!-- end ngIf: !ownComment(comment) && state===' normal' && !comment.reviewing --></div>
+                        <!-- ngIf: canReply(comment) -->
+                        <form name="replyForm" class="comment-form comment-reply-form expanded hidden ng-scope ng-invalid ng-invalid-content-required ng-dirty" ng-if="canReply(comment)" ng-class="{hidden: reply.hidden}">
+                          <img class="avatar avatar-small" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/da8e974dc_l.jpg">
+                          <div class="editable ng-invalid ng-invalid-content-required ng-dirty" ui-focus-me="!reply.hidden" ui-ctrl-enter="replyComment(comment, reply, replyForm)" ui-scraper="" scraper-options="scraperOptions" ui-mention="" ui-clean-paste="" contenteditable="true" content-required="" ng-model="reply.content" holdertext="写下你的评论">
+                            <span class="holdertext" holdertext="1" contenteditable="false">写下你的评论</span></div>
+                          <!-- ngIf: me.authed() -->
+                          <div class="command clearfix ng-scope" ng-if="me.authed()">
+                            <button ng-disabled="reply.pending || !reply.content.replace(&#39;&lt;br&gt;&#39;, &#39;&#39;).trim()" ng-click="replyComment(comment, reply, replyForm)" class="save btn btn-blue" disabled="disabled">评论</button>
+                            <button ng-click="reply.hidden = true" class="cancel btn btn-grey-nborder">取消</button></div>
+                          <!-- end ngIf: me.authed() --></form>
+                        <!-- end ngIf: canReply(comment) --></div>
+                    </div>
+                    <!-- ngSwitchWhen: true --></li>
+                  <!-- end ngRepeat: comment in comments track by comment.id --></ul>
+                <div class="ui-spinner-container ng-scope" style="display: none;">
+                  <div class="ui-spinner use-css" ui-spinner=""></div>
+                </div>
+                <!-- ngIf: pages -->
+                <div class="pagination ng-scope" ng-if="pages" ng-show="total&gt;1">
+                  <!-- ngIf: current !=1 && total !=1 -->
+                  <!-- ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope current btn-circle" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">1</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">2</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">3</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">4</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope disabled btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="-1">...</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <button class="num btn btn-grey ng-binding ng-scope btn-circle-nborder" ng-repeat="p in pages track by $index" ng-class="{current: p==current, disabled: p == &#39;...&#39;,  &#39;btn-circle&#39;: p==current, &#39;btn-circle-nborder&#39;: p!=current}" ng-click="changeTo(p, $event)" tabindex="0">11</button>
+                  <!-- end ngRepeat: p in pages track by $index -->
+                  <!-- ngIf: current !=t otal && total !=1 -->
+                  <button tabindex="0" class="next btn btn-grey-nborder ng-scope" ng-if="current != total &amp;&amp; total != 1" ng-click="changeTo(current+1, $event)">下一页</button>
+                  <!-- end ngIf: current !=t otal && total !=1 --></div>
+                <!-- end ngIf: pages --></div>
+              <!-- end ngIf: loadStyle==' pagination' --></div>
+          </div>
+          <!-- end ngIf: isPublished && !isQQNews -->
+          <!-- ngIf: contributes.length && isPublished -->
+          <!-- ngInclude: '/views/post-includes.html' -->
+          <div ng-include="&#39;/views/post-includes.html&#39;" class="included included-mobile fx-item-fade ng-scope" ng-if="contributes.length &amp;&amp; isPublished">
+            <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
+              <span ng-transclude="">
+                <span class="ng-scope">文章被以下专栏收录</span></span>
+              <!-- ngIf: help --></div>
+            <ul class="included-items ng-scope" ng-click="handleContributeClick($event)">
+              <!-- ngRepeat: contribute in contributes -->
+              <li class="column-list-item fx-item-fade ng-isolate-scope" column="contribute.column" ng-repeat="contribute in contributes" contribute-info="contribute" index="$index">
+                <p class="avatar">
+                  <a href="https://zhuanlan.zhihu.com/yysaag">
+                    <img alt="" ng-src="https://pic2.zhimg.com/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg" class="avatar-mid" src="./一块带给无数人年少欢乐的CPU，文曲星和小霸王都用过它 - 游研社 - 知乎专栏_files/2e3ee1c6468df0b7d2e2ea45f349a5a1_l.jpeg"></a>
+                </p>
+                <p class="title">
+                  <a class="column-name ng-binding" href="https://zhuanlan.zhihu.com/yysaag">游研社</a>
+                  <span ng-show="contributeInfo.state == &#39;need_approved&#39;" class="bull ng-hide">·</span>
+                  <a ng-show="contributeInfo.state == &#39;need_approved&#39;" href="javascript:;" class="cancel-contribute ng-hide" ng-click="handleCancelContribute()">投稿中</a></p>
+                <p class="intro ng-binding"></p>
+                <a href="https://zhuanlan.zhihu.com/yysaag" class="btn btn-green-nborder enter">进入专栏</a></li>
+              <!-- end ngRepeat: contribute in contributes --></ul>
+          </div>
+          <!-- end ngIf: contributes.length && isPublished --></footer>
+        <div ng-show="zoomed" ng-animate="{show: &#39;in&#39;, hide: &#39;out&#39;}" class="lightbox-overlay ng-scope ng-hide"></div>
+      </article>
+    </div>
+    <!-- end ngIf: !notFound -->
+    <!-- ngIf: notFound -->
+    <!-- ngIf: isPublished && (!userColumn || isContributesAvailable()) -->
+    <div class="recommend-posts ng-scope" ng-if="isPublished &amp;&amp; (!userColumn || isContributesAvailable())">
+      <div class="receptacle" ng-switch="recommendPending">
+        <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
+          <span ng-transclude="">
+            <span class="ng-scope">推荐阅读</span></span>
+          <!-- ngIf: help --></div>
+        <!-- ngSwitchWhen: true -->
+        <!-- ngSwitchWhen: false -->
+        <ul ng-switch-when="false" class="recommend-post-list ng-scope">
+          <!-- ngRepeat: post in recommendPosts -->
+          <li class="item ng-isolate-scope item-with-narrow-img" ng-class="itemClass" ng-repeat="post in recommendPosts" post="post" type="narrow" show-source="true" show-recommend="post.showRecommend">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/24034143" class="entry-link">
+                <h1 class="entry-title ng-binding">那些《海岛大亨5》中提到的独裁者们</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/v2-8efee7655133d5a131c892394b2e26ff_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">文：萧秋水机构账号@游研社 欢迎关注。古巴革命领袖菲德尔·卡斯特罗逝世，那些早已远去的属于他和他的革命战友的波澜壮阔的事迹再次被人们提…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/you-yan-she-48" class="author name ng-binding">小研</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 29 日星期二下午 1 点 52 分" ui-time="" datetime="2016-11-29T13:52:37+08:00" class="published ng-binding ng-isolate-scope hover-title">1 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column -->
+                <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
+                  <span class="source-prefix">发表于</span>
+                  <!-- ngIf: post.column -->
+                  <a href="https://zhuanlan.zhihu.com/yysaag" ng-if="post.column" class="ng-binding ng-scope">游研社</a>
+                  <!-- end ngIf: post.column --></div>
+                <!-- end ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts -->
+          <li class="item ng-isolate-scope item-with-narrow-img" ng-class="itemClass" ng-repeat="post in recommendPosts" post="post" type="narrow" show-source="true" show-recommend="post.showRecommend">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/23982992" class="entry-link">
+                <h1 class="entry-title ng-binding">游戏中的卡斯特罗和他的古巴战争</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/v2-316e8215c621e1d422ac919ca03f4b69_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">机构账号@游研社 欢迎关注。今天，北京时间11月26日，古巴革命领袖菲德尔·卡斯特罗去世，享年90岁。世间又少了一名骨灰级革命家，仿佛在提醒…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/urza" class="author name ng-binding">毛毛王</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 27 日星期日下午 1 点 30 分" ui-time="" datetime="2016-11-27T13:30:53+08:00" class="published ng-binding ng-isolate-scope hover-title">1 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column -->
+                <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
+                  <span class="source-prefix">发表于</span>
+                  <!-- ngIf: post.column -->
+                  <a href="https://zhuanlan.zhihu.com/yysaag" ng-if="post.column" class="ng-binding ng-scope">游研社</a>
+                  <!-- end ngIf: post.column --></div>
+                <!-- end ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts -->
+          <li class="item ng-isolate-scope item-with-narrow-img item-recommend" ng-class="itemClass" ng-repeat="post in recommendPosts" post="post" type="narrow" show-source="true" show-recommend="post.showRecommend">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/22780925" class="entry-link">
+                <h1 class="entry-title ng-binding">聊聊汽车制动系统的（黑）科技</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/v2-1f95fc2cfaabcfe097ae9505c1e0d2ea_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">因为工作和制动系统相关，所以说一下汽车制动系统（刹车系统）的（黑）科技。算不上是黑科技，但是，第一非常实用，第二配置比较普遍，第三设…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/richard1989" class="author name ng-binding">Richard</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 10 月 6 日星期四中午 11 点 03 分" ui-time="" datetime="2016-10-06T11:03:43+08:00" class="published ng-binding ng-isolate-scope hover-title">3 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <span ng-if="showRecommend" class="bull ng-scope">·</span>
+                  <!-- end ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend -->
+                  <span class="recommend-post ng-scope" ng-if="showRecommend">编辑精选</span>
+                  <!-- end ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column -->
+                <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
+                  <span class="source-prefix">发表于</span>
+                  <!-- ngIf: post.column -->
+                  <a href="https://zhuanlan.zhihu.com/richard-auto" ng-if="post.column" class="ng-binding ng-scope">聊聊汽车那些事儿</a>
+                  <!-- end ngIf: post.column --></div>
+                <!-- end ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts -->
+          <li class="item ng-isolate-scope item-with-narrow-img item-recommend" ng-class="itemClass" ng-repeat="post in recommendPosts" post="post" type="narrow" show-source="true" show-recommend="post.showRecommend">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/24452041" class="entry-link">
+                <h1 class="entry-title ng-binding">你知道白宫是怎样预测人工智能的吗？</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/v2-6b4f2b600ce1956b1b36a9abc7da184b_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">跟2016年上半年已经烂大街的VR虚拟现实相比，下半年的重点话题AI人工智能，才算得上真正意义上的重大！因为不仅它将决定咱的未来生活，更决定…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/cheng-yi-zhi-44" class="author name ng-binding">三体引力波</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 12 月 19 日星期一晚上 6 点 11 分" ui-time="" datetime="2016-12-19T18:11:42+08:00" class="published ng-binding ng-isolate-scope hover-title">6 天前</time>
+                  <!-- ngIf: showRecommend -->
+                  <span ng-if="showRecommend" class="bull ng-scope">·</span>
+                  <!-- end ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend -->
+                  <span class="recommend-post ng-scope" ng-if="showRecommend">编辑精选</span>
+                  <!-- end ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column -->
+                <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
+                  <span class="source-prefix">发表于</span>
+                  <!-- ngIf: post.column -->
+                  <a href="https://zhuanlan.zhihu.com/3body" ng-if="post.column" class="ng-binding ng-scope">三体引力波</a>
+                  <!-- end ngIf: post.column --></div>
+                <!-- end ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts --></ul>
+      </div>
+    </div>
+    <!-- end ngIf: isPublished && (!userColumn || isContributesAvailable()) -->
+    <!-- ngIf: contributeRequests -->
+    <!-- ngIf: showReviewPanel --></main>
+
+  <!-- Add your site or application content here -->
+  <!-- ngView: -->
+
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>
