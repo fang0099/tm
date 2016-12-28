@@ -120,7 +120,7 @@ class TagRepository extends BaseRepository
     public function subscriber($id, $page){
         $tag = $this->get($id);
         if($tag == null || $tag->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id]);
         }
         else {
             $pageSize = 15;
