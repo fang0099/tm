@@ -79,7 +79,7 @@ class TagController extends Controller
     public function hasSubscribe(Request $request){
         $id = $request->input('id');
         $userId = $request->input('userid');
-        return $this->hasSubscribe($id, $userId);
+        return $this->tagRep->hasSubscribe($id, $userId);
     }
 
     public function menuTags(Request $request){
