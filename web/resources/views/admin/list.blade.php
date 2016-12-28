@@ -91,10 +91,10 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 
-                                                    <button id="sample_editable_1_new" class="btn sbold green add" > Add New
+                                                    <button id="sample_editable_1_new" class="btn sbold green add" > 添加
                                                         <i class="fa fa-plus"></i>
                                                     </button>
-                                                    <button id="sample_editable_1_new" class="btn sbold red batch-delete" > Delete all
+                                                    <button id="sample_editable_1_new" class="btn sbold red batch-delete" > 删除
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 
