@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html>
+<!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>链媒体 - 随心写作，自由表达</title>
+  <!--<base href="/">-->
+  <base href=".">
+  <meta name="fragment" content="!">
+  <meta name="description" content="知乎专栏">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="address=no">
+  <!--[if lt IE 9]>
+    <script src="https://z1.zhimg.com/components/es5-shim/es5-shim.js"></script>
+    <script src="https://z1.zhimg.com/components/html5shiv/dist/html5shiv.js"></script>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <script src="https://z1.zhimg.com/components/json3/lib/json3.min.js"></script>
+  <![endif]-->
+  <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/mine.css">
+</head>
+<body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope column-view">
+  <!--[if lt IE 8]>
+    <p class="browsehappy">你正在使用一个
+      <strong>过时</strong>的浏览器。请
+      <a class="link" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。</p></p>
+  <![endif]-->
+  <div id="header-holder">
+    <!-- ngInclude: navbarTemplateUrl -->
+    <div ng-include="navbarTemplateUrl" class="ng-scope">
+      <header id="header" class="navbar ng-scope ng-isolate-scope" ng-controller="NavbarCtrl" ui-scroll-back-fixed="" fixed="scrollBackFixedNavbar">
+        <div class="navbar-logo-container">
+          <a href="https://www.zhihu.com/" target="_blank" class="logo icon-ic_zhihu_logo" aria-label="知乎首页"></a>
+        </div>
+        <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
+          <!-- ngIf: title.img -->
+          <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
+            <!-- ngIf: title.subtitle -->
+            <!-- ngIf: title.main --></div>
+          <!-- ngIf: title.buttons -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: status --></div>
+        <!-- ngIf: !me.authed() && me.$resolved -->
+        <!-- ngIf: me.authed() -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/menu.html&#39;" ng-if="me.authed()" class="ng-scope">
+          <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
+            <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
+              <i class="icon-ic_nav_more"></i>
+            </a>
+            <menu class="menu navbar-menu ng-scope" id="navbar_menu">
+              <!-- ngRepeat: column in me.columns -->
+              <!-- ngIf: me.columns.length -->
+              <!-- ngIf: inWrite && draftId -->
+              <a class="menu-item" href="https://zhuanlan.zhihu.com/drafts" tabindex="0">草稿</a>
+              <a class="menu-item" href="https://www.zhihu.com/people/fangyonghao/posts" target="_blank" tabindex="0">我的文章</a>
+              <!-- ngIf: !inIndex -->
+              <!-- ngIf: inWrite && !hideDelete -->
+              <!-- ngIf: inWrite && !hideDelete --></menu>
+          </div>
+        </ng-include>
+        <!-- end ngIf: me.authed() -->
+        <!-- ngIf: !inWrite && me.$resolved -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/write.html&#39;" ng-if="!inWrite &amp;&amp; me.$resolved" class="ng-scope">
+          <div class="navbar-write-container ng-scope">
+            <a href="edit.html" >
+              <i class="icon-ic_nav_new"></i>写文章</a>
+          </div>
+        </ng-include>
+        <!-- end ngIf: !inWrite && me.$resolved -->
+        <div class="navbar-content"></div>
+      </header>
+    </div>
+  </div>
+  <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
+    <!-- ngIf: alert.type==' info' -->
+    <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
+    <!-- end ngIf: alert.type==' info' -->
+    <!-- ngIf: alert.type==' error' --></div>
+  <!-- Add your site or application content here -->
+  <!-- ngView: -->
+  <main class="main-container ng-scope" ng-view="">
+    <div class="main receptacle ng-scope">
+      <div class="column-about" ng-switch="columnType == &#39;user&#39;">
+        <div class="avatar-link">
+          <img class="avatar-big" ng-src="https://pic2.zhimg.com/517b3f5d9_xl.jpg" src="./images/517b3f5d9_xl.jpg"></div>
+        <div href="/girlslovebreakfast" class="title ng-binding">1</div>
+        <div class="description ng-binding" ng-bind-html="column.intro | linky">我们是夜猫子，曾信奉美好的一天从中午开始。我们的…</div>
+        <!-- ngSwitchWhen: false -->
+        <div class="functions ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
+          <!-- ngIf: !column.canManage -->
+          <button ui-follow-button="" ng-model="column.following" ng-click="toggleFollow()" class="btn btn-90_36 ng-scope ng-isolate-scope ng-pristine ng-valid btn-green" ng-if="!column.canManage">关注专栏</button>
+          <!-- end ngIf: !column.canManage -->
+          <!-- ngIf: column.canManage -->
+          <div ng-transclude="" class="more-funcs menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="">
+            <span class="menu-button ng-scope">
+              <i class="icon-ic_unfold"></i>
+            </span>
+            <menu class="menu navbar-menu ng-scope">
+              <a href="https://zhuanlan.zhihu.com/girlslovebreakfast/about" class="menu-item" tabindex="0">关于</a>
+              <!-- ngIf: column.acceptSubmission -->
+              <a ng-if="column.acceptSubmission" href="javascript:;" class="menu-item ng-scope" ng-click="handleContribute()" tabindex="0">投稿到该专栏</a>
+              <!-- end ngIf: column.acceptSubmission -->
+              <!-- ngIf: !ownColumn() && false --></menu>
+          </div>
+        </div>
+        <!-- ngSwitchWhen: false -->
+        <div class="followers ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
+          <!-- ngIf: column.followersCount -->
+          <a ui-open-blank="" ng-if="column.followersCount" href="https://zhuanlan.zhihu.com/girlslovebreakfast/followers" class="ng-binding ng-scope">9070 人关注</a>
+          <!-- end ngIf: column.followersCount -->
+          <!-- ngIf: !column.followersCount --></div>
+        <!-- ngIf: columnType !=' user' && column.activateState==' ban' -->
+        <!-- ngIf: !currentAuthor && column.postTopics.length -->
+        <div class="tags ng-scope" ng-if="!currentAuthor &amp;&amp; column.postTopics.length">
+          <span ng-click="filterTopic()" class="tag ng-binding current" ng-class="!currentTopic &amp;&amp; &#39;current&#39;">
+            <b>全部</b>43</span>
+          <!-- ngIf: isShowMoreTopics -->
+          <!-- ngIf: !isShowMoreTopics -->
+          <span ng-if="!isShowMoreTopics" class="ng-scope">
+            <!-- ngRepeat: topic in column.postTopics | limitTo: 3 -->
+            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
+              <b class="ng-binding">早餐</b>3</span>
+            <!-- end ngRepeat: topic in column.postTopics | limitTo: 3 -->
+            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
+              <b class="ng-binding">生活方式</b>1</span>
+            <!-- end ngRepeat: topic in column.postTopics | limitTo: 3 -->
+            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
+              <b class="ng-binding">菜谱</b>1</span>
+            <!-- end ngRepeat: topic in column.postTopics | limitTo: 3 -->
+            <!-- ngIf: column.postTopics.length> showTopicNum -->
+            <span ng-click="showMoreTopics()" ng-if="column.postTopics.length &gt; showTopicNum" class="more ng-scope">更多</span>
+            <!-- end ngIf: column.postTopics.length> showTopicNum --></span>
+          <!-- end ngIf: !isShowMoreTopics --></div>
+        <!-- end ngIf: !currentAuthor && column.postTopics.length --></div>
+      <!-- ngIf: currentAuthor -->
+      <div class="list-empty ng-hide" ng-show="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
+        <div class="posts-end">
+          <i class="icon-ic_column_end"></i>
+        </div>
+        <i class="icon-show icon-ic_column_no_article"></i>
+        <p class="ng-binding">服务器提了一个问题，请稍候再试。</p>
+        <!-- ngIf: column.canPost && !postsSource.error --></div>
+      <!-- ngIf: recommendPosts.length -->
+      <!-- ngIf: postsSource -->
+      <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
+        <!-- ngIf: !currentAuthor -->
+        <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
+          <span ng-transclude="">
+            <span class="ng-binding ng-scope">最新文章</span></span>
+          <!-- ngIf: help --></div>
+        <!-- end ngIf: !currentAuthor -->
+        <ul class="items" ng-show="posts.length">
+          <!-- ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/23620302?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">食谱 | 连奴豆蔬菜汤</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/v2-0e93cb1301a619736f38954e6b96fac9_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">我是一个爱吃冷食的姑娘，夏天冰箱里囤满了气泡水和果汁，整个夏天的早餐几乎都是各种沙拉和麦片。可到了北京的冬天，暖…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/sabrina-lee" class="author name ng-binding">Sabrina Lee</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">1 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/23620302" class="vote-num ng-binding" ng-show="post.likesCount">21
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/23620302#comments" class="comment ng-binding" ng-show="post.commentsCount">3
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-without-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/23548932?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">早起做早餐这件事儿</h1>
+                <!-- ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="!titleImageShow"></div>
+                <!-- end ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">原文 by @Sabrina Lee隔夜燕麦片，意大利火腿配无花果。7 月 28 日，早上 8 点 37 分藜麦菠菜西柚沙拉。8 月 16 日，早上 8 点 10 分几乎每天早上 8 点半，我就会在朋友圈里发布早餐的照片…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/sabrina-lee" class="author name ng-binding">Sabrina Lee</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 9 日星期三晚上 9 点 58 分" ui-time="" datetime="2016-11-09T21:58:10+08:00" class="published ng-binding ng-isolate-scope hover-title">2 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/23548932" class="vote-num ng-binding" ng-show="post.likesCount">85
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/23548932#comments" class="comment ng-binding" ng-show="post.commentsCount">17
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/20795666?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">问一声金色的早安</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/ac7fe3bc25ef34ba0c8a81534c37e9c5_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">骨折后的半年里，没有在任何社交平台发布早餐。新工作真的很辛苦，原本每日一图的早餐仪式都变得力不从心。某天上淘宝一…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 4 月 24 日星期日下午 1 点 57 分" ui-time="" datetime="2016-04-24T13:57:36+08:00" class="published ng-binding ng-isolate-scope hover-title">8 个月前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/20795666" class="vote-num ng-binding" ng-show="post.likesCount">22
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull ng-hide">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/20795666#comments" class="comment ng-binding ng-hide" ng-show="post.commentsCount">0
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/20375406?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">病隙碎笔</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/00242213c49a220c7ba717bff221d219_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">史铁生说他的职业是生病，业余写一点东西。我却是托赖突如起来的骨折，可以彻彻底底休息一番，昨天看到别人写的《健身这…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 11 月 28 日星期六晚上 6 点 09 分" ui-time="" datetime="2015-11-28T18:09:03+08:00" class="published ng-binding ng-isolate-scope hover-title">1 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/20375406" class="vote-num ng-binding" ng-show="post.likesCount">23
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/20375406#comments" class="comment ng-binding" ng-show="post.commentsCount">6
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/20019779?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">早餐学院派|到底怎么学摆盘？</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/fac8b189b65e02622b6386630ee00c22_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">每次发早餐的照片，总有朋友夸我摆盘好看、拍得好看，自己做起来就觉得好难。其实我刚开始做饭时，也只是模仿别人的做法…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/sabrina-lee" class="author name ng-binding">Sabrina Lee</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 5 月 3 日星期日晚上 10 点 04 分" ui-time="" datetime="2015-05-03T22:04:32+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/20019779" class="vote-num ng-binding" ng-show="post.likesCount">343
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/20019779#comments" class="comment ng-binding" ng-show="post.commentsCount">10
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19978117?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">复刻|美好早餐|ins上超火的沼サン（沼三明治）</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic1.zhimg.com/4d873cef0837720400b7f71864ac85c0_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">有时候早餐的美好真的很难做到快手，不得不承认，很多个早晨，我把时间用在摆盘与拍照上。就像姑娘们出门梳妆打扮，着装…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 3 月 16 日星期一下午 1 点 47 分" ui-time="" datetime="2015-03-16T13:47:56+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19978117" class="vote-num ng-binding" ng-show="post.likesCount">45
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19978117#comments" class="comment ng-binding" ng-show="post.commentsCount">4
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19975961?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">Ann：深夜厨房——22:29布朗尼杯</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/d92831bdb8e33ebc4fd01f3e6da0158f_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">深夜厨房无疑源自某种冲动。当周小仰把一款制作布朗尼杯的帖子转发出来时，已经是夜里十点多了。视频走优雅风，文字描述…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/zyfotos" class="author name ng-binding">周仰</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 3 月 13 日星期五晚上 9 点 57 分" ui-time="" datetime="2015-03-13T21:57:37+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19975961" class="vote-num ng-binding" ng-show="post.likesCount">14
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19975961#comments" class="comment ng-binding" ng-show="post.commentsCount">1
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19974378?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">神奇太阳煎蛋</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/c79b1a3e2123b60bfba5d8c3988dd50f_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">之前有网友说“姑娘们的早餐”内容不接地气，食材不家常 ，根本不省时间 ，还贴上了“小资文艺青年的通病”的标签。所以…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 3 月 12 日星期四上午 9 点 11 分" ui-time="" datetime="2015-03-12T09:11:23+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19974378" class="vote-num ng-binding" ng-show="post.likesCount">47
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19974378#comments" class="comment ng-binding" ng-show="post.commentsCount">4
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19958962?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">带上兰巴斯，加冕精灵女王</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic1.zhimg.com/92dfbeaf0d9845c9469ba435fa57d5d0_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">一月初，热情的Ann邀请我和周仰过年一同自驾出行泰顺。“泰顺”其名已为新年讨了好彩头。Ann和她的先生皆是资深户外爱好…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 2 月 18 日星期三早上 8 点 22 分" ui-time="" datetime="2015-02-18T08:22:47+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19958962" class="vote-num ng-binding" ng-show="post.likesCount">19
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19958962#comments" class="comment ng-binding" ng-show="post.commentsCount">8
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19956405?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">元气-朝时间</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/4fdfd11ba683f986ebc4d3a234507fe3_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">如果认为早餐的重点在于做了什么，吃了什么，那就大错特错了。对于意志力不坚强的人来讲，比如说我，做早餐最大的意义，…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/er-de-fu" class="author name ng-binding">尔得傅</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 2 月 13 日星期五下午 3 点 17 分" ui-time="" datetime="2015-02-13T15:17:27+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19956405" class="vote-num ng-binding" ng-show="post.likesCount">7
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19956405#comments" class="comment ng-binding" ng-show="post.commentsCount">2
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19949759?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">壕果酱</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/b9c3c9bb4b3ab5389d7bc7bfa456d24d_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">得到了一箱5斤装的车厘子，车厘子多吃会上火，一个人难以招架，决定尝试做果酱。如果家中有面包机，可以省事儿许多，直…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 2 月 4 日星期三下午 2 点 55 分" ui-time="" datetime="2015-02-04T14:55:46+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19949759" class="vote-num ng-binding" ng-show="post.likesCount">30
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19949759#comments" class="comment ng-binding" ng-show="post.commentsCount">8
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19939725?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">“慢手出快活”</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/ed73b2d95e8838a5827e7a43f14961fa_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">我是一个风风火火的姑娘，凡事不拘小节，唯独下厨这件事我总是“慢工出细活”。边做菜边抹灶台、洗砧板是我从母亲身上承…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/shen-tu-yu-xia-39" class="author name ng-binding">申屠余夏</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2015 年 1 月 21 日星期三晚上 6 点 20 分" ui-time="" datetime="2015-01-21T18:20:15+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19939725" class="vote-num ng-binding" ng-show="post.likesCount">33
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19939725#comments" class="comment ng-binding" ng-show="post.commentsCount">8
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19905719?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">申屠余夏：早餐，像爱自己一样温柔</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/87d5d9239800bf8d8969c3e8fa305d3a_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">也许对我而言加入早餐群真有些诚惶诚恐，六月看到Joanna陆续上传的早餐图，很是羡慕这种生活模式。也许人总喜欢给自己一…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/zyfotos" class="author name ng-binding">周仰</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 12 月 1 日星期一上午 10 点 41 分" ui-time="" datetime="2014-12-01T10:41:45+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19905719" class="vote-num ng-binding" ng-show="post.likesCount">23
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19905719#comments" class="comment ng-binding" ng-show="post.commentsCount">4
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19904249?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">JUN: 冬日快手早餐</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/5d1b014096141cb313fffb1f2e687929_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">其实，我开始近乎有规律地做早餐、吃早餐，不过是大约4个月前的事情。原因也绝非自己突然对烹饪有了兴趣，而是为了努力…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/lijunlijun" class="author name ng-binding">Li Jun</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 11 月 29 日星期六早上 12 点 43 分" ui-time="" datetime="2014-11-29T00:43:15+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19904249" class="vote-num ng-binding" ng-show="post.likesCount">674
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19904249#comments" class="comment ng-binding" ng-show="post.commentsCount">41
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19876854?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">红烧肉拌面</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/d02cdd7df98c8f6ad0bc9b6f5757ba81_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">人家吃葱油拌面，我吃红烧肉拌面。红烧肉和面条的搭配，的确是另类重口味的搭配哈。天气冷了，不吃点肉，都木有从温暖的…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 10 月 25 日星期六早上 8 点 30 分" ui-time="" datetime="2014-10-25T08:30:40+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19876854" class="vote-num ng-binding" ng-show="post.likesCount">9
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19876854#comments" class="comment ng-binding" ng-show="post.commentsCount">8
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19873913?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">旅途中的早餐</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/4367d7e35995a276f3921b5a9324d372_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">10月是旅行的季节。闺蜜、姐姐先后到访，我迎来送往、忙碌而开心的时光正式开启了。能和亲近的人共进早餐，也是同样令人…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 10 月 21 日星期二早上 5 点 54 分" ui-time="" datetime="2014-10-21T05:54:00+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19873913" class="vote-num ng-binding" ng-show="post.likesCount">39
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull ng-hide">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19873913#comments" class="comment ng-binding ng-hide" ng-show="post.commentsCount">0
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19861818?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">申屠余夏：点点积累</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/e0aaf4f66445a5542d078cd2e95dd117_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">新学期开始，悠然的摆盘换作三下五除二的快手早餐。开学以来，生活有了些转变。早餐换作了双人份，技艺也有所提升。阔别…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 10 月 4 日星期六早上 5 点 43 分" ui-time="" datetime="2014-10-04T05:43:15+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19861818" class="vote-num ng-binding" ng-show="post.likesCount">13
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19861818#comments" class="comment ng-binding" ng-show="post.commentsCount">3
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19855373?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">早餐 · 红焖羊肉热汤面</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/6ef20906ff143a8ed896de1d99a691e1_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">昨天在超市买到了物超所值的羊脊骨，顿时一锅热气腾腾的羊蝎子火锅浮现眼前。晚上先烧了红焖羊肉给BIG TREE解馋，早起连…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 9 月 24 日星期三早上 3 点 28 分" ui-time="" datetime="2014-09-24T03:28:19+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19855373" class="vote-num ng-binding" ng-show="post.likesCount">11
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19855373#comments" class="comment ng-binding" ng-show="post.commentsCount">5
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19853563?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">早餐之 · 不用和面的煎饼果子</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic1.zhimg.com/06414b9fbdfb4ff11ed9ac4fabcbb55c_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">想吃煎饼果子很久了。之前做过一次，当我举着竹蜻蜓，面对锅中那一坨面疙瘩时顿感无力。结果：浪费了两只鸡蛋、一碗面糊…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 9 月 21 日星期日早上 7 点 27 分" ui-time="" datetime="2014-09-21T07:27:08+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19853563" class="vote-num ng-binding" ng-show="post.likesCount">33
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19853563#comments" class="comment ng-binding" ng-show="post.commentsCount">3
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index -->
+          <li class="item ng-isolate-scope item-with-title-img" ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+            <article class="hentry">
+              <a href="https://zhuanlan.zhihu.com/p/19850784?refer=girlslovebreakfast" class="entry-link">
+                <h1 class="entry-title ng-binding">早餐 · 粉面誌</h1>
+                <!-- ngIf: titleImageShow -->
+                <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                  <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + post.titleImage + &#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/d7529df25aa7d938937d4fc7a0684383_b.jpg&quot;);"></div>
+                </div>
+                <!-- end ngIf: titleImageShow -->
+                <!-- ngIf: !titleImageShow -->
+                <section class="entry-summary">
+                  <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope">&nbsp; &nbsp; &nbsp; &nbsp; 翻了翻最近的早餐，大致可分为：汤粉面、减脂类、重口味三种。汤粉面做得比较勤，也越来越喜欢吃。这可能与…
+                    <span class="read-all">查看全文
+                      <i class="icon-ic_unfold"></i></span>
+                  </p>
+                </section>
+              </a>
+              <footer>
+                <div class="entry-meta">
+                  <a target="_blank" href="https://www.zhihu.com/people/wongrong-qiu" class="author name ng-binding">Wong绒球</a>
+                  <span class="bull" ng-click="test()">·</span>
+                  <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2014 年 9 月 17 日星期三早上 4 点 29 分" ui-time="" datetime="2014-09-17T04:29:37+08:00" class="published ng-binding ng-isolate-scope hover-title">2 年前</time>
+                  <!-- ngIf: showRecommend -->
+                  <!-- ngIf: showRecommend --></div>
+                <!-- ngIf: !showSource -->
+                <div class="entry-func ng-scope" ng-if="!showSource">
+                  <a href="https://zhuanlan.zhihu.com/p/19850784" class="vote-num ng-binding" ng-show="post.likesCount">102
+                    <span>赞</span></a>
+                  <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                  <a href="https://zhuanlan.zhihu.com/p/19850784#comments" class="comment ng-binding" ng-show="post.commentsCount">6
+                    <span>条评论</span></a>
+                </div>
+                <!-- end ngIf: !showSource -->
+                <!-- ngIf: showSource && post.column --></footer>
+            </article>
+          </li>
+          <!-- end ngRepeat: post in posts track by $index --></ul>
+        <div class="posts-end" ng-show="posts.length &amp;&amp; postsSource.completed">
+          <i class="icon-ic_column_end"></i>
+        </div>
+      </div>
+      <!-- end ngIf: postsSource --></div>
+    <!-- ngIf: !column.canPost && column.activateAuthorRequested !=' none' -->
+    <div class="modal-dialog-bg" style="display: none; opacity: 0.5;"></div>
+    <div class="modal-dialog transfer-dialog ng-scope " ui-dialog="" open="ownColumn() &amp;&amp; column.activateState == &#39;frozen&#39;" aria-labelledby=":0" role="dialog" style="display: none;">
+      <div class="modal-dialog-title modal-dialog-title-draggable" id=":0">
+        <span class="modal-dialog-title-text"></span>
+        <span class="modal-dialog-title-close"></span>
+      </div>
+      <!-- ngInclude: -->
+      <div class="modal-dialog-content ng-scope" ng-include="" src="&#39;/views/column-transfer.html&#39;">
+        <div ng-controller="ColumnTransferCtrl" ng-class="{&#39;show-next&#39;: showCancelColumn || showCompleteForm}" class="transfer-dialog-inner ng-scope">
+          <div class="intro">
+            <div class="text">
+              <h6>欢迎来到新版专栏</h6></div>
+          </div>
+          <div class="column-form complete-form fx-item-enter ng-pristine ng-valid" ng-form="requestForm">
+            <p class="description">请确认或补全
+              <b class="ng-binding">姑娘们的美好早餐</b>的专栏信息，开始使用新版专栏</p>
+            <div class="setting-sec item-form-label-top column-topic">
+              <div class="form-title block-title-wider block-title-no-underline block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" data-help="专栏话题即你计划的写作方向，申请通过后，专栏话题将不可修改。不同的写作方向可以分别申请多个专栏。">
+                <span ng-transclude="">
+                  <span class="ng-scope">专栏话题</span></span>
+                <!-- ngIf: help -->
+                <div ng-transclude="" class="help ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ng-if="help" ui-menu-button="">
+                  <span class="menu-button ng-scope">
+                    <i class="icon-ic_help"></i>
+                  </span>
+                  <menu class="menu ng-scope">
+                    <div class="item ng-binding">专栏话题即你计划的写作方向，申请通过后，专栏话题将不可修改。不同的写作方向可以分别申请多个专栏。</div></menu>
+                </div>
+                <!-- end ngIf: help --></div>
+              <div class="tag-suggestion-container ng-isolate-scope ng-pristine ng-valid ng-valid-min-tags ng-valid-max-tags" ui-tag-input="" holdertext="搜索话题" max-tags="3" suggest-options="suggestOptions" ng-model="column.topics">
+                <ul class="tags">
+                  <!-- ngRepeat: tag in tags -->
+                  <li ng-repeat="tag in tags" class="ng-scope">
+                    <span class="inner-wrapper">
+                      <a class="tag-link ng-binding" href="javascript:;" target="_blank" ng-bind-html="tag.name">美食</a>
+                      <a class="remove-tag" href="javascript:;" ng-click="removeTag(tag)" title="移除">
+                        <i class="icon-ic_close"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <!-- end ngRepeat: tag in tags -->
+                  <li ng-repeat="tag in tags" class="ng-scope">
+                    <span class="inner-wrapper">
+                      <a class="tag-link ng-binding" href="javascript:;" target="_blank" ng-bind-html="tag.name">生活</a>
+                      <a class="remove-tag" href="javascript:;" ng-click="removeTag(tag)" title="移除">
+                        <i class="icon-ic_close"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <!-- end ngRepeat: tag in tags -->
+                  <li ng-repeat="tag in tags" class="ng-scope">
+                    <span class="inner-wrapper">
+                      <a class="tag-link ng-binding" href="javascript:;" target="_blank" ng-bind-html="tag.name">早餐</a>
+                      <a class="remove-tag" href="javascript:;" ng-click="removeTag(tag)" title="移除">
+                        <i class="icon-ic_close"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <!-- end ngRepeat: tag in tags --></ul>
+                <div class="input-container disabled" ng-class="{&#39;mui-container-search&#39;: tags.length &lt; options.maxTags, &#39;disabled&#39;: tags.length &gt;= options.maxTags}">
+                  <input ui-suggest="" suggest-options="suggestOptions" class="mui-input ng-isolate-scope" ng-disabled="tags.length &gt;= options.maxTags" placeholder="搜索话题" aria-haspopup="true" autocomplete="off" disabled="disabled"></div>
+              </div>
+              <div class="tips-always ng-hide" ng-show="showTopicTips">
+                <div class="left">修改通过后 30 天内无法更改</div></div>
+            </div>
+            <div class="submit-buttons">
+              <a class="rule" href="https://zhuanlan.zhihu.com/p/20635074" target="_blank">
+                <i class="icon-ic_help"></i>了解新版专栏</a>
+              <button class="btn btn-blue" ng-disabled="requestForm.$invalid || submiting" ng-click="requestForm.$valid &amp;&amp; !submiting &amp;&amp; submit()">开启新专栏</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dialog-buttons"></div>
+      <div class="modal-dialog-content"></div>
+    </div>
+    <span tabindex="0" style="display: none; position: absolute;"></span>
+    <div class="modal-dialog-bg" style="display: none; opacity: 0.5;"></div>
+    <div class="modal-dialog welcome-dialog ng-scope " ui-dialog="" open="ownColumn() &amp;&amp; column.firstTime" aria-labelledby=":1" role="dialog" style="display: none;">
+      <div class="modal-dialog-title modal-dialog-title-draggable" id=":1">
+        <span class="modal-dialog-title-text"></span>
+        <span class="modal-dialog-title-close"></span>
+      </div>
+      <div class="modal-dialog-content">
+        <h6>欢迎，你的专栏已创建</h6>
+        <div class="description">接下来，你可以前往「管理专栏」页面设置你的专栏品牌，或者邀请志同道合的朋友一起来写作。当然，你也可以现在就开始写文章。：）</div>
+        <a href="https://zhuanlan.zhihu.com/girlslovebreakfast/settings" class="btn btn-blue go-setting" ng-click="arrived()">前往专栏设置 »</a>
+        <button class="btn btn-grey-link skip" ng-click="arrived()">跳过</button></div>
+      <div class="modal-dialog-buttons"></div>
+    </div>
+    <span tabindex="0" style="display: none; position: absolute;"></span>
+  </main>
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>

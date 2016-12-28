@@ -38,9 +38,11 @@ class TagController extends Controller
 
     public function tag_subscribe(Request $request)
     {
+        $id = $request->get("id");
         if(session("username")!=null)
         {
-
+            $r = $this->tagInvoker->subscribe(['id'=>$id, 'userid'=> session('id')]);
+            print_r($r);
         }
         else
         {
@@ -49,6 +51,20 @@ class TagController extends Controller
     }
 
     public function tag_unsubscribe(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->tagInvoker->unsubscribe(['id'=>$id, 'userid'=> session('id')]);
+            print_r($r);
+        }
+        else
+        {
+
+        }
+    }
+
+    public function tag_article_list(Request $request)
     {
 
     }

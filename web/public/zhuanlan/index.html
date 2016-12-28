@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>链媒体 - 随心写作，自由表达</title>
+  <!--<base href="/">-->
+  <base href=".">
+  <meta name="fragment" content="!">
+  <meta name="description" content="知乎专栏">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="address=no">
+  <!--[if lt IE 9]>
+    <script src="https://z1.zhimg.com/components/es5-shim/es5-shim.js"></script>
+    <script src="https://z1.zhimg.com/components/html5shiv/dist/html5shiv.js"></script>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <script src="https://z1.zhimg.com/components/json3/lib/json3.min.js"></script>
+  <![endif]-->
+  <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/mine.css">
+</head>
+<body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope home">
+  <!--[if lt IE 8]>
+    <p class="browsehappy">你正在使用一个
+      <strong>过时</strong>的浏览器。请
+      <a class="link" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。</p></p>
+  <![endif]-->
+  <div id="header-holder">
+    <!-- ngInclude: navbarTemplateUrl -->
+    <div ng-include="navbarTemplateUrl" class="ng-scope">
+      <header id="header" class="navbar ng-scope ng-isolate-scope" ng-controller="NavbarCtrl" ui-scroll-back-fixed="" fixed="scrollBackFixedNavbar">
+        <div class="navbar-logo-container">
+          <a href="https://www.zhihu.com/" target="_blank" class="logo icon-ic_zhihu_logo" aria-label="知乎首页"></a>
+        </div>
+        <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
+          <!-- ngIf: title.img -->
+          <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
+            <!-- ngIf: title.subtitle -->
+            <!-- ngIf: title.main --></div>
+          <!-- ngIf: title.buttons -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: extraStatus -->
+          <!-- ngIf: status --></div>
+        <!-- ngIf: !me.authed() && me.$resolved -->
+        <!-- ngIf: me.authed() -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/menu.html&#39;" ng-if="me.authed()" class="ng-scope">
+          <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
+            <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
+              <i class="icon-ic_nav_more"></i>
+            </a>
+            <menu class="menu navbar-menu ng-scope" id="navbar_menu">
+              <!-- ngRepeat: column in me.columns -->
+              <!-- ngIf: me.columns.length -->
+              <!-- ngIf: inWrite && draftId -->
+              <a class="menu-item" href="https://zhuanlan.zhihu.com/drafts" tabindex="0">草稿</a>
+              <a class="menu-item" href="https://www.zhihu.com/people/fangyonghao/posts" target="_blank" tabindex="0">我的文章</a>
+              <!-- ngIf: !inIndex -->
+              <!-- ngIf: inWrite && !hideDelete -->
+              <!-- ngIf: inWrite && !hideDelete --></menu>
+          </div>
+        </ng-include>
+        <!-- end ngIf: me.authed() -->
+        <!-- ngIf: !inWrite && me.$resolved -->
+        <!-- ngInclude: undefined -->
+        <ng-include src="&#39;/views/navbar/write.html&#39;" ng-if="!inWrite &amp;&amp; me.$resolved" class="ng-scope">
+          <div class="navbar-write-container ng-scope">
+            <a href="edit.html" >
+              <i class="icon-ic_nav_new"></i>写文章</a>
+          </div>
+        </ng-include>
+        <!-- end ngIf: !inWrite && me.$resolved -->
+        <div class="navbar-content"></div>
+      </header>
+    </div>
+  </div>
+  <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
+    <!-- ngIf: alert.type==' info' -->
+    <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
+    <!-- end ngIf: alert.type==' info' -->
+    <!-- ngIf: alert.type==' error' --></div>
+  <!-- Add your site or application content here -->
+  <!-- ngView: -->
+  <main class="main-container ng-scope" ng-view="">
+    <div ng-show="recommendColumnsInited &amp;&amp; recommendPostsInited" class="ng-scope">
+      <div class="top">
+        <h1>知乎
+          <span class="bull">·</span>专栏</h1>
+        <h2>随心写作，自由表达</h2>
+        <a ng-click="handleLoginBeforeJump($event)" href="https://zhuanlan.zhihu.com/write" class="btn btn-black write-btn">开始写文章</a></div>
+      <section class="l-receptacle">
+        <h3>
+          <span>专栏 · 发现</span></h3>
+        <ul class="column-card-list clearfix">
+          <!-- ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/investmentideas" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic4.zhimg.com/66aab91d7_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/66aab91d7_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/investmentideas" class="ng-binding">Investment Ideas</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/investmentideas" class="ng-binding">一些跟资本市场有关的想法和故事。</a></p>
+            <p class="meta ng-binding">8398 人关注
+              <span class="split">|</span>9 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/investmentideas">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/mutongyumu" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic2.zhimg.com/d92d9a7ed_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/d92d9a7ed_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/mutongyumu" class="ng-binding">木童语木</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/mutongyumu" class="ng-binding">|一个深刻的家具设计师| 微信订阅号：muto…</a></p>
+            <p class="meta ng-binding">11305 人关注
+              <span class="split">|</span>19 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/mutongyumu">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/financialhistory" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic3.zhimg.com/e0feca25f196baa4352bbc2c725c6a52_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/e0feca25f196baa4352bbc2c725c6a52_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/financialhistory" class="ng-binding">金与火之歌</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/financialhistory" class="ng-binding">金融与历史交织的奏鸣曲</a></p>
+            <p class="meta ng-binding">8338 人关注
+              <span class="split">|</span>29 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/financialhistory">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/yangfan" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic3.zhimg.com/f9272e4c364231c25ab90132ee9c7aae_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/f9272e4c364231c25ab90132ee9c7aae_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/yangfan" class="ng-binding">篮球杂谈</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/yangfan" class="ng-binding">从杨凡的视角介绍NBA，偶有杂文。</a></p>
+            <p class="meta ng-binding">375 人关注
+              <span class="split">|</span>10 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/yangfan">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/zijingnotes" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic4.zhimg.com/4b70deef7_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/4b70deef7_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/zijingnotes" class="ng-binding">紫荆投资笔记</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/zijingnotes" class="ng-binding"></a>
+            </p>
+            <p class="meta ng-binding">1486 人关注
+              <span class="split">|</span>8 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/zijingnotes">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/thenova" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic1.zhimg.com/77f0e0d68_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/77f0e0d68_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/thenova" class="ng-binding">写给万分之一的创新者</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/thenova" class="ng-binding">写给万分之一的创新者</a></p>
+            <p class="meta ng-binding">1453 人关注
+              <span class="split">|</span>33 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/thenova">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/lswlsw" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic3.zhimg.com/7b0114ec2_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/7b0114ec2_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/lswlsw" class="ng-binding">潜台词</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/lswlsw" class="ng-binding">心理学工作者的闲言碎语，探讨人际间的各种…</a></p>
+            <p class="meta ng-binding">181796 人关注
+              <span class="split">|</span>86 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/lswlsw">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug -->
+          <li class="column-card-item ng-scope" ng-repeat="column in recommendColumns track by column.slug">
+            <p class="avatar">
+              <a href="https://zhuanlan.zhihu.com/SVlaw" ui-open-blank="" ng-click="handleRecommendColumnClick()">
+                <img alt="" ng-src="https://pic1.zhimg.com/437d6097c_l.jpg" src="./知乎专栏 - 随心写作，自由表达_files/437d6097c_l.jpg"></a>
+            </p>
+            <p class="title">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/SVlaw" class="ng-binding">硅谷八卦及创业法律</a></p>
+            <p class="description">
+              <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="https://zhuanlan.zhihu.com/SVlaw" class="ng-binding">真正的STARTUP就是，产品不明、用户不明、…</a></p>
+            <p class="meta ng-binding">5448 人关注
+              <span class="split">|</span>34 篇文章</p>
+            <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="https://zhuanlan.zhihu.com/SVlaw">进入专栏</a></li>
+          <!-- end ngRepeat: column in recommendColumns track by column.slug --></ul>
+        <p class="random">
+          <a class="btn btn-black btn-90_32" href="javascript:;" ng-click="nextRecommendColumn($event)">
+            <i class="icon-ic_refresh"></i>换一换</a>
+        </p>
+      </section>
+      <section class="l-receptacle">
+        <h3>
+          <span>文章 · 发现</span></h3>
+        <ul class="post-card-list clearfix">
+          <!-- ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/21698659">
+              <!-- ngIf: post.titleImage -->
+              <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;https://pic4.zhimg.com/4f2110ee6ced96165f3f6d881cd73c87_b.jpg&quot;);"></p>
+              <!-- end ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="title ng-binding">亚马逊：公司的终极目的是逆袭</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">富人靠科技，屌丝靠变异。电商出身的亚马逊，早年被同行戏称为“那个卖书的”。贝索…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/avacado" class="ng-binding">Peabody</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/hemingke" class="ng-binding">数据冰山</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/24361696">
+              <!-- ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="post-no-img ng-scope" ng-if="!post.titleImage"></p>
+              <!-- end ngIf: !post.titleImage -->
+              <p class="title ng-binding">剖析“海湾梅西”奥马尔，他到底有多强？</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding">奥马尔作为一名西亚球员，他为国内球迷熟知应该是在2015亚洲杯，还有今年的亚冠赛事也随队打入了决赛。除此之外，由于效力于阿联酋本土联赛，在国内的关注度肯定不如欧洲主流联赛，…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/sou-da-zu-qiu-62" class="ng-binding">搜达足球</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/c_63994983" class="ng-binding">搜达足球</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/24318650">
+              <!-- ngIf: post.titleImage -->
+              <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/v2-cf845a13b8ab6b7d2d67da18a30fe386_b.png&quot;);"></p>
+              <!-- end ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="title ng-binding">网络社交带来的改变（社交系列文章之二）</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">社交网络出现这么多年，尤其是移动化之后，早就成为了人们社交的重要部分。 我们沉…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/yang-zheng-91" class="ng-binding">杨铮</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/jimyoung" class="ng-binding">人心理的那些事儿</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/24174934">
+              <!-- ngIf: post.titleImage -->
+              <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;https://pic1.zhimg.com/v2-22f915c926a6d42623a94f4fab052768_b.png&quot;);"></p>
+              <!-- end ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="title ng-binding">一块披萨引发的奇迹：最伟大的女性向游戏《吃豆人》有着怎…</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">文：长鼻君的怀古橱机构账号@游研社 欢迎关注。 上次说的是南梦宫编号01的FC游戏《…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/you-yan-she-48" class="ng-binding">小研</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/yysaag" class="ng-binding">游研社</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/23925947">
+              <!-- ngIf: post.titleImage -->
+              <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;https://pic2.zhimg.com/v2-f43a656034b41db0aed272d027a9e479_b.png&quot;);"></p>
+              <!-- end ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="title ng-binding">婚前协议和熟人社会--社交网络的经济含义</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">“有钱没？急用！下个月还给你！” 为什么我们会借给熟人钱？尤其是在不发达地区的…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/divinites" class="ng-binding">司马懿</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/econ-and-history" class="ng-binding">经史通义</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug -->
+          <li class="post-card-item ng-scope" ng-repeat="post in recommendPosts track by post.slug">
+            <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/20933968">
+              <!-- ngIf: post.titleImage -->
+              <p class="post-img ng-scope" ng-if="post.titleImage" ng-style="{&#39;background-image&#39;: &#39;url(&#39;+ (post.titleImage | imgSize: &#39;b&#39;) +&#39;)&#39;}" style="background-image: url(&quot;https://pic3.zhimg.com/8eeecbc87e8af24797c551d11a2784fa_b.jpg&quot;);"></p>
+              <!-- end ngIf: post.titleImage -->
+              <!-- ngIf: !post.titleImage -->
+              <p class="title ng-binding">I′m not to blame : ） 烧机油别怪我</p>
+              <p ng-show="!post.titleImage &amp;&amp; winType != &#39;small&#39;" class="content ng-binding ng-hide">谨将本文献给培养我成为入门级汽车内燃机零部件工程师的老东家和TUBS IfF K教授, 是…
+                <span class="read-all">查看全文
+                  <i class="icon-ic_unfold"></i></span>
+              </p>
+            </a>
+            <p class="meta">
+              <span class="author ellipsis">
+                <a target="_blank" href="http://www.zhihu.com/people/zhang-lecker" class="ng-binding">Haochi</a></span>
+              <!-- ngIf: post.column -->
+              <span ng-if="post.column" class="source ellipsis ng-scope">发表于
+                <a ui-open-blank="" href="https://zhuanlan.zhihu.com/EQUAL" class="ng-binding">E·Q·U·A·L</a></span>
+              <!-- end ngIf: post.column --></p>
+          </li>
+          <!-- end ngRepeat: post in recommendPosts track by post.slug --></ul>
+        <p class="random">
+          <a class="btn btn-black btn-90_32" href="javascript:;" ng-click="nextRecommendPost($event)">
+            <i class="icon-ic_refresh"></i>换一换</a>
+        </p>
+      </section>
+      <div class="bottom">
+        <h3>在知乎创作</h3>
+        <a ng-click="handleLoginBeforeJump($event, true)" class="btn btn-black" href="https://zhuanlan.zhihu.com/request">申请专栏</a>
+        <p class="copyright">
+          <a ui-open-blank="" href="https://zhuanlan.zhihu.com/p/20635074" class="about">关于专栏</a>
+          <span>?2016 链媒体</span></p>
+      </div>
+    </div>
+  </main>
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>
