@@ -169,12 +169,17 @@ class ArticleController extends Controller
             $article_id = $request->get('id');
             $article = $this->articleInvoker->get(['id'=>$article_id]);
             $author_id = $article["data"]["author"]["id"];
+
+            $tags = $this->tagInvoker->list();
+
+            //print_r($tags);
+            //return;
             //print_r($article);
             if ($author_id == $userid)
             {
-                return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'article'=>$article]);
+                return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
             }
-            return view("front/edit", ['page_class' => $page_class, 'username'=>$username]);
+            return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"]]);
         }
         //未登录
         else
@@ -278,6 +283,17 @@ class ArticleController extends Controller
             $title = $request->get("title");
             $content = $request->get("content");
             $file = $request->file('face');
+            $tags = $request->get("tags");
+            //print_r($tags);
+            $the_tag = "";
+            foreach ($tags as $tag_id)
+            {
+                settype($tag_id,"string");
+                $the_tag.=$tag_id.",";
+            }
+            $the_tag = substr($the_tag,0,strlen($the_tag)-1);
+            //print_r ($the_tag);
+            //return;
             $face = "default";
 
             if ($file != null && $file->isValid()) {
@@ -296,7 +312,7 @@ class ArticleController extends Controller
 
             $abstracts = "abstract";
             $author = session("id");
-            $tags = 1;
+            //$tags = "6,";
             $r = $this->articleInvoker->create(
                 [
                     'params[title]' => $title,
@@ -304,7 +320,7 @@ class ArticleController extends Controller
                     'params[abstracts]' => $abstracts,
                     'params[content]' => $content,
                     'params[author_id]' => $author,
-                    'params[tags]' => $tags
+                    'params[tags]' => $the_tag,
                 ]);
             return redirect("article/list?id=".$author);
         }

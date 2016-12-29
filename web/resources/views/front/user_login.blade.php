@@ -53,7 +53,6 @@
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-weixin" aria-hidden="true"></i>
-                                <!--<i class="icon-social-facebook"></i>-->
                             </a>
                         </li>
                         <li>

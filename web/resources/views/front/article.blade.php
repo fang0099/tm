@@ -39,11 +39,9 @@
                             <div class="entry-exinfo clearfix ng-scope" ng-if="isPublished">
                                 <p class="tags ng-scope full-screen" ng-if="post.topics.length" ng-class="{&#39;full-screen&#39;: !post.reviewers.length}">
                                     <!-- ngRepeat: topic in post.topics | limitTo:3 -->
-                                    <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">文曲星</span>
-                                    <!-- end ngRepeat: topic in post.topics | limitTo:3 -->
-                                    <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">小霸王游戏机</span>
-                                    <!-- end ngRepeat: topic in post.topics | limitTo:3 -->
-                                    <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">中央处理器 (CPU)</span>
+                                    @foreach($article["tags"] as $tag)
+                                    <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">{{$tag["name"]}}</span>
+                                    @endforeach
                                     <!-- end ngRepeat: topic in post.topics | limitTo:3 --></p>
                                 <!-- end ngIf: post.topics.length --></div>
                             <!-- end ngIf: isPublished -->
