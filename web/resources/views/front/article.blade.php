@@ -196,7 +196,7 @@
 
                                                         <!-- ngIf: state === 'reviewing' && comment.reviewing -->
 
-                                                        <!-- ngIf: canRemove(comment) && state === 'normal' --><a ng-if="canRemove(comment) &amp;&amp; state === 'normal'" ng-click="remove(comment)" href="javascript:;" class="remove op-link ng-scope"><i class="icon-ic_phot_delete"></i>删除</a><!-- end ngIf: canRemove(comment) && state === 'normal' -->
+                                                        <!-- ngIf: canRemove(comment) && state === 'normal' --><a ng-if="canRemove(comment) &amp;&amp; state === 'normal'" ng-click="remove(comment)" href="article/comment_delete?article_id={{$article["id"]}}&comment_id={{$comment["id"]}}" class="remove op-link ng-scope"><i class="icon-ic_phot_delete"></i>删除</a><!-- end ngIf: canRemove(comment) && state === 'normal' -->
 
 
 

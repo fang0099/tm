@@ -45,6 +45,24 @@ class ArticleController extends Controller
         }
     }
 
+    public function delete_comment(Request $request)
+    {
+        if (session("username")!=null) {
+            $comment_id = $request->get("comment_id");
+            $article_id = $request->get("article_id");
+            $r = $this->articleInvoker->deletecomment(['comment_id'=>$comment_id, 'article_id'=>$article_id]);
+            print_r($r);
+            return;
+            return redirect(env("APP_URL")."/article?id=".$article_id);
+        }
+        else
+        {
+            $id = $request->get("id");
+
+            return redirect(env("APP_URL")."/login");
+        }
+    }
+
     public function like(Request $request)
     {
         if (session("username")!=null) {
@@ -57,11 +75,9 @@ class ArticleController extends Controller
                 ]
             );
             return redirect(env("APP_URL")."/article?id=".$id);
-            //print_r($r);
-
         }
         else{
-
+            return redirect("login");
         }
     }
 
@@ -77,11 +93,9 @@ class ArticleController extends Controller
                 ]
             );
             return redirect(env("APP_URL")."/article?id=".$id);
-            //print_r($r);
-
         }
         else{
-
+            return redirect("login");
         }
     }
 
@@ -96,12 +110,11 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            print_r($r);
-            //return redirect(env("APP_URL")."/article?id=".$id);
+            return redirect(env("APP_URL")."/article?id=".$id);
 
         }
         else{
-
+            return redirect("login");
         }
     }
 
@@ -117,10 +130,9 @@ class ArticleController extends Controller
                 ]
             );
             return redirect(env("APP_URL")."/article?id=".$id);
-
         }
         else{
-
+            return redirect("login");
         }
     }
 
@@ -309,6 +321,8 @@ class ArticleController extends Controller
         $userid = session("id");
         $params = Array();
         $type = $request->get('type');
+
+        $list_type = $request->get('list_type');
         $page_class = "column-view";
         //标签文章列表
         if ($type=="tag")
@@ -327,6 +341,16 @@ class ArticleController extends Controller
         else {
             $user = $this->userInvoker->get(['id' => $id]);
             $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
+            //关注tag
+            if ($list_type == "tag") {
+                $article = $this->userInvoker->articlestags(['id' => $id]);
+            }
+            elseif ($list_type == "liker") {
+                $article = $this->userInvoker->articlesfollowers(['id' => $id]);
+            }
+            elseif ($list_type == "collect") {
+                $article = $this->userInvoker->articlescollect(['id' => $id]);
+            }
             $is_follower = $this->userInvoker->hasfollower(['id'=>$id, 'userid'=>$userid]);
             //print_r($is_follower);
             $params = [

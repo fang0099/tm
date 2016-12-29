@@ -23,7 +23,7 @@
                             <p class="description">
                                 <a ui-open-blank="" ng-click="handleRecommendColumnClick()" href="article/list?type=tag&id={{$tag["id"]}}" class="ng-binding">{{$tag["brief"]}}</a></p>
                             <p class="meta ng-binding">{{$tag["subscriberCount"]}} 人关注
-                                <span class="split">|</span>{{$tag["articleCount"] }} 篇文章</p>
+                                <span class="split"> | </span>{{$tag["articleCount"] }} 篇文章</p>
                             <a ui-open-blank="" ng-click="handleRecommendColumnClick()" class="btn btn-green btn-90_32" href="article/list?type=tag&id={{$tag["id"]}}">进入页面</a>
                         </li>
                             @endforeach
