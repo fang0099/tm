@@ -112,9 +112,11 @@ Route::post('/slider/create', 'SliderController@create');
 Route::post('/slider/update', 'SliderController@update');
 Route::get('/slider/delete', 'SliderController@delete');
 
+Route::post('/notice/create', 'NoticeController@create');
+Route::get('/notice/delete', 'NoticeController@delete');
+
 Route::get('/key/fucs', 'KeyController@functionsCount');
 
-Route::get('/test', 'KeyController@t');
 
 
 

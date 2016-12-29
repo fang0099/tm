@@ -88,10 +88,11 @@ class UserController extends Controller
 
     public function notice(Request $request){
         $type = $request->input('type');
+        $status = $request->input('status', '-1');
         $userid = $request->input('userid');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
-        return $this->userRep->notice($type, $userid, $page, $pageSize);
+        return $this->userRep->notice($status, $type, $userid, $page, $pageSize);
     }
 
     public function optLog(Request $request){

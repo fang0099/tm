@@ -188,17 +188,20 @@ class UserRepository extends BaseRepository
         }
     }
 
-    public function notice($type, $userId, $page, $pageSize = 15){
+    public function notice($status, $type, $userId, $page, $pageSize = 15){
         $user = $this->get($userId);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
             $offset = ($page - 1) * $pageSize;
-            if($type == 'all'){
-                $ns = $user->notices()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
-            }else {
-                $ns = $user->notices()->where('type', '=', $type)->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
+            $builder = $user->notices();
+            if($type){
+                $builder->where('type', '=', $type);
             }
+            if($status != -1){
+                $builder->where('status', '=', $status);
+            }
+            $ns = $builder->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
 
             return $this->success('', $ns);
         }

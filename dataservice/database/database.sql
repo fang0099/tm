@@ -158,9 +158,11 @@ CREATE  TABLE `check_log` (
 CREATE TABLE notice (
     id int PRIMARY KEY AUTO_INCREMENT,
     to_user int not NULL  DEFAULT 0,
-    type VARCHAR(16) not null DEFAULT '',
+    title VARCHAR(16) not null DEFAULT '',
     message VARCHAR(128) not null DEFAULT '',
+    type INT not null default 0,
     publish_time DATETIME DEFAULT current_timestamp,
+    status int not null default 0 COMMENT '0=unread, 1=readed',
     del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 

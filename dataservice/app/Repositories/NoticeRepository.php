@@ -31,4 +31,5 @@ class NoticeRepository extends BaseRepository
         return $this->select($request);
     }
 
+
 }

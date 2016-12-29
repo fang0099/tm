@@ -66,7 +66,7 @@ class User extends BaseModel
     }
 
     public function notices(){
-        return $this->hasMany('App\Model\Notice', 'to_user');
+        return $this->hasMany('App\Model\Notice', 'to_user')->where('del_flag', '=', 0)->orderBy('publish_time', 'desc');
     }
 
     public function optLogs(){
