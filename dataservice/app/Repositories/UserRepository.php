@@ -223,4 +223,57 @@ class UserRepository extends BaseRepository
         }
     }
 
+    public function tags($id, $page, $pageSize = 15){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $ts = $user->subscribeTags()->where('del_flag', '=', 0)->offset($offset)->limit($pageSize)->get();
+            return $this->success('', $ts);
+        }
+    }
+
+
+    public function collectArticles($id, $page, $pageSize = 15){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $as = $user->collectArticles()->where('del_flag', '=', 0)->orderBy('id', 'desc')->offset($offset)->limit($pageSize)->get();
+            return $this->success('', $as);
+        }
+    }
+
+    public function tagArticles($id, $page, $pageSize = 15){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $sql = "select a.* from article as a inner join tag_article_rel as tr "
+                    . " on a.id = tr.article_id "
+                    . " inner join tag_subscriber as sr"
+                    . " on tr.tag_id = sr.tag_id"
+                    . " where sr.subscriber_id = ?"
+                    . " limit $offset ," . $pageSize;
+            return  $this->success('', DB::select($sql, [$id]));
+        }
+    }
+
+    public function followersArticle($id, $page, $pageSize = 15){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $sql = "select a.* from article as a inner join user_follows as uf "
+                . " on a.author_id = uf.user_id"
+                . " where uf.follower_id = ?"
+                . " limit $offset ," . $pageSize;
+            return $this->success('', DB::select($sql, [$id]));
+        }
+    }
+
 }

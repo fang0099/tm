@@ -103,6 +103,12 @@ class UserController extends Controller
         return $this->userRep->optLog($type, $userid, $page, $pageSize);
     }
 
+    public function tags(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->tags($id, $page);
+    }
+
     public function hasFollower(Request $request){
         $id = $request->input("id");
         $userid = $request->input("userid");
@@ -119,5 +125,23 @@ class UserController extends Controller
         $id = $request->input("id");
         $articleid = $request->input("articleid");
         return $this->userRep->hasCollect($id, $articleid);
+    }
+
+    public function collectArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->collectArticles($id, $page);
+    }
+
+    public function tagArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->tagArticles($id, $page);
+    }
+
+    public function followerArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->followersArticle($id, $page);
     }
 }

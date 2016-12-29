@@ -47,6 +47,12 @@ class ArticleController
         return $this->articleRep->listComment($id);
     }
 
+    public function deleteComment(Request $request){
+        $id = $request->input('article_id');
+        $commentId = $request->input('comment_id');
+        return $this->articleRep->deleteComment($id, $commentId);
+    }
+
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');
@@ -85,6 +91,7 @@ class ArticleController
     public function comment(Request $request){
         return $this->articleRep->comment($request);
     }
+
 
     public function latest($tagId = 0, $page = 1, $pageSize = 15){
 

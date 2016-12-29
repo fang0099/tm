@@ -51,6 +51,11 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+    public function deleteComment($articleId, $commentId){
+        DB::delete('update comments set del_flag = 0 where id = ? ', [$commentId]);
+        return $this->success();
+    }
+
 
     public function create(Request $request){
         $params = $this->getParams($request);
@@ -169,7 +174,7 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
             $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
-            if($count[0]['c'] == 0){
+            if($count[0]->c == 0){
                 DB::insert('insert into user_like_article (user_id, article_id) values (?, ?)', [$userid, $id]);
                 $article->likes = $article->likes+1;
                 $article->save();
