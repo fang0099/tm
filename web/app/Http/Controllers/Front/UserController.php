@@ -69,6 +69,40 @@ class UserController extends Controller
         return view("front/user_list", $params);
     }
 
+    public function show_likers_list(Request $request)
+    {
+        $page_class = "age-post-voters";
+        $id = $request->get('id');
+        $the_user = $this->userInvoker->get(['id'=>$id]);
+        //print_r($the_user);
+        $users = $this->userInvoker->follows(['id'=>$id]);
+        //print_r($users);
+        //return;
+        $params = ["page_class"=>$page_class, "users"=>$users["data"], 'the_user'=>$the_user["data"]];
+        $username = session("username");
+        if($username!=null)
+        {
+            $params["username"] = $username;
+        }
+
+        return view("front/user_list", $params);
+    }
+
+    public function show_liker_article_list(Request $request)
+    {
+
+    }
+
+    public function show_collect_article_list(Request $request)
+    {
+
+    }
+
+    public function show_tag_article_list(Request $request)
+    {
+
+    }
+
     public function update(Request $request)
     {
         if(session("username")!=null) {

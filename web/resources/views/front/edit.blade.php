@@ -31,7 +31,7 @@
                     <textarea id="editor" name="content">{!!  $article["data"]["content"] or '' !!}</textarea>
                 </div>
                     <section class="receptacle">
-                    <input type="submit" value="发布" id="submit" class="btn btn-black write-btn"/>
+                    <input type="submit" value="发布" id="submit" class="btn btn-blue write-btn"/>
                     </section>
                 </form>
             </div>

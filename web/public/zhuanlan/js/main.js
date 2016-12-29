@@ -68,6 +68,20 @@ $.windowbox = {
           $("#navbar_menu").parent().addClass("open");
       }
     });
+    
+    $("#comment_editor").focus(function () {
+        if(!$("#comment-form").hasClass("expanded"))
+        {
+            $("#comment-form").addClass("expanded");
+        }
+        
+    });
+
+      $("#comment_editor").bind('input propertychange',function () {
+          var $s = $("#comment_editor").text();
+          console.log($s);
+
+      });
 
 
 

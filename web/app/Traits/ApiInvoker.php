@@ -52,6 +52,9 @@ trait ApiInvoker
             'hascollect'=>'GET',
             'haslike'=>'GET',
             'page'=>'GET',
+            'articles/tags'=>'GET',
+            'articles/collect'=>'GET',
+            'articles/followers'=>'GET',
         ],
         'tag' => [
             'get' => 'GET',
