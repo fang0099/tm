@@ -27,7 +27,7 @@
                 </div>
             </form>
             <!-- BEGIN FORGOT PASSWORD FORM -->
-            <form class="forget-form" action="javascript:;" method="post">
+           <!-- <form class="forget-form" action="javascript:;" method="post">
                 <h3 class="font-green">忘记密码 ?</h3>
                 <p> 输入你的注册邮箱来重置密码. </p>
                 <div class="form-group">
@@ -36,7 +36,7 @@
                     <button type="button" id="back-btn" class="btn grey btn-default">返回</button>
                     <button type="submit" class="btn blue btn-success uppercase pull-right">提交</button>
                 </div>
-            </form>
+            </form>-->
             <!-- END FORGOT PASSWORD FORM -->
         </div>
         <div class="login-footer">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-xs-8 bs-reset">
                     <div class="login-copyright text-right">
-                        <p>版权所有 &copy; 钛媒体 2016</p>
+                        <p>版权所有 &copy; 链媒体 2016</p>
                     </div>
                 </div>
             </div>
