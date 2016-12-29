@@ -24,32 +24,11 @@ class ArticleController extends Controller
         $this->tagInvoker = $tagInvoker;
     }
 
-    public function tag_article_list(Request $request)
-    {
-        $id = $request->get('id');
-        $r = $this->tagInvoker->articles(['id'=> $id]);
-        $tag = $this->tagInvoker->get(['id'=> $id]);
-        //print_r($r);
-        //print_r($tag);
-        return view("front/tag_article_list", [
-            'people'=> $r["data"],
-            'tag'=>$tag["data"]
-        ]);
-        //return view("front/article",['article' => $r["data"],
-        //    'recent_article_list' => $article_list["data"]
-        //]);
-        //$id =
-    }
-
     public function comment_article(Request $request)
     {
         if (session("username")!=null) {
             $id = $request->get("id");
-            $comment = $request->get("comment");
-            //echo $id;
-            //echo $comment;
-            //echo session("avatar");
-            //return;
+            $comment = $request->get("comment-content");
             $r = $this->articleInvoker->comment(
                 [
                     'params[article_id]' => $id,
@@ -58,7 +37,7 @@ class ArticleController extends Controller
                     'params[username]' => session("username"),
                     'params[user_id]' => (int)session("id"),
                 ]);
-            print_r($r);
+            return redirect(env("APP_URL")."/article?id=".$id);
         }
         else
         {
@@ -77,7 +56,8 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            print_r($r);
+            return redirect(env("APP_URL")."/article?id=".$id);
+            //print_r($r);
 
         }
         else{
@@ -96,7 +76,8 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            print_r($r);
+            return redirect(env("APP_URL")."/article?id=".$id);
+            //print_r($r);
 
         }
         else{
@@ -115,8 +96,8 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-
             print_r($r);
+            //return redirect(env("APP_URL")."/article?id=".$id);
 
         }
         else{
@@ -135,8 +116,7 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-
-            print_r($r);
+            return redirect(env("APP_URL")."/article?id=".$id);
 
         }
         else{
@@ -201,15 +181,20 @@ class ArticleController extends Controller
             return redirect("index");
         }
         $r = $this->articleInvoker->get(['id' => $id]);
+        //print_r($r);
         $authorid = $r["data"]["author"]["id"];
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>4]);
-
+        //print_r($article_list);
+        $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
+        //print_r($comment_list);
+        //return;
         return view("front/article",
             [
                 'article' => $r["data"],
                 'recent_article_list' => $article_list["data"],
                 "page_class"=>$page_class,
-                'username'=>$username
+                'username'=>$username,
+                'comment_list'=>$comment_list["data"],
             ]);
     }
     //修改文章

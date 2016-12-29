@@ -52,6 +52,10 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/user/unfollow', 'UserController@unfollow');
     Route::get('/user/follow', 'UserController@follow');
     Route::get('/user/follower', 'UserController@show_subscribers_list');
+    Route::get('/user/liker', 'UserController@show_likers_list');
+    Route::get('/user/liker_article_list', 'UserController@show_liker_article_list');
+    Route::get('/user/collect_article_list', 'UserController@show_collect_article_list');
+    Route::get('/user/tag_article_list', 'UserController@show_tag_article_list');
     //Route::get('/article', 'ArticleController@index');
     //Route::get('/article/list', 'ArticleController@article_list');
 
