@@ -53,9 +53,9 @@ Route::get('user/getbyname', 'UserController@getByUsername');
 Route::get('/user/hasfollower', 'UserController@hasFollower');
 Route::get('/user/haslike', 'UserController@hasLike');
 Route::get('/user/hascollect', 'UserController@hasCollect');
-Route::get('user/articles/collect', 'UserController@collectArticles');
-Route::get('user/articles/followers', 'UserController@followerArticles');
-Route::get('user/articles/tags', 'UserController@tagArticles');
+Route::get('user/articlescollect', 'UserController@collectArticles');
+Route::get('user/articlesfollowers', 'UserController@followerArticles');
+Route::get('user/articlestags', 'UserController@tagArticles');
 
 
 // article
@@ -71,7 +71,7 @@ Route::get('/article/uncollect', 'ArticleController@uncollect');
 Route::get('/article/like', 'ArticleController@like');
 Route::get('/article/unlike', 'ArticleController@unlike');
 Route::post('/article/comment', 'ArticleController@comment');
-Route::get('/article/comment/delete', 'ArticleController@deleteComment');
+Route::get('/article/commentdelete', 'ArticleController@deleteComment');
 Route::get('/article/lscomment', 'ArticleController@listComment');
 Route::get('/article/up', 'ArticleController@upArticles');
 Route::get('/article/addtags', 'ArticleController@addTags');
