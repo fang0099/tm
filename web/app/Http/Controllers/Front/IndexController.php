@@ -44,9 +44,11 @@ class IndexController extends Controller
         $page_class = "home";
         $username = session("username");
         $article_list = $this->articleInvoker->list(["order"=>'publish_time desc','pageSize'=>6]);
-        $user_list = $this->userInvoker->list(['pageSize'=>8]);
-        $tag_list = $this->tagInvoker->list(['pageSize'=>8]);
-        //print_r($tag_list);
+        $user_list = $this->userInvoker->page(['pageSize'=>8]);
+        $tag_list = $this->tagInvoker->page(['pageSize'=>8]);
+        //print_r($user_list);
+
+        //return;
 
         $params = ['page_class'=>$page_class,
             'articles'=>$article_list["data"]["list"],

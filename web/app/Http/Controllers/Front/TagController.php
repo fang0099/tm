@@ -149,6 +149,24 @@ class TagController extends Controller
             ]);
     }
 
+    public function show_subscribers_list(Request $request)
+    {
+        $page_class = "age-post-voters";
+        $id = $request->get('id');
+        $tag = $this->tagInvoker->get(['id'=>$id]);
+        //print_r($tag);
+        $users = $this->tagInvoker->subscriber(['id'=>$id]);
+        //print_r($users);
+        //return;
+        $params = ["page_class"=>$page_class, "users"=>$users["data"], 'tag'=>$tag["data"]];
+        $username = session("username");
+        if($username!=null)
+        {
+            $params["username"] = $username;
+        }
+        return view("front/user_list", $params);
+    }
+
     public function create(Request $request)
     {
         if(session("username")!=null)

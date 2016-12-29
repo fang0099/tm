@@ -49,6 +49,26 @@ class UserController extends Controller
 
     }
 
+    public function show_subscribers_list(Request $request)
+    {
+        $page_class = "age-post-voters";
+        $id = $request->get('id');
+        $the_user = $this->userInvoker->get(['id'=>$id]);
+        //print_r($the_user);
+        $users = $this->userInvoker->followers(['id'=>$id]);
+        //print_r($users);
+        //return;
+        $params = ["page_class"=>$page_class, "users"=>$users["data"], 'the_user'=>$the_user["data"]];
+        $username = session("username");
+        if($username!=null)
+        {
+            $params["username"] = $username;
+        }
+
+
+        return view("front/user_list", $params);
+    }
+
     public function update(Request $request)
     {
         if(session("username")!=null) {
