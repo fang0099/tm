@@ -19,6 +19,6 @@ class CommentRepository extends BaseRepository
     }
 
     public function list($articleId){
-        return $this->model->where('article_id', '=', $articleId)->orderBy('id', 'desc')->get();
+        return $this->model->where('article_id', '=', $articleId)->orderBy('id', 'desc')->where('del_flag','=', '0')->get();
     }
 }
