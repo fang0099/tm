@@ -53,7 +53,6 @@
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-weixin" aria-hidden="true"></i>
-                                <!--<i class="icon-social-facebook"></i>-->
                             </a>
                         </li>
                         <li>
@@ -65,7 +64,7 @@
                 </div>
                 <div class="col-xs-8 bs-reset">
                     <div class="login-copyright text-right">
-                        <p>版权所有 &copy; 钛媒体 2016</p>
+                        <p>版权所有 &copy; 链媒体 2016</p>
                     </div>
                 </div>
             </div>

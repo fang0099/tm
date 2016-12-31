@@ -1,5 +1,12 @@
 @extends("front/master")
     @section("page_level_css")
+
+        <!--<link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/docsupport/style.css">
+
+        <link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/docsupport/prism.css">-->
+
+        <link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/chosen.css">
+
         <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/font-awesome.css" />
         <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor-fullscreen.css" />
@@ -31,6 +38,19 @@
                     <textarea id="editor" name="content">{!!  $article["data"]["content"] or '' !!}</textarea>
                 </div>
                     <section class="receptacle">
+                        <select name="tags[]" data-placeholder="选择标签..." class="chosen-select" multiple style="width:350px;" tabindex="4">
+
+                            <option value=""></option>
+                            @foreach($tags as $tag)
+                                <option value="{{$tag["id"]}}">{{$tag["name"]}}</option>
+                        @endforeach
+                        <!-- <option value="United Kingdom">United Kingdom</option>
+
+                            <option value="Afghanistan">Afghanistan</option>-->
+
+
+
+                        </select>
                     <input type="submit" value="发布" id="submit" class="btn btn-blue write-btn"/>
                     </section>
                 </form>
@@ -45,6 +65,31 @@
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor.js"></script>
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-dropzone.js"></script>
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
+        <script src="<?php echo env('APP_URL');?>/chosen-master/chosen.jquery.js" type="text/javascript"></script>
+        <script src="<?php echo env('APP_URL');?>/chosen-master/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+
+            var config = {
+
+                '.chosen-select'           : {},
+
+                '.chosen-select-deselect'  : {allow_single_deselect:true},
+
+                '.chosen-select-no-single' : {disable_search_threshold:10},
+
+                '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+
+                '.chosen-select-width'     : {width:"95%"}
+
+            }
+
+            for (var selector in config) {
+
+                $(selector).chosen(config[selector]);
+
+            }
+
+        </script>
         <script>
             var editor = new Simditor({
                 textarea: $('#editor'),
