@@ -1,0 +1,67 @@
+{
+	"table" : "users",
+	"name" : "用户",
+	"invoker" : "UserInvoker",
+	"primaryKey" : ["id"],
+	"fields" : [
+		{
+			"label" : "id",
+			"value" : "id",
+			"name" : "params[id]",
+			"type" : "hidden"
+		},
+		{
+			"label" : "用户名",
+			"value" : "username",
+			"name" : "params[username]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "密码",
+			"value" : "password",
+			"name" : "params[password]",
+			"type" : "text",
+			"attribute" : {
+				"required" : "required"
+			}
+		},
+		{
+			"label" : "",
+			"value" : "avatar",
+			"name" : "params[avatar]",
+			"type" : "file",
+			"attribute" : {
+				"upload" : "ajax"
+			}
+		},
+		{
+			"label" : "图片预览",
+			"value" : "avatar",
+			"name" : "preview[avatar]",
+			"type" : "preview"
+		},
+		{
+			"label" : "简介",
+			"value" : "brief",
+			"name" : "params[brief]",
+			"type" : "textarea"
+		}
+	],
+	"list" : [
+		{
+			"head" : "用户名",
+			"value" : "username",
+			"type" : "text"
+		}
+	],
+	"attribute" : {
+		"id" : "tag-form",
+		"callback" : "$.callback.back"
+	},
+	"callback" : "reminder",
+	"sort" : "id",
+	"operations" : ["add", "batch-delete", "update", "delete", "back"]
+}
