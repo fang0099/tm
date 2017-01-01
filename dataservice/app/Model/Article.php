@@ -24,6 +24,9 @@ class Article extends BaseModel
     public function _author(){
         return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0)->first();
     }
+    public function author(){
+        return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0);
+    }
 
     public function checker(){
         return $this->belongsTo('App\Model\User', 'checker_id');
