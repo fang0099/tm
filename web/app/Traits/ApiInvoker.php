@@ -37,7 +37,7 @@ trait ApiInvoker
             'uncollect'=>'GET',
             'comment' => 'POST',
             'delete'=>'GET',
-            'deletecomment'=>'GET',
+            'commentdelete'=>'GET',
         ],
         'user' => [
             'get' => 'GET',
