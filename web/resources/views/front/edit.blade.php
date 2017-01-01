@@ -111,7 +111,7 @@
                     'fullscreen',
                 ],
                 upload: {
-                    url: 'http://localhost/tm/web/public/upload_img',
+                    url: '<?php echo env('APP_URL');?>/upload_img',
                     fileKey: 'img_name',
                     params: null,
                     connectionCount: 3,

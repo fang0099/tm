@@ -257,7 +257,7 @@
 
                         $.ajax({
                             type: "GET",
-                            url: "http://localhost/tm/web/public/article/ajax_article_list?page="+count,
+                            url: "<?php echo env('APP_URL');?>/article/ajax_article_list?page="+count,
                             data: {username:$("#username").val(), content:$("#content").val()},
                             dataType: "json",
                             success: function(data){
