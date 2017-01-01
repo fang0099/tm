@@ -38,6 +38,11 @@ Route::group(['namespace' => 'Front'], function (){
     //Route::get('/article/edit', 'ArticleController@edit_article');
     Route::get('/article/edit', 'ArticleController@show_edit');
     Route::get('/article', 'ArticleController@show_article');
+
+
+    Route::get('/article/ajax_article_list', 'ArticleController@ajax_article_list');
+    Route::get('/article/ajax_comment_list', 'ArticleController@ajax_comment_list');
+    //Route::get('/article', 'ArticleController@show_article');
     //创建用户
     Route::post('/user/create', 'UserController@create');
     Route::post('/user/signin', 'UserController@signin');
@@ -62,6 +67,8 @@ Route::group(['namespace' => 'Front'], function (){
     //Route::get('/article/list', 'ArticleController@article_list');
 
     Route::get('/article/voters', 'ArticleController@voters');
+
+    Route::post("/upload_img", 'IndexController@upload_img');
 
     //Route::get('/user/list', 'UserController@user_list');
     Route::get('/user/list', 'ArticleController@show_user_list');

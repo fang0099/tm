@@ -45,7 +45,7 @@
                                 @elseif(isset($tag))
                         <?php echo env('APP_URL');?>/tag/subscribers?id={{$tag["id"]}}
                                 @endif
-">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
+                    ">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
                     </div>
                     <!--
                     <div class="tags ng-scope" ng-if="!currentAuthor &amp;&amp; column.postTopics.length">
@@ -79,6 +79,7 @@
           <span ng-transclude="">
             <span class="ng-binding ng-scope">最新文章</span></span>
                     </div>
+                    <input style="display:none;" id="page_count" value="1" />
                     <ul class="items" ng-show="posts.length">
                         @foreach($articles as $article)
                         <li class="item ng-isolate-scope
@@ -217,3 +218,108 @@
         </main>
 
     @stop
+    @section("page_level_js")
+        <script>
+            $(document).ready(function(){
+                raw_html = "<li class=\"item ng-isolate-scope item-with-title-img\" ng-class=\"itemClass\">"+
+                    "<article class=\"hentry\">"+
+                    "<a href=\"/article?id=\" class=\"entry-link\">"+
+                    "<h1 class=\"entry-title ng-binding\">abc</h1>"+
+                    "<div class=\"title-img-container ng-scope\" ng-if=\"titleImageShow\">"+
+                    "<div class=\"title-img-preview\" style=\"background-image: url(&quot; 1.jpg &quot;);\"></div>"+
+                    "</div>"+
+                    "<section class=\"entry-summary\">"+
+                    "<p ui-summary=\"post.content\" max=\"truncateMax\" class=\"ng-isolate-scope\"> abstract…"+
+                    "<span class=\"read-all\">查看全文"+
+                    "<i class=\"icon-ic_unfold\"></i></span></p></section></a><footer>"+
+                    "<div class=\"entry-meta\"><time class=\"published ng-binding ng-isolate-scope hover-title\">publish_time</time></div>"+
+                    "<div class=\"entry-func ng-scope\">"+
+                    "<a href=\"#\" class=\"vote-num ng-binding\">likes"+
+                    "<span>赞</span></a>"+
+                    "<span class=\"bull\">·</span>"+
+                    "<a href=\"#\" class=\"comment ng-binding\" ng-show=\"post.commentsCount\">comment_num"+
+                    "<span>条评论</span></a>"+
+                    "</div></footer></article></li>"
+
+                //$(".items").html($(".items").html()+raw_html);
+
+                $(window).scroll(function(){
+                    var scrollTop = $(this).scrollTop();
+                    var scrollHeight = $(document).height();
+                    var windowHeight = $(this).height();
+                    if(scrollTop + windowHeight == scrollHeight){
+                        count = parseInt($("#page_count").val());
+                        count +=1;
+                        $("#page_count").val(count);
+                        console.log(count);
+
+                        html = "";
+
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost/tm/web/public/article/ajax_article_list?page="+count,
+                            data: {username:$("#username").val(), content:$("#content").val()},
+                            dataType: "json",
+                            success: function(data){
+                                //alert("1");
+                                console.log(eval(data));
+
+                                $.each(data["list"], function (index, article) {
+
+                                    if (article["face"] == "default")
+                                    {
+                                        html+= "<li class=\"item ng-isolate-scope item-without-title-img\" ng-class=\"itemClass\">";
+                                    }
+                                    else
+                                    {
+                                        html+= "<li class=\"item ng-isolate-scope item-with-title-img\" ng-class=\"itemClass\">";
+                                    }
+
+
+                                    html+= "<article class=\"hentry\">"+
+                                        "<a href=\"article?id="+article["id"]+"\" class=\"entry-link\">"+
+                                        "<h1 class=\"entry-title ng-binding\">"+article["title"]+"</h1>"+
+                                        "<div class=\"title-img-container ng-scope\" ng-if=\"titleImageShow\">"+
+                                        "<div class=\"title-img-preview\" style=\"background-image: url(&quot; "+article["face"]+" &quot;);\"></div>"+
+                                        "</div>"+
+                                        "<section class=\"entry-summary\">"+
+                                        "<p ui-summary=\"post.content\" max=\"truncateMax\" class=\"ng-isolate-scope\"> "+article["abstracts"]+"…"+
+                                        "<span class=\"read-all\">查看全文"+
+                                        "<i class=\"icon-ic_unfold\"></i></span></p></section></a><footer>"+
+                                        "<div class=\"entry-meta\"><time class=\"published ng-binding ng-isolate-scope hover-title\">"+article["publish_time"]+"</time></div>"+
+                                        "<div class=\"entry-func ng-scope\">"+
+                                        "<a href=\"#\" class=\"vote-num ng-binding\">"+article["likes"]+
+                                        "<span>赞</span></a>"+
+                                        "<span class=\"bull\">·</span>"+
+                                        "<a href=\"#\" class=\"comment ng-binding\" ng-show=\"post.commentsCount\">"+article["comment_num"]+
+                                        "<span>条评论</span></a>"+
+                                        "</div></footer></article></li>"
+
+
+                                });
+                                $(".items").html($(".items").html()+ html);
+
+                                //console.log(eval(data));
+                                /*
+                                 $('#resText').empty();   //清空resText里面的所有内容
+                                 var html = '';
+                                 $.each(data, function(commentIndex, comment){
+                                 html += '<div class="comment"><h6>' + comment['username']
+                                 + ':</h6><p class="para"' + comment['content']
+                                 + '</p></div>';
+                                 });
+                                 $('#resText').html(html);*/
+                            },
+                            error: function(data)
+                            {
+                                console.log(eval(data));
+                            }
+                        });
+
+                        //$(".items").html($(".items").html()+html);
+                    }
+                });
+            });
+
+        </script>
+        @stop

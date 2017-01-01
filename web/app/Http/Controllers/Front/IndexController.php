@@ -15,6 +15,9 @@ use App\Invokers\TagInvoker;
 use App\Invokers\UserInvoker;
 use App\Invokers\WebInfoInvoker;
 use App\Invokers\ArticleInvoker;
+use Illuminate\Http\Request;
+
+use Storage;
 
 class IndexController extends Controller
 {
@@ -43,12 +46,15 @@ class IndexController extends Controller
     {
         $page_class = "home";
         $username = session("username");
-        $article_list = $this->articleInvoker->list(["order"=>'publish_time desc','pageSize'=>6]);
+        $article_list = $this->articleInvoker->page(['pageSize'=>6]);
         $user_list = $this->userInvoker->page(['pageSize'=>8]);
         $tag_list = $this->tagInvoker->page(['pageSize'=>8]);
 
+        //print_r($article_list);
+        //return;
+
         $params = ['page_class'=>$page_class,
-            'articles'=>$article_list["data"]["list"],
+            'articles'=>$article_list["list"],
             'tags'=>$tag_list["list"],
             'users'=>$user_list["list"]
         ];
@@ -58,6 +64,36 @@ class IndexController extends Controller
             $params["username"] = $username;
         }
         return view("front/index", $params);
+    }
+
+    //上传图片
+    public function upload_img(Request $request)
+    {
+        $file = $request->file('img_name');
+
+        if ($file != null && $file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+            // 上传文件
+            $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
+            // 使用我们新建的uploads本地存储空间（目录）
+            $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+            //var_dump($bool);
+            $face = env("APP_URL") . "/uploads/" . $filename;
+
+            $msg = Array();
+            $msg["success"]=true;
+            $msg["file_path"] = $face;
+
+            return json_encode($msg);
+        }
+        else
+        {
+            return "上传失败";
+        }
     }
 
 }
