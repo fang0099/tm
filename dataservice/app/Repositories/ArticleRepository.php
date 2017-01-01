@@ -266,7 +266,6 @@ class ArticleRepository extends BaseRepository
         $user = $this->userRep->get($userid);
         if($user){
             $tag = $user->subscribeTags()->limit(1)->first();
-            var_dump($tag);
             if($tag){
                 $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
                 return $this->success('', $articles);
