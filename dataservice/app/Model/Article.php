@@ -21,8 +21,8 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Model\User', 'user_collect_article', 'article_id', 'user_id');
     }
 
-    public function author(){
-        return $this->belongsTo('App\Model\User', 'author_id');
+    public function _author(){
+        return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0)->first();
     }
 
     public function checker(){
