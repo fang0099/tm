@@ -19,11 +19,15 @@ class ArticleRepository extends BaseRepository
 {
 
     private $commentRep;
+    private $tagRep;
+    private $userRep;
 
-    public function __construct(Article $model, CommentRepository $commentRep)
+    public function __construct(Article $model, CommentRepository $commentRep, TagRepository $tagRep, UserRepository $userRep)
     {
         $this->model = $model;
         $this->commentRep = $commentRep;
+        $this->tagRep = $tagRep;
+        $this->userRep = $userRep;
     }
 
     public function findById($id){
@@ -250,6 +254,25 @@ class ArticleRepository extends BaseRepository
     }
 
 
+    public function hotest($tagId, $page, $pageSize = 15){
+        $offset = ($page - 1) * $pageSize;
+        $articles = $this->model->where('del_flag', '=', '0')->orderBy('hot_num', 'desc')->orderBy('click_count', 'desc')
+                    ->offset($offset)->limit($pageSize)->get();
+        return $this->success('', $articles);
+    }
 
+    public function recommend($userid, $page = 1, $pageSize = 15){
+        $offset = ($page - 1) * $pageSize;
+        $user = $this->userRep->get($userid);
+        if($user){
+            $tag = $user->subscribeTags()->limit(1)->first();
+            var_dump($tag);
+            if($tag){
+                $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
+                return $this->success('', $articles);
+            }
+        }
+        return $this->hotest(null, $page, $pageSize);
+    }
 
 }

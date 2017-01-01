@@ -110,7 +110,7 @@ class TagRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
         }
         else {
-            $pageSize = 15;
+            $pageSize = 10;
             $offset = ($page - 1) * $pageSize;
             $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
             return $this->success('', $articles);

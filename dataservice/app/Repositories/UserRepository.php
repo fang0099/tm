@@ -171,7 +171,7 @@ class UserRepository extends BaseRepository
             return $this->fail(StatusCode::PARAMS_ERROR_EMPTY, 'user id can not be null');
         }
         $page  = $request->input('page', 1);
-        $pageSize = $request->input('pageSize', 15);
+        $pageSize = $request->input('pageSize', 10);
         $tagArr = explode(',', $tagIds);
         $user = $this->get($userId);
         if($user == null || $user->del_flag == 1){
@@ -223,7 +223,7 @@ class UserRepository extends BaseRepository
         }
     }
 
-    public function tags($id, $page, $pageSize = 15){
+    public function tags($id, $page, $pageSize = 10){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
@@ -235,7 +235,7 @@ class UserRepository extends BaseRepository
     }
 
 
-    public function collectArticles($id, $page, $pageSize = 15){
+    public function collectArticles($id, $page, $pageSize = 10){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
@@ -246,7 +246,7 @@ class UserRepository extends BaseRepository
         }
     }
 
-    public function tagArticles($id, $page, $pageSize = 15){
+    public function tagArticles($id, $page, $pageSize = 10){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
@@ -262,7 +262,7 @@ class UserRepository extends BaseRepository
         }
     }
 
-    public function followersArticle($id, $page, $pageSize = 15){
+    public function followersArticle($id, $page, $pageSize = 10){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);

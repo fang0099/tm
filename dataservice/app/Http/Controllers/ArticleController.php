@@ -97,12 +97,18 @@ class ArticleController
 
     }
 
-    public function hot($tagId = 0, $page = 1, $pageSize = 15){
-
+    public function hot(Request $request){
+        $tagId = $request->input('tagid', 0);
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->articleRep->hotest($tagId, $page, $pageSize);
     }
 
-    public function recommend($page = 1, $pageSize = 15){
-
+    public function recommend(Request $request){
+        $userid = $request->input('userid', 0);
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->articleRep->recommend($userid, $page, $pageSize);
     }
 
     public function upArticles(Request $request){

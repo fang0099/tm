@@ -76,6 +76,8 @@ Route::get('/article/lscomment', 'ArticleController@listComment');
 Route::get('/article/up', 'ArticleController@upArticles');
 Route::get('/article/addtags', 'ArticleController@addTags');
 Route::get('/article/deltags', 'ArticleController@delTags');
+Route::get('/article/hotest', 'ArticleController@hot');
+Route::get('/article/recommend', 'ArticleController@recommend');
 
 
 

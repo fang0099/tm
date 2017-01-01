@@ -14,7 +14,7 @@ class User extends BaseModel
     protected $table = 'users';
 
     public function followers(){
-        return $this->belongsToMany('App\Model\User', 'user_follows', 'user_id', 'follower_id');
+        return $this->belongsToMany('App\Model\User', 'user_follows', 'user_id', 'follower_id')->where('del_flag', '=', 0);
     }
 
     public function _followersCount(){
@@ -22,7 +22,7 @@ class User extends BaseModel
     }
 
     public function follows(){
-        return $this->belongsToMany('App\Model\User', 'user_follows', 'follower_id', 'user_id');
+        return $this->belongsToMany('App\Model\User', 'user_follows', 'follower_id', 'user_id')->where('del_flag', '=', 0);
     }
 
     public function _followsCount(){
@@ -42,7 +42,7 @@ class User extends BaseModel
     }
 
     public function likeArticles(){
-        return $this->belongsToMany('App\Model\Article', 'user_like_article', 'user_id', 'article_id');
+        return $this->belongsToMany('App\Model\Article', 'user_like_article', 'user_id', 'article_id')->where('del_flag', '=', 0);
     }
 
     public function _likeCount(){
@@ -50,7 +50,7 @@ class User extends BaseModel
     }
 
     public function collectArticles(){
-        return $this->belongsToMany('App\Model\Article', 'user_collect_article', 'user_id', 'article_id');
+        return $this->belongsToMany('App\Model\Article', 'user_collect_article', 'user_id', 'article_id')->where('del_flag', '=', 0);
     }
 
     public function _collectCount(){
@@ -58,7 +58,7 @@ class User extends BaseModel
     }
 
     public function subscribeTags(){
-        return $this->belongsToMany('App\Model\Tag', 'tag_subscriber', 'subscriber_id', 'tag_id');
+        return $this->belongsToMany('App\Model\Tag', 'tag_subscriber', 'subscriber_id', 'tag_id')->where('del_flag', '=', 0);
     }
 
     public function _tagCount(){
