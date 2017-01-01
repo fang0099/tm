@@ -113,7 +113,8 @@
                         <li class="sidebar-toggler-wrapper hide">
                             <div class="sidebar-toggler"> </div>
                         </li>
-                       
+
+                        @if(session('is_admin'))
                         <li class="nav-item start active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
@@ -180,7 +181,24 @@
                             </ul>
 
                         </li>
+                        @else
+                            <li class="nav-item start active open">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-diamond"></i>
+                                    <span class="title">个人中心</span>
+                                    <span class="arrow"></span>
+                                    <span class="selected"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" data="form?model=muser&id=1" class="nav-link link">
+                                            <span class="title"> 个人信息管理 </span>
+                                        </a>
+                                    </li>
+                                </ul>
 
+                            </li>
+                        @endif
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->

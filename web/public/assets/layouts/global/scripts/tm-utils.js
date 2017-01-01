@@ -27,7 +27,7 @@
 
 	__.utils.callback = __.utils.callback || {};
 	__.utils.callback.reminder = function(){
-		alert('opt success');
+		alert('操作成功');
 	};
     __.utils.callback.closeAndRefreshMain = function(){
         __.components.iframe.outCloseRightAndRefreshMain();
