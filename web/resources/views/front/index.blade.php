@@ -29,10 +29,10 @@
                         </li>
                     @endforeach
                 </ul>
-                <p class="random">
+              <!--  <p class="random">
                     <a class="btn btn-black btn-90_32" href="javascript:;" id="get_tag_btn">
                         <i class="icon-ic_refresh"></i>换一换</a>
-                </p>
+                </p>-->
             </section>
             <section class="l-receptacle">
                 <h3>
@@ -55,10 +55,10 @@
                         </li>
                     @endforeach
                 </ul>
-                <p class="random">
+              <!--  <p class="random">
                     <a class="btn btn-black btn-90_32" href="javascript:;" id="get_user_btn">
                         <i class="icon-ic_refresh"></i>换一换</a>
-                </p>
+                </p>-->
             </section>
             <section class="l-receptacle">
                 <h3><span>文章 · 发现</span></h3>
@@ -83,10 +83,10 @@
                         </li>
                     @endforeach
                 </ul>
-                <p class="random">
+              <!--  <p class="random">
                     <a class="btn btn-black btn-90_32" href="javascript:;" id="get_article_btn">
-                        <i class="icon-ic_refresh"></i>换一换</a>
-                </p>
+                      <i class="icon-ic_refresh"></i>换一换</a>
+                </p>-->
             </section>
             <div class="bottom">
                 <h3>在链媒体创作</h3>

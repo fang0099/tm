@@ -24,6 +24,17 @@ class ArticleController extends Controller
         $this->tagInvoker = $tagInvoker;
     }
 
+    function substr_cut($str_cut,$length)
+    {
+        if (strlen($str_cut) > $length)
+        {
+            for($i=0; $i < $length; $i++)
+                if (ord($str_cut[$i]) > 128)    $i++;
+            $str_cut = substr($str_cut,0,$i)."..";
+        }
+        return $str_cut;
+    }
+
     public function comment_article(Request $request)
     {
         if (session("username")!=null) {
@@ -272,8 +283,8 @@ class ArticleController extends Controller
                 //var_dump($bool);
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
-            $abstracts = "abstract";
-            $tags = 1;
+            $abstracts = strip_tags($this->substr_cut($content,15));
+            //$tags = 1;
 
             $params =
                 [
@@ -281,7 +292,7 @@ class ArticleController extends Controller
                     'params[title]' => $title,
                     'params[abstracts]' => $abstracts,
                     'params[content]' => $content,
-                    'params[tags]' => $tags
+                    //'params[tags]' => $tags
                 ];
             if ($face!="default")
             {
@@ -344,7 +355,8 @@ class ArticleController extends Controller
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
 
-            $abstracts = "abstract";
+            //$abstracts = "abstract";
+            $abstracts = strip_tags($this->substr_cut($content,15));
             $author = session("id");
             //$tags = "6,";
             $r = $this->articleInvoker->create(
@@ -417,4 +429,60 @@ class ArticleController extends Controller
         }
         return view("front/list",$params);
     }
+
+    public function show_list_ajax(Request $request)
+    {
+        $id = $request->get('id');
+        $username = session("username");
+        $userid = session("id");
+        $params = Array();
+        $type = $request->get('type');
+
+        $list_type = $request->get('list_type');
+        $page_class = "column-view";
+        //标签文章列表
+        if ($type=="tag")
+        {
+            $tag = $this->tagInvoker->get(['id' => $id]);
+            $article = $this->tagInvoker->articles(['id'=>$id]);
+            $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
+            $params = [
+                'page_class'=>$page_class,
+                'tag'=>$tag["data"],
+                'articles'=>$article["data"],
+                'is_follower'=>$is_follower["success"],
+            ];
+        }
+        //用户文章列表
+        else {
+            $user = $this->userInvoker->get(['id' => $id]);
+            $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
+            //关注tag
+            if ($list_type == "tag") {
+                $article = $this->userInvoker->articlestags(['id' => $id]);
+            }
+            elseif ($list_type == "liker") {
+                $article = $this->userInvoker->articlesfollowers(['id' => $id]);
+            }
+            elseif ($list_type == "collect") {
+                $article = $this->userInvoker->articlescollect(['id' => $id]);
+            }
+            $is_follower = $this->userInvoker->hasfollower(['id'=>$id, 'userid'=>$userid]);
+            //print_r($is_follower);
+            $params = [
+                'page_class'=>$page_class,
+                'user'=>$user["data"],
+                'articles'=>$article["data"],
+                'is_follower'=>$is_follower["success"],
+            ];
+        }
+
+        if ($username!=null)
+        {
+            $params["username"] = $username;
+        }
+        return view("front/list",$params);
+    }
+
+
 }
