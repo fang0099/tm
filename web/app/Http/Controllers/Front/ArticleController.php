@@ -51,15 +51,17 @@ class ArticleController extends Controller
             $comment_id = $request->get("comment_id");
             $article_id = $request->get("article_id");
             $r = $this->articleInvoker->deletecomment(['comment_id'=>$comment_id, 'article_id'=>$article_id]);
-            print_r($r);
-            return;
+
+            //print_r($r);
+            //return;
+            //return json_encode($r);
             return redirect(env("APP_URL")."/article?id=".$article_id);
         }
         else
         {
             $id = $request->get("id");
-
-            return redirect(env("APP_URL")."/login");
+            return 1;
+            //return redirect(env("APP_URL")."/login");
         }
     }
 
@@ -74,10 +76,15 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            return redirect(env("APP_URL")."/article?id=".$id);
+
+            return json_encode($r);
+
+            //return redirect(env("APP_URL")."/article?id=".$id);
         }
         else{
-            return redirect("login");
+
+
+            //return redirect("login");
         }
     }
 
@@ -92,10 +99,11 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            return redirect(env("APP_URL")."/article?id=".$id);
+            return json_encode($r);
+
         }
         else{
-            return redirect("login");
+            //return redirect("login");
         }
     }
 
@@ -110,11 +118,13 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            return redirect(env("APP_URL")."/article?id=".$id);
+            return json_encode($r);
+
+            //return redirect(env("APP_URL")."/article?id=".$id);
 
         }
         else{
-            return redirect("login");
+            //return redirect("login");
         }
     }
 
@@ -129,10 +139,11 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-            return redirect(env("APP_URL")."/article?id=".$id);
+            return json_encode($r);
+            //return redirect(env("APP_URL")."/article?id=".$id);
         }
         else{
-            return redirect("login");
+            //return redirect("login");
         }
     }
 
@@ -140,6 +151,29 @@ class ArticleController extends Controller
     {
         $page_class = "age-post-voters";
         return view("front/user_list", ["page_class"=>$page_class]);
+    }
+
+    public function ajax_article_list(Request $request)
+    {
+        $page = $request->get("page");
+        if($page == null)
+        {
+            $page = 1;
+        }
+        $articles = $this->articleInvoker->page(['pageSize'=>6, 'page'=>$page]);
+
+        return json_encode($articles);
+    }
+
+    public function ajax_comment_list(Request $request)
+    {
+        $article_id = $request->get("article_id");
+        $page = $request->get("page");
+        if ($page == null)
+        {
+            $page = 1;
+        }
+        $comments = $this->articleInvoker->lscomment(['pageSize'=>6, 'page'=>$page]);
     }
 
     public function show_user_list()

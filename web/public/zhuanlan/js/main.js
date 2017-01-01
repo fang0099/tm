@@ -36,7 +36,7 @@ $.windowbox = {
          var  downflag= 1;
         //scroll滑动,上滑和下滑只执行一次！
           $.windowbox.scrollDirect(function (direction) {
-                  if (direction == "down") {
+                  /*if (direction == "down") {
                       if (downflag) {
                          upflag = 1;
                          $("#header").removeClass("sbfixed-show");
@@ -50,6 +50,19 @@ $.windowbox = {
                          downflag = 1;
                           upflag = 0;
                       }
+                  }*/
+                  if(direction == "down")
+                  {
+                      if (downflag) {
+                          upflag = 1;
+                          $("#header2").addClass("sbfixed-show");
+                          $("#header2").attr("position:fixed;")
+                          downflag = 1;
+                      }
+                  }
+                  else if (direction == "up")
+                  {
+
                   }
            });
       }
@@ -82,6 +95,8 @@ $.windowbox = {
           console.log($s);
 
       });
+
+      $("#header2").pin();
 
 
 

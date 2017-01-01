@@ -27,6 +27,7 @@ trait ApiInvoker
             'up' => 'GET',
             'lscomment'=>'GET',
             'get' => 'GET',
+            'page'=>'GET',
             'create' => 'POST',
             'update'=> 'POST',
             'list' => 'GET',
@@ -36,7 +37,7 @@ trait ApiInvoker
             'uncollect'=>'GET',
             'comment' => 'POST',
             'delete'=>'GET',
-            'commentdelete'=>'GET',
+            'deletecomment'=>'GET',
         ],
         'user' => [
             'get' => 'GET',

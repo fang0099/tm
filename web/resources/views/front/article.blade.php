@@ -9,15 +9,50 @@
                 float:right;
             }
         </style>
+        <style type="text/css">
+           table {
+               width: 100%;
+               table-layout: fixed;
+               border-collapse: collapse;
+               border-spacing: 0;
+               margin: 15px 0;
+           }
+
+            table thead {
+               background-color: #f9f9f9;
+           }
+
+            table td{
+                min-width: 40px;
+                height: 30px;
+                border: 1px solid #ccc;
+                vertical-align: top;
+                padding: 2px 4px;
+                text-align: left;
+                box-sizing: border-box;
+            }
+
+            table th {
+                min-width: 40px;
+                height: 30px;
+                border: 1px solid #ccc;
+                vertical-align: top;
+                padding: 2px 4px;
+                text-align: left;
+                box-sizing: border-box;
+            }
+
+        </style>
     @stop
     @section("content")
         <main class="main-container ng-scope" ng-view="">
             <div class="main receptacle post-view ng-scope" ng-class="post.isTitleImageFullScreen &amp;&amp; winType != &#39;small&#39; &amp;&amp; !isCensoring &amp;&amp; &#39;full-screen-cover&#39;" ng-if="!notFound" data-za-module="PostItem">
                 <article class="entry" ui-lightbox="">
                     <header>
+                        @if ($article["face"]!="default")
                         <div class="entry-title-image ng-scope" ng-if="post.titleImage &amp;&amp; !isCensoring" ng-switch="!!(post.titleImageSize.width || (winType != &#39;small&#39; &amp;&amp; post.isTitleImageFullScreen))">
                             <img ng-switch-when="false" ng-src="" class="ng-scope" src="{{$article["face"]}}"></div>
-
+                        @endif
                         <div class="placeholder"></div>
                         <h1 class="multiline2 entry-title">{{ $article["title"] }}</h1>
                         <div class="entry-meta">
@@ -40,35 +75,13 @@
                                 <p class="tags ng-scope full-screen" ng-if="post.topics.length" ng-class="{&#39;full-screen&#39;: !post.reviewers.length}">
                                     <!-- ngRepeat: topic in post.topics | limitTo:3 -->
                                     @foreach($article["tags"] as $tag)
-                                    <span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">{{$tag["name"]}}</span>
+                                    <a class="btn btn-green" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
+                                    <!--<span class="tag ng-binding ng-scope" ng-repeat="topic in post.topics | limitTo:3">{{$tag["name"]}}</span>-->
                                     @endforeach
-                                    <!-- end ngRepeat: topic in post.topics | limitTo:3 --></p>
-                                <!-- end ngIf: post.topics.length --></div>
-                            <!-- end ngIf: isPublished -->
+                                </p>
+                            </div>
                             <div class="entry-controls clearfix">
                                 <div class="right-section">
-                                    <!-- ngIf: isPublished && !supportTouch -->
-                                    <div ng-transclude="" class="post-share-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" onbeforeopen="beforeShareMenuOpen()" ng-if="isPublished &amp;&amp; !supportTouch">
-                                        <a href="javascript:;" class="menu-button control-item share ng-scope">
-                                            <i class="icon-ic_column_share"></i>分享</a>
-                                        <menu class="menu ng-scope">
-                                            <!-- ngRepeat: item in shareMenuItems -->
-                                            <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-sina" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
-                                                <i class="icon icon-ic_share_sina"></i>新浪微博
-                                                <!-- ngIf: item.html --></button>
-                                            <!-- end ngRepeat: item in shareMenuItems -->
-                                            <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-wechat" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
-                                                <i class="icon icon-ic_share_wechat"></i>微信扫一扫
-                                                <!-- ngIf: item.html -->
-                                                <div class="extra ng-binding ng-scope" ng-if="item.html" ng-bind-html="item.html">
-                                                    <div class="ShareQRCode"></div></div>
-                                                <!-- end ngIf: item.html --></button>
-                                            <!-- end ngRepeat: item in shareMenuItems -->
-                                            <button ng-click="item.action($event)" class="menu-item ng-binding ng-scope menu-item-dudu" ng-repeat="item in shareMenuItems" ng-class="item.className" tabindex="0">
-                                                <i class="icon icon-ic_share_dudu"></i>读读日报
-                                                <!-- ngIf: item.html --></button>
-                                            <!-- end ngRepeat: item in shareMenuItems --></menu>
-                                    </div>
                                     <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a>
 
                                     <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/collect?id={{$article["id"]}}" class="control-item report ng-scope">
@@ -85,11 +98,10 @@
                                     </div>
 
                                     </div>
-                                <!-- ngIf: isPublished -->
                                 <div class="left-section ng-scope" ng-if="isPublished">
                                     <div class="votes">
 
-                                        <a ng-if="!ownPost(post)" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" href="article/like?id={{$article["id"]}}" ng-class="{ active: post.rating == &#39;like&#39; }">
+                                        <a ng-if="!ownPost(post)" id="like_btn" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" article_id="{{$article["id"]}}" href="javascript:" ng-class="{ active: post.rating == &#39;like&#39; }">
                                             <i class="icon-ic_column_like"></i>{{$article["likes"]}}</a>
 
                                     </div>
@@ -102,9 +114,7 @@
                                             <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
         <span ng-transclude="">
           <span class="ng-binding ng-scope">评论</span>
-            <!-- ngInclude: '/views/post-comments-settings.html' -->
           <span ng-include="'/views/post-comments-settings.html'" class="ng-scope">
-            <!-- ngIf: isPostOwner(me) -->
             <div ng-transclude="" class="comment-setting-button menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: 'open', false: 'close' }[open]" ui-menu-button="" ng-if="isPostOwner(me)">
               <a href="javascript:;" class="menu-button comment-setting-button ng-scope">
                 <!-- ngIf: ownPost() -->
@@ -175,30 +185,23 @@
 
                                                     <div class="comment-hd" ng-class="{'comment-hd-conversation': comment.inReplyToCommentId}">
                                                         <a href="https://www.zhihu.com/people/lucas-35-31" target="_blank" class="ng-binding">{{$comment["username"]}}</a>
-                                                        <!-- <span ng-if="comment.author.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                        <!-- ngIf: isPostOwner(comment.author) --><span ng-if="isPostOwner(comment.author)" class="ng-scope"></span><!-- end ngIf: isPostOwner(comment.author) -->
+
+                                                        <span ng-if="isPostOwner(comment.author)" class="ng-scope"></span>
                                                         <span class="in-reply-to ng-hide" ng-show="comment.inReplyToUser">
-          回复 <a href="" class="ng-binding"></a>
-                                                            <!-- <span ng-if="comment.inReplyToUser.isOrg" class="OrgBadge z-ico-badge16" ui-hover-title="已认证的机构"></span> -->
-                                                            <!-- ngIf: isPostOwner(comment.inReplyToUser) -->
-        </span>
-                                                        <!-- ngIf: comment.reviewing -->
+                                                            回复 <a href="" class="ng-binding"></a>
+                                                        </span>
+
                                                     </div>
 
                                                     <div class="comment-content ng-binding" ng-bind-html="comment.content">{!! $comment["content"] !!}</div>
 
                                                     <div class="comment-ft clearfix">
-                                                        <!-- ngIf: timeStyle != 'shor' --><time ng-class="{short: timeStyle == 'short'}" ui-hover-title="2016 年 12 月 29 日星期四晚上 11 点 24 分" ng-if="timeStyle != 'shor'" ui-time="" datetime="2016-12-29T23:24:34+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">{{$comment["publish_time"]}}</time><!-- end ngIf: timeStyle != 'shor' -->
+                                                        <time ng-class="{short: timeStyle == 'short'}" ui-hover-title="2016 年 12 月 29 日星期四晚上 11 点 24 分" ng-if="timeStyle != 'shor'" ui-time="" datetime="2016-12-29T23:24:34+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">{{$comment["publish_time"]}}</time><!-- end ngIf: timeStyle != 'shor' -->
 
                                                         <span class="like-num nil" title="0 人觉得这个很赞"><span class="ng-binding">0</span> <span>赞</span></span>
 
-                                                        <!-- ngIf: state === 'reviewing' && comment.reviewing -->
-
-                                                        <!-- ngIf: canRemove(comment) && state === 'normal' --><a ng-if="canRemove(comment) &amp;&amp; state === 'normal'" ng-click="remove(comment)" href="article/comment_delete?article_id={{$article["id"]}}&comment_id={{$comment["id"]}}" class="remove op-link ng-scope"><i class="icon-ic_phot_delete"></i>删除</a><!-- end ngIf: canRemove(comment) && state === 'normal' -->
-
-
-
-                                                        <!-- ngIf: ownPost() && state === 'normal' && !comment.reviewing --><a ng-if="ownPost() &amp;&amp; state === 'normal' &amp;&amp; !comment.reviewing" ng-click="recommend(comment)" href="javascript:;" class="recommend op-link false"><i class="icon-ic_highlighted"></i>推荐</a><!-- end ngIf: ownPost() && state === 'normal' && !comment.reviewing -->
+                                                       <a ng-if="canRemove(comment) &amp;&amp; state === 'normal'" ng-click="remove(comment)" href="article/comment_delete?article_id={{$article["id"]}}&comment_id={{$comment["id"]}}" class="remove op-link ng-scope"><i class="icon-ic_phot_delete"></i>删除</a>
+                                                        <a href="javascript:;" class="recommend op-link false"><i class="icon-ic_highlighted"></i>回复</a>
 
                                                         <!-- ngIf: !ownComment(comment) && state === 'normal' && !comment.reviewing -->
                                                     </div>
@@ -308,12 +311,46 @@
                 //'fullscreen',
             ],
             upload: {
-                url: '/upload'
+                url: 'http://localhost/tm/web/public/upload_img',
+                fileKey: 'img_name',
+                params: null,
+                connectionCount: 3,
             },
         });
         $(".simditor").addClass("receptacle");
         $(".simditor").attr("style","margin-left:66px;");
         $(".simditor-body").attr("style","min-height:88px;");
+
+        $('#like_btn').click(function(){
+            var article_id=$('#like_btn').attr("article_id");
+
+            old = $("#like_btn").val();
+            $("#like_btn").val(1+old);
+            console.log(article_id);
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/tm/web/public/article/like?id="+article_id,
+                data: {username:$("#username").val(), content:$("#content").val()},
+                dataType: "json",
+                success: function(data){
+                    //alert("1");
+                    console.log(eval(data));
+                    /*
+                    $('#resText').empty();   //清空resText里面的所有内容
+                    var html = '';
+                    $.each(data, function(commentIndex, comment){
+                        html += '<div class="comment"><h6>' + comment['username']
+                            + ':</h6><p class="para"' + comment['content']
+                            + '</p></div>';
+                    });
+                    $('#resText').html(html);*/
+                },
+                error: function(data)
+                {
+                    console.log(eval(data));
+                }
+            });
+        });
 
     </script>
         @stop

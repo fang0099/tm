@@ -43,13 +43,7 @@
                             <option value=""></option>
                             @foreach($tags as $tag)
                                 <option value="{{$tag["id"]}}">{{$tag["name"]}}</option>
-                        @endforeach
-                        <!-- <option value="United Kingdom">United Kingdom</option>
-
-                            <option value="Afghanistan">Afghanistan</option>-->
-
-
-
+                            @endforeach
                         </select>
                     <input type="submit" value="发布" id="submit" class="btn btn-blue write-btn"/>
                     </section>
@@ -117,7 +111,10 @@
                     'fullscreen',
                 ],
                 upload: {
-                    url: '/upload'
+                    url: 'http://localhost/tm/web/public/upload_img',
+                    fileKey: 'img_name',
+                    params: null,
+                    connectionCount: 3,
                 },
             });
 

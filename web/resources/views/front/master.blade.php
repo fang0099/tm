@@ -11,7 +11,6 @@
         ng\:form {
             display: block;
         }
-
         .ng-animate-block-transitions {
             transition: 0s all!important;
             -webkit-transition: 0s all!important;
@@ -40,6 +39,7 @@
     @yield("page_level_css")
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
 </head>
 <body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">
 <!--[if lt IE 8]>
@@ -81,12 +81,15 @@
         </div>
         <div class="navbar-content"></div>
     </header>
+
+
 </div>
 <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
     <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
 </div>
 @yield("content")
 <script src="<?php echo env('APP_URL');?>/zhuanlan/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery.pin/jquery.pin.js"></script>
 @yield("page_level_js")
 <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
 </body>
