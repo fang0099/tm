@@ -81,22 +81,44 @@
                                 </p>
                             </div>
                             <div class="entry-controls clearfix">
-                                <div class="right-section">
-                                    <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a>
+                                <div class="jiathis_style_32x32">
+                                    <a class="jiathis_button_qzone"></a>
+                                    <a class="jiathis_button_tsina"></a>
+                                    <a class="jiathis_button_tqq"></a>
+                                    <a class="jiathis_button_weixin"></a>
 
+                                    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                    <a class="jiathis_counter_style"></a>
+                                </div>
+                            </div>
+                            <div class="entry-controls clearfix">
+
+                                <div class="right-section">
+
+
+
+
+                                    @if(null!==session("id") and session("id")==$article["author"]["id"] )
+                                    <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a>
+                                    @endif
                                     <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/collect?id={{$article["id"]}}" class="control-item report ng-scope">
                                         <i class="icon-ic_column_report"></i>收藏</a>
+                                        @if(null!==session("id") and session("id")==$article["author"]["id"] )
                                     <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/delete?id={{$article["id"]}}" class="control-item report ng-scope">
-                                        <i class="icon-ic_column_report"></i>删除</a>
-                                    <div ng-transclude="" class="post-options-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope close" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ng-if="ownPost(post)" toggle-delay="250">
+                                        <i class="icon-ic_column_more"></i>删除</a>
+                                    @endif
+                                    <!--<div ng-transclude="" class="post-options-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope close" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ng-if="ownPost(post)" toggle-delay="250">
                                         <a href="javascript:;" class="menu-button control-item options ng-scope">
                                             <i class="icon-ic_column_more"></i><span class="hide-text">设置</span>
                                         </a>
                                         <menu class="menu ng-scope">
                                             <a href="javascript:;" ng-click="removePost()" class="menu-item" tabindex="0">删除文章</a>
                                         </menu>
-                                    </div>
+                                    </div>-->
+                                        <!-- JiaThis Button BEGIN -->
 
+
+                                        <!-- JiaThis Button END -->
                                     </div>
                                 <div class="left-section ng-scope" ng-if="isPublished">
                                     <div class="votes">
@@ -105,7 +127,10 @@
                                             <i class="icon-ic_column_like"></i>{{$article["likes"]}}</a>
 
                                     </div>
+
+
                                 </div>
+
 
                                 <div class="entry-comments post-comments comment-box ng-isolate-scope empty" ng-show="expanded" ng-class="{ empty: !pending &amp;&amp; !comments.length }" ng-switch="pending" id="comments" ui-post-comments="" comments-placeholder="写下你的评论" comment-need-review="commentNeedReview" comments-href="post.links.comments" comments-expanded="true" comments-post-owner="post.author" comments-status="commentsStatus" ng-if="isPublished &amp;&amp; !isQQNews" comments-style="pagination" locate-comment-id="locateCommentId">
                                     <div class="box-header" ng-switch="!!(isPostOwner(me) &amp;&amp; me.isOrg)">
@@ -262,7 +287,7 @@
                                     <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
                                         <span class="source-prefix">发表于</span>
 
-                                        <a href="https://zhuanlan.zhihu.com/yysaag" ng-if="post.column" class="ng-binding ng-scope">{{$a["publish_time"]}}</a>
+                                        <a href="#" ng-if="post.column" class="ng-binding ng-scope">{{$a["publish_time"]}}</a>
                                         </div>
                                     </footer>
                             </article>
@@ -283,6 +308,7 @@
     <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor.js"></script>
     <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-dropzone.js"></script>
     <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
     <script>
         var editor = new Simditor({
             textarea: $('#editor'),
@@ -311,7 +337,7 @@
                 //'fullscreen',
             ],
             upload: {
-                url: 'http://localhost/tm/web/public/upload_img',
+                url: '<?php echo env('APP_URL');?>/public/upload_img',
                 fileKey: 'img_name',
                 params: null,
                 connectionCount: 3,
@@ -329,7 +355,7 @@
             console.log(article_id);
             $.ajax({
                 type: "GET",
-                url: "http://localhost/tm/web/public/article/like?id="+article_id,
+                url: "<?php echo env('APP_URL');?>/article/like?id="+article_id,
                 data: {username:$("#username").val(), content:$("#content").val()},
                 dataType: "json",
                 success: function(data){
