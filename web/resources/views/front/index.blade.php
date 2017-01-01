@@ -127,7 +127,7 @@
                                 "<a ui-open-blank=\"\" href=\"article?id="+article["id"]+"\">"+
                                 "<p class=\"post-img ng-scope\" style=\"background-image: url(&quot; "+ article["face"]+" &quot;);\"></p>"+
                                 "<p class=\"title ng-binding\">"+article["title"]+"</p>"+
-                                "<p class=\"content ng-binding ng-hide\">"+article["abstracts"]+"…"
+                                "<p class=\"content ng-binding ng-hide\">"+article["abstracts"]+"…"+
                                 "<span class=\"read-all\">查看全文<i class=\"icon-ic_unfold\"></i></span></p></a><p class=\"meta\"><span class=\"author ellipsis\">"+
                                 "<a target=\"_blank\" href=\"article/list?id="+article["author"]["id"]+"\" class=\"ng-binding\">"+article["author"]["username"]+"</a>"+
                                 "</span><span class=\"source ellipsis ng-scope\">发表于"+

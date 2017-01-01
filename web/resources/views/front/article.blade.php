@@ -94,14 +94,10 @@
                             <div class="entry-controls clearfix">
 
                                 <div class="right-section">
-
-
-
-
                                     @if(null!==session("id") and session("id")==$article["author"]["id"] )
                                     <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a>
                                     @endif
-                                    <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/collect?id={{$article["id"]}}" class="control-item report ng-scope">
+                                    <a id="collect_btn" article_id="{{$article["id"]}}" ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="javascript:;" class="control-item report ng-scope">
                                         <i class="icon-ic_column_report"></i>收藏</a>
                                         @if(null!==session("id") and session("id")==$article["author"]["id"] )
                                     <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/delete?id={{$article["id"]}}" class="control-item report ng-scope">
@@ -123,7 +119,7 @@
                                 <div class="left-section ng-scope" ng-if="isPublished">
                                     <div class="votes">
 
-                                        <a ng-if="!ownPost(post)" id="like_btn" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" article_id="{{$article["id"]}}" href="javascript:" ng-class="{ active: post.rating == &#39;like&#39; }">
+                                        <a ng-if="!ownPost(post)" count="{{$article["likes"]}}" id="like_btn" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" article_id="{{$article["id"]}}" href="javascript:" ng-class="{ active: post.rating == &#39;like&#39; }">
                                             <i class="icon-ic_column_like"></i>{{$article["likes"]}}</a>
 
                                     </div>
@@ -224,10 +220,10 @@
                                                         <time ng-class="{short: timeStyle == 'short'}" ui-hover-title="2016 年 12 月 29 日星期四晚上 11 点 24 分" ng-if="timeStyle != 'shor'" ui-time="" datetime="2016-12-29T23:24:34+08:00" class="date ng-binding ng-scope ng-isolate-scope hover-title" time-style="timeStyle">{{$comment["publish_time"]}}</time><!-- end ngIf: timeStyle != 'shor' -->
 
                                                         <span class="like-num nil" title="0 人觉得这个很赞"><span class="ng-binding">0</span> <span>赞</span></span>
-
+                                                        @if(null!==session("id") and session("id")==$comment["user_id"] )
                                                        <a ng-if="canRemove(comment) &amp;&amp; state === 'normal'" ng-click="remove(comment)" href="article/comment_delete?article_id={{$article["id"]}}&comment_id={{$comment["id"]}}" class="remove op-link ng-scope"><i class="icon-ic_phot_delete"></i>删除</a>
-                                                        <a href="javascript:;" class="recommend op-link false"><i class="icon-ic_highlighted"></i>回复</a>
-
+                                                        <!--<a href="javascript:;" class="recommend op-link false"><i class="icon-ic_highlighted"></i>回复</a>-->
+                                                        @endif
                                                         <!-- ngIf: !ownComment(comment) && state === 'normal' && !comment.reviewing -->
                                                     </div>
 
@@ -281,7 +277,7 @@
                                     <div class="entry-meta">
                                         <a target="_blank" href="article/list?id={{$article["author"]["id"]}}" class="author name ng-binding">{{$article["author"]["username"]}}</a>
                                         <span class="bull" ng-click="test()">·</span>
-                                        <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 29 日星期二下午 1 点 52 分" ui-time="" datetime="2016-11-29T13:52:37+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$a["publish_time"]}}</time>
+                                        <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 29 日星期二下午 1 点 52 分" ui-time="" datetime="2016-11-29T13:52:37+08:00" class="published ng-binding ng-isolate-scope hover-title"></time>
                                     </div>
 
                                     <div class="entry-source ng-scope" ng-if="showSource &amp;&amp; post.column">
@@ -350,8 +346,9 @@
         $('#like_btn').click(function(){
             var article_id=$('#like_btn').attr("article_id");
 
-            old = $("#like_btn").val();
-            $("#like_btn").val(1+old);
+            old = parseInt($("#like_btn").attr('count'))+1;
+
+            $("#like_btn").html("<i class=\"icon-ic_column_like\"></i>"+old+"</a>");
             console.log(article_id);
             $.ajax({
                 type: "GET",
@@ -370,6 +367,33 @@
                             + '</p></div>';
                     });
                     $('#resText').html(html);*/
+                },
+                error: function(data)
+                {
+                    console.log(eval(data));
+                }
+            });
+        });
+
+        $('#collect_btn').click(function(){
+
+            $.ajax({
+                type: "GET",
+                url: "<?php echo env('APP_URL');?>/article/collect?id="+$('#collect_btn').attr("article_id"),
+                data: {username:$("#username").val(), content:$("#content").val()},
+                dataType: "json",
+                success: function(data){
+                    //alert("1");
+                    console.log(eval(data));
+                    /*
+                     $('#resText').empty();   //清空resText里面的所有内容
+                     var html = '';
+                     $.each(data, function(commentIndex, comment){
+                     html += '<div class="comment"><h6>' + comment['username']
+                     + ':</h6><p class="para"' + comment['content']
+                     + '</p></div>';
+                     });
+                     $('#resText').html(html);*/
                 },
                 error: function(data)
                 {
