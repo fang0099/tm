@@ -191,7 +191,7 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                        <a href="javascript:;" data="form?model=muser&id=1" class="nav-link link">
+                                        <a href="javascript:;" data="form?model=muser&id=<?php echo session('id')?>" class="nav-link link">
                                             <span class="title"> 个人信息管理 </span>
                                         </a>
                                     </li>
