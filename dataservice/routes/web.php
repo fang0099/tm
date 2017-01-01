@@ -93,8 +93,8 @@ Route::get('/tag/subscribe', 'TagController@subscribe');
 Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 Route::get('/tag/articles', 'TagController@articles');
 Route::get('/tag/subscriber', 'TagController@subscriber');
-Route::get('/tag/menu-tags', 'TagController@menuTags');
-Route::get('/tag/index-tags', 'TagController@indexTags');
+Route::get('/tag/menutags', 'TagController@menuTags');
+Route::get('/tag/indextags', 'TagController@indexTags');
 Route::get('/tag/hassubscriber', 'TagController@hasSubscribe');
 
 // news flash

@@ -256,7 +256,7 @@ class UserRepository extends BaseRepository
                     . " on a.id = tr.article_id "
                     . " inner join tag_subscriber as sr"
                     . " on tr.tag_id = sr.tag_id"
-                    . " where sr.subscriber_id = ?"
+                    . " where a.del_flag = 0 and sr.subscriber_id = ?"
                     . " limit $offset ," . $pageSize;
             return  $this->success('', DB::select($sql, [$id]));
         }
@@ -270,7 +270,7 @@ class UserRepository extends BaseRepository
             $offset = ($page - 1) * $pageSize;
             $sql = "select a.* from article as a inner join user_follows as uf "
                 . " on a.author_id = uf.user_id"
-                . " where uf.follower_id = ?"
+                . " where a.del_flag = 0 and  uf.follower_id = ?"
                 . " limit $offset ," . $pageSize;
             return $this->success('', DB::select($sql, [$id]));
         }
