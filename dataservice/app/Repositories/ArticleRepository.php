@@ -56,7 +56,7 @@ class ArticleRepository extends BaseRepository
     }
 
     public function deleteComment($articleId, $commentId){
-        DB::update('update comments set del_flag = 1 where id = ? ', [$commentId]);
+        DB::delete('delete from comments where id = ? ', [$commentId]);
         return $this->success();
     }
 
