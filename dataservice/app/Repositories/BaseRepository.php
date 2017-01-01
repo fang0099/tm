@@ -166,11 +166,7 @@ abstract class BaseRepository
         return $request->input('params');
     }
 
-    public function page(Request $request){
-        $page = $request->input('page', 1);
-        $pageSize = $request->input('pageSize', 20);
-        $filter = $request->input('filter', array());
-        $order = $request->input('order', '');
+    public function page2($page, $pageSize, $filter, $order){
         $condition = array();
         $builder = $this->model->where('del_flag', '=', 0);
         if(!empty($filter)){
@@ -203,6 +199,14 @@ abstract class BaseRepository
             'filter' => $filter,
             'list' => $ls
         ];
+    }
+
+    public function page(Request $request){
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 20);
+        $filter = $request->input('filter', array());
+        $order = $request->input('order', '');
+        return $this->page2($page, $pageSize, $filter, $order);
     }
 
     public function select(Request $request){

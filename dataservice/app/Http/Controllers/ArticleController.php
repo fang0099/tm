@@ -35,7 +35,11 @@ class ArticleController
     }
 
     public function page(Request $request){
-        return $this->articleRep->page($request);
+        $page = $request->input('page',1);
+        $pageSize = $request->input('pageSize', 15);
+        $filter = $request->input('filter', array());
+        $order = 'publish_time desc';
+        return $this->articleRep->page2($page, $pageSize, $filter, $order);
     }
 
     public function update(Request $request){
