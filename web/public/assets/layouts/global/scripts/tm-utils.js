@@ -20,6 +20,10 @@
 		}
 		console.log('fix iframe size');
 	};
+	
+	var fixSidebarIframeSize = function () {
+		
+    };
 
 
 	__.utils.fixMainIframeSize = fixMainIframeSize;

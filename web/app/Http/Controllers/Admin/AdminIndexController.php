@@ -79,6 +79,7 @@ class AdminIndexController extends AdminBaseController
                             'config' => $m,
                             'action' => 'update',
                             'data' => $data['data'],
+                            'json' => json_encode($data['data']),
                             'model' => $model
                         ]);
                     }else {
