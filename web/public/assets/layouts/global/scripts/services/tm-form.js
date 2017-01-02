@@ -14,6 +14,25 @@ __.services.form = __.services.form || {};
 	var iframe = __.components.iframe;
 	var $form = $('#form');
 	var $cancle = $('.cancle');
+	var jsonData = $('#json-data').val();
+
+	var initFormValue = function(){
+		if(jsonData){
+			var json = JSON.parse(jsonData);
+			console.log(json);
+            var $selects = $('select');
+            if($selects && $selects.length > 0){
+                for (var i = 0 ; i < $selects.length; i++){
+                    var $select = $($selects[i]);
+                    var name = $select.attr('name');
+                    name = name.replace('params[', '');
+                    name = name.replace(']', '');
+                    console.log(name + "," + json[name]);
+                    $select.val(json[name]);
+                }
+            }
+		}
+	};
 
 	var init = function(){
 		// bind form
@@ -75,6 +94,7 @@ __.services.form = __.services.form || {};
             return false;
         });
 
+        initFormValue();
 
 	};
 

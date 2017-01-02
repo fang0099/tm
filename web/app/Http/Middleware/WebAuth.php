@@ -13,11 +13,11 @@ class WebAuth
 {
     public function handle($request, Closure $next)
     {
-
         if($request->session()->get('id')){
             $response = $next($request);
             return $response;
         }
+
         return redirect(env('APP_URL').'/login');
     }
 }
