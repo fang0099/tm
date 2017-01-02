@@ -56,7 +56,11 @@
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="#">
-                        <img src="../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <!--
+                        <img src="../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+                         -->
+                        <h4 style="color: #fff">后台管理</h4>
+                    </a>
                     <div class="menu-toggler sidebar-toggler"> </div>
                 </div>
                 <!-- END LOGO -->

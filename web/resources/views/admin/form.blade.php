@@ -131,8 +131,8 @@
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-xs-offset-3 col-xs-6">
-                                                    <button type="submit" class="btn green">Submit</button>
-                                                    <button type="reset" class="btn default cancle">Cancel</button>
+                                                    <button type="submit" class="btn green">提交</button>
+                                                    <button type="reset" class="btn default cancle">取消</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -16,7 +16,8 @@
 			"name" : "params[username]",
 			"type" : "text",
 			"attribute" : {
-				"required" : "required"
+				"required" : "required",
+				"disabled" : "true"
 			}
 		},
 		{
