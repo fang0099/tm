@@ -331,11 +331,19 @@ class ArticleController extends Controller
             $tags = $request->get("tags");
             //print_r($tags);
             $the_tag = "";
-            foreach ($tags as $tag_id)
+            if ($tags != null)
             {
-                settype($tag_id,"string");
-                $the_tag.=$tag_id.",";
+                foreach ($tags as $tag_id)
+                {
+                    settype($tag_id,"string");
+                    $the_tag.=$tag_id.",";
+                }
             }
+            else
+            {
+                $the_tag=",";
+            }
+
             $the_tag = substr($the_tag,0,strlen($the_tag)-1);
             //print_r ($the_tag);
             //return;
@@ -385,6 +393,14 @@ class ArticleController extends Controller
         $type = $request->get('type');
 
         $list_type = $request->get('list_type');
+        if($list_type==null)
+        {
+            $list_type="";
+        }
+        if($type==null)
+        {
+            $type="";
+        }
         $page_class = "column-view";
         //标签文章列表
         if ($type=="tag")
@@ -427,6 +443,9 @@ class ArticleController extends Controller
         {
             $params["username"] = $username;
         }
+        $params["id"] = $id;
+        $params["type"] = $type;
+        $params["list_type"] = $list_type;
         return view("front/list",$params);
     }
 
@@ -437,36 +456,44 @@ class ArticleController extends Controller
         $userid = session("id");
         $params = Array();
         $type = $request->get('type');
+        $page = $request->get('page');
 
         $list_type = $request->get('list_type');
         $page_class = "column-view";
         //标签文章列表
         if ($type=="tag")
         {
-            $tag = $this->tagInvoker->get(['id' => $id]);
-            $article = $this->tagInvoker->articles(['id'=>$id]);
-            $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
+            //$tag = $this->tagInvoker->get(['id' => $id]);
+            $article = $this->tagInvoker->articles(['id'=>$id, 'page'=>$page]);
+            //$is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
+
+            return json_encode($article);
+            /*
             $params = [
                 'page_class'=>$page_class,
                 'tag'=>$tag["data"],
                 'articles'=>$article["data"],
                 'is_follower'=>$is_follower["success"],
-            ];
+            ];*/
         }
         //用户文章列表
         else {
-            $user = $this->userInvoker->get(['id' => $id]);
-            $article = $this->userInvoker->lastedarticles(['userid'=>$id]);
+            //$user = $this->userInvoker->get(['id' => $id]);
+
+            $article = $this->userInvoker->lastedarticles(['userid'=>$id ,'page'=>$page]);
             //关注tag
             if ($list_type == "tag") {
-                $article = $this->userInvoker->articlestags(['id' => $id]);
+                $article = $this->userInvoker->articlestags(['id' => $id ,'page'=>$page]);
             }
             elseif ($list_type == "liker") {
-                $article = $this->userInvoker->articlesfollowers(['id' => $id]);
+                $article = $this->userInvoker->articlesfollowers(['id' => $id ,'page'=>$page]);
             }
             elseif ($list_type == "collect") {
-                $article = $this->userInvoker->articlescollect(['id' => $id]);
+                $article = $this->userInvoker->articlescollect(['id' => $id ,'page'=>$page]);
             }
+
+            return json_encode($article);
+/*
             $is_follower = $this->userInvoker->hasfollower(['id'=>$id, 'userid'=>$userid]);
             //print_r($is_follower);
             $params = [
@@ -474,14 +501,10 @@ class ArticleController extends Controller
                 'user'=>$user["data"],
                 'articles'=>$article["data"],
                 'is_follower'=>$is_follower["success"],
-            ];
+            ];*/
         }
 
-        if ($username!=null)
-        {
-            $params["username"] = $username;
-        }
-        return view("front/list",$params);
+
     }
 
 

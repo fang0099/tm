@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/article/ajax_article_list', 'ArticleController@ajax_article_list');
     Route::get('/article/ajax_comment_list', 'ArticleController@ajax_comment_list');
+    Route::get('/article/ajax_list', 'ArticleController@show_list_ajax');
     //Route::get('/article', 'ArticleController@show_article');
     //创建用户
     Route::post('/user/create', 'UserController@create');
