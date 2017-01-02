@@ -277,7 +277,7 @@
 
 
                                     html+= "<article class=\"hentry\">"+
-                                        "<a href=\"article?id="+article["id"]+"\" class=\"entry-link\">"+
+                                        "<a href=\"<?php echo env('APP_URL');?>/article?id="+article["id"]+"\" class=\"entry-link\">"+
                                         "<h1 class=\"entry-title ng-binding\">"+article["title"]+"</h1>"+
                                         "<div class=\"title-img-container ng-scope\" ng-if=\"titleImageShow\">"+
                                         "<div class=\"title-img-preview\" style=\"background-image: url(&quot; "+article["face"]+" &quot;);\"></div>"+
