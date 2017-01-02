@@ -257,7 +257,7 @@
 
                         $.ajax({
                             type: "GET",
-                            url: "<?php echo env('APP_URL');?>/article/ajax_article_list?page="+count,
+                            url: "<?php echo env('APP_URL');?>/article/ajax_list?page="+count+"&type={{$type}}&type_list={{$list_type}}&id={{$id}}",
                             data: {username:$("#username").val(), content:$("#content").val()},
                             dataType: "json",
                             success: function(data){
