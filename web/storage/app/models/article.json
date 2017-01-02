@@ -116,7 +116,7 @@
 					"article_id" : "id"
 				},
 				"ref" : {
-					"model" : "article"
+					"model" : "tag"
 				}
 			}
 		},

@@ -11,20 +11,16 @@
 	var fixMainIframeSize = function () {
 		var $iframe = $('iframe[name=main]');
 		var $pageContent = $('.page-content');
-
-		if($iframe && $pageContent){
-			var width = $pageContent.width();
-			var height = $pageContent.height();	
-			$iframe.width(width - 10);
-			$iframe.height(height);
-		}
+		var windowHeight = $(window).height();
+		var windowWidth = $(window).width();
+		console.log(windowHeight);
+		//$('.page-content').height(windowHeight - 50);
+		$('.tab-content').height(windowHeight - 50);
+		$iframe.width($pageContent.width());
+		$iframe.height($pageContent.height());
 		console.log('fix iframe size');
 	};
 	
-	var fixSidebarIframeSize = function () {
-		
-    };
-
 
 	__.utils.fixMainIframeSize = fixMainIframeSize;
 

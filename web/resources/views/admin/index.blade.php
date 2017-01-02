@@ -215,7 +215,7 @@
 
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content" style="">
-                    <iframe src="welcome" name="main" frameborder="0" height="1043px" scrolling="no" >
+                    <iframe src="welcome" name="main" frameborder="0" height="1000px" scrolling="no" >
                     </iframe>
                 </div>
                 <!-- END CONTENT BODY -->
@@ -236,7 +236,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <iframe src="form" name="sidebar" frameborder="0" height="1043px" width="720px" scrolling="yes" >
+                        <iframe src="form" name="sidebar" frameborder="0" height="100%" width="720px" scrolling="yes" >
                             
                         </iframe>
                        
@@ -270,14 +270,13 @@
         <!-- BEGIN PAGE LEVEL PLUGINS -->        
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="../../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../../assets/global/scripts/app.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="../../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/quick-sidebar.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/underscore.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/tm.js" type="text/javascript"></script>

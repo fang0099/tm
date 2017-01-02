@@ -154,7 +154,7 @@
         </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
-       <input type="hidden" id="json-data" value="{{ $json }}">
+       <input type="hidden" id="json-data" value="{{ $json or '' }}">
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
         <script src="../../assets/global/plugins/respond.min.js"></script>
