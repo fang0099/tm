@@ -130,31 +130,31 @@
 
                                 <div class="entry-comments post-comments comment-box ng-isolate-scope empty" ng-show="expanded" ng-class="{ empty: !pending &amp;&amp; !comments.length }" ng-switch="pending" id="comments" ui-post-comments="" comments-placeholder="写下你的评论" comment-need-review="commentNeedReview" comments-href="post.links.comments" comments-expanded="true" comments-post-owner="post.author" comments-status="commentsStatus" ng-if="isPublished &amp;&amp; !isQQNews" comments-style="pagination" locate-comment-id="locateCommentId">
                                     <div class="box-header" ng-switch="!!(isPostOwner(me) &amp;&amp; me.isOrg)">
-                                        <!-- ngSwitchWhen: false -->
+
                                         <div ng-switch-when="false" class="ng-scope">
                                             <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help">
         <span ng-transclude="">
           <span class="ng-binding ng-scope">评论</span>
-          <span ng-include="'/views/post-comments-settings.html'" class="ng-scope">
+          <!--<span ng-include="'/views/post-comments-settings.html'" class="ng-scope">
             <div ng-transclude="" class="comment-setting-button menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: 'open', false: 'close' }[open]" ui-menu-button="" ng-if="isPostOwner(me)">
               <a href="javascript:;" class="menu-button comment-setting-button ng-scope">
-                <!-- ngIf: ownPost() -->
+
                 <i class="icon-ic_column_more ng-scope" ng-if="ownPost()"></i>
-                  <!-- end ngIf: ownPost() -->
+
                 <span class="hide-text">评论设置</span></a>
               <menu class="menu ng-scope">
-                <!-- ngRepeat: item in commentSettingMenuItems -->
+
                 <label class="menu-item ng-binding ng-scope" ng-repeat="item in commentSettingMenuItems" tabindex="0">
                   <input name="comment-settting" type="radio" value="anyone" class="mui-radio ng-pristine ng-valid" ng-model="status.permission" ng-click="onClickCommentSettingItem($event)">所有人都能评论该文章</label>
-                  <!-- end ngRepeat: item in commentSettingMenuItems -->
+
                 <label class="menu-item ng-binding ng-scope" ng-repeat="item in commentSettingMenuItems" tabindex="0">
                   <input name="comment-settting" type="radio" value="friends" class="mui-radio ng-pristine ng-valid" ng-model="status.permission" ng-click="onClickCommentSettingItem($event)">只有作者关注的人才能评论该文章</label>
-                  <!-- end ngRepeat: item in commentSettingMenuItems -->
+
                 <label class="menu-item ng-binding ng-scope" ng-repeat="item in commentSettingMenuItems" tabindex="0">
                   <input name="comment-settting" type="radio" value="none" class="mui-radio ng-pristine ng-valid" ng-model="status.permission" ng-click="onClickCommentSettingItem($event)">关闭评论</label>
-                  <!-- end ngRepeat: item in commentSettingMenuItems --></menu>
+              </menu>
             </div>
-              <!-- end ngIf: isPostOwner(me) --></span>
+              </span>-->
         </span>
                                                 <!-- ngIf: help --></div>
                                         </div>
@@ -163,8 +163,9 @@
                                     <div ng-switch-when="false" class="ng-scope">
 
                                         <form action="article/comment" method="post" enctype="multipart/form-data" class="comment-form comment-box-ft ng-scope ng-invalid ng-invalid-content-required ng-dirty expanded" ng-class="{ 'expanded': formExpanded }" name="commentForm" ng-if="(status.canComment || status.forceShowCommentForm) &amp;&amp; state === 'normal'">
-
-                                            <img class="avatar avatar-small ng-scope" ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" ng-if="me.authed()" src="https://pic1.zhimg.com/da8e974dc_l.jpg">
+                                            @if(null!==session("avatar") and "default"!==session("avatar"))
+                                            <img class="avatar avatar-small ng-scope" src="<?php session("avatar") ?>">
+                                            @endif
 
                                             <textarea id="editor" name="comment-content"></textarea>
                                             <input name="id" value="{{$article["id"]}}" style="display: none;"/>

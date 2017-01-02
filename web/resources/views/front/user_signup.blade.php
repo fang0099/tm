@@ -44,12 +44,12 @@
                 <div class="col-xs-4 bs-reset">
                     <ul class="login-social">
                         <li>
-                            <a href="javascript:;">
+                            <a href="javascript:;" style="display: none;">
                                 <i class="fa fa-weixin" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;">
+                            <a href="javascript:;" style="display: none;">
                                 <i class="fa fa-weibo" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-xs-8 bs-reset">
                     <div class="login-copyright text-right">
-                        <p>版权所有 &copy; 链媒体 2016</p>
+                        <p>版权所有 &copy; 贝塔区块链 2016</p>
                     </div>
                 </div>
             </div>
