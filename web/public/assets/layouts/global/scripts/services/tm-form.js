@@ -99,6 +99,7 @@ __.services.form = __.services.form || {};
 	};
 
 	__.services.form.init = init;
+	__.services.form.initFormValue = initFormValue;
 })();
 
 $(document).ready(function(){
@@ -115,6 +116,7 @@ $(document).ready(function(){
                     html += "<option value='" + data[i].value + "'>" + data[i].key + "</option>";
                 }
                 $this.html(html);
+				__.services.form.initFormValue();
             }
         });
     });
