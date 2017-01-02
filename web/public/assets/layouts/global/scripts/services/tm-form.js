@@ -102,7 +102,6 @@ __.services.form = __.services.form || {};
 })();
 
 $(document).ready(function(){
-	__.services.form.init();
     $('[select-type=ajax]').each(function(k, v){
         var url = $(v).attr('url');
         var $this = $(v);
@@ -117,6 +116,7 @@ $(document).ready(function(){
                 }
                 $this.html(html);
             }
-        })
+        });
     });
+    __.services.form.init();
 });
