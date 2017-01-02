@@ -8,10 +8,14 @@
 	margin-top: 0px;
 }
 .icon-ic_zhihu_logo:before {
-    content: "链";
+    content: "β";
 }
 
 .post-view .entry-controls {
     margin: 40px 0;
     text-align: left;
+}
+
+.home .top h1 {
+    background: url(../images/logo.png) center no-repeat;
 }
