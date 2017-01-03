@@ -2,7 +2,15 @@
     @section("content")
         <main class="main-container ng-scope" ng-view="">
             <div class="main receptacle column-followers-main ng-scope">
-                <h2 class="page-title ng-binding">{{$tag["subscriberCount"] or $the_user["followersCount"]}} 人关注</h2>
+                <h2 class="page-title ng-binding">
+                    @if(isset($tag["subscriberCount"]))
+                        关注
+                    @endif
+                    {{$tag["subscriberCount"] or $the_user["followersCount"]}} 人
+                    @if(isset($the_user["followersCount"]))
+                    关注
+                    @endif
+                    </h2>
                 <div ui-infinite="" data-source="source" class="ui-infinite">
                     <p class="items-empty ng-binding ng-hide" ng-show="!source.pending &amp;&amp; !followers.length">
                         <i class="icon icon-no-article" ng-class="{true: &#39;icon-error-500&#39;, false: &#39;icon-no-article&#39;}[source.error]"></i>还没有关注者</p>

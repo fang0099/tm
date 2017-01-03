@@ -3,7 +3,7 @@
     <main class="main-container ng-scope" ng-view="">
         <div ng-show="recommendColumnsInited &amp;&amp; recommendPostsInited" class="ng-scope">
             <div class="top">
-                <h1>链媒体
+                <h1>贝塔区块链
                     <span class="bull">·</span>专栏</h1>
                 <h2>随心写作，自由表达</h2>
                 <a href="<?php echo env('APP_URL');?>/article/edit" class="btn btn-black write-btn">开始写文章</a></div>
@@ -89,11 +89,11 @@
                 </p>-->
             </section>
             <div class="bottom">
-                <h3>在链媒体创作</h3>
+                <h3>在贝塔区块链创作</h3>
                 <!--<a ng-click="handleLoginBeforeJump($event, true)" class="btn btn-black" href="https://zhuanlan.zhihu.com/request">申请专栏</a>-->
                 <p class="copyright">
                     <a ui-open-blank="" href="" class="about">关于专栏</a>
-                    <span>©️2016 链媒体</span></p>
+                    <span>©️2016 贝塔区块链</span></p>
             </div>
         </div>
     </main>
