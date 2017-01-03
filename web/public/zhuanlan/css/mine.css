@@ -18,6 +18,7 @@
 
 .home .top h1 {
     background: url(../images/logo.png) center no-repeat;
+    background-size: 100px;
 }
 
 .home .column-card-item .description {

@@ -1,5 +1,6 @@
 @extends("front/master")
     @section("page_level_css")
+        <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
         <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/font-awesome.css" />
         <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor-fullscreen.css" />
@@ -164,7 +165,7 @@
 
                                         <form action="article/comment" method="post" enctype="multipart/form-data" class="comment-form comment-box-ft ng-scope ng-invalid ng-invalid-content-required ng-dirty expanded" ng-class="{ 'expanded': formExpanded }" name="commentForm" ng-if="(status.canComment || status.forceShowCommentForm) &amp;&amp; state === 'normal'">
                                             @if(null!==session("avatar") and "default"!==session("avatar"))
-                                            <img class="avatar avatar-small ng-scope" src="<?php session("avatar") ?>">
+                                            <img class="avatar avatar-small ng-scope" src="<?php echo session("avatar"); ?>">
                                             @endif
 
                                             <textarea id="editor" name="comment-content"></textarea>
@@ -199,7 +200,7 @@
                                         <li class="comment-item" id="comment-215346091" ui-events="{focusin: 'focusin = true', focusout: 'focusin = false'}" ng-class="{focusin: focusin, 'comment-item-deleted': comment.deleted}" ng-switch="!!comment.deleted" ng-repeat="comment in comments track by comment.id">
                                             <div ng-switch-when="false" class="comment-item-inner-normal ng-scope">
                                                 <a ui-hovercard="" target="_blank" class="avatar-link" title="lucas" href="https://www.zhihu.com/people/lucas-35-31" tabindex="-1">
-                                                    <img ng-src="https://pic1.zhimg.com/da8e974dc_l.jpg" class="avatar avatar-small" src="{{$comment["avatar"]}}">
+                                                    <img class="avatar avatar-small" src="{{$comment["avatar"]}}" />
                                                 </a>
 
                                                 <div class="comment-body" ng-init="reply = {content: '', hidden: true}">
@@ -306,6 +307,8 @@
     <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-dropzone.js"></script>
     <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
     <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
     <script>
         var editor = new Simditor({
             textarea: $('#editor'),
@@ -340,6 +343,22 @@
                 connectionCount: 3,
             },
         });
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+
         $(".simditor").addClass("receptacle");
         $(".simditor").attr("style","margin-left:66px;");
         $(".simditor-body").attr("style","min-height:88px;");
@@ -385,6 +404,7 @@
                 dataType: "json",
                 success: function(data){
                     //alert("1");
+                    toastr.success("收藏成功");
                     console.log(eval(data));
                     /*
                      $('#resText').empty();   //清空resText里面的所有内容
