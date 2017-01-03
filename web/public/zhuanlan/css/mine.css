@@ -19,3 +19,11 @@
 .home .top h1 {
     background: url(../images/logo.png) center no-repeat;
 }
+
+.home .column-card-item .description {
+    line-height: 21px;
+    height: 42px;
+    margin-bottom: 14px;
+    word-break: break-all;
+    overflow: hidden;
+}

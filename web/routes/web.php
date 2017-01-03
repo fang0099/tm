@@ -53,7 +53,6 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/article/list', 'ArticleController@show_list');
     Route::get('/article/comment_delete', 'ArticleController@delete_comment');
 
-
     Route::get('/user', 'UserController@index');
     Route::get('/user/logout', 'UserController@logout');
     Route::get('/user/follow', 'UserController@follow');
