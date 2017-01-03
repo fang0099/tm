@@ -101,8 +101,9 @@
 
             var options1 = {
                 success: function (data) {
-                    //toastr.success(data.toString());
+                    //toastr.success(eval(data));
                     var obj =  eval('(' + data + ')');
+
                     if (true == obj.success)
                     {
                         toastr.success("登录成功");

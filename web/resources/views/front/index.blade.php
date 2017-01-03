@@ -55,6 +55,7 @@
                         </li>
                     @endforeach
                 </ul>
+
               <!--  <p class="random">
                     <a class="btn btn-black btn-90_32" href="javascript:;" id="get_user_btn">
                         <i class="icon-ic_refresh"></i>换一换</a>

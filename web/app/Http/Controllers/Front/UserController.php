@@ -161,7 +161,6 @@ class UserController extends Controller
         if (session("username")!=null)
         {
             return redirect("/index");
-
         }
         return view("front/user_login");
     }
@@ -211,6 +210,9 @@ class UserController extends Controller
         $r = $this->userInvoker->getbyname(
             ['username'=>$username]
         );
+
+        //print_r($r);
+
         $result = Array();
         if (md5($password) == $r["data"]["password"])
         {
@@ -236,7 +238,8 @@ class UserController extends Controller
     {
         $username = $request->get('username');
         $password=$request->get("password");
-        $avatar="/resources/assets/img/user.png";
+        $avatar="upload/3bab7c10-d1cc-11e6-a3a8-c93836a12d10.png";
+        //$avatar="/resources/assets/img/user.png";
         $brief="这家伙很懒，什么也没留下";
 
         $r = $this->userInvoker->create(
