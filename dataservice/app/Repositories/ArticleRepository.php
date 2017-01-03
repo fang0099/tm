@@ -36,7 +36,9 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }
         $author = $t->author;
-        $author->password = '***';
+        if($author){
+            $author->password = '***';
+        }
         $checker = $t->checker;
         if($checker){
             $checker->password = '***';
