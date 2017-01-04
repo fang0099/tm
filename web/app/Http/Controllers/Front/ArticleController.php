@@ -210,7 +210,7 @@ class ArticleController extends Controller
             $username = session("username");
             $userid = session("id");
             //控制样式
-            $page_class = "page-write";
+            $page_class = "page-write2";
             $article_id = $request->get('id');
             $article = $this->articleInvoker->get(['id'=>$article_id]);
             $author_id = $article["data"]["author"]["id"];
