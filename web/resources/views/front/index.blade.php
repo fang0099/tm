@@ -1,6 +1,6 @@
 @extends("front.master")
 @section("page_level_css")
-    <link type="text/css" rel="stylesheet" href="responsive-tabs/css/responsive-tabs.css" />
+    <link type="text/css" rel="stylesheet" href="responsive-tabs_/css/responsive-tabs.css" />
     <!--<link type="text/css" rel="stylesheet" href="responsive-tabs/css/style.css" />-->
     @stop
 @section("content")
@@ -334,7 +334,7 @@
     </main>
 @stop
 @section("page_level_js")
-    <script src="responsive-tabs/js/jquery.responsiveTabs.js"></script>
+    <script src="responsive-tabs_/js/jquery.responsiveTabs.js"></script>
     <script>
         $('#responsiveTabsDemo').responsiveTabs({
             startCollapsed: 'accordion'
