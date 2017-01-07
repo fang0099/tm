@@ -63,9 +63,6 @@ class ArticleController extends Controller
             $article_id = $request->get("article_id");
             $r = $this->articleInvoker->commentdelete(['comment_id'=>$comment_id, 'article_id'=>$article_id]);
 
-            //print_r($r);
-            //return;
-            //return json_encode($r);
             return redirect(env("APP_URL")."/article?id=".$article_id);
         }
         else
