@@ -11,7 +11,8 @@
 
                 if (options.minWidth && $window.width() <= options.minWidth) {
                     if ($this.parent().is(".pin-wrapper")) { $this.unwrap(); }
-                    $this.css({width: "", left: "", top: "", position: ""});
+                    //$this.css({width: "", left: "", top: "", position: ""});
+                    $this.css({ left: "", top: "", position: ""});
                     if (options.activeClass) { $this.removeClass(options.activeClass); }
                     disabled = true;
                     continue;
@@ -41,14 +42,16 @@
                     parentTop: parentOffset.top
                 });
 
-                $this.css({width: $this.outerWidth()});
+                //$this.css({width: $this.outerWidth()});
+                //console.log(1);
+                //$this.css({width: "100%"});
                 $this.parent().css("height", $this.outerHeight());
             }
         };
 
         var onScroll = function () {
             if (disabled) { return; }
-
+            //recalculateLimits();
             scrollY = $window.scrollTop();
 
             var elmts = [];
@@ -77,12 +80,21 @@
                     }).css("position", "fixed");
                     if (options.activeClass) { $this.addClass(options.activeClass); }
                 } else if (scrollY >= to) {
+
+                    !($this.css("position") == "fixed") && $this.css({
+                        left: $this.offset().left,
+                        top: data.pad.top
+                    }).css("position", "fixed");
+                    if (options.activeClass) { $this.addClass(options.activeClass); }
+                    /*
+
                     $this.css({
                         left: "",
                         top: to - data.parentTop + data.pad.top
                     }).css("position", "absolute");
-                    if (options.activeClass) { $this.addClass(options.activeClass); }
-                } else {
+                    if (options.activeClass) { $this.addClass(options.activeClass); }*/
+                }
+                else {
                     $this.css({position: "", top: "", left: ""});
                     if (options.activeClass) { $this.removeClass(options.activeClass); }
                 }

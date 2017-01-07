@@ -96,7 +96,13 @@ $.windowbox = {
 
       });
 
-      $("#header2").pin();
+      window.onresize = function(){
+          $("#header2").attr("width","100%");
+      };
+
+      $(".find_nav").pin(function(){
+         // $("#header2").attr("width","100%");
+      });
 
 
 

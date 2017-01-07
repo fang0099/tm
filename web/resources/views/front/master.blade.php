@@ -37,6 +37,7 @@
     <![endif]-->
     <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
     @yield("page_level_css")
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
@@ -71,26 +72,66 @@
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=collect&id=<?php echo session('id');?>" tabindex="0">收藏文章列表</a>
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=tag&id=<?php echo session('id');?>" tabindex="0">订阅标签文章列表</a>
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/index.php/admin/index" tabindex="0">后台管理</a>
+                <hr ng-if="inWrite &amp;&amp; !hideDelete" class="ng-scope">
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/logout" target="_blank" tabindex="0">退出</a>
             </menu>
         </div>
         @endif
         <div class="navbar-write-container ng-scope">
             <a href="<?php echo env('APP_URL');?>/article/edit" >
-                <i class="icon-ic_nav_new"></i>写文章</a>
+                <i class="icon-ic_nav_new"></i>写文章
+            </a>
         </div>
         <div class="navbar-content"></div>
     </header>
+    <div class="find_nav">
+        <div class="find_nav_left">
+            <div class="find_nav_list">
+                <ul>
+                    @if(isset($tags))
+                        @foreach($tags as $tag)
+                        <!--<li class="find_nav_cur"><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>-->
+                            <li><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
+                        @endforeach
+                    @endif
+                    <li class="sideline"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
 
 
 </div>
+<!--<div class="find_nav">
+    <div class="find_nav_left">
+        <div class="find_nav_list">
+            <ul>
+                <li class="find_nav_cur"><a href="javascript:void(0)">资讯</a></li>
+                <li><a href="javascript:void(0)">分析</a></li>
+                <li><a href="javascript:void(0)">原创</a></li>
+                <li><a href="javascript:void(0)">评论</a></li>
+                <li><a href="javascript:void(0)">技术</a></li>
+                <li><a href="javascript:void(0)">项目</a></li>
+                <li><a href="javascript:void(0)">黄页</a></li>
+                <li><a href="javascript:void(0)">股市</a></li>
+                <li><a href="javascript:void(0)">经济</a></li>
+                <li class="sideline"></li>
+            </ul>
+        </div>
+    </div>
+
+</div>-->
 <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
     <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
 </div>
 @yield("content")
-<script src="<?php echo env('APP_URL');?>/zhuanlan/js/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<!--<script src="<?php echo env('APP_URL');?>/zhuanlan/js/jquery.min.js"></script>-->
 <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery.pin/jquery.pin.js"></script>
 @yield("page_level_js")
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-wznav/js.js"></script>
 <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
 </body>
 

@@ -50,13 +50,17 @@ class IndexController extends Controller
         $user_list = $this->userInvoker->page(['pageSize'=>8]);
         $tag_list = $this->tagInvoker->page(['pageSize'=>8]);
 
+        $hot_article_list = $this->articleInvoker->hotest(['pageSize'=>6]);
+        //print_r($hot_article_list);
+        //return;
         //print_r($article_list);
         //return;
 
         $params = ['page_class'=>$page_class,
             'articles'=>$article_list["list"],
             'tags'=>$tag_list["list"],
-            'users'=>$user_list["list"]
+            'users'=>$user_list["list"],
+            'hot_articles'=>$hot_article_list["data"],
         ];
 
         if ($username!=null)

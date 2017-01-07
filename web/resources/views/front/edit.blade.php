@@ -38,14 +38,16 @@
                     <textarea id="editor" name="content">{!!  $article["data"]["content"] or '' !!}</textarea>
                 </div>
                     <section class="receptacle">
-                        <select name="tags[]" data-placeholder="选择标签..." class="chosen-select" multiple style="width:350px;" tabindex="4">
+                        <!--<select name="tags[]" data-placeholder="选择标签..." class="chosen-select" multiple style="width:350px;" tabindex="4">
 
                             <option value=""></option>
                             @foreach($tags as $tag)
                                 <option value="{{$tag["id"]}}">{{$tag["name"]}}</option>
                             @endforeach
-                        </select>
-                    <input type="submit" value="发布" id="submit" class="btn btn-blue write-btn"/>
+                        </select>-->
+                        <p>saving</p>
+                        <input type="submit" value="保存草稿" id="submit_script" class="btn btn-green write-btn" style="float: right; margin-left: 15px;"/>
+                        <input type="submit" value="提交审核" id="submit" class="btn btn-blue write-btn"/>
                     </section>
                 </form>
             </div>
