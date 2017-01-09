@@ -273,10 +273,24 @@
                                             <div class="user-intro">
                                                 <a href="article/list?id={{$user["id"]}}" target="_blank">
                                                     <strong class="ng-binding">{{$user["username"]}}</strong></a>
+                                                <p>{{$user["brief"]}}</p>
                                                 <span ng-if="user.bio" class="bio ng-binding ng-scope"></span>
                                                 <a class="btn btn-green" href="<?php echo env('APP_URL');?>/user/follow?id={{$user["id"]}}" style="float:right">关注</a>
                                             </div>
                                         </li>
+                                        @endforeach
+                                    @foreach($tags as $tag)
+                                            <li class="ui-user-item ng-isolate-scope" ng-repeat="user in followers" user="user">
+                                                <a href="article/list?id={{$tag["id"]}}" target="_blank" class="user-avatar">
+                                                    <img class="avatar avatar-mid" ng-src="{{$tag["face"]}}" alt="" src="{{$user["avatar"]}}"></a>
+                                                <div class="user-intro">
+                                                    <a href="article/list?type=tag&id={{$tag["id"]}}" target="_blank">
+                                                        <strong class="ng-binding">{{$tag["name"]}}</strong></a>
+                                                    <p>{{$user["brief"]}}</p>
+                                                    <span ng-if="user.bio" class="bio ng-binding ng-scope"></span>
+                                                    <a class="btn btn-green" href="<?php echo env('APP_URL');?>/tag/subscribe?id={{$tag["id"]}}" style="float:right">关注</a>
+                                                </div>
+                                            </li>
                                         @endforeach
                                 </ul>
                             @endif

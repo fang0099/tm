@@ -54,6 +54,7 @@ class IndexController extends Controller
         $user_list = $this->userInvoker->page(['pageSize'=>8]);
         $index_tag_list = $this->tagInvoker->indextags(['pageSize'=>8]);
         $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
+        $tag = $this->tagInvoker->list(['pageSize'=>8]);
 
         $hot_article_list = $this->articleInvoker->hotest(['pageSize'=>6]);
 
@@ -71,6 +72,7 @@ class IndexController extends Controller
             'hot_articles'=>$hot_article_list["data"],
             'fast_news'=>$fast_news["list"],
             'recom_articles'=>$recom_articles["data"],
+            'tags'=>$tag["list"],
         ];
 
         if ($username!=null)
