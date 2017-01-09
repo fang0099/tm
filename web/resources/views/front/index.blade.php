@@ -27,11 +27,6 @@
                             <div class="content">
                                 <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
-                                    <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
-                                      <span ng-transclude="">
-
-                                      </span>
-                                    </div>-->
                                     <ul class="items" id="article_items" ng-show="posts.length">
                                         @foreach($articles as $article)
                                             <li class="item ng-isolate-scope
@@ -49,8 +44,11 @@
                                                         </div>
                                                         <div class="entry-meta" style="margin-bottom: 5px;">
                                                             <i class="icon-x" style=""></i>
+                                                            @if(isset($article["author"]["username"]))
                                                             <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+
                                                                 <span>{{$article["author"]["username"]}}</span></a>
+                                                                @endif
                                                             <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
                                                             <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
                                                             <div class="entry-func ng-scope" style="float:right; display:inline;position: relative;">
@@ -74,52 +72,22 @@
 
 
                                                         <section class="entry-summary">
-                                                            <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{$article["abstracts"]}}…
-                                                                <!--<span class="read-all">查看全文
-                                                                    <i class="icon-chevron-right-outline"></i>
-                                                                </span>-->
+                                                            <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{strip_tags($article["content"])}}…
+
                                                             </p>
-                                                            <div class="tag_index">
-                                                                <i class="icon-tags" ></i>
+                                                        </section>
+                                                        <section class="entry-summary">
+                                                        <div class="tag_index">
+                                                            <i class="icon-tags" ></i>
+                                                            @if(isset($article["tagList"]))
                                                                 @foreach($article["tagList"] as $tag)
                                                                     <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
                                                                 @endforeach
-                                                            </div>
+                                                            @endif
+                                                        </div>
                                                         </section>
 
                                                     </a>
-
-
-
-                                                    <!--<footer>
-
-                                                        <div class="entry-meta" style="margin-bottom: 5px;">
-                                                            <i class="icon-calendar"></i>
-                                                            <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
-                                                            <div class="entry-func ng-scope" ng-if="!showSource">
-
-                                                                <i class="icon-thumbs-up"></i>
-
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
-                                                                    <span></span></a>
-                                                                <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
-                                                                @if($article["comment_num"]>=1)
-                                                                    <i class="icon-fire"></i>
-                                                                @else
-                                                                    <i class="icon-message"></i>
-                                                                @endif
-
-                                                                <a href="#comments" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
-                                                                    <span></span></a>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="entry-meta">
-
-
-
-                                                        </div>
-                                                    </footer>-->
 
                                                 </article>
                                             </li>
@@ -139,13 +107,8 @@
                             <div class="content">
                                 <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
-                                    <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
-                                      <span ng-transclude="">
-
-                                      </span>
-                                    </div>-->
                                     <ul class="items" id="article_items" ng-show="posts.length">
-                                        @foreach($hot_articles as $article)
+                                        @foreach($articles as $article)
                                             <li class="item ng-isolate-scope
                                                 @if($article["face"]!="default" and $article["face"]!="123")
                                                     item-with-title-img
@@ -161,8 +124,11 @@
                                                         </div>
                                                         <div class="entry-meta" style="margin-bottom: 5px;">
                                                             <i class="icon-x" style=""></i>
-                                                            <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
-                                                                <span>{{$article["author"]["username"]}}</span></a>
+                                                            @if(isset($article["author"]["username"]))
+                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+
+                                                                    <span>{{$article["author"]["username"]}}</span></a>
+                                                            @endif
                                                             <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
                                                             <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
                                                             <div class="entry-func ng-scope" style="float:right; display:inline;position: relative;">
@@ -186,50 +152,22 @@
 
 
                                                         <section class="entry-summary">
-                                                            <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{$article["abstracts"]}}…
+                                                            <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{strip_tags($article["content"])}}…
 
                                                             </p>
+                                                        </section>
+                                                        <section class="entry-summary">
                                                             <div class="tag_index">
                                                                 <i class="icon-tags" ></i>
-                                                                @foreach($article["tagList"] as $tag)
-                                                                    <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
-                                                                @endforeach
+                                                                @if(isset($article["tagList"]))
+                                                                    @foreach($article["tagList"] as $tag)
+                                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
+                                                                    @endforeach
+                                                                @endif
                                                             </div>
                                                         </section>
 
                                                     </a>
-
-
-
-                                                <!--<footer>
-
-                                                        <div class="entry-meta" style="margin-bottom: 5px;">
-                                                            <i class="icon-calendar"></i>
-                                                            <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
-                                                            <div class="entry-func ng-scope" ng-if="!showSource">
-
-                                                                <i class="icon-thumbs-up"></i>
-
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
-                                                        <span></span></a>
-                                                    <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
-                                                                @if($article["comment_num"]>=1)
-                                                    <i class="icon-fire"></i>
-                                                @else
-                                                    <i class="icon-message"></i>
-                                                @endif
-
-                                                        <a href="#comments" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
-                                                        <span></span></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="entry-meta">
-
-
-
-                                            </div>
-                                        </footer>-->
 
                                                 </article>
                                             </li>
@@ -244,18 +182,12 @@
 
 
                             </div>
-
                         </div>
                         <div id="tab-3">
                             @if(null!=session("username"))
                                 <div class="content">
-                                    <div class="items-container ng-scope ui-infinite" data-source="postsSource">
+                                    <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
-                                        <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
-                                          <span ng-transclude="">
-
-                                          </span>
-                                        </div>-->
                                         <ul class="items" id="article_items" ng-show="posts.length">
                                             @foreach($recom_articles as $article)
                                                 <li class="item ng-isolate-scope
@@ -273,10 +205,13 @@
                                                             </div>
                                                             <div class="entry-meta" style="margin-bottom: 5px;">
                                                                 <i class="icon-x" style=""></i>
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
-                                                                    <span>123</span></a>
+                                                                @if(isset($article["author"]["username"]))
+                                                                    <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+
+                                                                        <span>{{$article["author"]["username"]}}</span></a>
+                                                                @endif
                                                                 <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
-                                                                <time   class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
+                                                                <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
                                                                 <div class="entry-func ng-scope" style="float:right; display:inline;position: relative;">
 
                                                                 <!--<i class="icon-thumbs-up"></i>
@@ -298,15 +233,14 @@
 
 
                                                             <section class="entry-summary">
-                                                                <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{$article["abstracts"]}}…
-                                                                    <!--<span class="read-all"><a href="article?id={{$article["id"]}}">查看全文</a>
-                                                                    <i class="icon-chevron-right-outline"></i>
-                                                                </span>-->
-                                                                </p>
-                                                                <div class="tag_index">
-                                                                    @if(isset($article["tagList"]))
-                                                                    <i class="icon-tags" ></i>
+                                                                <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{strip_tags($article["content"])}}…
 
+                                                                </p>
+                                                            </section>
+                                                            <section class="entry-summary">
+                                                                <div class="tag_index">
+                                                                    <i class="icon-tags" ></i>
+                                                                    @if(isset($article["tagList"]))
                                                                         @foreach($article["tagList"] as $tag)
                                                                             <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
                                                                         @endforeach
@@ -315,38 +249,6 @@
                                                             </section>
 
                                                         </a>
-
-
-
-                                                    <!--<footer>
-
-                                                        <div class="entry-meta" style="margin-bottom: 5px;">
-                                                            <i class="icon-calendar"></i>
-                                                            <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
-                                                            <div class="entry-func ng-scope" ng-if="!showSource">
-
-                                                                <i class="icon-thumbs-up"></i>
-
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
-                                                            <span></span></a>
-                                                        <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
-                                                                @if($article["comment_num"]>=1)
-                                                        <i class="icon-fire"></i>
-                                                    @else
-                                                        <i class="icon-message"></i>
-                                                    @endif
-
-                                                            <a href="#comments" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
-                                                            <span></span></a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="entry-meta">
-
-
-
-                                                </div>
-                                            </footer>-->
 
                                                     </article>
                                                 </li>
@@ -361,6 +263,7 @@
 
 
                                 </div>
+
                             @else
                                 <ul class="column-followers clearfix">
                                     @foreach($users as $user)

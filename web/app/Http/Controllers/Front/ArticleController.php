@@ -286,6 +286,8 @@ class ArticleController extends Controller
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
+            //$abstracts = $content;
+            //$abstracts = strip_tags($content);
             //$tags = 1;
 
             $params =
@@ -367,6 +369,7 @@ class ArticleController extends Controller
 
             //$abstracts = "abstract";
             $abstracts = strip_tags($this->substr_cut($content,15));
+            //$abstracts = strip_tags($content);
             $author = session("id");
             //$tags = "6,";
             $r = $this->articleInvoker->create(
