@@ -38,6 +38,7 @@ trait ApiInvoker
             'comment' => 'POST',
             'delete'=>'GET',
             'commentdelete'=>'GET',
+            'hotest'=>'GET',
         ],
         'user' => [
             'get' => 'GET',

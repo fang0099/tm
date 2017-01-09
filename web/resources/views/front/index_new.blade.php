@@ -8,7 +8,7 @@
                     <h2>随心写作，自由表达</h2>
                     <a href="<?php echo env('APP_URL');?>/article/edit" class="btn btn-black write-btn">开始写文章</a></div>
 
-                <div class="grid grid-pad">
+                <div class="grid grid-pad" style="background-color: #ffffff;">
                     <div class="col-8-12 mobile-col-1-1">
                         <div class="content">
                             <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
