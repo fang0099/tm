@@ -203,6 +203,8 @@ class ArticleController extends Controller
     //修改文章页／新建文章页
     public function show_edit(Request $request)
     {
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
+
         if (session("username")!=null) {
             $username = session("username");
             $userid = session("id");
@@ -221,7 +223,7 @@ class ArticleController extends Controller
             {
                 return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
             }
-            return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"]]);
+            return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"], 'menu_tags'=>$menu_tag_list["data"]]);
         }
         //未登录
         else
@@ -232,6 +234,8 @@ class ArticleController extends Controller
     //文章详情页
     public function show_article(Request $request)
     {
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
+
         $page_class = "page-post-view";
         $username = session("username");
         $id = $request->get('id');
@@ -254,6 +258,7 @@ class ArticleController extends Controller
                 "page_class"=>$page_class,
                 'username'=>$username,
                 'comment_list'=>$comment_list["data"],
+                'menu_tags'=>$menu_tag_list["data"],
             ]);
     }
     //修改文章
@@ -383,6 +388,8 @@ class ArticleController extends Controller
     //文章列表页
     public function show_list(Request $request)
     {
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
+
         $id = $request->get('id');
         $username = session("username");
         $userid = session("id");
@@ -443,6 +450,7 @@ class ArticleController extends Controller
         $params["id"] = $id;
         $params["type"] = $type;
         $params["list_type"] = $list_type;
+        $params['menu_tags']= $menu_tag_list["data"];
         return view("front/list",$params);
     }
 

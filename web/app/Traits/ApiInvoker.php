@@ -71,10 +71,13 @@ trait ApiInvoker
             'subscriber' => 'GET',
             'hassubscriber'=> 'GET',
             'page'=>'GET',
+            'menu-tags'=>'GET',
+            'index-tags'=>'GET',
         ],
         'newsflash' => [
             'create' => 'POST',
-            'update' => 'POST'
+            'update' => 'POST',
+            'list'=>'GET',
         ],
         'sponsors' => [
             'create' => 'POST',

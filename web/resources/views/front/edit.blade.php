@@ -25,7 +25,7 @@
                     <div id="js-title-img" class="title-img" ui-droppable="" ng-class="{&#39;has-img&#39;: draft.titleImage}">
                         <div id="preview" onclick="$('#previewImg').click();">
                             <img id="imghead" class="preview" border="0" style="{{isset($article["data"]["face"])?'':'display: none;'}}" src="{{$article["data"]["face"] or ''}}" width="100%" height="100%" >
-                            <i class="upload-icon icon-ic_phot_camera_alt" ng-show="!draft.titleImage" style="{{isset($article["data"]["face"])?'display: none;':''}}"></i>
+                            <i class="icon-camera-outline" ng-show="!draft.titleImage" style="{{isset($article["data"]["face"])?'display: none;':''}}"></i>
                         </div>
                         <input type="file" onchange="previewImage(this)" name="face" style="display: none;" id="previewImg">
                     </div>
@@ -45,7 +45,7 @@
                                 <option value="{{$tag["id"]}}">{{$tag["name"]}}</option>
                             @endforeach
                         </select>-->
-                        <p>saving</p>
+                            <div class="status" ng-if="status" ng-class="status.type">saving</div>
                         <input type="submit" value="保存草稿" id="submit_script" class="btn btn-green write-btn" style="float: right; margin-left: 15px;"/>
                         <input type="submit" value="提交审核" id="submit" class="btn btn-blue write-btn"/>
                     </section>
