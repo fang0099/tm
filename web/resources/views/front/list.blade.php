@@ -47,23 +47,7 @@
                                 @endif
                     ">{{$user["followers_count"] or $tag["subscriberCount"]}} 人关注</a>
                     </div>
-                    <!--
-                    <div class="tags ng-scope" ng-if="!currentAuthor &amp;&amp; column.postTopics.length">
-                        <span ng-click="filterTopic()" class="tag ng-binding current" ng-class="!currentTopic &amp;&amp; &#39;current&#39;">
-                        <b>全部</b>43
-                        </span>
-                        <span ng-if="!isShowMoreTopics" class="ng-scope">
-                            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
-                              <b class="ng-binding">早餐</b>3</span>
 
-                            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
-                              <b class="ng-binding">生活方式</b>1</span>
-
-                            <span ng-click="filterTopic(topic)" class="tag ng-binding ng-scope" ng-class="currentTopic == topic &amp;&amp; &#39;current&#39;" ng-repeat="topic in column.postTopics | limitTo: 3">
-                              <b class="ng-binding">菜谱</b>1</span>
-                            <span ng-click="showMoreTopics()" ng-if="column.postTopics.length &gt; showTopicNum" class="more ng-scope">更多</span>
-                        </span>
-                    </div>-->
                     </div>
 
                 <div class="list-empty ng-hide" ng-show="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
@@ -80,48 +64,76 @@
             <span class="ng-binding ng-scope">最新文章</span></span>
                     </div>
                     <input style="display:none;" id="page_count" value="1" />
-                    <ul class="items" ng-show="posts.length">
+                    <ul class="items" id="article_items" ng-show="posts.length">
                         @foreach($articles as $article)
-                        <li class="item ng-isolate-scope
-                            @if($article["face"]!="default" and $article["face"]!="123")
-                                item-with-title-img
-                            @else
-                                item-without-title-img
-                            @endif
-                                " ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
-                            <article class="hentry">
-                                <a href="<?php echo env('APP_URL');?>/article?id={{$article["id"]}}" class="entry-link">
-                                    <h1 class="entry-title ng-binding">{{$article["title"]}}</h1>
-                                    <div class="title-img-container ng-scope" ng-if="titleImageShow">
-                                        <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + {{$article["title"]}} + &#39;)&#39;}" style="background-image: url(&quot;{{$article["face"]}}&quot;);"></div>
-                                    </div>
-                                    <section class="entry-summary">
-                                        <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{$article["abstracts"]}}…
-                                            <span class="read-all">查看全文
-                                                <i class="icon-ic_unfold"></i>
-                                            </span>
-                                        </p>
-                                    </section>
-                                </a>
-                                <footer>
-                                    <div class="entry-meta">
-                                        <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
-                                    </div>
-                                    <div class="entry-func ng-scope" ng-if="!showSource">
-                                        <a href="https://zhuanlan.zhihu.com/p/23620302" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
-                                            <span>赞</span></a>
-                                        <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
-                                        <a href="https://zhuanlan.zhihu.com/p/23620302#comments" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
-                                            <span>条评论</span></a>
-                                    </div>
-                                </footer>
-                            </article>
-                        </li>
+                            <li class="item ng-isolate-scope
+                                                @if($article["face"]!="default" and $article["face"]!="123")
+                                    item-with-title-img
+                                @else
+                                    item-with-title-img
+                                @endif
+                                    " ng-class="itemClass" ng-repeat="post in posts track by $index" post="post" column="column">
+                                <article class="hentry">
+                                    <a href="<?php echo env('APP_URL');?>/article?id={{$article["id"]}}" class="entry-link">
+                                        <h1 class="entry-title ng-binding">{{$article["title"]}}</h1>
+                                        <div class="title-img-container ng-scope" ng-if="titleImageShow">
+                                            <div class="title-img-preview" ng-style="{&#39;background-image&#39;: &#39;url(&#39; + {{$article["title"]}} + &#39;)&#39;}" style="background-image: url(&quot;{{$article["face"]}}&quot;);"></div>
+                                        </div>
+                                        <div class="entry-meta" style="margin-bottom: 5px;">
+                                            <i class="icon-x" style=""></i>
+                                            @if(isset($article["author"]["username"]))
+                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+
+                                                    <span>{{$article["author"]["username"]}}</span></a>
+                                            @endif
+                                            <span ng-show="post.likesCount &amp;&amp; post.commentsCount" class="bull">·</span>
+                                            <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
+                                            <div class="entry-func ng-scope" style="float:right; display:inline;position: relative;">
+
+                                            <!--<i class="icon-thumbs-up"></i>
+
+                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
+                                                    <span></span></a>-->
+
+                                                @if($article["comment_num"]>=1)
+                                                    <i class="icon-fire"></i>
+                                                @else
+                                                    <i class="icon-message"></i>
+                                                @endif
+
+                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
+                                                    <span></span></a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <section class="entry-summary">
+                                            <p ui-summary="post.content" max="truncateMax" class="ng-isolate-scope"> {{strip_tags($article["content"])}}…
+
+                                            </p>
+                                        </section>
+                                        <section class="entry-summary">
+                                            <div class="tag_index">
+                                                <i class="icon-tags" ></i>
+                                                @if(isset($article["tagList"]))
+                                                    @foreach($article["tagList"] as $tag)
+                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </section>
+
+                                    </a>
+
+                                </article>
+                            </li>
+
                         @endforeach
 
                     </ul>
                     <div class="posts-end" ng-show="posts.length &amp;&amp; postsSource.completed">
-                        <i class="icon-ic_column_end"></i>
+                        <!--<i class="icon-ic_column_end"></i>-->
                     </div>
                 </div>
                 </div>
