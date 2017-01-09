@@ -151,7 +151,7 @@ class TagRepository extends BaseRepository
     }
 
     public function indexTags($size){
-        $tags = $this->model->where('show_index', '=', '1')->take($size)->get();
+        $tags = $this->model->orderBy('fans_num', 'DESC')->take($size)->get();
         return $this->success('', $tags);
     }
 
