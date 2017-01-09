@@ -286,6 +286,8 @@ class ArticleController extends Controller
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
+            //$abstracts = $content;
+            //$abstracts = strip_tags($content);
             //$tags = 1;
 
             $params =
@@ -367,6 +369,7 @@ class ArticleController extends Controller
 
             //$abstracts = "abstract";
             $abstracts = strip_tags($this->substr_cut($content,15));
+            //$abstracts = strip_tags($content);
             $author = session("id");
             //$tags = "6,";
             $r = $this->articleInvoker->create(
@@ -410,6 +413,8 @@ class ArticleController extends Controller
         if ($type=="tag")
         {
             $tag = $this->tagInvoker->get(['id' => $id]);
+            //print_r($tag);
+            //return;
             $article = $this->tagInvoker->articles(['id'=>$id]);
             $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
             $params = [
@@ -417,6 +422,7 @@ class ArticleController extends Controller
                 'tag'=>$tag["data"],
                 'articles'=>$article["data"],
                 'is_follower'=>$is_follower["success"],
+                'title'=>$tag["data"]["name"],
             ];
         }
         //用户文章列表
