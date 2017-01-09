@@ -146,12 +146,12 @@ class TagRepository extends BaseRepository
     }
 
     public function menuTags($size){
-        $tags = $this->model->where('show_menu', '=', '1')->take($size)->get();
+        $tags = $this->model->where('show_menu', '=', '1')->where('del_flag', '=', 0)->take($size)->get();
         return $this->success('', $tags);
     }
 
     public function indexTags($size){
-        $tags = $this->model->orderBy('fans_num', 'DESC')->take($size)->get();
+        $tags = $this->model->orderBy('fans_num', 'DESC')->where('del_flag', '=', 0)->take($size)->get();
         return $this->success('', $tags);
     }
 
