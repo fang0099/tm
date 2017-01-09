@@ -293,7 +293,7 @@
 
                                     </ul>
                                     <div class="posts-end" ng-show="posts.length &amp;&amp; postsSource.completed">
-                                        <i class="icon-ic_column_end"></i>
+                                       <!--<i class="icon-ic_column_end"></i>-->
                                     </div>
                                 </div>
 
