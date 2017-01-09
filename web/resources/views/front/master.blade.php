@@ -21,10 +21,10 @@
         }
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ $title or '链媒体 - 随心写作，自由表达' }}</title>
+    <title>{{ $title or '贝塔区块链 - 随心写作，自由表达' }}</title>
     <base href=".">
     <meta name="fragment" content="!">
-    <meta name="description" content="链媒体专栏">
+    <meta name="description" content="贝塔区块链">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
