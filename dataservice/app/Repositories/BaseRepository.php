@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\StatusCode;
 use App\Traits\FilterParser;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ abstract class BaseRepository
 
     protected $model;
 
-    protected function get($primaryKey)
+    public function get($primaryKey)
     {
 
         Log::debug('get by primary key. table is ' .
@@ -91,7 +92,7 @@ abstract class BaseRepository
         return $M;
     }
 
-    protected function insertInternal($params)
+    public function insertInternal($params)
     {
 
         Log::debug('insert internal for ' . $this->model->getTable() . '. params is ' . var_export($params, true));
@@ -251,6 +252,10 @@ abstract class BaseRepository
     public function success($message = '操作成功', $data = []){
         if($data instanceof Model){
             $this->invokeMyMagicMethod($data);
+        }else if ($data instanceof Collection){
+            foreach ($data as $d){
+                $this->invokeMyMagicMethod($d);
+            }
         }
         return json_result($this->getBusinessLine(), StatusCode::OPERATE_SUCCESS, $message, $data);
     }
