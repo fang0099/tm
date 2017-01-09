@@ -39,8 +39,10 @@
     @yield("page_level_css")
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
+    <!--<link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">-->
 </head>
 <body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">
 <!--[if lt IE 8]>
@@ -56,13 +58,14 @@
         <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
             <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
             </div>
+            <!--<div class="status loading ng-binding ng-scope" ng-if="status" ng-class="status.type">saving</div>-->
         </div>
         @if( !isset($username) )
         <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
         @else
         <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
             <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
-                <i class="icon-ic_nav_more"></i>
+                <i class="icon-th-menu-outline"></i>
             </a>
             <menu class="menu navbar-menu ng-scope" id="navbar_menu">
                 <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?id=<?php echo session('id');?>" tabindex="0">我的文章</a>
@@ -79,7 +82,7 @@
         @endif
         <div class="navbar-write-container ng-scope">
             <a href="<?php echo env('APP_URL');?>/article/edit" >
-                <i class="icon-ic_nav_new"></i>写文章
+                <i class="icon-edit"></i>写文章
             </a>
         </div>
         <div class="navbar-content"></div>
@@ -88,10 +91,10 @@
         <div class="find_nav_left">
             <div class="find_nav_list">
                 <ul>
-                    @if(isset($tags))
-                        @foreach($tags as $tag)
+                    @if(isset($menu_tags))
+                        @foreach($menu_tags as $tag)
                         <!--<li class="find_nav_cur"><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>-->
-                            <li><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
+                            <li><a href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
                         @endforeach
                     @endif
                     <li class="sideline"></li>

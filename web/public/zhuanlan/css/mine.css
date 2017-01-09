@@ -70,3 +70,50 @@
     margin-top: 46px;
 
 }
+
+.tag_index {
+    color: #21B890;
+    overflow: inherit;
+}
+
+.tag_index {
+    color: #21B890;
+}
+
+.tag_index a {
+    vertical-align: top;
+}
+
+.tag_index a {
+    color: #21B890 !important;
+    margin: 0 8px 10px 0;
+}
+
+.tag_index .icon-tag {
+    font-size: small;
+}
+
+.entry-summary
+{
+    padding-bottom: 20px;
+}
+
+.mod-tit {
+    font-size: 16px;
+
+    padding-bottom: 9px;
+    border-bottom: 1px solid #E5E5E5;
+    /*margin-bottom: 25px;*/
+}
+
+.mod-tit h3 {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+
+.tag_index a
+{
+    vertical-align: top;
+}

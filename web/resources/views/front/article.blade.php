@@ -96,13 +96,13 @@
 
                                 <div class="right-section">
                                     @if(null!==session("id") and session("id")==$article["author"]["id"] )
-                                    <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-ic_column_edit"></i>编辑</a>
+                                    <a href="article/edit?id={{$article["id"]}}" class="control-item post-edit-button ng-scope" ng-if="ownPost(post)"><i class="icon-edit"></i>编辑</a>
                                     @endif
-                                    <a id="collect_btn" article_id="{{$article["id"]}}" ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="javascript:;" class="control-item report ng-scope">
-                                        <i class="icon-ic_column_report"></i>收藏</a>
+                                    <a id="collect_btn" article_id="{{$article["id"]}}" href="javascript:;" class="control-item report ng-scope">
+                                        <i class="icon-archive"></i>收藏</a>
                                         @if(null!==session("id") and session("id")==$article["author"]["id"] )
                                     <a ng-if="!ownPost(post) &amp;&amp; isPublished" ng-click="report(post)" href="article/delete?id={{$article["id"]}}" class="control-item report ng-scope">
-                                        <i class="icon-ic_column_more"></i>删除</a>
+                                        <i class="icon-trash"></i>删除</a>
                                     @endif
                                     <!--<div ng-transclude="" class="post-options-button post-menu-button menu-button-no-arrow ui-menu-button ng-scope close" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ng-if="ownPost(post)" toggle-delay="250">
                                         <a href="javascript:;" class="menu-button control-item options ng-scope">
@@ -121,7 +121,7 @@
                                     <div class="votes">
 
                                         <a ng-if="!ownPost(post)" count="{{$article["likes"]}}" id="like_btn" ng-click="post.toggleLike()" class="control-item ng-binding ng-scope" article_id="{{$article["id"]}}" href="javascript:" ng-class="{ active: post.rating == &#39;like&#39; }">
-                                            <i class="icon-ic_column_like"></i>{{$article["likes"]}}</a>
+                                            <i class="icon-thumbs-up"></i>{{$article["likes"]}}</a>
 
                                     </div>
 

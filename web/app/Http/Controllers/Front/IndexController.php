@@ -15,6 +15,7 @@ use App\Invokers\TagInvoker;
 use App\Invokers\UserInvoker;
 use App\Invokers\WebInfoInvoker;
 use App\Invokers\ArticleInvoker;
+use App\Invokers\NewsFlashInvoker;
 use Illuminate\Http\Request;
 
 use Storage;
@@ -26,13 +27,15 @@ class IndexController extends Controller
     private $webInfoInvoker;
     private $tagInvoker;
     private $sliderInvoker;
+    private $newsflashInvoker;
 
     //初始化
     public function __construct(ArticleInvoker $articleInvoker,
                                 UserInvoker $userInvoker,
                                 WebInfoInvoker $webInfoInvoker,
                                 TagInvoker $tagInvoker,
-                                SliderInvoker $sliderInvoker
+                                SliderInvoker $sliderInvoker,
+                                NewsFlashInvoker $newsflashInvoker
                                 )
     {
         $this->articleInvoker = $articleInvoker;
@@ -40,6 +43,7 @@ class IndexController extends Controller
         $this->webInfoInvoker = $webInfoInvoker;
         $this->tagInvoker = $tagInvoker;
         $this->sliderInvoker = $sliderInvoker;
+        $this->newsflashInvoker = $newsflashInvoker;
     }
 
     public function show_index()
@@ -48,19 +52,34 @@ class IndexController extends Controller
         $username = session("username");
         $article_list = $this->articleInvoker->page(['pageSize'=>6]);
         $user_list = $this->userInvoker->page(['pageSize'=>8]);
-        $tag_list = $this->tagInvoker->page(['pageSize'=>8]);
+        $index_tag_list = $this->tagInvoker->indextags(['pageSize'=>8]);
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
 
         $hot_article_list = $this->articleInvoker->hotest(['pageSize'=>6]);
+        //print_r($tag_list);
+        //return;
+
+
+        $fast_news = $this->newsflashInvoker->list(['pageSize'=>6]);
         //print_r($hot_article_list);
         //return;
         //print_r($article_list);
         //return;
-
+        //print_r($fast_news);
+        //return;
+        $recom_articles = array();
+        $recom_articles["data"] = null;
+        if(session("id")!=null) {
+            $recom_articles = $this->userInvoker->articlestags(['id' => session('id')]);
+        }
         $params = ['page_class'=>$page_class,
             'articles'=>$article_list["list"],
-            'tags'=>$tag_list["list"],
+            'menu_tags'=>$menu_tag_list["data"],
+            'index_tags'=>$index_tag_list["data"],
             'users'=>$user_list["list"],
             'hot_articles'=>$hot_article_list["data"],
+            'fast_news'=>$fast_news["list"],
+            'recom_articles'=>$recom_articles["data"],
         ];
 
         if ($username!=null)
