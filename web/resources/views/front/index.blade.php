@@ -129,11 +129,11 @@
                             <div class="content">
                                 <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
-                                    <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
+                                   <!-- <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
                       <span ng-transclude="">
-                      <!--  <span class="ng-binding ng-scope">最新文章</span>-->
+
                       </span>
-                                    </div>
+                                    </div>-->
                                     <ul class="items" id="article_items" ng-show="posts.length">
                                         @foreach($hot_articles as $article)
                                             <li class="item ng-isolate-scope
@@ -232,11 +232,11 @@
                             <div class="content">
                                 <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
-                                    <div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
+                                    <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
                       <span ng-transclude="">
-                      <!--  <span class="ng-binding ng-scope">最新文章</span>-->
+
                       </span>
-                                    </div>
+                                    </div>-->
                                     <ul class="items" id="article_items" ng-show="posts.length">
                                         @foreach($recom_articles as $article)
                                             <li class="item ng-isolate-scope
