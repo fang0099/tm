@@ -410,6 +410,8 @@ class ArticleController extends Controller
         if ($type=="tag")
         {
             $tag = $this->tagInvoker->get(['id' => $id]);
+            //print_r($tag);
+            //return;
             $article = $this->tagInvoker->articles(['id'=>$id]);
             $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
             $params = [
@@ -417,6 +419,7 @@ class ArticleController extends Controller
                 'tag'=>$tag["data"],
                 'articles'=>$article["data"],
                 'is_follower'=>$is_follower["success"],
+                'title'=>$tag["data"]["name"],
             ];
         }
         //用户文章列表

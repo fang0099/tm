@@ -1,5 +1,6 @@
 $(function(){
     $(".find_nav_list").css("left",sessionStorage.left+"px");
+    sessionStorage.pagecount = $("title").text();
     $(".find_nav_list li").each(function(){
         if($(this).find("a").text()==sessionStorage.pagecount){
             $(".sideline").css({left:$(this).position().left});
@@ -36,7 +37,7 @@ $(function(){
         }, 300);
         sessionStorage.left=fnl_l;
         var c_nav=$(this).find("a").text();
-        navName(c_nav);
+        //navName(c_nav);
     });
     var fl_w=$(".find_nav_list").width();
     var flb_w=$(".find_nav_left").width();
@@ -70,11 +71,11 @@ function navName(c_nav) {
         case "分析":
             sessionStorage.pagecount = "分析";
             break;
-        case "黄页":
-            sessionStorage.pagecount = "黄页";
+        case "人脸识别":
+            sessionStorage.pagecount = "人脸识别";
             break;
-        case "技术":
-            sessionStorage.pagecount = "技术";
+        case "自媒体":
+            sessionStorage.pagecount = "自媒体";
             break;
         case "项目":
             sessionStorage.pagecount = "项目";

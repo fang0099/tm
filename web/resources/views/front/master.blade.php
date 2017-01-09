@@ -94,7 +94,7 @@
                     @if(isset($menu_tags))
                         @foreach($menu_tags as $tag)
                         <!--<li class="find_nav_cur"><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>-->
-                            <li><a href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
+                            <li class="find_nav_cur"><a href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
                         @endforeach
                     @endif
                     <li class="sideline"></li>

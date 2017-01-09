@@ -56,17 +56,10 @@ class IndexController extends Controller
         $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
 
         $hot_article_list = $this->articleInvoker->hotest(['pageSize'=>6]);
-        //print_r($tag_list);
-        //return;
-
 
         $fast_news = $this->newsflashInvoker->list(['pageSize'=>6]);
-        //print_r($hot_article_list);
-        //return;
-        //print_r($article_list);
-        //return;
-        //print_r($fast_news);
-        //return;
+        print_r($fast_news);
+        return;
         $recom_articles = array();
         $recom_articles["data"] = null;
         if(session("id")!=null) {

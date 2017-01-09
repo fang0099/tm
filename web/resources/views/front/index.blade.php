@@ -347,7 +347,7 @@
 
                                 @foreach($fast_news as $article)
                                 <li class="item fx-draft-item-fade ng-scope" ng-repeat="draft in drafts">
-                                    <div class="entry-title"><a href="article?id={{$article["id"]}}" class="ng-binding">{{$article["title"]}}</a></div>
+                                    <div class="entry-title"><a href="{{$article["link"]}}" class="ng-binding">{{$article["title"]}}</a></div>
                                     <div class="entry-meta">
                                         <time class="updated ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
                                     </div>
