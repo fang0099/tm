@@ -36,6 +36,10 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Model\Tag', 'tag_article_rel', 'article_id', 'tag_id');
     }
 
+    public function _tagList(){
+        return $this->tags()->get();
+    }
+
     public function _tagsCount(){
         return $this->tags()->count();
     }
