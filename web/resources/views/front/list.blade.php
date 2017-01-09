@@ -118,7 +118,7 @@
                                                 <i class="icon-tags" ></i>
                                                 @if(isset($article["tagList"]))
                                                     @foreach($article["tagList"] as $tag)
-                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
+                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
                                                     @endforeach
                                                 @endif
                                             </div>
