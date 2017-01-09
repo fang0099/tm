@@ -1,10 +1,13 @@
 $(function(){
-    $(".find_nav_list").css("left",sessionStorage.left+"px");
     sessionStorage.pagecount = $("title").text();
+    $(".find_nav_list").css("left",sessionStorage.left+"px");
+    //sessionStorage.pagecount = $("title").text();
     $(".find_nav_list li").each(function(){
         if($(this).find("a").text()==sessionStorage.pagecount){
+            var nav_w=$(this).width();
             $(".sideline").css({left:$(this).position().left});
-            $(".sideline").css({width:$(this).outerWidth()});
+            //$(".sideline").css({width:$(this).outerWidth()});
+            $(".sideline").css({width:nav_w});
             $(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
             navName(sessionStorage.pagecount);
             return false
@@ -12,12 +15,14 @@ $(function(){
         else{
             $(".sideline").css({left:0});
             $(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+            var nav_w=$(".find_nav_list li").first().width();
+            $(".sideline").width(nav_w);
         }
     });
-    var nav_w=$(".find_nav_list li").first().width();
-    $(".sideline").width(nav_w);
+    //var nav_w=$(".find_nav_list li").first().width();
+    //$(".sideline").width(0px);
     $(".find_nav_list li").on('click', function(){
-        nav_w=$(this).width();
+        var nav_w=$(this).width();
         $(".sideline").stop(true);
         $(".sideline").animate({left:$(this).position().left},300);
         $(".sideline").animate({width:nav_w});
@@ -37,7 +42,7 @@ $(function(){
         }, 300);
         sessionStorage.left=fnl_l;
         var c_nav=$(this).find("a").text();
-        //navName(c_nav);
+        navName(c_nav);
     });
     var fl_w=$(".find_nav_list").width();
     var flb_w=$(".find_nav_left").width();
