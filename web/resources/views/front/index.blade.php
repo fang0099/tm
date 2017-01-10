@@ -17,7 +17,6 @@
                     <div id="responsiveTabsDemo" >
 
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
-
                                 <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-3">推荐</a></li>
