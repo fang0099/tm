@@ -22,7 +22,7 @@ __.service.tab = __.service.tab || {};
 	var noticeTemplate = $('#list-notice').html();
 	var tagTemplate = $('#list-tags').html();
 	//var base = "http://localhost/tm/web/public/index.php";
-    var base = "/";
+    var base = "";
 	var bindTabLinkEvent = function(){
 		$tabs.click(function(){
 			
