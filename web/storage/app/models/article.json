@@ -8,7 +8,8 @@
 			"label" : "id",
 			"value" : "id",
 			"name" : "params[id]",
-			"type" : "hidden"
+			"type" : "hidden",
+			"showInPage" : false
 		},
 		{
 			"label" : "文章标题",
@@ -17,7 +18,8 @@
 			"type" : "text",
 			"attribute" : {
 				"required" : "required"
-			}
+			},
+			"showInPage" : true
 		},
 		{
 			"label" : "文章封面",
@@ -26,31 +28,36 @@
 			"type" : "file",
 			"attribute" : {
 				"upload" : "ajax"
-			}
+			},
+			"showInPage" : false
 		},
 		{
 			"label" : "图片预览",
 			"value" : "face",
 			"name" : "preview[face]",
-			"type" : "preview"
+			"type" : "preview",
+			"showInPage" : true
 		},
 		{
 			"label" : "点赞数",
 			"value" : "likes",
 			"name" : "params[likes]",
-			"type" : "text"
+			"type" : "text",
+			"showInPage" : true
 		},
 		{
 			"label" : "浏览量",
 			"value" : "click_count",
 			"name" : "params[click_count]",
-			"type" : "text"
+			"type" : "text",
+			"showInPage" : true
 		},
 		{
 			"label" : "热度",
 			"value" : "hot_num",
 			"name" : "params[hot_num]",
-			"type" : "text"
+			"type" : "text",
+			"showInPage" : true
 		},
 		{
 			"label" : "内容",
@@ -59,7 +66,8 @@
 			"type" : "wysihtml5",
 			"attribute" : {
 				"required" : "required"
-			}
+			},
+			"showInPage" : true
 		},
 		{
 			"label" : "审核结果",
@@ -72,7 +80,8 @@
 					"审核不通过" : "0",
 					"审核通过" : "1"
 				}
-			}
+			},
+			"showInPage" : true
 		}
 	],
 	"list" : [
@@ -80,11 +89,6 @@
 			"head" : "文章标题",
 			"value" : "title",
 			"type" : "text"
-		},
-		{
-			"head" : "文章封面",
-			"value" : "face",
-			"type" : "image"
 		},
 		{
 			"head" : "点赞数",
@@ -100,6 +104,21 @@
 			"head" : "热度",
 			"value" : "hot_num",
 			"type" : "text"
+		},
+		{
+			"head" : "标签",
+			"value" : "tagsCount",
+			"type" : "rel",
+			"rel" : {
+				"type" : "many",
+				"value" : "标签",
+				"relation" : {
+					"article_id" : "id"
+				},
+				"ref" : {
+					"model" : "tag"
+				}
+			}
 		},
 		{
 			"head" : "发布时间",

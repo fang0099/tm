@@ -29,8 +29,12 @@ class SliderController extends Controller
         return $this->sliderRep->create($request);
     }
 
-    public function list(){
+    public function list(Request $request){
         return $this->sliderRep->list();
+    }
+
+    public function page(Request $request){
+        return $this->sliderRep->page($request);
     }
 
     public function delete(Request $request){

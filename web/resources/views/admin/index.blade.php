@@ -14,7 +14,9 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <!--
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        -->
         <link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -53,8 +55,12 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html">
-                        <img src="../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                    <a href="#">
+                        <!--
+                        <img src="../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+                         -->
+                        <h4 style="color: #fff">后台管理</h4>
+                    </a>
                     <div class="menu-toggler sidebar-toggler"> </div>
                 </div>
                 <!-- END LOGO -->
@@ -70,15 +76,18 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="../../assets/layouts/layout/img/avatar3_small.jpg" />
-                                <span class="username username-hide-on-mobile"> Nick </span>
+                                <img alt="" class="img-circle" src="<?php echo session('avatar') ?>" />
+                                <span class="username username-hide-on-mobile"><?php echo session('username') ?></span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
-                               
                                 <li>
-                                    <a href="page_user_login_1.html">
-                                        <i class="icon-key"></i> Log Out </a>
+                                    <a href="<?php echo env('APP_URL');?>">
+                                         返回前台 </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo env('APP_URL');?>/logout">
+                                         退出 </a>
                                 </li>
                             </ul>
                         </li>
@@ -108,7 +117,8 @@
                         <li class="sidebar-toggler-wrapper hide">
                             <div class="sidebar-toggler"> </div>
                         </li>
-                       
+
+                        @if(session('is_admin'))
                         <li class="nav-item start active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
@@ -167,10 +177,32 @@
                                         <span class="title"> 标签管理 </span>
                                     </a>
                                 </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=user" class="nav-link link">
+                                        <span class="title"> 用户管理 </span>
+                                    </a>
+                                </li>
                             </ul>
 
                         </li>
+                        @else
+                            <li class="nav-item start active open">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-diamond"></i>
+                                    <span class="title">个人中心</span>
+                                    <span class="arrow"></span>
+                                    <span class="selected"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" data="form?model=muser&id=<?php echo session('id')?>" class="nav-link link">
+                                            <span class="title"> 个人信息管理 </span>
+                                        </a>
+                                    </li>
+                                </ul>
 
+                            </li>
+                        @endif
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->
@@ -183,7 +215,7 @@
 
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content" style="">
-                    <iframe src="welcome" name="main" frameborder="0" height="1043px" scrolling="no" >
+                    <iframe src="welcome" name="main" frameborder="0" height="1000px" scrolling="no" >
                     </iframe>
                 </div>
                 <!-- END CONTENT BODY -->
@@ -204,7 +236,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <iframe src="form" name="sidebar" frameborder="0" height="1043px" width="720px" scrolling="yes" >
+                        <iframe src="form" name="sidebar" frameborder="0" height="100%" width="720px" scrolling="yes" >
                             
                         </iframe>
                        
@@ -238,14 +270,13 @@
         <!-- BEGIN PAGE LEVEL PLUGINS -->        
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="../../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../../assets/global/scripts/app.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="../../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/quick-sidebar.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/underscore.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/tm.js" type="text/javascript"></script>

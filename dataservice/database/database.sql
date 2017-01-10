@@ -158,9 +158,11 @@ CREATE  TABLE `check_log` (
 CREATE TABLE notice (
     id int PRIMARY KEY AUTO_INCREMENT,
     to_user int not NULL  DEFAULT 0,
-    type VARCHAR(16) not null DEFAULT '',
+    title VARCHAR(16) not null DEFAULT '',
     message VARCHAR(128) not null DEFAULT '',
+    type INT not null default 0,
     publish_time DATETIME DEFAULT current_timestamp,
+    status int not null default 0 COMMENT '0=unread, 1=readed',
     del_flag int not NULL DEFAULT 0
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
@@ -211,6 +213,9 @@ CREATE TABLE sliders (
 alter table article add column up_flag int not null default 0;
 alter table tag add column show_menu int not null default 0;
 alter table tag add column show_index int not null default 0;
+
+alter table article change column author author_id int not null default 0;
+alter table article change column checker checker_id int not null default 0;
 
 
 

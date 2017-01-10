@@ -28,6 +28,10 @@ class FriendLinkController extends Controller
         return $this->friendLinkRep->select($request);
     }
 
+    public function page(Request $request){
+        return $this->friendLinkRep->page($request);
+    }
+
     public function create(Request $request){
         return $this->friendLinkRep->insert($request);
     }

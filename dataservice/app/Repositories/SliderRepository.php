@@ -25,7 +25,6 @@ class SliderRepository extends BaseRepository
         if($s == null || $s->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'result is null');
         }else {
-            $s->article = $s->_article;
             return $this->success('', $s);
         }
     }

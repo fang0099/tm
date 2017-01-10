@@ -70,7 +70,7 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Welcome</span>
+                                <span>欢迎</span>
                             </li>
                         </ul>
 
@@ -84,7 +84,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- BEGIN VALIDATION STATES-->
-                            <h3>Helle, Welcome!</h3>
+                            <h3>欢迎!</h3>
                             <!-- END VALIDATION STATES-->
                         </div>
                     </div>

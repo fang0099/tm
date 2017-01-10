@@ -34,6 +34,14 @@ class ArticleController
         return $this->articleRep->list($request);
     }
 
+    public function page(Request $request){
+        $page = $request->input('page',1);
+        $pageSize = $request->input('pageSize', 15);
+        $filter = $request->input('filter', array());
+        $order = 'publish_time desc';
+        return $this->articleRep->page2($page, $pageSize, $filter, $order);
+    }
+
     public function update(Request $request){
         return $this->articleRep->update($request);
     }
@@ -41,6 +49,12 @@ class ArticleController
     public function listComment(Request $request){
         $id = $request->input('id');
         return $this->articleRep->listComment($id);
+    }
+
+    public function deleteComment(Request $request){
+        $id = $request->input('article_id');
+        $commentId = $request->input('comment_id');
+        return $this->articleRep->deleteComment($id, $commentId);
     }
 
     public function check(Request $request){
@@ -82,21 +96,39 @@ class ArticleController
         return $this->articleRep->comment($request);
     }
 
+
     public function latest($tagId = 0, $page = 1, $pageSize = 15){
 
     }
 
-    public function hot($tagId = 0, $page = 1, $pageSize = 15){
-
+    public function hot(Request $request){
+        $tagId = $request->input('tagid', 0);
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->articleRep->hotest($tagId, $page, $pageSize);
     }
 
-    public function recommend($page = 1, $pageSize = 15){
-
+    public function recommend(Request $request){
+        $userid = $request->input('userid', 0);
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->articleRep->recommend($userid, $page, $pageSize);
     }
 
     public function upArticles(Request $request){
         $size = $request->input('size', '3');
         return $this->articleRep->upArticles($size);
+    }
+    public function addTags(Request $request){
+        $articleId = $request->input("articleId");
+        $tagIds = $request->input('tags');
+        return $this->articleRep->addTags($articleId, $tagIds);
+    }
+
+    public function delTags(Request $request){
+        $articleId = $request->input("articleId");
+        $tagIds = $request->input('tags');
+        return $this->articleRep->delTags($articleId, $tagIds);
     }
 
 }

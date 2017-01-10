@@ -55,7 +55,8 @@ var App = function() {
         // reinitialize other subscribed elements
         for (var i = 0; i < resizeHandlers.length; i++) {
             var each = resizeHandlers[i];
-            each.call();
+            console.log(each);
+            //each.call();
         }
     };
 
@@ -596,7 +597,7 @@ var App = function() {
 
             //Core handlers
             handleInit(); // initialize core variables
-            handleOnResize(); // set and handle responsive    
+            //handleOnResize(); // set and handle responsive
 
             //UI Component handlers     
             handleMaterialDesign(); // handle material design       
@@ -619,7 +620,7 @@ var App = function() {
             handleCounterup(); // handle counterup instances
 
             //Handle group element heights
-            this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
+            //this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
 
             // Hacks
             handleFixInputPlaceholderForIE(); //IE8 & IE9 input placeholder issue fix
@@ -1041,5 +1042,5 @@ var App = function() {
 }();
 
 jQuery(document).ready(function() {    
-   App.init(); // init metronic core componets
+   //App.init(); // init metronic core componets
 });

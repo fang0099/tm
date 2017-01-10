@@ -21,7 +21,8 @@ class StatusCode
         'sliders' => '07',
         'sponsors' => '08',
         'notice' => '09',
-        'news_flash' => '10'
+        'news_flash' => '10',
+        'comments' => '11'
     ];
 
     const OPERATE_SUCCESS = '00';

@@ -36,6 +36,10 @@ class TagController extends Controller
         return $this->tagRep->list($request);
     }
 
+    public function page(Request $request){
+        return $this->tagRep->page($request);
+    }
+
     public function delete(Request $request){
         $ids = $request->input('ids');
         return $this->tagRep->delete($ids);
@@ -70,6 +74,12 @@ class TagController extends Controller
         $id = $request->input('id');
         $page = $request->input('page', 1);
         return $this->tagRep->subscriber($id, $page);
+    }
+
+    public function hasSubscribe(Request $request){
+        $id = $request->input('id');
+        $userId = $request->input('userid');
+        return $this->tagRep->hasSubscribe($id, $userId);
     }
 
     public function menuTags(Request $request){

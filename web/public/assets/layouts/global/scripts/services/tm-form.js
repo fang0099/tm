@@ -14,6 +14,25 @@ __.services.form = __.services.form || {};
 	var iframe = __.components.iframe;
 	var $form = $('#form');
 	var $cancle = $('.cancle');
+	var jsonData = $('#json-data').val();
+
+	var initFormValue = function(){
+		if(jsonData){
+			var json = JSON.parse(jsonData);
+			console.log(json);
+            var $selects = $('select');
+            if($selects && $selects.length > 0){
+                for (var i = 0 ; i < $selects.length; i++){
+                    var $select = $($selects[i]);
+                    var name = $select.attr('name');
+                    name = name.replace('params[', '');
+                    name = name.replace(']', '');
+                    console.log(name + "," + json[name]);
+                    $select.val(json[name]);
+                }
+            }
+		}
+	};
 
 	var init = function(){
 		// bind form
@@ -62,7 +81,7 @@ __.services.form = __.services.form || {};
                 dataType: 'json',
                 success: function (data){
                 	if(data.success){
-                		var path = '../../' + data.path;
+                		var path =  data.path;
                         $('img[preview='+name+']').attr('src', path);
                         $('[name=\'params['+name+']\']').val(data.path);
 					}else {
@@ -75,14 +94,15 @@ __.services.form = __.services.form || {};
             return false;
         });
 
+        initFormValue();
 
 	};
 
 	__.services.form.init = init;
+	__.services.form.initFormValue = initFormValue;
 })();
 
 $(document).ready(function(){
-	__.services.form.init();
     $('[select-type=ajax]').each(function(k, v){
         var url = $(v).attr('url');
         var $this = $(v);
@@ -96,7 +116,9 @@ $(document).ready(function(){
                     html += "<option value='" + data[i].value + "'>" + data[i].key + "</option>";
                 }
                 $this.html(html);
+				__.services.form.initFormValue();
             }
-        })
+        });
     });
+    __.services.form.init();
 });

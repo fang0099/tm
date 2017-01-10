@@ -19,11 +19,15 @@ class ArticleRepository extends BaseRepository
 {
 
     private $commentRep;
+    private $tagRep;
+    private $userRep;
 
-    public function __construct(Article $model, CommentRepository $commentRep)
+    public function __construct(Article $model, CommentRepository $commentRep, TagRepository $tagRep, UserRepository $userRep)
     {
         $this->model = $model;
         $this->commentRep = $commentRep;
+        $this->tagRep = $tagRep;
+        $this->userRep = $userRep;
     }
 
     public function findById($id){
@@ -31,15 +35,15 @@ class ArticleRepository extends BaseRepository
         if($t == null || $t->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }
-        $author = $t->_author;
-        $author->password = '***';
-        $t['author'] = $author;
-        $checker = $t->_checker;
+        $author = $t->author;
+        if($author){
+            $author->password = '***';
+        }
+        $checker = $t->checker;
         if($checker){
             $checker->password = '***';
         }
-        $t['checker'] = $checker;
-        $t['tags'] = $t->tags;
+        $t->tags;
         //$t['comments'] = $t->comments;
         return $this->success('', $t);
     }
@@ -53,6 +57,12 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+    public function deleteComment($articleId, $commentId){
+        DB::delete('delete from comments where id = ? ', [$commentId]);
+        return $this->success();
+    }
+
+
     public function create(Request $request){
         $params = $this->getParams($request);
         $content = $params['content'];
@@ -63,7 +73,7 @@ class ArticleRepository extends BaseRepository
         $params['word_count'] = $word_count;
         $tagIds = $params['tags'];
         $params['has_checked'] = 0;
-        $params['checker'] = 0;
+        $params['checker_id'] = 0;
         unset($params['tags']);
         $article = $this->insertWithId($params);
         $tagIdsArr = explode(',', $tagIds);
@@ -71,7 +81,7 @@ class ArticleRepository extends BaseRepository
             DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
         }
         //$article->tags->sync($tagIdsArr);
-        return $this->success();
+        return $this->success('', $article);
     }
 
     public function update(Request $request){
@@ -101,7 +111,7 @@ class ArticleRepository extends BaseRepository
                 DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
             }
         }
-        return $this->success();
+        return $this->success('', $article);
     }
 
     public function list(Request $request){
@@ -113,17 +123,16 @@ class ArticleRepository extends BaseRepository
             'filter' => $articles['filter'],
             'list' => array()];
         $list = $articles['list'];
-        $res['list'] = $articles['list'];
-        /*
+        //$res['list'] = $articles['list'];
         if(!empty($list)){
             foreach ($list as $a){
-                $a['author'] = $a->_author;
-                $a['checker'] = $a->_checker;
-                $a['tags'] = $a->tags;
+                $article = $this->get($a->id);
+                $a->author = $article->author;
+                $a->checker = $article->checker;
+                $a->tags = $article->tags;
                 $res['list'][] = $a;
             }
         }
-        */
         return $this->success('', $res);
     }
 
@@ -133,7 +142,6 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }else {
             // if operator has permission?
-
             $article->checker = $operator;
             $article->has_checker = 1;
             $article->save();
@@ -172,7 +180,7 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
             $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
-            if($count[0]['c'] == 0){
+            if($count[0]->c == 0){
                 DB::insert('insert into user_like_article (user_id, article_id) values (?, ?)', [$userid, $id]);
                 $article->likes = $article->likes+1;
                 $article->save();
@@ -216,12 +224,56 @@ class ArticleRepository extends BaseRepository
     public function upArticles($size = 3){
         $articles = $this->model->where('up_flag', '=', '1')->orderBy('publish_time', 'desc')->take($size)->get();
         foreach ($articles as $a){
-            $author = $a->_author;
+            $author = $a->author;
             $author->password = '***';
-            $a->author = $author;
+            $a->tags;
         }
         return $this->success('', $articles);
     }
 
+    public function addTags($articleId, $tagIds){
+        $article = $this->get($articleId);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $articleId);
+        }else {
+            $idsArr = explode(',', $tagIds);
+            foreach ($idsArr as $t){
+                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+            }
+        }
+    }
+
+    public function delTags($articleId, $tagIds){
+        $article = $this->get($articleId);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', $articleId);
+        }else {
+            $idsArr = explode(',', $tagIds);
+            foreach ($idsArr as $t){
+                DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+            }
+        }
+    }
+
+
+    public function hotest($tagId, $page, $pageSize = 15){
+        $offset = ($page - 1) * $pageSize;
+        $articles = $this->model->where('del_flag', '=', '0')->orderBy('hot_num', 'desc')->orderBy('click_count', 'desc')
+                    ->offset($offset)->limit($pageSize)->get();
+        return $this->success('', $articles);
+    }
+
+    public function recommend($userid, $page = 1, $pageSize = 15){
+        $offset = ($page - 1) * $pageSize;
+        $user = $this->userRep->get($userid);
+        if($user){
+            $tag = $user->subscribeTags()->limit(1)->first();
+            if($tag){
+                $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
+                return $this->success('', $articles);
+            }
+        }
+        return $this->hotest(null, $page, $pageSize);
+    }
 
 }

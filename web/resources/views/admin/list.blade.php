@@ -14,7 +14,9 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <!--
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        -->
         <link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -89,10 +91,10 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 
-                                                    <button id="sample_editable_1_new" class="btn sbold green add" > Add New
+                                                    <button id="sample_editable_1_new" class="btn sbold green add" > 添加
                                                         <i class="fa fa-plus"></i>
                                                     </button>
-                                                    <button id="sample_editable_1_new" class="btn sbold red batch-delete" > Delete all
+                                                    <button id="sample_editable_1_new" class="btn sbold red batch-delete" > 删除
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 
@@ -146,8 +148,13 @@
                                                     @if($l['type'] == 'text')
                                                     {{$d[$l['value']]}}
                                                     @elseif($l['type'] == 'image')
-                                                    <img src="../../{{$d[$l['value']]}}" width="100" />
-                                                    @elseif($l['type'] == 'select')
+                                                    <img src="{{$d[$l['value']]}}" width="100" />
+                                                    @elseif($l['type'] == 'rel')
+                                                        @if($l['rel']['type'] == 'one')
+                                                            <a href="javascript:;" class="show-page" data="{'model' : '{{ $l['rel']['ref']['model'] }}', 'id': {{ $d[$l['rel']['relation']['from']] }}}">{{ $d[$l['value']][$l['rel']['value']] }}</a>
+                                                        @elseif($l['rel']['type'] == 'many')
+                                                            <a href="javascript:;" class="show-list">{{ $l['rel']['value'] }}({{ $d[$l['value']] }})</a>
+                                                        @endif
                                                     @endif
                                                 </td>
                                                 @endforeach
@@ -234,18 +241,18 @@
                                 "sortAscending": ": activate to sort column ascending",
                                 "sortDescending": ": activate to sort column descending"
                             },
-                            "emptyTable": "No data available in table",
-                            "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                            "infoEmpty": "No records found",
-                            "infoFiltered": "(filtered1 from _MAX_ total records)",
-                            "lengthMenu": "Show _MENU_",
-                            "search": "Search:",
-                            "zeroRecords": "No matching records found",
+                            "emptyTable": "没有数据",
+                            "info": "显示 _START_ 到 _END_ 共 _TOTAL_ 条记录",
+                            "infoEmpty": "无记录",
+                            "infoFiltered": "(从 _MAX_ 记录)",
+                            "lengthMenu": "显示 _MENU_",
+                            "search": "搜索:",
+                            "zeroRecords": "没有匹配项",
                             "paginate": {
-                                "previous":"Prev",
-                                "next": "Next",
-                                "last": "Last",
-                                "first": "First"
+                                "previous":"上一页",
+                                "next": "下一页",
+                                "last": "最后一页",
+                                "first": "首页"
                             }
                         },
 

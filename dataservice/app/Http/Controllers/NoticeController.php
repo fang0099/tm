@@ -39,4 +39,8 @@ class NoticeController extends Controller
         $idsArr = explode(',', $ids);
         return $this->noticeRep->batchDeleteInternal($idsArr);
     }
+
+    public function page(Request $request){
+        return $this->noticeRep->page($request);
+    }
 }

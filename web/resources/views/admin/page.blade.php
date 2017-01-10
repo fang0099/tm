@@ -74,6 +74,7 @@
                                         <div class="form-body">
                                             <input type="hidden" value="{{ $_GET['model'] }}" name="model" />
                                             @foreach($config['fields'] as $f)
+                                                @if($f['showInPage'])
                                                 @if($f['type'] == 'hidden')
                                                     <input type="hidden" name="{{ $f['name'] }}"
                                                        @if($action == 'update')
@@ -85,7 +86,7 @@
                                                         <label class="control-label col-xs-2" for="{{ $f['name']  }}">{{ $f['label'] }}</label>
                                                         <div class="col-xs-10">
                                                             <?php
-                                                                $atts = 'id="' . $f['name'] . '" name="' . $f['name'] . '" ';
+                                                                $atts = ' disabled id="' . $f['name'] . '" name="' . $f['name'] . '" ';
                                                                 if(isset($f['attribute'])){
                                                                     foreach ($f['attribute'] as $k => $v){
                                                                         $atts .= $k . ' = "' . $v . '" ';
@@ -125,17 +126,20 @@
                                                         </div>
                                                     </div>
                                                 @endif
+                                                @endif
                                             @endforeach
 
                                         </div>
+                                        <!--
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-xs-offset-3 col-xs-6">
-                                                    <button type="submit" class="btn green">提交</button>
-                                                    <button type="reset" class="btn default cancle">取消</button>
+                                                    <button type="submit" class="btn green">Submit</button>
+                                                    <button type="reset" class="btn default cancle">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </form>
                                     <!-- END FORM-->
                                 </div>
@@ -154,7 +158,7 @@
         </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
-       <input type="hidden" id="json-data" value="{{ $json or '' }}">
+        <input type="hidden" id="json-data" value="{{ $json }}">
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
         <script src="../../assets/global/plugins/respond.min.js"></script>

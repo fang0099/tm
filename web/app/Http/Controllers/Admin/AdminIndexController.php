@@ -40,6 +40,46 @@ class AdminIndexController extends AdminBaseController
                             'config' => $m,
                             'action' => 'update',
                             'data' => $data['data'],
+                            'json' => json_encode($data['data']),
+                            'model' => $model
+                        ]);
+                    }else {
+                        return view('admin.error', ['error' => $data['message']]);
+                    }
+
+                }catch(Exception $e){
+                    return view('admin.internalerror');
+                }
+            }else {
+                return view('admin.form', ['config' => $m, 'action' => 'create', 'model' => $model]);
+            }
+
+        }else {
+            return view('admin.notfound');
+        }
+    }
+
+    public function page(Request $request){
+        $model = $request->input('model');
+        if(!$model){
+            return view('admin.notfound');
+        }
+        $path = 'models/' . $model . '.json';
+        if(Storage::exists($path)){
+            $content = Storage::get($path);
+            $m = json_decode($content, true);
+            $id = $request->input('id');
+            if($id || $model == 'webinfo'){
+                $invoker = $m['invoker'];
+                try{
+                    $invoker = $this->getInvoker($invoker);
+                    $data = $invoker->get(['id' => $id]);
+                    if ($data['success']){
+                        return view('admin.page', [
+                            'config' => $m,
+                            'action' => 'update',
+                            'data' => $data['data'],
+                            'json' => json_encode($data['data']),
                             'model' => $model
                         ]);
                     }else {
@@ -97,7 +137,7 @@ class AdminIndexController extends AdminBaseController
                 $invoker = $m['invoker'];
                 try{
                     $invoker = $this->getInvoker($invoker);
-                    $data = $invoker->list();
+                    $data = $invoker->page();
                     if ($data['success']){
                         return view('admin.list', [
                             'config' => $m,

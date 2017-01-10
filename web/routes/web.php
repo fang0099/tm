@@ -88,8 +88,10 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 });
 
-Route::group(['namespace' => 'Admin'], function (){
+Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
+//Route::group(['namespace' => 'Admin'], function (){
     Route::get('admin/form', 'AdminIndexController@form');
+    Route::get('admin/page', 'AdminIndexController@page');
 
     Route::post('admin/do/{action}', 'AdminIndexController@formDo');
 

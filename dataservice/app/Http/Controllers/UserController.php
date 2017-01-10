@@ -48,6 +48,10 @@ class UserController extends Controller
         return $this->userRep->list($request);
     }
 
+    public function page(Request $request){
+        return $this->userRep->page($request);
+    }
+
     public function followers(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
@@ -55,11 +59,23 @@ class UserController extends Controller
         return $this->userRep->followers($id, $page, $pageSize);
     }
 
-    public function follow(Request $request){
+    public function follows(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
         return $this->userRep->follows($id, $page, $pageSize);
+    }
+
+    public function follow(Request $request){
+        $id = $request->input('id');
+        $follower = $request->input('follower');
+        return $this->userRep->follow($id, $follower);
+    }
+
+    public function unfollow(Request $request){
+        $id = $request->input('id');
+        $follower = $request->input('follower');
+        return $this->userRep->unfollow($id, $follower);
     }
 
     public function lastedArticles(Request $request){
@@ -72,10 +88,11 @@ class UserController extends Controller
 
     public function notice(Request $request){
         $type = $request->input('type');
+        $status = $request->input('status', '-1');
         $userid = $request->input('userid');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
-        return $this->userRep->notice($type, $userid, $page, $pageSize);
+        return $this->userRep->notice($status, $type, $userid, $page, $pageSize);
     }
 
     public function optLog(Request $request){
@@ -84,5 +101,47 @@ class UserController extends Controller
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
         return $this->userRep->optLog($type, $userid, $page, $pageSize);
+    }
+
+    public function tags(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->tags($id, $page);
+    }
+
+    public function hasFollower(Request $request){
+        $id = $request->input("id");
+        $userid = $request->input("userid");
+        return $this->userRep->hasFollower($id, $userid);
+    }
+
+    public function hasLike(Request $request){
+        $id = $request->input("id");
+        $articleid = $request->input("articleid");
+        return $this->userRep->hasLike($id, $articleid);
+    }
+
+    public function hasCollect(Request $request){
+        $id = $request->input("id");
+        $articleid = $request->input("articleid");
+        return $this->userRep->hasCollect($id, $articleid);
+    }
+
+    public function collectArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->collectArticles($id, $page);
+    }
+
+    public function tagArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->tagArticles($id, $page);
+    }
+
+    public function followerArticles(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        return $this->userRep->followersArticle($id, $page);
     }
 }

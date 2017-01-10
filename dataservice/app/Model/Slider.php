@@ -14,6 +14,6 @@ class Slider extends BaseModel
     protected $table = 'sliders';
 
     public function _article(){
-        return $this->hasOne('App\Model\Article', 'id');
+        return $this->hasOne('App\Model\Article', 'id', 'article_id')->where('del_flag', '=', 0)->first();
     }
 }

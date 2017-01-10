@@ -22,15 +22,26 @@ class Article extends BaseModel
     }
 
     public function _author(){
-        return $this->belongsTo('App\Model\User', 'author');
+        return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0)->first();
+    }
+    public function author(){
+        return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0);
     }
 
-    public function _checker(){
-        return $this->belongsTo('App\Model\User', 'checker');
+    public function checker(){
+        return $this->belongsTo('App\Model\User', 'checker_id');
     }
 
     public function tags(){
         return $this->belongsToMany('App\Model\Tag', 'tag_article_rel', 'article_id', 'tag_id');
+    }
+
+    public function _tagList(){
+        return $this->tags()->get();
+    }
+
+    public function _tagsCount(){
+        return $this->tags()->count();
     }
 
     public function comments(){

@@ -34,12 +34,14 @@ __.components.sliderbar = __.components.sliderbar || {};
 			$(this).addClass('start');
 			$(this).parents('li.nav-item').addClass('active');
 			$(this).parents('li.nav-item').addClass('open');
+            __.utils.fixMainIframeSize();
 		});
 		
 		$('a.link').click(function () {
 			var url = $(this).attr('data');
 			__.components.iframe.refreshMain(url);
         });
+
 	};
 
 	__.components.sliderbar.init = bind;

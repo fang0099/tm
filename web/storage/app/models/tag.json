@@ -47,9 +47,28 @@
 			"type" : "text"
 		},
 		{
+			"label" : "首页菜单排序",
+			"value" : "sorted",
+			"name" : "params[sorted]",
+			"type" : "text"
+		},
+		{
 			"label" : "显示在菜单栏",
 			"value" : "show_menu",
 			"name" : "params[show_menu]",
+			"type" : "select",
+			"select" : {
+				"type" : "json",
+				"data" : {
+					"不显示" : "0",
+					"显示" : "1"
+				}
+			}
+		},
+		{
+			"label" : "显示在首页",
+			"value" : "show_index",
+			"name" : "params[show_index]",
 			"type" : "select",
 			"select" : {
 				"type" : "json",
@@ -78,11 +97,6 @@
 			"head" : "标签名",
 			"value" : "name",
 			"type" : "text"
-		},
-		{
-			"head" : "标签图片",
-			"value" : "face",
-			"type" : "image"
 		},
 		{
 			"head" : "关注数",

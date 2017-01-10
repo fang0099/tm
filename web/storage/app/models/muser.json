@@ -16,7 +16,8 @@
 			"name" : "params[username]",
 			"type" : "text",
 			"attribute" : {
-				"required" : "required"
+				"required" : "required",
+				"disabled" : "true"
 			}
 		},
 		{
@@ -48,32 +49,6 @@
 			"value" : "brief",
 			"name" : "params[brief]",
 			"type" : "textarea"
-		},
-		{
-			"label" : "是否认证",
-			"value" : "is_auth",
-			"name" : "params[is_auth]",
-			"type" : "select",
-			"select" : {
-				"type" : "json",
-				"data" : {
-					"否" : "0",
-					"是" : "1"
-				}
-			}
-		},
-		{
-			"label" : "是否管理员",
-			"value" : "is_admin",
-			"name" : "params[is_admin]",
-			"type" : "select",
-			"select" : {
-				"type" : "json",
-				"data" : {
-					"否" : "0",
-					"是" : "1"
-				}
-			}
 		}
 	],
 	"list" : [
@@ -87,6 +62,7 @@
 		"id" : "tag-form",
 		"callback" : "$.callback.back"
 	},
+	"callback" : "reminder",
 	"sort" : "id",
 	"operations" : ["add", "batch-delete", "update", "delete", "back"]
 }
