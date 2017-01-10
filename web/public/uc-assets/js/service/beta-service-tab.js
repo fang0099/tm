@@ -21,7 +21,8 @@ __.service.tab = __.service.tab || {};
 	var userTemplate = $('#list-user').html();
 	var noticeTemplate = $('#list-notice').html();
 	var tagTemplate = $('#list-tags').html();
-	var base = "http://localhost/tm/web/public/index.php";
+	//var base = "http://localhost/tm/web/public/index.php";
+    var base = "/";
 	var bindTabLinkEvent = function(){
 		$tabs.click(function(){
 			
