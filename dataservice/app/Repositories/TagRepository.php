@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Events\SubscribeTagEvent;
 use App\Model\Tag;
 use Illuminate\Http\Request;
 use App\StatusCode;
@@ -83,6 +84,7 @@ class TagRepository extends BaseRepository
                 $tag->fans_num = $tag->fans_num + 1;
                 $tag->save();
             }
+            event(new SubscribeTagEvent($tag, $subscriber));
             return $this->success();
         }
     }
@@ -146,12 +148,12 @@ class TagRepository extends BaseRepository
     }
 
     public function menuTags($size){
-        $tags = $this->model->where('show_menu', '=', '1')->where('del_flag', '=', 0)->take($size)->get();
+        $tags = $this->model->where('show_menu', '=', '1')->where('del_flag', '=', 0)->orderBy('sorted')->take($size)->get();
         return $this->success('', $tags);
     }
 
     public function indexTags($size){
-        $tags = $this->model->orderBy('fans_num', 'DESC')->where('del_flag', '=', 0)->take($size)->get();
+        $tags = $this->model->where('show_index', '=', '1')->orderBy('fans_num', 'DESC')->where('del_flag', '=', 0)->take($size)->get();
         return $this->success('', $tags);
     }
 
