@@ -86,6 +86,11 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
+
+    //user-center
+    Route::get('/uc', 'UserCenterController@index');
+    Route::get('/uc/activities/{page}', 'UserCenterController@activities');
+    Route::get('/uc/notices/{page}', 'UserCenterController@notices');
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
