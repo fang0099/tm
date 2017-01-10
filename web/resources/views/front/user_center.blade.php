@@ -3,8 +3,10 @@
 <head>
 	<title>User Center</title>
 	<meta charset="utf-8">
+	<!--
 	<base href="/tm/web/public/">
-	<link rel="stylesheet" type="text/css" href="uc/css/app.usercenter.css" />
+	-->
+	<link rel="stylesheet" type="text/css" href="uc-assets/css/app.usercenter.css" />
 </head>
 <body>
 	
@@ -335,10 +337,10 @@
 	@endverbatim
 	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
-	<script type="text/javascript" src="uc/js/beta.js"></script>
-	<script type="text/javascript" src="uc/js/beta-utils-base.js"></script>
-	<script type="text/javascript" src="uc/js/beta-utils-te.js"></script>
-	<script type="text/javascript" src="uc/js/service/beta-service-init-svg.js"></script>
-	<script type="text/javascript" src="uc/js/service/beta-service-tab.js"></script>
+	<script type="text/javascript" src="uc-assets/js/beta.js"></script>
+	<script type="text/javascript" src="uc-assets/js/beta-utils-base.js"></script>
+	<script type="text/javascript" src="uc-assets/js/beta-utils-te.js"></script>
+	<script type="text/javascript" src="uc-assets/js/service/beta-service-init-svg.js"></script>
+	<script type="text/javascript" src="uc-assets/js/service/beta-service-tab.js"></script>
 </body>
 </html>
