@@ -60,7 +60,9 @@ class ArticleController
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');
-        return $this->articleRep->check($id, $operator);
+        $result = $request->input('result', '0');
+        $message = $request->input('message');
+        return $this->articleRep->check($id, $operator, $result, $message);
     }
 
     public function delete(Request $request){

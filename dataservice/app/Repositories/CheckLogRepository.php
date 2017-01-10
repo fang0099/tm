@@ -6,10 +6,16 @@
  * Time: 下午2:09
  */
 
-namespace app\Repositories;
+namespace App\Repositories;
 
 
-class CheckLogRepository
+use App\Model\CheckLog;
+
+class CheckLogRepository extends BaseRepository
 {
+    public function __construct(CheckLog $model)
+    {
+        $this->model = $model;
+    }
 
 }

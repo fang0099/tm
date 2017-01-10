@@ -74,7 +74,7 @@ class TagRepository extends BaseRepository
     public function subscribe($id, $subscriber){
         $tag = $this->get($id);
         if($tag == null || $tag->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$subscriber]);
         }
         else {
             $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
@@ -92,7 +92,7 @@ class TagRepository extends BaseRepository
     public function unsubscribe($id, $subscriber){
         $tag = $this->get($id);
         if($tag == null || $tag->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$subscriber]);
         }
         else {
             $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$subscriber, $id]);
@@ -135,7 +135,7 @@ class TagRepository extends BaseRepository
     public function hasSubscribe($id, $userId){
         $tag = $this->get($id);
         if($tag == null || $tag->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$operator]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id, 'operator'=>$userId]);
         }
         else {
             $count = DB::select('select count(*) as c from tag_subscriber where subscriber_id = ? and tag_id = ?', [$userId, $id]);

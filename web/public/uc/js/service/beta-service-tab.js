@@ -19,6 +19,8 @@ __.service.tab = __.service.tab || {};
 	var contentTemplate = $('#list-content').html();
 	var portraitTemplate = $('#list-portrait').html();
 	var userTemplate = $('#list-user').html();
+	var noticeTemplate = $('#list-notice').html();
+	var tagTemplate = $('#list-tags').html();
 	var base = "http://localhost/tm/web/public/index.php";
 	var bindTabLinkEvent = function(){
 		$tabs.click(function(){
@@ -43,6 +45,15 @@ __.service.tab = __.service.tab || {};
 
 	var bindListHeaderEvent = function(){
 		$listHeader.on('click', 'a.SubTabs-item', function(){
+			// add current class to identify which link is current click
+			$(this).addClass('current');
+			// remove is-active
+			$listHeader.find('a.SubTabs-item').each(function (k, v) {
+				$(v).removeClass('is-active');
+            });
+			// add current link is-active class
+			$(this).addClass('is-active');
+
 			var url = base + $(this).attr('data');
 			var page = $(this).attr('page');
 			url += '/' + page;
@@ -53,7 +64,7 @@ __.service.tab = __.service.tab || {};
 					var d = data.data;
 					console.log(d);
 					for (var i = 0 ; i < d.length; i++){
-						if(d[i].type){
+						if(d[i].type != undefined && d[i].type >= 0 && (d[i].ref_id != undefined)){
                             if(d[i].type == 0){
                                 html += te.renderByTemplate(contentTemplate, d[i]);
                             }else if(d[i].type == 1){
@@ -62,14 +73,19 @@ __.service.tab = __.service.tab || {};
                                 html += te.renderByTemplate(userTemplate, d[i]);
                             }
 						}else {
+							if(d[i].fans_num != undefined){
+                                html += te.renderByTemplate(tagTemplate, d[i]);
+							}else {
+                                html += te.renderByTemplate(noticeTemplate, d[i]);
+							}
 
 						}
-
-						//console.log(html);
 					}
-				}else {
-					html = te.renderById('empty', {});
+
 				}
+                if(html == ''){
+                    html = te.renderById('empty', {});
+                }
 				$listBody.html(html);
 			});
 		});

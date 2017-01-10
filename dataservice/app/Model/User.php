@@ -69,6 +69,14 @@ class User extends BaseModel
         return $this->hasMany('App\Model\Notice', 'to_user')->where('del_flag', '=', 0)->orderBy('publish_time', 'desc');
     }
 
+    public function _unreadNoticeCount(){
+        return $this->notices()->where('status', '=', 0)->count();
+    }
+
+    public function activities(){
+        return $this->hasMany('App\Model\Activities', 'uid')->where('del_flag', '=', 0)->orderBy('publish_time', 'DESC');
+    }
+
     public function optLogs(){
         return $this->hasMany('App\Model\OptLog', 'user_id');
     }

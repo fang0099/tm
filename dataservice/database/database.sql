@@ -160,10 +160,24 @@ CREATE TABLE notice (
     to_user int not NULL  DEFAULT 0,
     title VARCHAR(16) not null DEFAULT '',
     message VARCHAR(128) not null DEFAULT '',
-    type INT not null default 0,
+    type int not null default 0 COMMENT '0=article, 1=tag, 3=user',
+    ref_id int not null default 0,
     publish_time DATETIME DEFAULT current_timestamp,
     status int not null default 0 COMMENT '0=unread, 1=readed',
-    del_flag int not NULL DEFAULT 0
+    del_flag int not NULL DEFAULT 0,
+    KEY user_idx (`del_flag`, `to_user`, `publish_time`)
+)ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE activities (
+    id int PRIMARY KEY  AUTO_INCREMENT,
+    uid int not null default 0,
+    title VARCHAR(16) not null DEFAULT '',
+    message VARCHAR(128) not null DEFAULT '',
+    type int not null default 0 COMMENT '0=article, 1=tag, 3=user',
+    ref_id int not null default 0,
+    publish_time DATETIME DEFAULT current_timestamp,
+    del_flag int not NULL DEFAULT 0,
+    KEY user_idx (`del_flag`, `uid`, `publish_time`)
 )ENGINE=innodb charset=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE opt_log (

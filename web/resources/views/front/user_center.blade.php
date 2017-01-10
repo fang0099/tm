@@ -14,8 +14,10 @@
 				<a href=''></a>
 				<nav role="navigation" class="app-header-nav">
 					<a class="app-header-navItem" href="/">首页</a>
+					<!--
 					<a class="app-header-navItem" href="/explore">发现</a>
 					<a class="app-header-navItem" href="/topic">话题</a>
+					-->
 				</nav>
 				<div class='app-header-userInfo'>
 					<!-- notice notify -->
@@ -79,47 +81,16 @@
 						</div>
 						<div class="list-body ">
 							<div class="activity" id='list-body-content'>
-								
-								<div class="List-item">
-									<div class="List-itemMeta">
-										<div class="ActivityItem-meta">
-											<span class="ActivityItem-metaTitle">关注了问题</span>
-											<span>2 个月前</span>
-										</div>
-									</div>	
-									<div class="ContentItem">
-										<h2 class="ContentItem-title"><a href="/question/19844498" target="_blank">普通人应该知道哪些法律常识？</a></h2>
+								<div class="EmptyState">
+									<div class="EmptyState-inner">
+										<svg width="78px" height="69px" viewBox="0 0 78 69" class="EmptyState-image"><title/><g><defs>         <path d="M72,19.4619408 L72,56.0017404 C72,59.3144877 69.3089213,62 66.0005656,62 L45.4558441,62 L38.6021577,68.8536865 C37.4330392,70.022805 35.5411188,70.0264001 34.3684051,68.8536865 L27.5147186,62 L5.99943435,62 C2.68603825,62 0,59.3221316 0,56.0017404 L0,13.9982596 C0,10.6855123 2.69107868,8 5.99943435,8 L59.4203102,8" id="path-1"/>         <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="72" height="61.731874" fill="white">             <use xlink:href="#path-1"/>         </mask>         <path d="M-2.77111667e-13,30 L-2.62900812e-13,3.24499911 C-2.62995526e-13,1.58684234 1.3486445,0.242640687 3.00032973,0.242640687 L6.99967027,0.242640687 C8.65670662,0.242640687 10,1.58595312 10,3.24499911 L10,30" id="path-3"/>         <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="10" height="29.7573593" fill="white">             <use xlink:href="#path-3"/>         </mask>     </defs>     <g id="空状态" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">         <g id="answer" transform="translate(-39.000000, -25.000000)">             <g id="Answer" transform="translate(39.000000, 24.000000)">                 <use id="Combined-Shape" stroke="#EBEEF5" mask="url(#mask-2)" stroke-width="6" xlink:href="#path-1"/>                 <rect id="Rectangle-17" fill="#F8F9FA" x="16" y="23" width="30" height="3" rx="1.5"/>                 <rect id="Rectangle-17-Copy" fill="#F8F9FA" x="16" y="34" width="40" height="3" rx="1.5"/>                 <rect id="Rectangle-17-Copy-2" fill="#F8F9FA" x="16" y="45" width="40" height="3" rx="1.5"/>                 <g id="pen" transform="translate(62.232233, 17.267767) rotate(45.000000) translate(-62.232233, -17.267767) translate(57.232233, -1.732233)">                     <use id="Rectangle-18-Copy" stroke="#EBEEF5" mask="url(#mask-4)" stroke-width="6" xlink:href="#path-3"/>                     <path d="M3.59391533,31.0939734 C4.37047445,29.6318348 5.63325346,29.6388538 6.40608467,31.0939734 L10,37.8607507 L2.84217094e-14,37.8607507 L3.59391533,31.0939734 Z" id="Triangle" fill="#EBEEF5" transform="translate(5.000000, 33.930375) scale(1, -1) translate(-5.000000, -33.930375) "/>
+															</g>             </g>         </g>     </g></g>
+										</svg>
+										<span>
+									还没有内容
+								</span>
 									</div>
 								</div>
-
-								<div class="List-item">
-									<div class="List-itemMeta">
-										<div class="ActivityItem-meta">
-											<span class="ActivityItem-metaTitle">关注了问题</span>
-											<span>2 个月前</span>
-										</div>
-									</div>	
-									<div class="PortraitItem">
-										<a class="TopicLink PortraitItem-image">
-											<div class="Popover">
-												<div id="Popover-44751-46196-toggle">
-													<img class="Avatar Avatar--large TopicLink-avatar" src="https://pic4.zhimg.com/9ed860fe7_im.jpg" style="width: 60px; height: 60px;" />
-												</div>
-											</div>
-										</a>
-										<div class="ContentItem PortraitItem-content">
-											<h2 class="ContentItem-title">
-												<a class="TopicLink" href="/topic/19580772" target="_blank">
-													<div class="Popover">
-														<div id="Popover-44757-14117-toggle" >法律咨询</div>
-													</div>
-												</a>
-											</h2>
-											<div class="ContentItem-meta"><div class="TopicItem-meta">请在问题中尽量提供准确、充足的事实信息。</div></div>
-										</div>
-									</div>
-								</div>
-
 							</div>
 						</div>
 					</div>
@@ -189,10 +160,10 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/article/lasted"  page="1">最新</a>
-					<a class="SubTabs-item" data="/uc/article/hostest"  page="1">最热</a>
-					<a class="SubTabs-item" data="/uc/article/recommend"  page="1">推荐</a>
-					<a class="SubTabs-item" data="/uc/article/draft"  page="1">草稿箱</a>
+					<a class="SubTabs-item is-active" data="/uc/articles/lasted"  page="1">最新</a>
+					<a class="SubTabs-item" data="/uc/articles/hotest"  page="1">最热</a>
+					<a class="SubTabs-item" data="/uc/articles/recommend"  page="1">推荐</a>
+					<a class="SubTabs-item" data="/uc/articles/draft"  page="1">草稿箱</a>
 				</div>
 			</h4>
 		</div>
@@ -201,7 +172,7 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/collects"  page="1">我的收藏</a>
+					<a class="SubTabs-item is-active" data="/uc/articles/collect"  page="1">我的收藏</a>
 				</div>
 			</h4>
 		</div>
@@ -211,7 +182,7 @@
 			<h4 class="List-headerText">
 				<div class="SubTabs">
 					<a class="SubTabs-item is-active" data="/uc/subscribe"  page="1">我的订阅</a>
-					<a class="SubTabs-item" data="/uc/subscribe/article"  page="1">订阅标签文章</a>
+					<a class="SubTabs-item" data="/uc/articles/tags"  page="1">订阅标签文章</a>
 				</div>
 			</h4>
 		</div>
@@ -222,7 +193,7 @@
 				<div class="SubTabs">
 					<a class="SubTabs-item is-active" data="/uc/follows"  page="1">关注了</a>
 					<a class="SubTabs-item" data="/uc/followers"  page="1">关注者</a>
-					<a class="SubTabs-item" data="/uc/followers/article"  page="1">关注人的文章</a>
+					<a class="SubTabs-item" data="/uc/articles/followers"  page="1">关注人的文章</a>
 				</div>
 			</h4>
 		</div>
@@ -292,6 +263,29 @@
 			</div>
 		</div>
 	</script>
+	<script type="text/html" id="list-tags">
+		<div class="List-item">
+			<div class="PortraitItem">
+				<a class="TopicLink PortraitItem-image">
+					<div class="Popover">
+						<div id="Popover-44751-46196-toggle">
+							<img class="Avatar Avatar--large TopicLink-avatar" src="{{ face }}" style="width: 60px; height: 60px;" />
+						</div>
+					</div>
+				</a>
+				<div class="ContentItem PortraitItem-content">
+					<h2 class="ContentItem-title">
+						<a class="TopicLink" href="/article/list?type=tag&id={{ id }}" target="_blank">
+							<div class="Popover">
+								<div id="Popover-44757-14117-toggle" >{{ name }}</div>
+							</div>
+						</a>
+					</h2>
+					<div class="ContentItem-meta"><div class="TopicItem-meta">{{ brief }}</div></div>
+				</div>
+			</div>
+		</div>
+	</script>
 	<script type="text/html" id="list-user">
 		<div class="List-item">
 			<div class="List-itemMeta">
@@ -319,6 +313,18 @@
 					<div class="ContentItem-meta"><div class="TopicItem-meta">{{ ref.brief }}</div></div>
 				</div>
 			</div>
+		</div>
+	</script>
+	<script type="text/html" id="list-notice">
+		<div class="List-item">
+			<div class="ContentItem">
+				<h2 class="ContentItem-title">
+					<div class="QuestionItem-title">
+						{{ title }}
+					</div>
+				</h2>
+			</div>
+			<div class="ContentItem-status"><span class="ContentItem-statusItem">{{ publish_time }}</span></div>
 		</div>
 	</script>
 	<script type="text/html" id="svg-notice">

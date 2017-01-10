@@ -95,6 +95,13 @@ class UserController extends Controller
         return $this->userRep->notice($status, $type, $userid, $page, $pageSize);
     }
 
+    public function activities(Request $request){
+        $userId = $request->input('userid');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        return $this->userRep->activities($userId, $page, $pageSize);
+    }
+
     public function optLog(Request $request){
         $type = $request->input('type');
         $userid = $request->input('userid');
@@ -143,5 +150,9 @@ class UserController extends Controller
         $id = $request->input('id');
         $page = $request->input('page', 1);
         return $this->userRep->followersArticle($id, $page);
+    }
+
+    public function recommend(Request $request){
+        return ['success' => true, 'data' => []];
     }
 }

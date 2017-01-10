@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Events\FollowUserEvent;
 use App\Model\User;
 use App\StatusCode;
 use Illuminate\Http\Request;
@@ -150,6 +151,7 @@ class UserRepository extends BaseRepository
             if($c == 0){
                 DB::insert('insert into user_follows (user_id, follower_id) values (?, ?)', [$id, $follower]);
             }
+            event(new FollowUserEvent($user, $follower));
             return $this->success();
         }
     }
@@ -191,7 +193,7 @@ class UserRepository extends BaseRepository
     public function notice($status, $type, $userId, $page, $pageSize = 15){
         $user = $this->get($userId);
         if($user == null || $user->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
         }else {
             $offset = ($page - 1) * $pageSize;
             $builder = $user->notices();
@@ -207,10 +209,21 @@ class UserRepository extends BaseRepository
         }
     }
 
+    public function activities($userId, $page, $pageSize = 15){
+        $user = $this->get($userId);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $as = $user->activities()->offset($offset)->limit($pageSize)->get();
+            return $this->success('', $as);
+        }
+    }
+
     public function optLog($type, $userId, $page, $pageSize = 15){
         $user = $this->get($userId);
         if($user == null || $user->del_flag == 1){
-            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
         }else {
             $offset = ($page - 1) * $pageSize;
             if($type == 'all'){
