@@ -121,3 +121,10 @@
 .home section {
     padding-top:5px;
 }
+#header-holder {
+    height: 105px;
+}
+
+body{
+    font-size:16px;
+}

@@ -19,10 +19,17 @@
     <meta http-equiv="Cache-Control" content="no-transform" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
+    <base href="/tm/web/public/">
+    <!--<link rel="stylesheet" type="text/css" href="uc/css/app.usercenter.css" />-->
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
+
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
 
     <link href="./final2/css/36kr_common.css" rel="stylesheet" />
     <link href="./final2/css/36kr_app.css" rel="stylesheet" />
-    <script src="./final2/js/jquery-2.1.4.min.js"></script>
+    <script src="./final2/js/jquery.min.js"></script>
     <script src="./final2/js/jquery.qrcode.min.js"></script>
     <style>
         .single-post-tags
@@ -57,11 +64,72 @@
 <!--模板开始-->
 <!--页头通用通知,不要删除-->
 
+
+<!--<link rel="stylesheet" type="text/css" href="uc/css/app.usercenter_trim.css" />-->
 <link rel="stylesheet" href="./final2/css/36kr_style.css" />
+<link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
 <!--模板结束-->
 <div id="app">
     <div data-reactroot="">
         <div class="pagewrap pagewrap-full">
+            <div id="header-holder">
+                <header id="header" class="navbar ng-scope ng-isolate-scope" fixed="scrollBackFixedNavbar">
+                    <div class="navbar-logo-container">
+                        <a href="<?php echo env('APP_URL');?>" class="logo icon-ic_zhihu_logo" aria-label="首页"></a>
+                    </div>
+                    <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
+                        <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
+                        </div>
+                        <!--<div class="status loading ng-binding ng-scope" ng-if="status" ng-class="status.type">saving</div>-->
+                    </div>
+                    @if( !isset($username) )
+                        <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
+                    @else
+                        <div class="navbar-menu-container ui-menu-button ng-scope" >
+                            <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
+                                <i class="icon-th-menu-outline"></i>
+                            </a>
+                            <menu class="menu navbar-menu ng-scope" id="navbar_menu">
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?id=<?php echo session('id');?>" tabindex="0">我的文章</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/user/follower?id=<?php echo session('id');?>" tabindex="0">我的粉丝</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/user/liker?id=<?php echo session('id');?>" tabindex="0">关注作者</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=liker&id=<?php echo session('id');?>" tabindex="0">关注作者文章</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=collect&id=<?php echo session('id');?>" tabindex="0">收藏文章列表</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=tag&id=<?php echo session('id');?>" tabindex="0">订阅标签文章列表</a>
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/index.php/admin/index" tabindex="0">后台管理</a>
+                                <hr ng-if="inWrite &amp;&amp; !hideDelete" class="ng-scope">
+                                <a class="menu-item" href="<?php echo env('APP_URL');?>/logout" target="_blank" tabindex="0">退出</a>
+                            </menu>
+                        </div>
+                    @endif
+                    <div class="navbar-write-container ng-scope">
+                        <a href="<?php echo env('APP_URL');?>/article/edit" >
+                            <i class="icon-edit"></i>写文章
+                        </a>
+                    </div>
+                    <div class="navbar-content"></div>
+                </header>
+                <div class="find_nav">
+                    <div class="find_nav_left">
+                        <div class="find_nav_list">
+                            <ul>
+                            @if(isset($menu_tags))
+                                @foreach($menu_tags as $tag)
+                                    <!--<li class="find_nav_cur"><a href="article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>-->
+                                        <li class=""><a href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a></li>
+                                    @endforeach
+                                @endif
+                                <li class="sideline"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
             <div class="article-detail ">
                 <div class="post-wrapper">
                     <div id="J_normal_read_5061570" class="post-detail-con-box full-reading mainlib_flex_wapper">
@@ -474,5 +542,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery.pin/jquery.pin.js"></script>
+
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-wznav/js.js"></script>
+<script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
 </body>
 </html>
