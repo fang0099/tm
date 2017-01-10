@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/3228f830f973 -->
+<html>
+ <!--<![endif]-->
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" /> 
+  <meta http-equiv="Cache-Control" content="no-siteapp" /> 
+  <meta name="description" content="在简书写了这么久博客,一直觉得个人页面挺有意思的,今天就写了一个仿个人页面的demo,这里只是给大家一个思路,写的不一定好,先看看最后的效果图吧.github下载地址在写的时候我想了很多,先想如果它整体是个tableview的话,那动态文章那个view可以设为sectionView,这样没问题,可是下面的cell里面就要用scrollerview,scrollerview里面又是tablev..." /> 
+  <meta property="wb:webmaster" content="294ec9de89e7fadb" /> 
+  <meta property="qc:admins" content="104102651453316562112116375" /> 
+  <meta property="qc:admins" content="11635613706305617" /> 
+  <meta property="qc:admins" content="1163561616621163056375" /> 
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" /> 
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" /> 
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/3228f830f973" /> 
+  <!--  Meta for Smart App Banner --> 
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/3937477" /> 
+  <!-- End --> 
+  <!--  Meta for Twitter Card --> 
+  <meta content="summary" property="twitter:card" /> 
+  <meta content="@jianshucom" property="twitter:site" /> 
+  <meta content="仿简书个人页面" property="twitter:title" /> 
+  <meta content="在简书写了这么久博客,一直觉得个人页面挺有意思的,今天就写了一个仿个人页面的demo,这里只是给大家一个思路,写的不一定好,先看看最后的效果图吧.github下载地址在写的时候我想了很多,先想如果它整体是个tableview的话,那动态文章那个view可以设为sectionView,这样没问题,可是下面的cell里面就要用scrollerview,scrollerview里面又是tableview,这样总是会scrollerview里面的tableview就会吸收整个tableview的滑动事件.然后我就整体用一个scrollerview,下面也是一个scr..." property="twitter:description" /> 
+  <meta content="http://www.jianshu.com/p/3228f830f973" property="twitter:url" /> 
+  <!-- End --> 
+  <!--  Meta for OpenGraph --> 
+  <meta property="fb:app_id" content="865829053512461" /> 
+  <meta property="og:site_name" content="简书" /> 
+  <meta property="og:title" content="仿简书个人页面" /> 
+  <meta property="og:type" content="article" /> 
+  <meta property="og:url" content="http://www.jianshu.com/p/3228f830f973" /> 
+  <meta property="og:description" content="在简书写了这么久博客,一直觉得个人页面挺有意思的,今天就写了一个仿个人页面的demo,这里只是给大家一个思路,写的不一定好,先看看最后的效果图吧.github下载地址在写的时候我想了很多,先想如..." /> 
+  <!-- End --> 
+  <!--  Meta for Facebook Applinks --> 
+  <meta property="al:ios:url" content="jianshu://notes/3937477" /> 
+  <meta property="al:ios:app_store_id" content="888237539" /> 
+  <meta property="al:ios:app_name" content="简书" /> 
+  <meta property="al:android:url" content="jianshu://notes/3937477" /> 
+  <meta property="al:android:package" content="com.jianshu.haruki" /> 
+  <meta property="al:android:app_name" content="简书" /> 
+  <!-- End --> 
+  <title>仿简书个人页面 - 简书</title> 
+  <meta name="csrf-param" content="authenticity_token" /> 
+  <meta name="csrf-token" content="jBEsYYgbKMzN/ypxeI7KFjZPqQTbjgwQAV/6K1TEXk/82fT9/T8hWR6K7yVJHPmhqvo4VY0vRj4YMxWcNKPE/Q==" /> 
+  <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
+  <link rel="stylesheet" media="all" href="./css/jianshu_web.css" /> 
+  <link rel="stylesheet" media="all" href="./css/jianshu_entry.css" /> 
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements --> 
+  <!--[if IE 8]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]--> 
+  <!--[if lt IE 9]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]--> 
+  <link href="http://baijii-common.b0.upaiyun.com/icons/favicon.ico" rel="icon" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/57.png" sizes="57x57" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/72.png" sizes="72x72" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/76.png" sizes="76x76" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/114.png" sizes="114x114" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/120.png" sizes="120x120" /> 
+  <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/apple-touch-icons/152.png" sizes="152x152" /> 
+ </head> 
+ <body lang="zh-CN" class="reader-black-font"> 
+  <!-- 全局顶部导航栏 --> 
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> 
+   <div class="width-limit"> 
+    <!-- 左上方 Logo --> 
+    <a class="logo" href="http://www.jianshu.com/"><img src="./仿简书个人页面 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a> 
+    <!-- 右上角 --> 
+    <!-- 登录显示写文章 --> 
+    <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/"> <i class="iconfont ic-write"></i>写文章 </a> 
+    <!-- 如果用户登录，显示下拉菜单 --> 
+    <div class="user"> 
+     <div data-hover="dropdown"> 
+      <a class="avatar" href="http://www.jianshu.com/u/c60ee5209bd0"><img src="./仿简书个人页面 - 简书_files/9855e2935cfd" alt="100" /></a> 
+     </div> 
+     <ul class="dropdown-menu"> 
+      <li> <a href="http://www.jianshu.com/u/c60ee5209bd0"> <i class="iconfont ic-navigation-profile"></i><span>我的主页</span> </a> </li> 
+      <li> 
+       <!-- TODO bookmarks_path --> <a href="http://www.jianshu.com/bookmarks"> <i class="iconfont ic-navigation-mark"></i><span>收藏的文章</span> </a> </li> 
+      <li> <a href="http://www.jianshu.com/users/c60ee5209bd0/liked_notes"> <i class="iconfont ic-navigation-like"></i><span>喜欢的文章</span> </a> </li> 
+      <li> <a href="http://www.jianshu.com/wallet"> <i class="iconfont ic-navigation-wallet"></i><span>我的钱包</span> </a> </li> 
+      <li> <a href="http://www.jianshu.com/settings"> <i class="iconfont ic-navigation-settings"></i><span>设置</span> </a> </li> 
+      <li> <a href="http://www.jianshu.com/contact"> <i class="iconfont ic-navigation-feedback"></i><span>帮助与反馈</span> </a> </li> 
+      <li> <a rel="nofollow" data-method="delete" href="http://www.jianshu.com/sign_out"> <i class="iconfont ic-navigation-signout"></i><span>退出</span> </a> </li> 
+     </ul> 
+    </div> 
+    <div class="style-mode" id="view-mode-ctrl"> 
+     <a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> 
+     <div class="popover-modal" style="left: 0px; display: none;"> 
+      <div class="meta"> 
+       <i class="iconfont ic-navigation-night"></i>
+       <span>夜间模式</span> 
+      </div> 
+      <div class="switch day-night-group"> 
+       <a class="switch-btn">开</a> 
+       <a class="switch-btn active">关</a> 
+      </div> 
+      <hr /> 
+      <div class="switch font-family-group"> 
+       <a class="switch-btn font-song">宋体</a> 
+       <a class="switch-btn font-hei active">黑体</a> 
+      </div> 
+      <div class="switch"> 
+       <a class="switch-btn active">简</a> 
+       <a class="switch-btn">繁</a> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="container"> 
+     <div class="row"> 
+      <ul class="nav navbar-nav"> 
+       <li class=""> <a href="http://www.jianshu.com/"> <span class="menu-text">发现</span><i class="iconfont ic-navigation-discover menu-icon"></i> </a> </li> 
+       <li class=""> <a href="http://www.jianshu.com/subscriptions"> <span class="menu-text">关注</span><i class="iconfont ic-navigation-follow menu-icon"></i> </a> </li> 
+       <li class="notification " data-n-cat="total"> <a class="notification-btn" data-hover="dropdown" href="http://www.jianshu.com/notifications"> <span class="menu-text">消息</span> <i class="iconfont ic-navigation-notification menu-icon"></i> </a> 
+        <ul class="dropdown-menu"> 
+         <li> <a href="http://www.jianshu.com/notifications#!/comments"> <i class="iconfont ic-comments"></i> <span>评论</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/chats"> <i class="iconfont ic-chats"></i> <span>简信</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/requests"> <i class="iconfont ic-requests"></i> <span>投稿请求</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/likes"> <i class="iconfont ic-likes"></i> <span>喜欢和赞</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/follows"> <i class="iconfont ic-follows"></i> <span>关注</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/money"> <i class="iconfont ic-money"></i> <span>打赏</span> </a> </li>
+         <li> <a href="http://www.jianshu.com/notifications#!/others"> <i class="iconfont ic-others"></i> <span>其他消息</span> </a> </li> 
+        </ul> </li> 
+       <li class=""> <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a> </li> 
+       <li class="search"> 
+        <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get">
+         <input name="utf8" type="hidden" value="✓" /> 
+         <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input" /> 
+         <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a> 
+         <!-- <div id="navbar-trending-search"></div> --> 
+        </form> </li> 
+      </ul> 
+     </div> 
+    </div> 
+   </div> 
+  </nav> 
+  <div class="note"> 
+   <div class="post"> 
+    <div class="article"> 
+     <h1 class="title">仿简书个人页面</h1> 
+     <!-- 作者区域 --> 
+     <div class="author"> 
+      <a class="avatar" href="http://www.jianshu.com/u/f255d5353152"> <img src="./仿简书个人页面 - 简书_files/ac48acfbf5bd" alt="144" /> </a> 
+      <div class="info"> 
+       <span class="tag">作者</span> 
+       <span class="name"><a href="http://www.jianshu.com/u/f255d5353152">徐老茂</a></span> 
+       <!-- 关注用户按钮 --> 
+       <a class="btn btn-success follow"> <i class="iconfont ic-follow"></i><span>关注</span> </a> 
+       <!-- 文章数据信息 --> 
+       <div class="meta"> 
+        <span class="publish-time">2016.05.13 13:30</span> 
+        <span class="wordage">字数 1283 </span> 
+        <span class="views-count">阅读 710</span>
+        <span class="comments-count">评论 6</span>
+        <span class="likes-count">喜欢 17</span>
+       </div> 
+      </div> 
+      <!-- 如果是当前作者，加入编辑按钮 --> 
+     </div> 
+     <!-- --> 
+     <!-- 文章内容 --> 
+     <div class="show-content"> 
+      <p>在简书写了这么久博客,一直觉得个人页面挺有意思的,今天就写了一个仿个人页面的demo,这里只是给大家一个思路,写的不一定好,先看看最后的效果图吧.<br /><a href="https://github.com/xumaohuai/jianshu/tree/master" target="_blank">github下载地址</a><br /></p>
+      <div class="image-package"> 
+       <img src="./仿简书个人页面 - 简书_files/1220329-ceea03b830a67131.gif" data-original-src="http://upload-images.jianshu.io/upload_images/1220329-ceea03b830a67131.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;" />
+       <br />
+       <div class="image-caption"></div> 
+      </div>
+      <p><br />在写的时候我想了很多,先想如果它整体是个tableview的话,那动态文章那个view可以设为sectionView,这样没问题,可是下面的cell里面就要用scrollerview,scrollerview里面又是tableview,这样总是会scrollerview里面的tableview就会吸收整个tableview的滑动事件.然后我就整体用一个scrollerview,下面也是一个scrollerview,动态,文章和更多那个view就在滑动的代理方法里判断scrollerview的contentOffset.y是否超过一个临界值,如果超过就让他scrollerview的contentoffset停留在那里不动.具体的看看代码吧,我是用storyboard写的.<br /></p>
+      <div class="image-package"> 
+       <img src="./仿简书个人页面 - 简书_files/1220329-5e30ff4855e2fe01.png" data-original-src="http://upload-images.jianshu.io/upload_images/1220329-5e30ff4855e2fe01.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;" />
+       <br />
+       <div class="image-caption"></div> 
+      </div>
+      <p><br />然后看看代码吧.</p> 
+      <pre class="hljs objectivec"><code class="objectivec"><span class="hljs-comment">//</span>
+<span class="hljs-comment">//  ViewController.m</span>
+<span class="hljs-comment">//  仿简书</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//  Created by 徐茂怀 on 16/5/5.</span>
+<span class="hljs-comment">//  Copyright &copy; 2016年 徐茂怀. All rights reserved.</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-meta">#import <span class="hljs-meta-string">&quot;ViewController.h&quot;</span></span>
+<span class="hljs-meta">#import <span class="hljs-meta-string">&quot;UIView+UIView_Add.h&quot;</span></span>
+<span class="hljs-meta">#define SCREEN_HEIGHT     ([[UIScreen mainScreen] bounds].size.height)</span>
+<span class="hljs-meta">#define SCREEN_WIDTH      ([[UIScreen mainScreen] bounds].size.width)</span>
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">ViewController</span> ()&lt;<span class="hljs-title">UIScrollViewDelegate</span>,<span class="hljs-title">UITableViewDataSource</span>,<span class="hljs-title">UITableViewDelegate</span>&gt;</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIImageView</span> *userImg;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UITableView</span> *wenjiTableView;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UINavigationBar</span> *navBar;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIButton</span> *bianjiBtn;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIView</span> *selectView;
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIScrollView</span> *scrollview;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIButton</span> *dongtaiBtn;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIButton</span> *wenzhangBtn;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIView</span> *huakuaiView;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIButton</span> *moreBtn;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIView</span> *moreView;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UIScrollView</span> *subScroll;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">strong</span>, <span class="hljs-keyword">nonatomic</span>) <span class="hljs-keyword">IBOutlet</span> <span class="hljs-built_in">UITableView</span> *dongtaiTableView;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">ViewController</span></span>
+
+- (<span class="hljs-keyword">void</span>)viewDidLoad {
+    [<span class="hljs-keyword">super</span> viewDidLoad];
+    <span class="hljs-comment">//头像和编辑按钮的的设置</span>
+    _userImg.layer.masksToBounds = <span class="hljs-literal">YES</span>;
+    _userImg.layer.cornerRadius = <span class="hljs-number">30</span>;
+    _navBar.barTintColor = [<span class="hljs-built_in">UIColor</span> whiteColor];
+    _navBar.clipsToBounds = <span class="hljs-literal">NO</span>;
+    _bianjiBtn.layer.masksToBounds = <span class="hljs-literal">YES</span>;
+    _bianjiBtn.layer.borderColor = [<span class="hljs-built_in">UIColor</span> colorWithRed:<span class="hljs-number">0.53</span> green:<span class="hljs-number">0.91</span> blue:<span class="hljs-number">0.56</span> alpha:<span class="hljs-number">1</span>].CGColor;
+    _bianjiBtn.layer.borderWidth = <span class="hljs-number">1</span>;
+    _bianjiBtn.layer.cornerRadius = <span class="hljs-number">3</span>;
+    <span class="hljs-comment">//在小的scrollerview里面添加2个tableview和一个view</span>
+    _subScroll.contentSize = <span class="hljs-built_in">CGSizeMake</span>(SCREEN_WIDTH * <span class="hljs-number">3</span>, SCREEN_HEIGHT);
+    _moreView.x = SCREEN_WIDTH * <span class="hljs-number">2</span>;
+    _moreView.width = SCREEN_WIDTH;
+    [_subScroll addSubview:_moreView];
+    _wenjiTableView.x = SCREEN_WIDTH ;
+    [_subScroll addSubview:_wenjiTableView];
+    _dongtaiTableView.x = <span class="hljs-number">0</span>;
+    [_subScroll addSubview:_dongtaiTableView];
+}
+<span class="hljs-meta">#pragma mark UIScrollViewDelegate</span>
+-(<span class="hljs-keyword">void</span>)scrollViewDidScroll:(<span class="hljs-built_in">UIScrollView</span> *)scrollView
+{
+    <span class="hljs-comment">//当整体滑动到一个临界值时将tableview设为可滑动或者不可活动</span>
+    <span class="hljs-keyword">if</span> (_scrollview.contentOffset.y / <span class="hljs-number">3</span> &lt;= <span class="hljs-number">53.00</span> &amp;&amp; _wenjiTableView.contentOffset.y &lt;= <span class="hljs-number">0.1</span>) {
+        [_wenjiTableView setScrollEnabled:<span class="hljs-literal">NO</span>];
+    }
+    <span class="hljs-keyword">if</span> (_scrollview.contentOffset.y / <span class="hljs-number">3</span> &lt;= <span class="hljs-number">53.00</span> &amp;&amp; _dongtaiTableView.contentOffset.y &lt;= <span class="hljs-number">0.1</span>) {
+        [_dongtaiTableView setScrollEnabled:<span class="hljs-literal">NO</span>];
+    }
+    <span class="hljs-comment">//左右滑动小的scrollerview让文字颜色改变和小滑块滑动</span>
+    <span class="hljs-keyword">if</span> (scrollView == _subScroll) {
+        <span class="hljs-built_in">CGFloat</span> i = _subScroll.contentOffset.x / SCREEN_WIDTH;
+        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>) {
+            _dongtaiBtn.selected = <span class="hljs-literal">YES</span>;
+            _wenzhangBtn.selected = <span class="hljs-literal">NO</span>;
+            _moreBtn.selected = <span class="hljs-literal">NO</span>;
+            [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+                _huakuaiView.centerX = _dongtaiBtn.centerX;
+            }];
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( i == <span class="hljs-number">1</span>){
+            _wenzhangBtn.selected = <span class="hljs-literal">YES</span>;
+            _dongtaiBtn.selected = <span class="hljs-literal">NO</span>;
+            _moreBtn.selected = <span class="hljs-literal">NO</span>;
+            [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+                _huakuaiView.centerX = _wenzhangBtn.centerX;
+            }];
+            [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+                _subScroll.contentOffset = <span class="hljs-built_in">CGPointMake</span>(SCREEN_WIDTH , <span class="hljs-number">0</span>);
+            }];
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i == <span class="hljs-number">2</span>){
+            _moreBtn.selected = <span class="hljs-literal">YES</span>;
+            _dongtaiBtn.selected = <span class="hljs-literal">NO</span>;
+            _wenzhangBtn.selected = <span class="hljs-literal">NO</span>;
+            [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+                _huakuaiView.centerX = _moreBtn.centerX;
+            }];
+            [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+                _subScroll.contentOffset = <span class="hljs-built_in">CGPointMake</span>(SCREEN_WIDTH * <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);
+            }];
+        }
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (scrollView == _scrollview) {
+        <span class="hljs-built_in">CGFloat</span> contentY = _scrollview.contentOffset.y / <span class="hljs-number">3</span>;
+        <span class="hljs-keyword">if</span> (contentY &lt;= <span class="hljs-number">25</span> &amp;&amp; contentY &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">//改变头像的大小</span>
+            [_userImg setHeight:<span class="hljs-number">60</span> - contentY];
+            _userImg.centerX = <span class="hljs-keyword">self</span>.view.centerX;
+            [_userImg setWidth:<span class="hljs-number">60</span> - contentY];
+            _userImg.layer.cornerRadius = _userImg.width/<span class="hljs-number">2</span>;
+        }
+        <span class="hljs-keyword">if</span> (contentY &gt;= <span class="hljs-number">53</span>) {
+            <span class="hljs-comment">//让scrollerview停留之</span>
+            _scrollview.contentOffset = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">53</span> * <span class="hljs-number">3</span>);
+            [_wenjiTableView setScrollEnabled:<span class="hljs-literal">YES</span>];
+            [_dongtaiTableView setScrollEnabled:<span class="hljs-literal">YES</span>];
+        }
+    }
+}
+<span class="hljs-comment">//点击按钮的动作</span>
+
+- (<span class="hljs-keyword">IBAction</span>)dongtaiAction:(<span class="hljs-built_in">UIButton</span> *)sender {
+    sender.selected = <span class="hljs-literal">YES</span>;
+    _wenzhangBtn.selected = <span class="hljs-literal">NO</span>;
+    _moreBtn.selected = <span class="hljs-literal">NO</span>;
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+         _huakuaiView.centerX = sender.centerX;
+    }];
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        _subScroll.contentOffset = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+        _scrollview.contentOffset = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">159</span>);
+    }];
+    [<span class="hljs-keyword">self</span> changeImage];
+
+}
+
+- (<span class="hljs-keyword">IBAction</span>)wenzhangAction:(<span class="hljs-built_in">UIButton</span> *)sender {
+    sender.selected = <span class="hljs-literal">YES</span>;
+    _dongtaiBtn.selected = <span class="hljs-literal">NO</span>;
+    _moreBtn.selected = <span class="hljs-literal">NO</span>;
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        _huakuaiView.centerX = sender.centerX;
+    }];
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        _subScroll.contentOffset = <span class="hljs-built_in">CGPointMake</span>(SCREEN_WIDTH , <span class="hljs-number">0</span>);
+         _scrollview.contentOffset = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">159</span>);
+    }];
+    [<span class="hljs-keyword">self</span> changeImage];
+}
+- (<span class="hljs-keyword">IBAction</span>)moreAction:(<span class="hljs-built_in">UIButton</span> *)sender {
+    sender.selected = <span class="hljs-literal">YES</span>;
+    _dongtaiBtn.selected = <span class="hljs-literal">NO</span>;
+    _wenzhangBtn.selected = <span class="hljs-literal">NO</span>;
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        _huakuaiView.centerX = sender.centerX;
+    }];
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        _subScroll.contentOffset = <span class="hljs-built_in">CGPointMake</span>(SCREEN_WIDTH * <span class="hljs-number">2</span>, <span class="hljs-number">0</span>);
+         _scrollview.contentOffset = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">159</span>);
+    }];
+    [<span class="hljs-keyword">self</span> changeImage];
+}
+
+-(<span class="hljs-built_in">NSInteger</span>)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="hljs-built_in">NSInteger</span>)section
+{
+    <span class="hljs-keyword">if</span> ([tableView isEqual:_dongtaiTableView]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;
+}
+
+-(<span class="hljs-built_in">UITableViewCell</span> *)tableView:(<span class="hljs-built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="hljs-built_in">NSIndexPath</span> *)indexPath
+{
+    <span class="hljs-keyword">if</span> ([tableView isEqual:_dongtaiTableView]) {
+        <span class="hljs-built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="hljs-string">@&quot;dongtaicell&quot;</span> forIndexPath:indexPath];
+        <span class="hljs-keyword">return</span> cell;
+    }
+    <span class="hljs-built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="hljs-string">@&quot;wenzhangcell&quot;</span> forIndexPath:indexPath];
+    <span class="hljs-keyword">return</span> cell;
+}
+
+-(<span class="hljs-keyword">void</span>)changeImage
+{
+    [<span class="hljs-built_in">UIView</span> animateWithDuration:<span class="hljs-number">0.5</span> animations:^{
+        <span class="hljs-built_in">CGRect</span> frame = _userImg.frame;
+        frame.size.height = <span class="hljs-number">36.57</span>;
+        frame.size.width = <span class="hljs-number">35.5</span>;
+        _userImg.frame = frame;
+        _userImg.layer.cornerRadius = _userImg.width / <span class="hljs-number">2</span>;
+        _userImg.centerX = <span class="hljs-keyword">self</span>.view.centerX;
+    }];
+}
+
+- (<span class="hljs-keyword">void</span>)didReceiveMemoryWarning {
+    [<span class="hljs-keyword">super</span> didReceiveMemoryWarning];
+    <span class="hljs-comment">// Dispose of any resources that can be recreated.</span>
+}
+
+<span class="hljs-keyword">@end</span></code></pre> 
+      <p>里面写了主要的注释,思路差不多就是这样,也是可以理解的,但是在上下滑动滑动到临界值时总是有点卡顿,这是因为在-(void)scrollViewDidScroll:(UIScrollView *)scrollView方法里面判断滑动的临界值然后再决定tableview是否可以滑动,这肯定是会卡主,要松手再划一下才能行,还有一个bug就是当头像放大了之后,点击中间的按钮时,头像会先变方,然后缩小变圆,我估计是和cornerRadius的使用有很大关系吧.而且简书app上面也是这个bug.这2个问题我还没想到更好的解决方法,如果有知道的朋友可以简单的给我指点一下.谢谢大家.<br />好了,今天就到这里了,住大家天天开心he'he</p> 
+     </div> 
+     <!--  --> 
+     <div class="show-foot"> 
+      <a class="notebook" href="http://www.jianshu.com/nb/2485068"> <i class="iconfont ic-search-notebook"></i> <span>iOS技术</span> </a> 
+      <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+        &copy; 著作权归作者所有 
+      </div> 
+      <div class="modal-wrap" data-report-note=""> 
+       <a id="report-modal">举报文章</a> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="support-author"> 
+     <p>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</p> 
+     <div class="btn btn-pay">
+      打赏支持
+     </div> 
+    </div> 
+    <div class="meta-bottom"> 
+     <div class="btn like-group"> 
+      <div class="btn-like"> 
+       <a><i class="iconfont ic-like"></i>喜欢</a> 
+      </div> 
+      <div class="modal-wrap"> 
+       <a>17</a> 
+      </div> 
+     </div> 
+     <div class="share-group"> 
+      <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信"> <i class="iconfont ic-wechat"></i> </a> 
+      <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=1881139527',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://cwb.assets.jianshu.io/notes/images/3937477/weibo/image_598600d10a97.jpg', '推荐 徐老茂 的文章《仿简书个人页面》（ 分享自 @简书 ）','http://www.jianshu.com/p/3228f830f973','页面编码gb2312|utf-8默认gb2312'));" data-original-title="分享到微博"> <i class="iconfont ic-weibo"></i> </a> 
+      <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/3937477/weibo/image_598600d10a97.jpg" target="_blank" data-original-title="下载长微博图片"> <i class="iconfont ic-picture"></i> </a> 
+      <a class="share-circle more-share" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;title='+e('推荐 徐老茂 的文章《仿简书个人页面》'),x=function(){if(!window.open(r,'qzone','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://twitter.com/share?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;text='+e('推荐 徐老茂 的文章《仿简书个人页面》（ 分享自 @jianshucom ）')+'&amp;related='+e('jianshucom'),x=function(){if(!window.open(r,'twitter','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/3228f830f973',x=function(){if(!window.open(r,'facebook','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://plus.google.com/share?url='+e('http://www.jianshu.com/p/3228f830f973'),x=function(){if(!window.open(r,'google_plus','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://www.douban.com/recommend/?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;title='+e('仿简书个人页面')+'&amp;sel='+e(s)+'&amp;v=1',x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&amp;r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a> 
+     </div> 
+    </div> 
+    <div class="comment-list" id="vue_comment"> 
+     <form class="new-comment"> 
+      <a class="avatar"><img src="./仿简书个人页面 - 简书_files/9855e2935cfd(1)" /></a> 
+      <textarea placeholder="写下你的评论..."></textarea> 
+     </form> 
+     <div class="normal-comment-list" id="normal-comment-list"> 
+      <div class="top"> 
+       <span>6条评论</span> 
+       <a class="author-only">只看作者</a> 
+       <a class="close-btn" style="display: none;">关闭评论</a> 
+       <div class="pull-right"> 
+        <a class="active">按时间正序</a>
+        <a>按时间倒序</a>
+        <a>按喜欢排序</a> 
+       </div> 
+      </div> 
+      <div class="comment" id="comment-2371179"> 
+       <div> 
+        <div class="author"> 
+         <a class="avatar" target="_blank" href="http://www.jianshu.com/u/9f36df533906"><img src="./仿简书个人页面 - 简书_files/e596d6d9b29c" /></a> 
+         <div class="info"> 
+          <a class="name" target="_blank" href="http://www.jianshu.com/u/9f36df533906">小神猫</a> 
+          <div class="meta"> 
+           <span>2楼 &middot; 2016.05.14 10:48</span> 
+          </div> 
+         </div> 
+        </div> 
+        <div class="comment-wrap"> 
+         <p>有demo么</p> 
+         <div class="tool-group"> 
+          <a> <i class="iconfont ic-zan"></i> <span>赞</span> </a> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="sub-comment-list"> 
+        <div class="sub-comment" id="comment-2371191"> 
+         <p><a target="_blank" href="http://www.jianshu.com/u/f255d5353152">徐老茂</a>：<a href="http://www.jianshu.com/users/9f36df533906" class="maleskine-author" target="_blank" data-user-slug="9f36df533906">@小神猫</a> 有，等会儿上传</p> 
+         <div class="sub-tool-group"> 
+          <span>2016.05.14 10:49</span> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div>
+        <div class="sub-comment" id="comment-2413604"> 
+         <p><a target="_blank" href="http://www.jianshu.com/u/f255d5353152">徐老茂</a>：<a href="http://www.jianshu.com/users/9f36df533906" class="maleskine-author" target="_blank" data-user-slug="9f36df533906">@小神猫</a> 已上传代码了</p> 
+         <div class="sub-tool-group"> 
+          <span>2016.05.17 10:41</span> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div> 
+        <div class="sub-comment more-comment"> 
+         <a class="add-comment-btn"><i class="iconfont ic-subcomment"></i><span>添加新评论</span></a> 
+        </div> 
+        <form class="new-comment"> 
+         <textarea placeholder="写下你的评论..."></textarea> 
+         <div class="write-function-block"> 
+          <div class="emoji-modal-wrap"> 
+           <a class="emoji"><i class="iconfont ic-comment-emotions"></i></a> 
+          </div> 
+          <div class="hint">
+           Ctrl+Return 发表
+          </div> 
+          <a class="btn btn-send">发送</a> 
+          <a class="cancel">取消</a> 
+         </div> 
+        </form> 
+       </div> 
+      </div>
+      <div class="comment" id="comment-3030713"> 
+       <div> 
+        <div class="author"> 
+         <a class="avatar" target="_blank" href="http://www.jianshu.com/u/61a61947f73c"><img src="./仿简书个人页面 - 简书_files/df6485371931.jpg" /></a> 
+         <div class="info"> 
+          <a class="name" target="_blank" href="http://www.jianshu.com/u/61a61947f73c">LiuWenqiang</a> 
+          <div class="meta"> 
+           <span>3楼 &middot; 2016.07.07 17:04</span> 
+          </div> 
+         </div> 
+        </div> 
+        <div class="comment-wrap"> 
+         <p>如果是纯代码的就更好了</p> 
+         <div class="tool-group"> 
+          <a> <i class="iconfont ic-zan"></i> <span>赞</span> </a> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="sub-comment-list hide"> 
+       </div> 
+      </div>
+      <div class="comment" id="comment-4101026"> 
+       <div> 
+        <div class="author"> 
+         <a class="avatar" target="_blank" href="http://www.jianshu.com/u/c41bde1f75a4"><img src="./仿简书个人页面 - 简书_files/9ece5c8c8eab" /></a> 
+         <div class="info"> 
+          <a class="name" target="_blank" href="http://www.jianshu.com/u/c41bde1f75a4">康旭</a> 
+          <div class="meta"> 
+           <span>4楼 &middot; 2016.09.09 17:55</span> 
+          </div> 
+         </div> 
+        </div> 
+        <div class="comment-wrap"> 
+         <p>您好，我观察了您的demo 发现你的tableview 和 scrollview 衔接的互动会有停顿的现象，原版的是非常顺畅的，我现在非常的困惑，请问你有什么好的见解么。</p> 
+         <div class="tool-group"> 
+          <a> <i class="iconfont ic-zan"></i> <span>赞</span> </a> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="sub-comment-list"> 
+        <div class="sub-comment" id="comment-4119780"> 
+         <p><a target="_blank" href="http://www.jianshu.com/u/f255d5353152">徐老茂</a>：<a href="http://www.jianshu.com/users/c41bde1f75a4" class="maleskine-author" target="_blank" data-user-slug="c41bde1f75a4">@康旭</a> 我知道，但是目前也是没有想到办法去处理这个问题。最近工作也忙，没时间去研究，如果你想到了请告诉我<img src="./仿简书个人页面 - 简书_files/smile.png" alt=":smile:" title=":smile:" class="emoji" width="20" height="20" /></p> 
+         <div class="sub-tool-group"> 
+          <span>2016.09.10 21:27</span> 
+          <a><i class="iconfont ic-comment"></i><span>回复</span></a> 
+          <a class="report"><span>举报</span></a> 
+         </div> 
+        </div> 
+        <div class="sub-comment more-comment"> 
+         <a class="add-comment-btn"><i class="iconfont ic-subcomment"></i><span>添加新评论</span></a> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="comments-placeholder" style="display: none;"> 
+       <div class="author"> 
+        <div class="avatar"></div> 
+        <div class="info"> 
+         <div class="name"></div> 
+         <div class="meta"></div> 
+        </div> 
+       </div> 
+       <div class="text"></div> 
+       <div class="text animation-delay"></div> 
+       <div class="tool-group"> 
+        <i class="iconfont ic-zan-active"></i>
+        <div class="zan"></div> 
+        <i class="iconfont ic-list-comments"></i>
+        <div class="zan"></div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="side-tool"> 
+    <ul> 
+     <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"> <a href="http://www.jianshu.com/p/3228f830f973#"><i class="iconfont ic-backtop"></i></a> </li> 
+     <li data-original-title="" title=""> <a data-action="toggle-bookmark-note" href="javascript:void(null);"> <i class="iconfont ic-mark"></i> </a> </li> 
+     <li data-share-note="" data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"> <a data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=1881139527',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','http://cwb.assets.jianshu.io/notes/images/3937477/weibo/image_598600d10a97.jpg', '推荐 徐老茂 的文章《仿简书个人页面》（ 分享自 @简书 ）','http://www.jianshu.com/p/3228f830f973','页面编码gb2312|utf-8默认gb2312'));&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weibo&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;title='+e('推荐 徐老茂 的文章《仿简书个人页面》'),x=function(){if(!window.open(r,'qzone','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://twitter.com/share?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;text='+e('推荐 徐老茂 的文章《仿简书个人页面》（ 分享自 @jianshucom ）')+'&amp;related='+e('jianshucom'),x=function(){if(!window.open(r,'twitter','toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/3228f830f973',x=function(){if(!window.open(r,'facebook','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r='https://plus.google.com/share?url='+e('http://www.jianshu.com/p/3228f830f973'),x=function(){if(!window.open(r,'google_plus','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://www.douban.com/recommend/?url='+e('http://www.jianshu.com/p/3228f830f973')+'&amp;title='+e('仿简书个人页面')+'&amp;sel='+e(s)+'&amp;v=1',x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&amp;r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title=""><i class="iconfont ic-share"></i></a> </li> 
+    </ul> 
+   </div> 
+  </div> 
+  <div class="note-bottom"> 
+   <div class="main"> 
+    <div class="title">
+     被以下专题收入，发现更多相似内容
+    </div> 
+    <div class="include-collection"> 
+     <a class="item" href="http://www.jianshu.com/c/3233d1a249ca"> <img src="./仿简书个人页面 - 简书_files/162902612251cbd95971b82.png" />
+      <div class="name">
+       iOS Dev...
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/2ffaa203eb6a"> <img src="./仿简书个人页面 - 简书_files/Snip20161012_2.png" />
+      <div class="name">
+       iOS 开发 
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/2b509cb84d90"> <img src="./仿简书个人页面 - 简书_files/Image_16-4-18_at_14.31.jpg" />
+      <div class="name">
+       iOS
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/5a64180b0264"> <img src="./仿简书个人页面 - 简书_files/1463287497.jpg" />
+      <div class="name">
+       iOS 项目
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/d6921d1d2749"> <img src="./仿简书个人页面 - 简书_files/android.graphics.Bitmap_43fc8ef0.jpeg" />
+      <div class="name">
+       ios 知识点
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/524c70f33b6e"> <img src="./仿简书个人页面 - 简书_files/1472465355.jpg" />
+      <div class="name">
+       iOS技术交流
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/7edea36e9d8f"> <img src="./仿简书个人页面 - 简书_files/android.graphics.Bitmap_4398f8e0.jpeg" />
+      <div class="name">
+       iOS分享的demo
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/11adc632c888"> <img src="./仿简书个人页面 - 简书_files/1429975800.jpg" />
+      <div class="name">
+       快速入门iOS
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/760fa29e3f9d"> <img src="./仿简书个人页面 - 简书_files/1480386463.jpg" />
+      <div class="name">
+       QB@IONIC
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/a5dab211b6ff"> <img src="./仿简书个人页面 - 简书_files/1463245960.jpg" />
+      <div class="name">
+       牛叉的demo
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/03c736007531"> <img src="./仿简书个人页面 - 简书_files/Snip20160308_140.png" />
+      <div class="name">
+       √∆&laquo;Wh&laquo;˚...
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/d79c95348f13"> <img src="./仿简书个人页面 - 简书_files/da2abd717fc10016c902a886b0ae91bf.jpeg" />
+      <div class="name">
+       iOS开发者天堂
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/a548e2ed7915"> <img src="./仿简书个人页面 - 简书_files/1472312824.jpg" />
+      <div class="name">
+       动画
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/56f406c640da"> <img src="./仿简书个人页面 - 简书_files/autumn_mount_fuji_japan-wallpaper-1280x800.jpg" />
+      <div class="name">
+       iOS资料汇总
+      </div> </a>
+     <a class="item" href="http://www.jianshu.com/c/a80d36d97eb6"> <img src="./仿简书个人页面 - 简书_files/1466007108.jpg" />
+      <div class="name">
+       不错的demo
+      </div> </a> 
+    </div> 
+   </div> 
+  </div> 
+ 
+  <div style="display:none"> 
+   <script src="./仿简书个人页面 - 简书_files/z_stat.php" language="JavaScript"></script>
+   <script src="./仿简书个人页面 - 简书_files/core.php" charset="utf-8" type="text/javascript"></script>
+   <a href="http://www.cnzz.com/stat/website.php?web_id=1258679142" target="_blank" title="站长统计">站长统计</a> 
+  </div> 
+
+ </body>
+</html>

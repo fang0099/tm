@@ -51,7 +51,7 @@
     <a class="link" href="http://browsehappy.com">升级你的浏览器</a>以查看此页面。</p></p>
 <![endif]-->
 <div id="header-holder">
-    <header id="header" class="navbar ng-scope ng-isolate-scope" ng-controller="NavbarCtrl" ui-scroll-back-fixed="" fixed="scrollBackFixedNavbar">
+    <header id="header" class="navbar ng-scope ng-isolate-scope" fixed="scrollBackFixedNavbar">
         <div class="navbar-logo-container">
             <a href="<?php echo env('APP_URL');?>" class="logo icon-ic_zhihu_logo" aria-label="首页"></a>
         </div>
@@ -63,7 +63,7 @@
         @if( !isset($username) )
         <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
         @else
-        <div ng-transclude="" class="navbar-menu-container ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="" ui-disabled="disableMenu">
+        <div class="navbar-menu-container ui-menu-button ng-scope" >
             <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
                 <i class="icon-th-menu-outline"></i>
             </a>

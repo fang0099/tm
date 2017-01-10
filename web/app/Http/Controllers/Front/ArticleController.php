@@ -244,14 +244,13 @@ class ArticleController extends Controller
             return redirect("index");
         }
         $r = $this->articleInvoker->get(['id' => $id]);
-        //print_r($r);
         $authorid = $r["data"]["author"]["id"];
-        $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>4]);
-        //print_r($article_list);
+        $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>5]);
+        $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
-        //print_r($comment_list);
-        //return;
-        return view("front/article",
+
+        return view("front/36kr_article",
+        //return view("front/article",
             [
                 'article' => $r["data"],
                 'recent_article_list' => $article_list["data"],
@@ -259,6 +258,7 @@ class ArticleController extends Controller
                 'username'=>$username,
                 'comment_list'=>$comment_list["data"],
                 'menu_tags'=>$menu_tag_list["data"],
+                'author'=>$author["data"],
             ]);
     }
     //修改文章
