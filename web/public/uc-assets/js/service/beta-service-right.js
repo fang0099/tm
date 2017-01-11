@@ -25,8 +25,10 @@ __.service.right = __.service.right || {};
 		});
 
 		$rfollowers.click(function(){
-            $('#sub-followers').click();
-			$('#follow').click();
+            $('#follow').click();
+            setTimeout(function(){
+                $('#sub-followers').click();
+			}, 100);
 		});
 
 		$rsubscribe.click(function(){
