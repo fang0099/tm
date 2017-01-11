@@ -77,6 +77,10 @@ class User extends BaseModel
         return $this->hasMany('App\Model\Activities', 'uid')->where('del_flag', '=', 0)->orderBy('publish_time', 'DESC');
     }
 
+    public function _activitiesCount(){
+        return $this->activities()->count();
+    }
+
     public function optLogs(){
         return $this->hasMany('App\Model\OptLog', 'user_id');
     }

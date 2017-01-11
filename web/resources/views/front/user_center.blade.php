@@ -50,25 +50,25 @@
 						<div class="ProfileMain-header">
 							<ul role="tablist" class="Tabs ProfileMain-tabs tab-list">
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "activity-head"}'>动态</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "activity-head"}' id="activity">动态</a>
 								</li>
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "notice-head"}'>通知</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "notice-head"}' id="notice">通知</a>
 								</li>
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "article-head"}'>文章</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "article-head"}' id="article" >文章</a>
 								</li>	
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "collect-head"}'>收藏</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "collect-head"}' id="collect">收藏</a>
 								</li>
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "subscribe-head"}'>订阅</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "subscribe-head"}' id="subscribe">订阅</a>
 								</li>
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "follow-head"}'>关注</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "follow-head"}' id="follow">关注</a>
 								</li>
 								<li role="tab" class="Tabs-item Tabs-item--noMeta">
-									<a class="Tabs-link" href='javascript:;' data='{"header" : "set-head"}'>设置</a>
+									<a class="Tabs-link" href='javascript:;' data='{"header" : "set-head"}' id="setting">设置</a>
 								</li>	
 								
 							</ul>
@@ -102,31 +102,33 @@
 				<div class="Profile-sideColumn">
 					<div class="Card FollowshipCard">
 						<div class="NumberBoard FollowshipCard-counts">
-							<a class="Button NumberBoard-item Button--plain" type="button" href="javascript:;">
+							<a class="Button NumberBoard-item Button--plain" type="button" href="javascript:;" id="r-follow">
 								<div class="NumberBoard-name">关注了</div>
 								<div class="NumberBoard-value">{{ $follow_count }}</div>
 							</a>
 							<div class="NumberBoard-divider"></div>
-							<a class="Button NumberBoard-item Button--plain" type="button" href="javascript:;">
+							<a class="Button NumberBoard-item Button--plain" type="button" href="javascript:;" id="r-follower">
 								<div class="NumberBoard-name">关注者</div>
 								<div class="NumberBoard-value">{{ $followers_count }}</div>
 							</a>
 						</div>
 					</div>
 					<div class="Profile-lightList">
-						<a class="Profile-lightItem" href="javascript:;">
+						<a class="Profile-lightItem" href="javascript:;" id="r-subscribe">
 							<span class="Profile-lightItemName">订阅的标签</span>
 							<span class="Profile-lightItemValue">{{ $tagCount }}</span>
 						</a>
+						<!--
 						<a class="Profile-lightItem" href="javascript:;">
 							<span class="Profile-lightItemName">关注的人</span>
 							<span class="Profile-lightItemValue">{{ $follow_count }}</span>
 						</a>
-						<a class="Profile-lightItem" href="javascript:;">
+						-->
+						<a class="Profile-lightItem" href="javascript:;" id="r-collect">
 							<span class="Profile-lightItemName">收藏的文章</span>
 							<span class="Profile-lightItemValue">{{ $collectCount }}</span>
 						</a>
-						<a class="Profile-lightItem" href="javascript:;">
+						<a class="Profile-lightItem" href="javascript:;" id="r-article">
 							<span class="Profile-lightItemName">我的文章</span>
 							<span class="Profile-lightItemValue">{{ $articlesCount }}</span>
 						</a>
@@ -194,7 +196,7 @@
 			<h4 class="List-headerText">
 				<div class="SubTabs">
 					<a class="SubTabs-item is-active" data="/uc/follows"  page="1">关注了</a>
-					<a class="SubTabs-item" data="/uc/followers"  page="1">关注者</a>
+					<a class="SubTabs-item" data="/uc/followers"  page="1" id="sub-followers">关注者</a>
 					<a class="SubTabs-item" data="/uc/articles/followers"  page="1">关注人的文章</a>
 				</div>
 			</h4>
@@ -210,7 +212,9 @@
 		</div>
 	</script>
 	<!-- list header template end -->
-
+	<script type="text/html" id="list-loading">
+		<div class="PlaceHolder List-item"><div class="PlaceHolder-inner"><div class="PlaceHolder-bg"></div><svg width="640" height="108" viewBox="0 0 640 108" class="PlaceHolder-mask"><title/><g><path d="M0 0h640v108H0V0zm0 0h350v12H0V0zm20 32h238v12H20V32zM0 32h12v12H0V32zm0 32h540v12H0V64zm0 32h470v12H0V96z" fill="#FFF" fill-rule="evenodd"/></g></svg></div></div>
+	</script>
 	<script type="text/html" id="empty">
 		<div class="EmptyState">
 		<div class="EmptyState-inner">
@@ -334,6 +338,17 @@
 						<g><path d="M2.502 14.08C3.1 10.64 2 3 8.202 1.62 8.307.697 9.08 0 10 0s1.694.697 1.797 1.62C18 3 16.903 10.64 17.497 14.076c.106 1.102.736 1.855 1.7 2.108.527.142.868.66.793 1.206-.075.546-.542.95-1.09.943H1.1C.55 18.34.084 17.936.01 17.39c-.075-.547.266-1.064.794-1.206.963-.253 1.698-1.137 1.698-2.104zM10 22c-1.417.003-2.602-1.086-2.73-2.51-.004-.062.02-.124.063-.17.043-.045.104-.07.166-.07h5c.063 0 .124.025.167.07.044.046.067.108.063.17-.128 1.424-1.313 2.513-2.73 2.51z"/></g>
 		</svg>
 	</script>
+
+	<script type="text/html" id="pagination">
+		<div class="Pagination">
+			<button class="Button PaginationButton PaginationButton--current Button--plain" disabled="" type="button">1</button>
+			<button class="Button PaginationButton Button--plain" type="button">2</button>
+			<button class="Button PaginationButton Button--plain" type="button">3</button>
+			<button class="Button PaginationButton Button--plain" type="button">4</button>
+			<span class="PaginationButton PaginationButton--fake">...</span>
+			<button class="Button PaginationButton Button--plain" type="button">59</button><button class="Button PaginationButton Button--plain" type="button">下一页</button>
+		</div>
+	</script>
 	@endverbatim
 	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
@@ -342,5 +357,6 @@
 	<script type="text/javascript" src="uc-assets/js/beta-utils-te.js"></script>
 	<script type="text/javascript" src="uc-assets/js/service/beta-service-init-svg.js"></script>
 	<script type="text/javascript" src="uc-assets/js/service/beta-service-tab.js"></script>
+	<script type="text/javascript" src="uc-assets/js/service/beta-service-right.js"></script>
 </body>
 </html>

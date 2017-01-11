@@ -21,8 +21,49 @@ __.service.tab = __.service.tab || {};
 	var userTemplate = $('#list-user').html();
 	var noticeTemplate = $('#list-notice').html();
 	var tagTemplate = $('#list-tags').html();
+
+	var loding = $('#list-loading').html();
 	//var base = "http://localhost/tm/web/public/index.php";
     var base = "";
+
+    var loadData = function(url, page){
+    	url += '/' + page;
+    	console.log(url);
+    	// begin loading
+        $listBody.html(loading);
+
+		$.getJSON(url, function(data){
+			var html = '';
+			if(data.success){
+				var d = data.data;
+				console.log(d);
+				for (var i = 0 ; i < d.length; i++){
+					if(d[i].type != undefined && d[i].type >= 0 && (d[i].ref_id != undefined)){
+                        if(d[i].type == 0){
+                            html += te.renderByTemplate(contentTemplate, d[i]);
+                        }else if(d[i].type == 1){
+                            html += te.renderByTemplate(portraitTemplate, d[i]);
+                        }else if(d[i].type == 3){
+                            html += te.renderByTemplate(userTemplate, d[i]);
+                        }
+					}else {
+						if(d[i].fans_num != undefined){
+                            html += te.renderByTemplate(tagTemplate, d[i]);
+						}else {
+                            html += te.renderByTemplate(noticeTemplate, d[i]);
+						}
+
+					}
+				}
+
+			}
+            if(html == ''){
+                html = te.renderById('empty', {});
+            }
+			$listBody.html(html);
+		});
+    };
+
 	var bindTabLinkEvent = function(){
 		$tabs.click(function(){
 			
@@ -57,38 +98,8 @@ __.service.tab = __.service.tab || {};
 
 			var url = base + $(this).attr('data');
 			var page = $(this).attr('page');
-			url += '/' + page;
-            console.log(url);
-			$.getJSON(url, function(data){
-				var html = '';
-				if(data.success){
-					var d = data.data;
-					console.log(d);
-					for (var i = 0 ; i < d.length; i++){
-						if(d[i].type != undefined && d[i].type >= 0 && (d[i].ref_id != undefined)){
-                            if(d[i].type == 0){
-                                html += te.renderByTemplate(contentTemplate, d[i]);
-                            }else if(d[i].type == 1){
-                                html += te.renderByTemplate(portraitTemplate, d[i]);
-                            }else if(d[i].type == 3){
-                                html += te.renderByTemplate(userTemplate, d[i]);
-                            }
-						}else {
-							if(d[i].fans_num != undefined){
-                                html += te.renderByTemplate(tagTemplate, d[i]);
-							}else {
-                                html += te.renderByTemplate(noticeTemplate, d[i]);
-							}
 
-						}
-					}
-
-				}
-                if(html == ''){
-                    html = te.renderById('empty', {});
-                }
-				$listBody.html(html);
-			});
+            loadData(url, page);
 		});
 	};
 

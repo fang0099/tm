@@ -446,4 +446,46 @@ h1, h2, h3 {
     -ms-flex-align: center;
     align-items: center;
 }
+.PlaceHolder-inner {
+    background: #f6f7f9 none repeat scroll 0 0;
+    overflow: hidden;
+    position: relative;
+}
+.PlaceHolder-bg {
+    animation: 1s linear 1ms normal forwards infinite running linear-double;
+    background: rgba(0, 0, 0, 0) linear-gradient(90deg, #f6f7f9 0px, #e9ebee 20%, #f6f7f9 40%, #f6f7f9) repeat scroll 0 0;
+    height: 100%;
+    position: absolute;
+    width: 200%;
+}
+.PlaceHolder-mask {
+    box-sizing: border-box;
+    min-width: 100%;
+    position: relative;
+    vertical-align: top;
+}
+.Pagination {
+    padding: 16px 24px;
+    text-align: center;
+}
+.Button:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+.PaginationButton--current {
+    color: #8590a6;
+}
+.PaginationButton {
+    color: #404040;
+    padding: 0 15px;
+    transition: color 0.2s ease 0s;
+}
+.PaginationButton--current {
+    color: #8590a6;
+}
+.PaginationButton {
+    color: #404040;
+    padding: 0 15px;
+    transition: color 0.2s ease 0s;
+}
 
