@@ -26,6 +26,12 @@ class ArticleController
         return $this->articleRep->findById($id);
     }
 
+    public function read(Request $request){
+        $id = $request->input('id');
+        $uid = $request->input('uid', 0);
+        return $this->articleRep->read($id, $uid);
+    }
+
     public function create(Request $request){
         return $this->articleRep->create($request);
     }

@@ -13,6 +13,7 @@ use App\Events\CheckArticleEvent;
 use App\Events\CollectArticleEvent;
 use App\Events\CommentArticleEvent;
 use App\Events\LikeArticleEvent;
+use App\Events\ReadArticleEvent;
 use App\Model\Article;
 use App\Model\Comments;
 use App\StatusCode;
@@ -38,6 +39,28 @@ class ArticleRepository extends BaseRepository
         $this->tagRep = $tagRep;
         $this->userRep = $userRep;
         $this->checkLogRep = $checkLogRep;
+    }
+
+    public function read($id, $uid){
+        $t = $this->get($id);
+        if($t == null || $t->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
+        }
+        $t->click_count = $t->click_count + 1;
+        $t->save();
+        $author = $t->author;
+        if($author){
+            $author->password = '***';
+        }else {
+            //add a anonymous user
+        }
+        $checker = $t->checker;
+        if($checker){
+            $checker->password = '***';
+        }
+        $t->tags;
+        event(new ReadArticleEvent($t, $uid));
+        return $this->success('', $t);
     }
 
     public function findById($id){

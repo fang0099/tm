@@ -3,9 +3,7 @@
 <head>
 	<title>User Center</title>
 	<meta charset="utf-8">
-	<!--
 	<base href="/tm/web/public/">
-	-->
 	<link rel="stylesheet" type="text/css" href="uc-assets/css/app.usercenter.css" />
 </head>
 <body>
@@ -146,7 +144,7 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/activities"  page="1">我的动态</a>
+					<a class="SubTabs-item is-active" href="javascript:;" data="/uc/activities"  page="1">我的动态</a>
 				</div>
 			</h4>
 		</div>
@@ -155,7 +153,7 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/notices"  page="1">我的通知</a>
+					<a class="SubTabs-item is-active" href="javascript:;" data="/uc/notices"  page="1">我的通知</a>
 				</div>
 			</h4>
 		</div>
@@ -164,10 +162,10 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/articles/lasted"  page="1">最新</a>
-					<a class="SubTabs-item" data="/uc/articles/hotest"  page="1">最热</a>
-					<a class="SubTabs-item" data="/uc/articles/recommend"  page="1">推荐</a>
-					<a class="SubTabs-item" data="/uc/articles/draft"  page="1">草稿箱</a>
+					<a class="SubTabs-item is-active" href="javascript:;" data="/uc/articles/lasted"  page="1">最新</a>
+					<a class="SubTabs-item" data="/uc/articles/hotest" href="javascript:;"  page="1">最热</a>
+					<a class="SubTabs-item" data="/uc/articles/recommend" href="javascript:;"  page="1">推荐</a>
+					<a class="SubTabs-item" data="/uc/articles/draft"  href="javascript:;" page="1">草稿箱</a>
 				</div>
 			</h4>
 		</div>
@@ -176,7 +174,7 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/articles/collect"  page="1">我的收藏</a>
+					<a class="SubTabs-item is-active" data="/uc/articles/collect"  href="javascript:;" page="1">我的收藏</a>
 				</div>
 			</h4>
 		</div>
@@ -185,8 +183,8 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/subscribe"  page="1">我的订阅</a>
-					<a class="SubTabs-item" data="/uc/articles/tags"  page="1">订阅标签文章</a>
+					<a class="SubTabs-item is-active" href="javascript:;" data="/uc/subscribe"  page="1">我的订阅</a>
+					<a class="SubTabs-item" data="/uc/articles/tags" href="javascript:;"  page="1">订阅标签文章</a>
 				</div>
 			</h4>
 		</div>
@@ -195,9 +193,9 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/follows"  page="1">关注了</a>
-					<a class="SubTabs-item" data="/uc/followers"  page="1" id="sub-followers">关注者</a>
-					<a class="SubTabs-item" data="/uc/articles/followers"  page="1">关注人的文章</a>
+					<a class="SubTabs-item is-active" data="/uc/follows"  href="javascript:;" page="1">关注了</a>
+					<a class="SubTabs-item" data="/uc/followers"  page="1" href="javascript:;" id="sub-followers">关注者</a>
+					<a class="SubTabs-item" data="/uc/articles/followers" href="javascript:;"  page="1">关注人的文章</a>
 				</div>
 			</h4>
 		</div>
@@ -206,7 +204,7 @@
 		<div class="List-headerText">
 			<h4 class="List-headerText">
 				<div class="SubTabs">
-					<a class="SubTabs-item is-active" data="/uc/info">编辑资料</a>
+					<a class="SubTabs-item is-active" href="javascript:;" data="/uc/info">编辑资料</a>
 				</div>
 			</h4>
 		</div>

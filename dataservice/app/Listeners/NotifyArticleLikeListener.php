@@ -45,5 +45,9 @@ class NotifyArticleLikeListener extends BaseListener
             $this->addNotice($article->author_id, '0', $article->id, $message, $message);
         }
 
+        // add article hot num
+        $article->hot_num = $article->hot_num + 10;
+        $article->save();
+
     }
 }

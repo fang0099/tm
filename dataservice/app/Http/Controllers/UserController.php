@@ -153,6 +153,7 @@ class UserController extends Controller
     }
 
     public function recommend(Request $request){
+        $uid = $request->input('id');
         return ['success' => true, 'data' => []];
     }
 }

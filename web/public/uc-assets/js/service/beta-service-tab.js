@@ -22,9 +22,9 @@ __.service.tab = __.service.tab || {};
 	var noticeTemplate = $('#list-notice').html();
 	var tagTemplate = $('#list-tags').html();
 
-	var loding = $('#list-loading').html();
-	//var base = "http://localhost/tm/web/public/index.php";
-    var base = "";
+	var loading = $('#list-loading').html();
+	var base = "http://localhost/tm/web/public/index.php";
+    //var base = "";
 
     var loadData = function(url, page){
     	url += '/' + page;

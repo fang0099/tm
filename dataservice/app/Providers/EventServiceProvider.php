@@ -34,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\FollowUserEvent' => [
             'App\Listeners\NotifyUserFollowListener',
         ],
+        'App\Events\ReadArticleEvent' => [
+            'App\Listeners\NotifyArticleReadListener',
+        ],
     ];
 
     /**

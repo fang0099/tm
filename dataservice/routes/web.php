@@ -67,6 +67,7 @@ Route::get('user/activities', 'UserController@activities');
 
 // article
 Route::get('/article/get', 'ArticleController@get');
+Route::get('/article/read', 'ArticleController@read');
 Route::post('/article/create', 'ArticleController@create');
 Route::get('/article/list', 'ArticleController@list');
 Route::get('/article/page', 'ArticleController@page');

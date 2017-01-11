@@ -46,5 +46,9 @@ class NotifyArticleCollectListener extends BaseListener
         // step 2 notify author
         $message = $operator->username . ', 收藏了您文章 ';
         $this->addNotice($article->author_id, '0', $article->id,  $message, $message);
+
+        // add article hot num
+        $article->hot_num = $article->hot_num + 10;
+        $article->save();
     }
 }

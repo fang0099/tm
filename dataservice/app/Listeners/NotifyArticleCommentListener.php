@@ -56,5 +56,8 @@ class NotifyArticleCommentListener extends BaseListener
             $message = '您评论了文章 ';//:  "' . $article->title . '"';
             $this->addActivity($userId, '0', $article->id, $message, $message);
         }
+        // add article hot num
+        $article->hot_num = $article->hot_num + 100;
+        $article->save();
     }
 }
