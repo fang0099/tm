@@ -62,7 +62,7 @@ class IndexController extends Controller
         $recom_articles = array();
         $recom_articles["data"] = null;
         if(session("id")!=null) {
-            $recom_articles = $this->userInvoker->articlestags(['id' => session('id')]);
+            $recom_articles = $this->userInvoker->articlesrecommend(['id' => session('id')]);
         }
         $params = ['page_class'=>$page_class,
             'articles'=>$article_list["list"],
