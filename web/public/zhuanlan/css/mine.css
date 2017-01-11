@@ -35,14 +35,14 @@
     margin-top: 0px;
 }
 
-.main-container{
+/*.main-container{
     padding-top: 52px;
 }
-
+*/
 .home .main-container
 {
 
-    padding-top: 46px;
+    /*padding-top: 46px;*/
 
 }
 
@@ -110,9 +110,18 @@
     display: inline-block;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 1px;
 
 }
 
+.real_time_intelligence.pad_inner
+{
+    margin-top: 10px;
+}
+.pad_inner {
+    font-size: .65rem;
+    margin-bottom: 2.5rem;
+}
 .tag_index a
 {
     vertical-align: top;

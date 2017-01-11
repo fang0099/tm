@@ -40,6 +40,8 @@ trait ApiInvoker
             'commentdelete'=>'GET',
             'hotest'=>'GET',
             'read'=>'GET',
+            'next'=>'GET',
+            'prev'=>'GET',
         ],
         'user' => [
             'get' => 'GET',

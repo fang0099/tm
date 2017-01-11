@@ -257,7 +257,7 @@ class ArticleController extends Controller
         $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1]);
         //print_r($recommend_list);
         //return;
-        $next_article = $this->articleInvoker->next(['id'=>$id]);
+        $next_article = $this->articleInvoker->prev(['id'=>$id]);
         //print_r($next_article);
         //print_r(1);
         //return;
