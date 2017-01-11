@@ -25,8 +25,8 @@ __.service.right = __.service.right || {};
 		});
 
 		$rfollowers.click(function(){
+            $('#sub-followers').click();
 			$('#follow').click();
-			$('#sub-followers').click();
 		});
 
 		$rsubscribe.click(function(){
