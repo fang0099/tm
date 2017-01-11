@@ -60,7 +60,7 @@ Route::get('user/articlestags', 'UserController@tagArticles');
 Route::get('user/articleslasted', 'UserController@lastedArticles');
 Route::get('user/articleshotest', 'UserController@hotestArticles');
 Route::get('user/articlesrecommend', 'UserController@recommend');
-Route::get('user/articlesdraft', 'UserController@recommend');
+Route::get('user/articlesdraft', 'UserController@draft');
 
 Route::get('user/activities', 'UserController@activities');
 
