@@ -168,7 +168,7 @@
                                                 <section class="single-post-tags">
                                                     @foreach($article["tags"] as $tag)
                                                         <span class="tag current">
-                                                            <a target="_blank" href="http://www.tmtpost.com/tag/299520" class="tag-a">硅谷</a>
+                                                            <a target="_blank" href="http://www.tmtpost.com/tag/299520" class="tag-a">{{$tag["name"]}}</a>
                                                             <span class="gap-line">|</span><span class="act follow">+</span>
                                                             <span class="act unfollow">-</span>
                                                         </span>
@@ -270,7 +270,7 @@
                                         </div>
                                         <div></div>
                                         <div class="mobile_article">
-                                            <section class="single-post-comment">
+                                            <!--<section class="single-post-comment">
                                                 <h4><a name="comment">参与讨论</a></h4>
                                                 <div class="input-module notlogin">
                                                     <textarea id="J_comment_area_5061570" disabled="" placeholder="请登录后参与评论..."></textarea>
@@ -284,7 +284,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="display-module"></div>
-                                            </section>
+                                            </section>-->
                                         </div>
                                         <div>
                                             <div class="related-articles">
@@ -455,12 +455,12 @@
                                         <div class="next-post-wrapper show">
                                             <h4>下一篇</h4>
                                             <div class="item" data-stat-click="articles.next">
-                                                <a href="http://36kr.com/p/5061577.html?from=next" class="title" target="_blank">支付宝回应熟人可修改密码漏洞：仅在特定情况下可行，已提高安全等级</a>
+                                                <a href="http://36kr.com/p/5061577.html?from=next" class="title" target="_blank">{{$next_article["title"]}}</a>
                                                 <div class="tags-list">
                                                     <i class="icon-tag"></i>
-                                                    <span><a href="http://36kr.com/tag/%E9%87%91%E8%9E%8D" target="_blank">金融</a><span>，</span></span>
-                                                    <span><a href="http://36kr.com/tag/%E5%AA%92%E4%BD%93" target="_blank">媒体</a><span>，</span></span>
-                                                    <span><a href="http://36kr.com/tag/%E6%94%AF%E4%BB%98%E5%AE%9D" target="_blank">支付宝</a></span>
+                                                    @foreach( $next_article["tagList"] as $tag)
+                                                    <span><a href="http://36kr.com/tag/%E9%87%91%E8%9E%8D" target="_blank">{{$tag["name"]}}</a><span>，
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -548,8 +548,6 @@
                     </div>
                 </div>
             </div>
-
-
 
         </div>
     </div>
