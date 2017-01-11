@@ -71,7 +71,7 @@ class UserCenterController extends Controller
     }
 
     public function follows($page){
-        $uid = session('id', 1);
+        $uid = session('id');
         $result = $this->userInvoker->follows(['id'=>$uid, 'page'=>$page]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
@@ -81,7 +81,7 @@ class UserCenterController extends Controller
     }
 
     public function followers($page){
-        $uid = session('id', 1);
+        $uid = session('id');
         $result = $this->userInvoker->followers(['id'=>$uid, 'page'=>$page]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
@@ -91,8 +91,8 @@ class UserCenterController extends Controller
     }
 
     public function info(){
-        $user = $this->userInvoker->get(['id'=>1]);
-        session($user['data']);
+        //$user = $this->userInvoker->get(['id'=>1]);
+        //session($user['data']);
         $info = [
             'id' => session('id'),
             'username' => session('username'),
