@@ -95,6 +95,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/uc/subscribe/{page}', 'UserCenterController@subscribe');
     Route::get('/uc/follows/{page}', 'UserCenterController@follows');
     Route::get('/uc/followers/{page}', 'UserCenterController@followers');
+    Route::get('/uc/info', 'UserCenterController@info');
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){

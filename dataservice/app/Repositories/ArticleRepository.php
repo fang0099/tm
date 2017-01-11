@@ -83,6 +83,16 @@ class ArticleRepository extends BaseRepository
         return $this->success('', $t);
     }
 
+    public function next($id){
+        $article = $this->model->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        return $this->success('', $article);
+    }
+
+    public function prev($id){
+        $article = $this->model->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        return $this->success('', $article);
+    }
+
     public function listComment($id){
         $article = $this->get($id);
         if($article == null || $article->del_flag == 1){

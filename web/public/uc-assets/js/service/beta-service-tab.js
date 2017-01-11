@@ -21,13 +21,17 @@ __.service.tab = __.service.tab || {};
 	var userTemplate = $('#list-user').html();
 	var noticeTemplate = $('#list-notice').html();
 	var tagTemplate = $('#list-tags').html();
+	var articleTemplate = $('#list-article').html();
+	var followUserTemplate = $('#list-follow-user').html();
+	var settingTemplate = $('#user-form-tpl').html();
 
 	var loading = $('#list-loading').html();
 	var base = "http://localhost/tm/web/public/index.php";
     //var base = "";
 
     var loadData = function(url, page){
-    	url += '/' + page;
+    	if(page != undefined)
+    		url += '/' + page;
     	console.log(url);
     	// begin loading
         $listBody.html(loading);
@@ -47,9 +51,16 @@ __.service.tab = __.service.tab || {};
                             html += te.renderByTemplate(userTemplate, d[i]);
                         }
 					}else {
-						if(d[i].fans_num != undefined){
+						if(page == undefined){
+							html += te.renderByTemplate(settingTemplate, d[i]);
+                            //__.utils.form.bind('#user-form');
+						}else if(d[i].fans_num != undefined){
                             html += te.renderByTemplate(tagTemplate, d[i]);
-						}else {
+						}else if(d[i].username != undefined){
+							html += te.renderByTemplate(followUserTemplate, d[i]);
+						}else if(d[i].hot_num != undefined){
+							html += te.renderByTemplate(articleTemplate, d[i]);
+						}else{
                             html += te.renderByTemplate(noticeTemplate, d[i]);
 						}
 
@@ -95,11 +106,11 @@ __.service.tab = __.service.tab || {};
             });
 			// add current link is-active class
 			$(this).addClass('is-active');
-
-			var url = base + $(this).attr('data');
+			var data = $(this).attr('data');
+			var url = base + data;
 			var page = $(this).attr('page');
+			loadData(url, page);
 
-            loadData(url, page);
 		});
 	};
 

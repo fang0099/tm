@@ -152,8 +152,10 @@ class UserController extends Controller
         return $this->userRep->followersArticle($id, $page);
     }
 
+
     public function recommend(Request $request){
         $uid = $request->input('id');
-        return ['success' => true, 'data' => []];
+        $page = $request->input('page', 1);
+        return $this->userRep->recommend($uid, $page);
     }
 }

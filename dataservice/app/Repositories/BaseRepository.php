@@ -176,7 +176,8 @@ abstract class BaseRepository
                 $condition = $condition['raw'];
             }
             foreach ($condition as $con){
-                $builder->where($con['field'], $con['opt'], $con['param']);
+                $opt = $con['opt'];
+                $builder = $builder->where($con['field'], "$opt", $con['param']);
             }
         }
         if(strlen($order) != 0){
@@ -194,7 +195,7 @@ abstract class BaseRepository
         }
         return [
             'success' => 'true',
-            'count' => $this->model->all()->count(),
+            'count' => $this->model->count(),
             'current_page' => $page,
             'page_size' => $pageSize,
             'filter' => $filter,
@@ -264,7 +265,7 @@ abstract class BaseRepository
         return json_result($this->getBusinessLine(), $code, $message, $data);
     }
 
-    private function invokeMyMagicMethod($m){
+    protected function invokeMyMagicMethod($m){
         $clazzName = get_class($m);
         $methods = get_class_methods($clazzName);
         foreach ($methods as $method){

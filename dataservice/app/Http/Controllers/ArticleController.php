@@ -32,6 +32,18 @@ class ArticleController
         return $this->articleRep->read($id, $uid);
     }
 
+    public function next(Request $request){
+        $id = $request->input('id');
+        //return $this->articleRep->page2(1, 1, ['id gt' => $id ], 'id desc');
+        return $this->articleRep->next($id);
+    }
+
+    public function prev(Request $request){
+        $id = $request->input('id');
+        //return $this->articleRep->page2(1, 1, ['id lt' => $id ], 'id desc');
+        return $this->articleRep->prev($id);
+    }
+
     public function create(Request $request){
         return $this->articleRep->create($request);
     }

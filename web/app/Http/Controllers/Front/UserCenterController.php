@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Invokers\UserInvoker;
+use Illuminate\Http\Request;
 
 class UserCenterController extends Controller
 {
@@ -70,11 +71,46 @@ class UserCenterController extends Controller
     }
 
     public function follows($page){
-        return $this->jsonResult(true, '', []);
+        $uid = session('id', 1);
+        $result = $this->userInvoker->follows(['id'=>$uid, 'page'=>$page]);
+        if($result['success']){
+            return $this->jsonResult(true, '', $result['data']);
+        }else {
+            return $this->jsonResult(true, $result['message'], []);
+        }
     }
 
     public function followers($page){
-        return $this->jsonResult(true, '', []);
+        $uid = session('id', 1);
+        $result = $this->userInvoker->followers(['id'=>$uid, 'page'=>$page]);
+        if($result['success']){
+            return $this->jsonResult(true, '', $result['data']);
+        }else {
+            return $this->jsonResult(true, $result['message'], []);
+        }
     }
 
+    public function info(){
+        $user = $this->userInvoker->get(['id'=>1]);
+        session($user['data']);
+        $info = [
+            'id' => session('id'),
+            'username' => session('username'),
+            'brief' => session('brief'),
+            'qq' => session('qq'),
+            'weibo' => session('weibo'),
+            'weixin' => session('weixin')
+        ];
+        return $this->jsonResult(true, '', [$info]);
+    }
+
+    public function updateInfo(Request $request){
+        $params = $request->all();
+        $data = $this->userInvoker->update($params);
+        if ($data['success']){
+            return ['success' => 'true'];
+        }else {
+            return ['success' => 'false', 'message' => $data['message']];
+        }
+    }
 }
