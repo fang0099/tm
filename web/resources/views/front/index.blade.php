@@ -56,14 +56,10 @@
 
                                                                 <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
                                                                     <span></span></a>-->
-
-                                                                @if($article["comment_num"]>=1)
                                                                     <i class="icon-fire"></i>
-                                                                @else
-                                                                    <i class="icon-message"></i>
-                                                                @endif
 
-                                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
+
+                                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["hot_num"]}}
                                                                     <span></span></a>
                                                             </div>
 
@@ -107,7 +103,7 @@
                                 <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
 
                                     <ul class="items" id="article_items" ng-show="posts.length">
-                                        @foreach($articles as $article)
+                                        @foreach($hot_articles as $article)
                                             <li class="item ng-isolate-scope
                                                 @if($article["face"]!="default" and $article["face"]!="123")
                                                     item-with-title-img
@@ -136,14 +132,10 @@
 
                                                                 <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
                                                                     <span></span></a>-->
+                                                                <i class="icon-fire"></i>
 
-                                                                @if($article["comment_num"]>=1)
-                                                                    <i class="icon-fire"></i>
-                                                                @else
-                                                                    <i class="icon-message"></i>
-                                                                @endif
 
-                                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
+                                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["hot_num"]}}
                                                                     <span></span></a>
                                                             </div>
 
@@ -180,8 +172,7 @@
                                 </div>
 
 
-                            </div>
-                        </div>
+                            </div>                        </div>
                         <div id="tab-3">
                             @if(null!=session("username"))
                                 <div class="content">
