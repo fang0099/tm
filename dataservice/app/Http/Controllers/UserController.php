@@ -158,4 +158,8 @@ class UserController extends Controller
         $page = $request->input('page', 1);
         return $this->userRep->recommend($uid, $page);
     }
+
+    public function draft(){
+        return ['success'=>true];
+    }
 }

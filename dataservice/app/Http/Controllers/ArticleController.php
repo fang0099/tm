@@ -151,7 +151,5 @@ class ArticleController
         return $this->articleRep->delTags($articleId, $tagIds);
     }
 
-    public function draft(){
-        return ['success'=>true];
-    }
+
 }
