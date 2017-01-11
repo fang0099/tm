@@ -39,6 +39,7 @@ trait ApiInvoker
             'delete'=>'GET',
             'commentdelete'=>'GET',
             'hotest'=>'GET',
+            'read'=>'GET',
         ],
         'user' => [
             'get' => 'GET',
@@ -58,6 +59,7 @@ trait ApiInvoker
             'articlestags'=>'GET',
             'articlescollect'=>'GET',
             'articlesfollowers'=>'GET',
+            'articlesrecommend'=>'GET',
         ],
         'tag' => [
             'get' => 'GET',

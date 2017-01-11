@@ -128,3 +128,155 @@
 body{
     font-size:16px;
 }
+
+/*简书*/
+
+.like-group {
+    padding: 13px 0 15px;
+    font-size: 0;
+    border: 1px solid #ea6f5a;
+    border-radius: 40px;
+}
+
+.like-group .btn-like {
+    font-size: 19px;
+    display: inline-block;
+}
+
+.like-group .btn-like a {
+    color: #ea6f5a;
+    margin: 14px 15px 14px 30px;
+}
+
+.like-group .modal-wrap a {
+    color: #ea6f5a;
+    padding: 14px 30px 14px 17px;
+}
+
+.like-group .modal-wrap {
+    font-size: 18px;
+    border-left: 1px solid rgba(236,97,73,.4);
+    display: inline-block;
+}
+
+.like-group .btn-like {
+    font-size: 19px;
+    display: inline-block;
+}
+
+
+
+.jianshu_btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.like-group {
+    padding: 13px 0 15px;
+    font-size: 0;
+    border: 1px solid #ea6f5a;
+    border-radius: 40px;
+}
+
+/*end 简书*/
+/*钛媒体*/
+
+
+.tag .unfollow {
+    display: none;
+    font-size: 18px;
+    font-size: 1.8rem;
+    line-height: 12px;
+}
+
+.tag .act {
+    display: inline-block;
+    color: gray;
+    cursor: pointer;
+    width: 15px;
+    text-align: center;
+    padding-right: 3px;
+}
+
+
+
+.tag .gap-line {
+    color: gray;
+    position: relative;
+    top: -1px;
+}
+
+.tag.current .tag-a{
+    color: #fff;
+}
+
+.tag .tag-a {
+    display: inline-block;
+    padding: 3px 5px 3px 10px;
+    color: gray;
+    font-size: 14px;
+    /*font-size: 1.4rem;*/
+}
+
+.tag {
+    display: inline-block;
+    border: 1px solid #f2f2f2;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin: 0 7px 10px;
+    color: gray;
+}
+
+.tag .unfollow {
+    display: none;
+    font-size: 18px;
+    /*font-size: 1.8rem;*/
+    line-height: 12px;
+}
+
+.tag.current {
+    background-color: #21B890;
+    border-color: #21B890;
+}
+
+.tag.current .follow {
+    display: none;
+}
+
+.tag.current .unfollow {
+    display: inline-block;
+}
+
+.tag.current .tag-a, .tag.current .gap-line, .tag.current .act {
+    color: #fff;
+}
+
+.tag.current a{
+    color: #fff;
+}
+
+.tag.current .act {
+    color: #fff;
+}
+.tag.current .tag-a{
+    color: #fff;
+}
+/*end 钛媒体*/
