@@ -239,6 +239,9 @@ class ArticleController extends Controller
         $page_class = "page-post-view";
         $username = session("username");
         $id = $request->get('id');
+        //阅读
+        $read = $this->articleInvoker->read(['id'=>$id]);
+
         if($id==null)
         {
             return redirect("index");
@@ -248,6 +251,11 @@ class ArticleController extends Controller
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>5]);
         $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
+
+
+        $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$id, 'page'=> 1]);
+        //print_r($recommend_list);
+        //return;
 
         return view("front/36kr_article",
         //return view("front/article",
@@ -259,6 +267,7 @@ class ArticleController extends Controller
                 'comment_list'=>$comment_list["data"],
                 'menu_tags'=>$menu_tag_list["data"],
                 'author'=>$author["data"],
+                'recommend_list'=>$recommend_list["data"],
             ]);
     }
     //修改文章
