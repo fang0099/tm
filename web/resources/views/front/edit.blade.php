@@ -45,7 +45,10 @@
                                 <option value="{{$tag["id"]}}">{{$tag["name"]}}</option>
                             @endforeach
                         </select>
-                            <div class="status" ng-if="status" ng-class="status.type">saving</div>
+                        <!--<input type="button" name="提交审核" class="btn btn-green write-btn" style="float: right; margin-left: 15px;" value="修改" onClick="form[this].action='{{isset($article)?'update':'create'}}';form[this].submit();">
+                        <input type="button" name="保存草稿" class="btn btn-green write-btn" style="float: right; margin-left: 15px;" value="修改" onClick="form[this].action='{{isset($article)?'update2':'create2'}}';form[this].submit();">-->
+
+                            <!--<div class="status" ng-if="status" ng-class="status.type">saving</div>-->
                         <input type="submit" value="保存草稿" id="submit_script" class="btn btn-green write-btn" style="float: right; margin-left: 15px;"/>
                         <input type="submit" value="提交审核" id="submit" class="btn btn-blue write-btn"/>
                     </section>
@@ -63,6 +66,18 @@
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
         <script src="<?php echo env('APP_URL');?>/chosen-master/chosen.jquery.js" type="text/javascript"></script>
         <script src="<?php echo env('APP_URL');?>/chosen-master/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            function aa(oForm){
+                oForm.action="http://bbs.51js.com";
+                oForm.target="fA"
+                oForm.submit();
+                oForm.action="http://www.iecn.net/bbs/";
+                oForm.target="fB"
+                oForm.submit();
+                return false;
+            }
+        </script>
+
         <script type="text/javascript">
 
             var config = {

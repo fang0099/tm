@@ -59,6 +59,8 @@ class IndexController extends Controller
         $hot_article_list = $this->articleInvoker->hotest(['pageSize'=>6]);
 
         $fast_news = $this->newsflashInvoker->list(['pageSize'=>6]);
+        //print_r($fast_news);
+        //return;
         $recom_articles = array();
         $recom_articles["data"] = null;
         if(session("id")!=null) {

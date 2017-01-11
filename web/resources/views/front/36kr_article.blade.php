@@ -182,7 +182,7 @@
                                                             <a><i class="icon-ic_like"></i> 喜欢</a>
                                                         </div>
                                                         <div class="modal-wrap">
-                                                            <a>17</a>
+                                                            <a>{{$article["likes"]}}</a>
                                                         </div>
                                                     </div>
                                                     <div class="jianshu_btn like-group">
@@ -190,7 +190,7 @@
                                                             <a><i class="icon-ic_like"></i> 收藏</a>
                                                         </div>
                                                         <div class="modal-wrap">
-                                                            <a>17</a>
+                                                            <a>0</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -287,7 +287,7 @@
                                             </section>-->
                                         </div>
                                         <div>
-                                            <div class="related-articles">
+                                            <!--<div class="related-articles">
                                                 <h4>猜你喜欢</h4>
                                                 <div class="row layout-image-display" style="margin-left: -10px; margin-right: -10px;">
                                                     <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
@@ -363,7 +363,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="related-articles-h5">
                                             <h4>相关文章</h4>
@@ -419,7 +419,7 @@
                                             <h4>最近文章</h4>
                                             <ul class="list">
                                                 @foreach($recent_article_list as $a)
-                                                <li data-stat-click="articles.latestnews.2026524780.5061570"><p class="title"><a href="article?id={{$a["id"]}}" target="_blank"> {{$a["title"]}} </a></p><p class="note am-cf"><span class="time am-fl">6分钟前</span><span class="tag am-fr">行业新闻</span></p></li>
+                                                <li data-stat-click="articles.latestnews.2026524780.5061570"><p class="title"><a href="article?id={{$a["id"]}}" target="_blank"> {{$a["title"]}} </a></p><p class="note am-cf"><span class="time am-fl">{{$article["publish_time"]}}</span><span class="tag am-fr"><!--行业新闻--></span></p></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -444,10 +444,30 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="sponsor" style="display: none;">
+                                        <!--<div class="sponsor" style="display: none;">
                                             <h5><span>赞助商</span></h5>
                                             <ul class="am-list am-list-static">
                                                 <li></li>
+                                                <li> </li>
+                                                <li> </li>
+                                            </ul>
+                                        </div>-->
+
+                                        <div class="sponsor" style="display: block;">
+                                            <h5><span>赞助商</span></h5>
+                                            <ul class="am-list am-list-static">
+                                                <li>
+                                                    <div class="baidu_ads_cell">
+                                                        <div class="msgwrap">
+                                                            <div class="msgleft">
+                                                                <a href="https://36kr.com/pp/ap/click?pid=14&amp;r=http%3A%2F%2Fmarket.cmbchina.com%2Fcorporate%2F2016wealthManPc%2Fjyyh.html" target="_blank" style="background-image:url(https://pic.36krcnd.com//avatar/201612/16121303/y998zdddv7y00rj2.png)" rel="nofollow"></a>
+                                                            </div>
+                                                            <div class="msgright">
+                                                                <h4><a href="https://36kr.com/pp/ap/click?pid=14&amp;r=http%3A%2F%2Fmarket.cmbchina.com%2Fcorporate%2F2016wealthManPc%2Fjyyh.html" target="_blank">【招商银行】</a></h4>
+                                                                <p class="note">交易银行提供全面金融解决方案</p>
+                                                            </div>
+                                                        </div>
+                                                    </div></li>
                                                 <li> </li>
                                                 <li> </li>
                                             </ul>
@@ -455,12 +475,14 @@
                                         <div class="next-post-wrapper show">
                                             <h4>下一篇</h4>
                                             <div class="item" data-stat-click="articles.next">
-                                                <a href="http://36kr.com/p/5061577.html?from=next" class="title" target="_blank">{{$next_article["title"]}}</a>
+                                                <a href="<?php echo env('APP_URL');?>/article?id={{$next_article["id"]}}" class="title" target="_blank">{{$next_article["title"]}}</a>
                                                 <div class="tags-list">
                                                     <i class="icon-tag"></i>
-                                                    @foreach( $next_article["tagList"] as $tag)
-                                                    <span><a href="http://36kr.com/tag/%E9%87%91%E8%9E%8D" target="_blank">{{$tag["name"]}}</a><span>，
-                                                    @endforeach
+                                                    @if(isset($next_article["tagList"]))
+                                                        @foreach( $next_article["tagList"] as $tag)
+                                                        <span><a href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" target="_blank">{{$tag["name"]}}</a><span>，
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

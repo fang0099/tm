@@ -2,6 +2,12 @@
 @section("page_level_css")
     <link type="text/css" rel="stylesheet" href="responsive-tabs_/css/responsive-tabs.css" />
     <link type="text/css" rel="stylesheet" href="responsive-tabs/css/style.css" />
+
+    <link href="./final2/css/36kr_common.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./final2/css/36kr_style.css" />
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
+    <link href="./final2/css/36kr_app.css" rel="stylesheet" />
+
     @stop
 @section("content")
     <main class="main-container ng-scope" ng-view="">
@@ -208,14 +214,10 @@
 
                                                                 <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
                                                                         <span></span></a>-->
+                                                                    <i class="icon-fire"></i>
 
-                                                                    @if($article["comment_num"]>=1)
-                                                                        <i class="icon-fire"></i>
-                                                                    @else
-                                                                        <i class="icon-message"></i>
-                                                                    @endif
 
-                                                                    <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
+                                                                    <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["hot_num"]}}
                                                                         <span></span></a>
                                                                 </div>
 
@@ -250,7 +252,6 @@
                                             <!-- <i class="icon-ic_column_end"></i>-->
                                         </div>
                                     </div>
-
 
                                 </div>
 
@@ -305,11 +306,7 @@
                            </div>
                         </div>
                     </div>
-                    <div class="content">
-                        <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
-                                <span ng-transclude="">
-                                <span class="ng-binding ng-scope">7×24h 快讯</span></span>
-                        </div>-->
+                    <!--<div class="content">
                         <div class="mod-tit"><span><h3>7×24h 快讯</h3></span></div>
                         <div class="draft-items-container settings-posts-container ui-infinite" ui-infinite="" data-source="draftsSource">
                             <ul class="items draft-list" ng-show="drafts.length">
@@ -323,6 +320,45 @@
                                 </li>
                                 @endforeach
                             </ul>
+                        </div>
+                    </div>-->
+                    <div class="content">
+                        <div class="mod-tit"><span><h3>7&times;24h 快讯</h3></span></div>
+                        <div class="real_time_intelligence pad_inner">
+                            <!--<h3><span>7&times;24h 快讯</span></h3>-->
+                            <ul>
+                                @foreach($fast_news as $article)
+                                <li class="real_time_wrapper"><span class="triangle"></span>
+                                    <div class="con">
+                                        <h4>
+                                            <!-- react-text: 715 -->
+                                            <!-- /react-text --><span class="title kuaixun" data-stat-click="kuaixunmokuai.kuaixunbiaoti.1.38303">{{$article["title"]}}</span></h4>
+                                        <div class="item0 hide show-content">
+                                            {!! $article["content"]!!}
+                                        </div>
+                                        <div>
+                                            <span class="time" title="{{$article["publish_time"]}}">{{$article["publish_time"]}}</span>
+                                            <!--<span class="share">
+                                                <div class="fast-section-share-box hide-phone">
+                                                 <span class="share-title">分享至&nbsp;&nbsp; </span>
+                                                 <a class="item-weixin hide-phone"><span class="icon-weixin"></span>
+                                                  <div class="panel-weixin">
+                                                   <section class="weixin-section">
+                                                    <p></p>
+                                                   </section>
+                                                   <h3>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</h3>
+                                                  </div></a>
+                                                 <a href="http://share.baidu.com/s?type=text&amp;searchPic=1&amp;sign=on&amp;to=tsina&amp;key=595885820&amp;url=http://36kr.com/newsflashes/38303&amp;title=%E4%BB%8A%E6%97%A5%EF%BC%8C%E7%A7%91%E6%8A%80%E7%BE%8E%E5%AD%A6%E5%88%9B%E6%96%B0%E4%BA%A7%E5%93%81%E5%AD%B5%E5%8C%96%E5%88%86%E5%8F%91%E5%B9%B3%E5%8F%B0%E5%A4%AA%E7%81%AB%E9%B8%9F%E7%A7%91%E6%8A%80%E5%AE%A3%E5%B8%83%E8%8E%B7%E5%BE%971000%E4%B8%87%E7%BE%8E%E9%87%91%E7%BA%A7%E5%88%AB%E7%9A%84Pre-B%E8%BD%AE%E8%9E%8D%E8%B5%84%EF%BC%8C%E6%9C%AC%E8%BD%AE%E6%8A%95%E8%B5%84%E7%94%B1%E7%BD%97%E8%8E%B1%E7%94%9F%E6%B4%BB%E9%A2%86%E6%8A%95%EF%BC%8C%E6%B5%B7%E6%B3%89%E5%9F%BA%E9%87%91%E3%80%81%E4%BA%AC%E4%B8%9C%E9%87%91%E8%9E%8D%E3%80%81%E9%BA%A6%E9%A1%BF%E8%B5%84%E6%9C%AC%E5%92%8C%E6%B3%B0%E5%BE%B7%E8%B5%84%E6%9C%AC%E5%8F%82%E4%B8%8E%E3%80%82%E5%A4%AA%E7%81%AB%E9%B8%9F%E8%BF%98%E4%B8%8E%E4%B8%8A%E8%BF%B0%E6%8A%95%E8%B5%84%E6%96%B9%E4%BB%A5%E5%8F%8A%E5%88%9B%E6%96%B0%E5%B7%A5%E5%9C%BA%E3%80%81%E7%9C%9F%E6%A0%BC%E5%9F%BA%E9%87%91%E3%80%81%E5%B0%8F%E7%B1%B3%E7%94%9F%E6%80%81%E9%93%BE%E7%AD%89%E6%88%98%E7%95%A5%E5%90%88%E4%BD%9C%E6%96%B9%E5%85%B1%E5%90%8C%E5%8F%91%E8%B5%B7%E2%80%9C%E6%99%BA%E8%A7%81%E6%9C%AA%E6%9D%A5-%E5%A4%AA%E7%81%AB%E9%B8%9FAesTech%E8%81%94%E5%90%88%E5%8A%A0%E9%80%9F%E8%AE%A1%E5%88%92%E2%80%9D%E3%80%82" target="_blank"><span class="icon-sina"></span></a>
+                                                </div>
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                </li>
+                                    @endforeach
+                            </ul>
+                            <!--<a class="more-fastsection" href="/newsflashes" target="_blank" data-stat-click="kuaixunmokuai.gengduo">
+                                浏览更多
+                                <span class="icon-arrow-right"></span></a>-->
                         </div>
                     </div>
                 </div>
@@ -521,5 +557,20 @@
             }
         });
     </script>
-
+    <script>
+        $(".kuaixun").click(function(){
+            var the_li = $(this).closest('li');
+            if (the_li.hasClass("show"))
+            {
+                the_li.removeClass("show")
+                the_li.children('div.con').children(".item0").css("display","none");
+            }
+            else {
+                the_li.addClass("show");
+                the_li.children('div.con').children(".item0").css("display", "block");
+            }
+            //this.clo();
+            //console.log(this.parent());
+        });
+    </script>
     @stop
