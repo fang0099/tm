@@ -160,6 +160,6 @@ class UserController extends Controller
     }
 
     public function draft(){
-        return ['success'=>true];
+        return ['success'=>true, 'data' => []];
     }
 }
