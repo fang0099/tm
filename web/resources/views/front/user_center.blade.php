@@ -3,7 +3,9 @@
 <head>
 	<title>User Center</title>
 	<meta charset="utf-8">
+	<!--
 	<base href="/tm/web/public/">
+	-->
 	<link rel="stylesheet" type="text/css" href="uc-assets/css/app.usercenter.css" />
 </head>
 <body>
