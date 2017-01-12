@@ -91,6 +91,11 @@
     <div class="find_nav">
         <div class="find_nav_left">
             <div class="find_nav_list">
+                @if(isset($page_class) and $page_class == "page-write2")
+                <a href="#" class="btn">修改</a>
+                <a href="#" class="btn">草稿</a>
+                @else
+
                 <ul>
                     @if(isset($menu_tags))
                         @foreach($menu_tags as $tag)
@@ -100,6 +105,7 @@
                     @endif
                     <li class="sideline"></li>
                 </ul>
+                    @endif
             </div>
         </div>
 
