@@ -177,11 +177,19 @@ class ArticleController extends Controller
     {
         $article_id = $request->get("article_id");
         $page = $request->get("page");
-        if ($page == null)
-        {
+        if ($page == null) {
             $page = 1;
         }
-        $comments = $this->articleInvoker->lscomment(['pageSize'=>6, 'page'=>$page]);
+        $comments = $this->articleInvoker->lscomment(['pageSize' => 100, 'page' => $page, 'id' => $article_id]);
+
+        /*foreach ($comments["data"] as $comment) {
+            $comment["upvote_count"] = $comment["up"];
+            $comment["profile_picture_url"] = $comment["avatar"];
+            //$comments["data"]["profile_picture_url"] = $comments["data"]["avatar"];
+            $comment["created"] = $comment["publish_time"];
+        }*/
+
+        return json_encode($comments);
     }
 
     public function show_user_list()
@@ -251,7 +259,7 @@ class ArticleController extends Controller
         $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
 
-        $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1]);
+        $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1, 'pageSize'=>6]);
         $next_article = $this->articleInvoker->prev(['id'=>$id]);
 
         return view("front/36kr_article",
@@ -525,5 +533,9 @@ class ArticleController extends Controller
 
     }
 
+    public function get_comments(Request $request)
+    {
+
+    }
 
 }

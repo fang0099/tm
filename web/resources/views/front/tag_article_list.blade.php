@@ -2,7 +2,6 @@
     @section("page_level_plugins")
         <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo env('APP_URL');?>/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-
         <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
 
         @stop
@@ -213,7 +212,6 @@
 
             </div>
         </div>
-
         @stop
     @section("page_level_plugins_js")
         <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>

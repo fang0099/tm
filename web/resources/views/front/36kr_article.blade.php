@@ -33,6 +33,19 @@
     <link href="./final2/css/36kr_app.css" rel="stylesheet" />
     <script src="./final2/js/jquery.min.js"></script>
     <script src="./final2/js/jquery.qrcode.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/jquery-comments/css/jquery-comments.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Data -->
+    <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-comments/data/comments-data.js"></script>
+
+    <!-- Libraries -->
+   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/1.8.0/jquery.textcomplete.js"></script>
+    <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-comments/js/jquery-comments.js"></script>
+
+
     <style>
         .single-post-tags
         {
@@ -59,6 +72,83 @@
                 scroll(0,0);
             });
 
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            var saveComment = function(data) {
+
+                // Convert pings to human readable format
+                $(data.pings).each(function(index, id) {
+                    var user = usersArray.filter(function(user){return user.id == id})[0];
+                    data.content = data.content.replace('@' + id, '@' + user.fullname);
+                });
+                //console.log(data);
+                return data;
+            }
+            var commentsArray2 = [];
+            $.ajax({url:"<?php echo env('APP_URL');?>/article/ajax_comment_list?article_id={{$article["id"]}}",
+                success:function(result){
+                console.log(result);
+                var json_data = JSON.parse(result);
+                commentsArray2 = json_data["data"];
+                console.log(json_data);
+            }});
+
+            //var commentsArrays
+            $('#comments-container').comments({
+                profilePictureURL: '<?php echo session("avatar");?>',
+                currentUserId: <?php echo session("id");?>,
+                roundProfilePictures: true,
+                textareaRows: 1,
+                enableAttachments: false,
+                enableHashtags: true,
+                enablePinging: true,
+                getUsers: function(success, error) {
+                    setTimeout(function() {
+                        success(usersArray);
+                    }, 500);
+                },
+                getComments: function(success, error) {
+                    setTimeout(function() {
+                        success(commentsArray2);
+                    }, 500);
+                },
+                postComment: function(data, success, error) {
+                    setTimeout(function() {
+                        success(saveComment(data));
+                    }, 500);
+                },
+                putComment: function(data, success, error) {
+                    setTimeout(function() {
+                        success(saveComment(data));
+                    }, 500);
+                },
+                deleteComment: function(data, success, error) {
+                    console.log(data);
+                    $.ajax({url:"<?php echo env('APP_URL');?>/article/comment_delete?article_id={{$article["id"]}}&comment_id="+data["id"],
+                        success:function(result){
+                            console.log(result);
+                            var json_data = JSON.parse(result);
+                            commentsArray2 = json_data["data"];
+                            console.log(json_data);
+                        }});
+                    setTimeout(function(data) {
+                        console.log(data);
+                        success();
+                    }, 500);
+                },
+                upvoteComment: function(data, success, error) {
+                    setTimeout(function() {
+                        success(data);
+                    }, 500);
+                },
+                uploadAttachments: function(dataArray, success, error) {
+                    setTimeout(function() {
+                        success(dataArray);
+                    }, 500);
+                },
+            });
         });
     </script>
 </head>
@@ -141,8 +231,9 @@
                                                         <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="am-fl">
                                                             <span class="name" data-stat-click="wenzhang.zuozhexingming">{{$article["author"]["username"]}}</span></a>
                                                         <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">{{$article["publish_time"]}}</abbr></span>
-                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">共 50 字</abbr></span>
-                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度 {{$article["hot_num"]}}</abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">字数: {{$article["word_count"]}} </abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">阅读时长: {{$article["readTime"]}} 分钟</abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度: {{$article["hot_num"]}}</abbr></span>
                                                     </div>
                                                 </div>
                                                 <section class="summary">
@@ -155,6 +246,7 @@
                                                     <section class="textblock">
                                                         {!! $article["content"] !!}
                                                     </section>
+                                                    @if(isset($article["copyright"]) and $article["copyright"]==1)
                                                     <section class="article-footer-label">
                                                         <span>原创文章，作者：{{$article["author"]["username"]}}</span>
                                                         <span>，如若转载，请注明出处：</span>
@@ -166,6 +258,7 @@
                                                             <span> 告诉我们！</span>
                                                         </div>-->
                                                     </section>
+                                                        @endif
                                                 </div>
                                                 <section class="ad" id="AD5061570" data-id="16"></section>
                                                 <section class="single-post-tags">
@@ -193,18 +286,19 @@
                                                             <a><i class="icon-ic_like"></i> 收藏</a>
                                                         </div>
                                                         <div class="modal-wrap">
-                                                            <a>0</a>
+                                                            <a>{{$article["collectCount"]}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="share-nav">
-                                                    <div class="inner fixed" style="width: 720px;">
+                                                    <div class="inner fixed" style="width: 720px;z-index:10;">
                                                         <div class="box am-cf">
                                                             <div class="share-author am-cf am-fl">
                                                                 <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}"><img class="avatar" data-stat-click="wenzhang.share.zuozhetouxiang" src="{{$article["author"]["avatar"]}}" alt="" /><span class="name" data-stat-click="wenzhang.share.zuozhexingming">{{$article["author"]["username"]}}</span></a>
                                                                 <span class="kr-tag-arrow-blue kr-size-min">
                                                                     <span class="arrow"><em></em></span><span>{{$article["publish_time"]}}</span>
                                                                 </span>
+                                                                <a href="#" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
                                                                 <!--<a class="btn" style="float:right;">关注</a>-->
                                                             </div>
                                                             <div class="other-ctrl ctrl-box am-fr">
@@ -241,18 +335,8 @@
                                                                 <a class="icon-youdao youdao cell" title="收藏文章至有道云笔记" data-stat-click="webtoolbar.youdao" target="_blank" href="http://note.youdao.com/memory/?url=http://36kr.com/p/5061570.html&amp;title=%20%E3%80%90%E8%BD%AC%E6%9D%BF%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A%E3%80%91%E6%96%B0%E4%B8%89%E6%9D%BF%E8%BD%AC%E6%9D%BF%E5%A4%A7%E6%BD%AE%EF%BC%9A%E8%AD%A6%E6%83%95%E4%B8%80%E5%93%84%E8%80%8C%E4%B8%8A%E7%9A%84%E9%AB%98%E4%BC%B0%E5%80%BC%E6%8A%95%E8%B5%84%E9%A3%8E%E9%99%A9%20&amp;summary=%E6%96%B0%E4%B8%89%E6%9D%BF2016%E5%B9%B4%E7%9A%84%E6%94%B6%E5%AE%98%E4%B9%8B%E6%88%98%E5%B7%B2%E7%BB%8F%E5%91%8A%E4%B8%80%E6%AE%B5%E8%90%BD%EF%BC%8C%E7%BA%B5%E8%A7%822016%E5%B9%B4%E5%BA%A6%E5%85%A8%E5%B9%B4%EF%BC%8C%E6%96%B0%E4%B8%89%E6%9D%BF%E6%8C%82%E7%89%8C%E4%BC%81%E4%B8%9A%E6%95%B0%E9%87%8F%E5%92%8C%E6%80%BB%E5%B8%82%E5%80%BC%E8%A7%84%E6%A8%A1%E5%9D%87%E5%91%88%E7%8E%B0%E5%BF%AB%E9%80%9F%E5%A2%9E%E9%95%BF%E3%80%82%09%20%20%20&amp;pic=&amp;product=%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F&amp;vendor=36krweb"></a>
                                                             </div>
                                                             <div class="user-ctrl ctrl-box am-fr">
-                                                                <!--<span class="icon-readmode">
-                                                                   <div class="tip">
-                                                                    <div class="inner-box cell">
-                                                                     <span class="kr-arrow-down kr-arrow" data-stat-click="webtoolbar.deepreading"><span></span></span>
-                                                                     <div>
-                                                                      <p>关注作者 </p>
 
-                                                                     </div>
-                                                                    </div>
-                                                                   </div>
-                                                                </span>-->
-                                                                <span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
+                                                                <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
                                                                 <span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
                                                                 <span data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></span>
                                                             </div>
@@ -273,6 +357,7 @@
                                         </div>
                                         <div></div>
                                         <div class="mobile_article">
+                                            <div id="comments-container"></div>
                                             <!--<section class="single-post-comment">
                                                 <h4><a name="comment">参与讨论</a></h4>
                                                 <div class="input-module notlogin">
@@ -290,97 +375,41 @@
                                             </section>-->
                                         </div>
                                         <div>
-                                            <!--<div class="related-articles">
+                                            <div class="related-articles">
                                                 <h4>猜你喜欢</h4>
                                                 <div class="row layout-image-display" style="margin-left: -10px; margin-right: -10px;">
+                                                    @foreach($recommend_list as $a)
                                                     <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
                                                         <div class="each-cell" data-stat-click="guess.1">
                                                             <div class="img-box">
-                                                                <a href="/p/5061525.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/09140553/2ewl5h0bn71c51ed.png!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/09140553/2ewl5h0bn71c51ed.png!heading" /></a>
+                                                                <a href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}" target="_blank" class="fadeIn" style="background-image: url(&quot;{{$a["face"]}}&quot;);">
+                                                                    <img class="load-img fade" src="{{$a["face"]}}" /></a>
                                                             </div>
                                                             <div class="desc">
                                                                 <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061525.html?from=guess">小程序开闸，新的消费机会在哪里？我们和十一家公司聊了聊</a>
+                                                                    <a target="_blank" href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}">{{$a["title"]}}</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.2">
-                                                            <div class="img-box">
-                                                                <a href="/p/5061531.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/09154054/5e7r0aspexcjxjcs.png!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/09154054/5e7r0aspexcjxjcs.png!heading" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061531.html?from=guess">【独家】在CES路演大赛上，一辆中国电动车成了评审眼中的“颜值担当”</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.3">
-                                                            <div class="img-box">
-                                                                <a href="/p/5061524.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/09134828/7dn3fuksnvrk980d.jpg!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/09134828/7dn3fuksnvrk980d.jpg!heading" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061524.html?from=guess">乐视你要是再拿FF吹牛逼，我可要报警了！</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.4">
-                                                            <div class="img-box">
-                                                                <a href="/p/5061665.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/11020436/dfk6ig18hfm5anv9.jpg!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/11020436/dfk6ig18hfm5anv9.jpg!heading" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061665.html?from=guess">2016中国app年度排行榜：十大行业、25个领域、Top 500 和2017趋势预测</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.5">
-                                                            <div class="img-box">
-                                                                <a href="/p/5061582.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/10054009/xaznitty24lq0fqm.jpg!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/10054009/xaznitty24lq0fqm.jpg!heading" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061582.html?from=guess">AI 首次在德州扑克战胜人类职业玩家，新算法让机器拥有“直觉”</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.6">
-                                                            <div class="img-box">
-                                                                <a href="/p/5061655.html?from=guess" target="_blank" class="fadeIn" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201701/10162724/8kndemu4lhyqvdw9.jpg!heading&quot;);"><img class="load-img fade" src="https://pic.36krcnd.com/avatar/201701/10162724/8kndemu4lhyqvdw9.jpg!heading" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="/p/5061655.html?from=guess">小程序才是微信的初心</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                        @endforeach
                                                 </div>
-                                            </div>-->
+                                            </div>
                                         </div>
                                         <div class="related-articles-h5">
                                             <h4>相关文章</h4>
                                             <div class="list">
-
+                                                @foreach($recommend_list as $a)
                                                 <div class="each-cell am-cf">
                                                     <div class="img-box">
-                                                        <a href="http://36kr.com/p/5052642.html?from=related" target="_blank" style="background-image: url(&quot;https://pic.36krcnd.com/avatar/201609/12130801/81j874eiyny8jwtb.jpg!feature&quot;);"></a>
+                                                        <a href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}" target="_blank" style="background-image: url(&quot;{{$a["face"]}}&quot;);"></a>
                                                     </div>
                                                     <div class="info">
-                                                        <p class="name"><a target="_blank" href="http://36kr.com/p/5052642.html?from=related">期权池的正确打开方式</a></p>
-                                                        <p class="note"><span>文</span><span>/</span><a target="_blank" href="http://36kr.com/user/1720741331">鹿投</a></p>
+                                                        <p class="name"><a target="_blank" href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}">{{$a["title"]}}</a></p>
+                                                        <p class="note"><span>文</span><span>/</span><a target="_blank" href="<?php echo env('APP_URL');?>/article/list?id={{$a["author"]["id"]}}">{{$a["author"]["username"]}}</a></p>
                                                     </div>
                                                 </div>
+                                                @endforeach
 
                                             </div>
                                         </div>
@@ -394,9 +423,6 @@
                         <div class="rightlib cover_css">
                             <div class="pad_inner">
                                 <div class="author-info">
-                                    <!-- react-empty: 236 -->
-                                    <!-- react-empty: 237 -->
-                                    <!-- react-empty: 238 -->
                                     <div class="role-writer padding-wrapper right-author">
                                         <div class="author-avatar">
                                             <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank" data-stat-click="youcezuozhe.touxiang.2026524780" class="pointer" style="background-image: url(&quot;<?php echo env('APP_URL');?>/{{$article["author"]["avatar"]}}&quot;);"></a>
@@ -411,12 +437,10 @@
                                         <div class="post-count">
                                             <span class="icon-article"></span>
                                             <span>
-              <!-- react-text: 252 -->共发表
-                                                <!-- /react-text -->
-                                                <!-- react-text: 253 -->{{$author["articlesCount"]}}
-                                                <!-- /react-text -->
-                                                <!-- react-text: 254 -->篇
-                                                <!-- /react-text --></span>
+                                                 共发表
+                                                {{$author["articlesCount"]}}
+                                                篇
+                                            </span>
                                         </div>
                                         <div class="post-list">
                                             <h4>最近文章</h4>
@@ -456,7 +480,7 @@
                                             </ul>
                                         </div>-->
 
-                                        <div class="sponsor" style="display: block;">
+                                        <!--<div class="sponsor" style="display: block;">
                                             <h5><span>赞助商</span></h5>
                                             <ul class="am-list am-list-static">
                                                 <li>
@@ -474,7 +498,7 @@
                                                 <li> </li>
                                                 <li> </li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <div class="next-post-wrapper show">
                                             <h4>下一篇</h4>
                                             <div class="item" data-stat-click="articles.next">
@@ -498,7 +522,7 @@
 
             </div>
             <div class="share-nav-h5">
-                <div class="inner">
+                <div class="inner" style="z-index:10;">
                     <div class="box am-cf">
                         <div class="each-cell">
                             <span class="icon-collect cell"></span>
@@ -516,11 +540,10 @@
                 </div>
             </div>
 
-
             <div class="article-detail" id="readmode_win" style="display:none;">
                 <a class="am-icon-reply back-to-normal"></a>
                 <div class="only-article-shadow show-model"></div>
-                <div class="only-article show-model" style="height:1024px;">
+                <div class="only-article show-model" style="height: 2211px;">
                     <div class="center-content" style="">
                         <div class="content-wrapper">
                             <div class="post-wrapper" id="J_pure_read_5061570">
@@ -532,7 +555,9 @@
                                                 <div class="author am-fl">
                                                     <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="am-fl"><span class="name" >{{$article["author"]["username"]}}</span></a>
                                                     <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">{{$article["publish_time"]}}</abbr></span>
-                                                    <!--<span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">行业新闻</abbr></span>-->
+                                                    <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">字数: {{$article["word_count"]}} </abbr></span>
+                                                    <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">阅读时长: {{$article["readTime"]}} 分钟</abbr></span>
+                                                    <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度: {{$article["hot_num"]}}</abbr></span>
                                                 </div>
                                             </div>
                                             <section class="headimg">
@@ -542,16 +567,13 @@
                                                 <section class="textblock">
                                                     {!! $article["content"] !!}
                                                 </section>
+                                                @if(isset($article["copyright"]) and $article["copyright"]==1)
                                                 <section class="article-footer-label">
                                                     <span>原创文章，作者：{{$article["author"]["username"]}}</span>
                                                     <span>，如若转载，请注明出处：</span>
                                                     <span><?php echo env('APP_URL');?>/article?id={{$article["id"]}}</span>
                                                 </section>
-                                                <!--<section>
-                                                    <span>“看完这篇还不够？如果你也在创业，并希望自己的项目被报道，请</span>
-                                                    <a href="http://chuang.36kr.com/report#/report/index" target="_blank" rel="nofollow">戳这里</a>
-                                                    <span>告诉我们！”</span>
-                                                </section>-->
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -566,8 +588,6 @@
                                 </div>
                             </div>-->
                         </div>
-                    </div>
-                    <div class="center-content" style="">
                     </div>
                     <div class="center-content" style="">
                     </div>
