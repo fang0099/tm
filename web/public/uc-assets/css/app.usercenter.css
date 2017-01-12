@@ -654,3 +654,14 @@ input, textarea, keygen, select, button, meter, progress {
     color: #fff;
     background: #0f88eb;
 }
+.PushNotifications-count {
+    background-color: #f75659;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    bottom: 50%;
+    color: #fff;
+    font-size: 11px;
+    left: 50%;
+    padding: 0 4px;
+    position: absolute;
+}
