@@ -82,6 +82,7 @@ class IndexController extends Controller
             $params["username"] = $username;
         }
         return view("front/index", $params);
+       // return view("front/36kr_index", $params);
     }
 
     //上传图片
