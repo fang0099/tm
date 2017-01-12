@@ -340,4 +340,9 @@ class ArticleRepository extends BaseRepository
         return $this->hotest(null, $page, $pageSize);
     }
 
+    public function saveDraft(Request $request){
+        $params = $this->getParams($request);
+        return $this->insertOrUpdate($params);
+    }
+
 }

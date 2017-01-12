@@ -318,6 +318,7 @@ class UserRepository extends BaseRepository
                     $a = $articleRep->get($r->id);
                     $this->invokeMyMagicMethod($a);
                     $res2[] = $a;
+                    $articleIds[] = $r->id;
                 }
             }
             return $this->success('', $res2);

@@ -151,5 +151,13 @@ class ArticleController
         return $this->articleRep->delTags($articleId, $tagIds);
     }
 
+    public function saveDraft(Request $request){
+        return $this->articleRep->saveDraft($request);
+    }
+
+    public function getDraft(Request $request){
+        $id = $request->input('id');
+        return $this->articleRep->findById($id);
+    }
 
 }

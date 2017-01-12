@@ -138,7 +138,7 @@ abstract class BaseRepository
                 $M->$k = $v;
             }
             $M->save();
-            return $this->success();
+            return $this->success('', $M);
         }else {
             return $this->fail(StatusCode::UPDATE_ERROR_NO_PRIMARY_KEY, '没有主键');
         }

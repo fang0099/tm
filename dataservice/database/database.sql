@@ -233,5 +233,9 @@ alter table tag add column show_index int not null default 0;
 alter table article change column author author_id int not null default 0;
 alter table article change column checker checker_id int not null default 0;
 
+alter table article add column copyright int not null default 1;
+
+alter table article add column status int not null default 0;
+
 
 

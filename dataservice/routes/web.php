@@ -88,6 +88,8 @@ Route::get('/article/addtags', 'ArticleController@addTags');
 Route::get('/article/deltags', 'ArticleController@delTags');
 Route::get('/article/hotest', 'ArticleController@hot');
 Route::get('/article/recommend', 'ArticleController@recommend');
+Route::post('/article/savedraft', 'ArticleController@saveDraft');
+Route::get('/article/getdraft', 'ArticleController@getDraft');
 
 
 
