@@ -3,9 +3,9 @@
 <head>
 	<title>User Center</title>
 	<meta charset="utf-8">
-	<!--
+	
 	<base href="/tm/web/public/">
-	-->
+	
 	<link rel="stylesheet" type="text/css" href="uc-assets/css/app.usercenter.css" />
 </head>
 <body>
@@ -399,45 +399,63 @@
 	<script type="text/html" id="user-form-tpl">
 		<form class="Field" id="user-form" method="post" action="/uc/updateinfo">
 			<div class="List-item" >
+				<span class="Field-label form-label">头像</span>
+				<div class="form-input Field-input image-wrapper">
+					<img src='{{ avatar }}' width="120px" id="avatar-img"/>
+				</div>
+				<input type='hidden' class='user-form-data' value='{{ id }}' name='params[id]' />	
+			</div>
+			<div class="List-item" >
+				<span class="Field-label form-label">更改头像</span>
+				<div class="form-input Field-input Input-wrapper">
+					<button type='button' id="select-file-btn">请选择图片</button>
+					<input type='file' accept="image/png,image/jpeg" id='avatar-file' style="display:none"/>
+					<input type='hidden' class="user-form-data" name='params[avatar]' value='{{ avatar }}' id='avatar-input'/>
+				</div>
+
+			</div>
+			<div class="List-item" >
 				<span class="Field-label form-label">用户名</span>
 				<div class="form-input Field-input Input-wrapper">
-					<input class=" Input" name="params[username]" value="{{ username }}">
+					<input class="user-form-data Input" name="params[username]" value="{{ username }}">
 				</div>
 
 			</div>
 			<div class="List-item" >
 				<span class="Field-label form-label">密码</span>
 				<div class="form-input Field-input Input-wrapper">
-					<input class=" Input" name="params[password]" placeholder="不修改则不填">
+					<input class="user-form-data Input" name="params[password]" placeholder="不修改则不填">
 				</div>
 			</div>
 			<div class="List-item" >
 				<span class="Field-label form-label">QQ</span>
 				<div class="form-input Field-input Input-wrapper">
-					<input class=" Input" name="params[qq]" value="{{ qq }}">
+					<input class="user-form-data Input" name="params[qq]" value="{{ qq }}">
 				</div>
 			</div>
 			<div class="List-item" >
 				<span class="Field-label form-label">微博</span>
 				<div class="form-input Field-input Input-wrapper">
-					<input class=" Input" name="params[weibo]" value="{{ weibo }}">
+					<input class="user-form-data Input" name="params[weibo]" value="{{ weibo }}">
 				</div>
 			</div>
 			<div class="List-item" >
 				<span class="Field-label form-label">微信</span>
 				<div class="form-input Field-input Input-wrapper">
-					<input class=" Input" name="params[weixin]" value="{{ weixin }}">
+					<input class="user-form-data Input" name="params[weixin]" value="{{ weixin }}">
 				</div>
 			</div>
 			<div class="List-item" >
 				<span class="Field-label form-label">简介</span>
 				<div class="form-input">
-					<textarea rows='3' cols="40" class=" TextArea" name="params[brief]">{{ brief }}</textarea>
+					<textarea rows='3' cols="40" class="user-form-data TextArea" name="params[brief]">{{ brief }}</textarea>
 				</div>
 			</div>
 			<div class="ButtonGroup DescriptionField-buttonGroup" style="margin-left: 20%">
-				<button class="Button Button--primary Button--blue" type="submit">保存</button>
-				<button class="Button" type="button">取消</button>
+				<button class="Button Button--primary Button--blue" type="button" id="user-info-submit">保存</button>
+				<!--
+				<button class="Button" type="reset">取消</button>
+				-->
 			</div>
 		</form>
 	</script>
@@ -446,6 +464,9 @@
 	<!-- end of template -->
 	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.iframe-transport.js"></script>
+	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.fileupload.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta-utils-base.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta-utils-te.js"></script>
@@ -453,10 +474,5 @@
 	<script type="text/javascript" src="uc-assets/js/service/beta-service-init-svg.js"></script>
 	<script type="text/javascript" src="uc-assets/js/service/beta-service-tab.js"></script>
 	<script type="text/javascript" src="uc-assets/js/service/beta-service-right.js"></script>
-	<script>
-		$(document).ready(function(){
-		    __.utils.form.bind('#user-form');
-		});
-	</script>
 </body>
 </html>

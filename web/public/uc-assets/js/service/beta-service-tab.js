@@ -16,6 +16,8 @@ __.service.tab = __.service.tab || {};
 	var $tabs = $('a.Tabs-link');
 	var $listHeader = $('#list-header');
 	var $listBody = $('#list-body-content');
+	//var $selectBtn = $('#select-file-btn');
+
 	var contentTemplate = $('#list-content').html();
 	var portraitTemplate = $('#list-portrait').html();
 	var userTemplate = $('#list-user').html();
@@ -26,8 +28,8 @@ __.service.tab = __.service.tab || {};
 	var settingTemplate = $('#user-form-tpl').html();
 
 	var loading = $('#list-loading').html();
-	//var base = "http://localhost/tm/web/public/index.php";
-    var base = "";
+	var base = "http://localhost/tm/web/public/index.php";
+    //var base = "";
 
     var loadData = function(url, page){
     	if(page != undefined)
@@ -38,6 +40,7 @@ __.service.tab = __.service.tab || {};
 
 		$.getJSON(url, function(data){
 			var html = '';
+			var isUserForm = false;
 			if(data.success){
 				var d = data.data;
 				console.log(d);
@@ -53,7 +56,7 @@ __.service.tab = __.service.tab || {};
 					}else {
 						if(page == undefined){
 							html += te.renderByTemplate(settingTemplate, d[i]);
-                            //__.utils.form.bind('#user-form');
+                            isUserForm = true;
 						}else if(d[i].fans_num != undefined){
                             html += te.renderByTemplate(tagTemplate, d[i]);
 						}else if(d[i].username != undefined){
@@ -72,8 +75,71 @@ __.service.tab = __.service.tab || {};
                 html = te.renderById('empty', {});
             }
 			$listBody.html(html);
+			if(isUserForm){
+				__.utils.form.bind('#user-form');
+				bindAvatarAjaxUpload();	
+				bindAjaxSubmit();
+			}else {
+
+			}
 		});
     };
+
+    var uploadUrl = "index.php/uc/upload";
+    var bindAvatarAjaxUpload = function(){
+    	$("#avatar-file").fileupload({
+	        dataType: 'json',
+	        url : uploadUrl,
+	        add: function (e, data) {
+	            //console.log(data);
+	            $('#select-file-btn').html('正在上传 ... ');
+	            $('#select-file-btn').attr('disabled', true);
+	            data.submit();
+	        },
+	        done: function (e, data) {
+	        	//console.log(data);
+	        	if(data.result.success){
+	        		$('#select-file-btn').html('上传完成');	
+	        		$('#avatar-img').attr('src', data.result.path);
+	        		$('#avatar-input').val(data.result.path);
+	        	}
+	        	
+	        	$('#select-file-btn').attr('disabled', false);
+	        	
+	        }
+	    });	
+	    bindSelectBtnEvent();
+    };
+
+    var bindAjaxSubmit = function(){
+    	var url = '/uc/updateinfo';
+    	$('#user-info-submit').click(function(){
+    		var formData = {};
+    		$('.user-form-data').each(function(k, v){
+    			var $v = $(v);
+    			var name = $v.attr('name');
+    			var val = $v.val();
+    			formData[name] = val;
+    		});
+    		console.log(formData);
+    		$.ajax({
+    			url : url,
+    			data : formData,
+    			type : 'post',
+    			dataType : 'json',
+    			success : function(data){
+    				console.log(data);	
+    			}
+    		});
+    	});
+    }
+
+
+    var bindSelectBtnEvent = function(){
+    	$('#select-file-btn').click(function(){
+    		$('#avatar-file').click();
+    	});
+    }
 
 	var bindTabLinkEvent = function(){
 		$tabs.click(function(){

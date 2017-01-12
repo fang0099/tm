@@ -26,6 +26,7 @@ class UserCenterController extends Controller
     public function index(){
         $uid = session('id', 1);
         $user = $this->userInvoker->get(['id' => $uid]);
+
         return view('front/user_center', $user['data']);
     }
 
@@ -91,15 +92,16 @@ class UserCenterController extends Controller
     }
 
     public function info(){
-        //$user = $this->userInvoker->get(['id'=>1]);
-        //session($user['data']);
+        $user = $this->userInvoker->get(['id'=>25]);
+        session($user['data']);
         $info = [
             'id' => session('id'),
             'username' => session('username'),
             'brief' => session('brief'),
             'qq' => session('qq'),
             'weibo' => session('weibo'),
-            'weixin' => session('weixin')
+            'weixin' => session('weixin'),
+            'avatar' => session('avatar')
         ];
         return $this->jsonResult(true, '', [$info]);
     }

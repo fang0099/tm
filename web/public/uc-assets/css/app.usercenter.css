@@ -566,6 +566,22 @@ form {
     -webkit-transition: background .2s,border .2s;
     transition: background .2s,border .2s;
 }
+.image-wrapper {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 180px;
+    padding: 4px 10px;
+    overflow: hidden;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #e7eaf1;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -webkit-transition: background .2s,border .2s;
+    transition: background .2s,border .2s;
+}
 .Field-input {
     width: 180px;
 }

@@ -13,6 +13,7 @@ __.utils.form = __.utils.form || {};
 
     var bind = function(selector){
         var $form = $(selector);
+        
         if(!$form[0]){
             return;
         }
