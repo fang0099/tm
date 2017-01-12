@@ -467,6 +467,7 @@
 	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.iframe-transport.js"></script>
 	<script type="text/javascript" src="uc-assets/js/jq-upload/jquery.fileupload.js"></script>
+	<script type="text/javascript" src="uc-assets/js/js-notify/notify.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta-utils-base.js"></script>
 	<script type="text/javascript" src="uc-assets/js/beta-utils-te.js"></script>
