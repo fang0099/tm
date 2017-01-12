@@ -91,6 +91,12 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/uc', 'UserCenterController@index');
     Route::get('/uc/activities/{page}', 'UserCenterController@activities');
     Route::get('/uc/notices/{page}', 'UserCenterController@notices');
+    Route::get('/uc/articles/{type}/{page}', 'UserCenterController@articles');
+    Route::get('/uc/subscribe/{page}', 'UserCenterController@subscribe');
+    Route::get('/uc/follows/{page}', 'UserCenterController@follows');
+    Route::get('/uc/followers/{page}', 'UserCenterController@followers');
+    Route::get('/uc/info', 'UserCenterController@info');
+    Route::post('/uc/upload', 'UserCenterController@upload');
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){

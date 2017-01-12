@@ -53,13 +53,23 @@ Route::get('user/getbyname', 'UserController@getByUsername');
 Route::get('/user/hasfollower', 'UserController@hasFollower');
 Route::get('/user/haslike', 'UserController@hasLike');
 Route::get('/user/hascollect', 'UserController@hasCollect');
+
 Route::get('user/articlescollect', 'UserController@collectArticles');
 Route::get('user/articlesfollowers', 'UserController@followerArticles');
 Route::get('user/articlestags', 'UserController@tagArticles');
+Route::get('user/articleslasted', 'UserController@lastedArticles');
+Route::get('user/articleshotest', 'UserController@hotestArticles');
+Route::get('user/articlesrecommend', 'UserController@recommend');
+Route::get('user/articlesdraft', 'UserController@draft');
+
+Route::get('user/activities', 'UserController@activities');
 
 
 // article
 Route::get('/article/get', 'ArticleController@get');
+Route::get('/article/read', 'ArticleController@read');
+Route::get('/article/next', 'ArticleController@next');
+Route::get('/article/prev', 'ArticleController@prev');
 Route::post('/article/create', 'ArticleController@create');
 Route::get('/article/list', 'ArticleController@list');
 Route::get('/article/page', 'ArticleController@page');

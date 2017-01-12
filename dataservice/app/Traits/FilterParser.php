@@ -22,7 +22,7 @@ trait FilterParser
             $raw[] = [
                 'field' => $fs[0],
                 'opt' => $opt,
-                '$param' => $v
+                'param' => $v
             ];
             $params[] = $v;
         }

@@ -9,6 +9,11 @@
 namespace App\Repositories;
 
 
+use App\Events\CheckArticleEvent;
+use App\Events\CollectArticleEvent;
+use App\Events\CommentArticleEvent;
+use App\Events\LikeArticleEvent;
+use App\Events\ReadArticleEvent;
 use App\Model\Article;
 use App\Model\Comments;
 use App\StatusCode;
@@ -21,13 +26,41 @@ class ArticleRepository extends BaseRepository
     private $commentRep;
     private $tagRep;
     private $userRep;
+    private $checkLogRep;
 
-    public function __construct(Article $model, CommentRepository $commentRep, TagRepository $tagRep, UserRepository $userRep)
+    public function __construct(Article $model,
+                                CommentRepository $commentRep,
+                                TagRepository $tagRep,
+                                UserRepository $userRep,
+                                CheckLogRepository $checkLogRep)
     {
         $this->model = $model;
         $this->commentRep = $commentRep;
         $this->tagRep = $tagRep;
         $this->userRep = $userRep;
+        $this->checkLogRep = $checkLogRep;
+    }
+
+    public function read($id, $uid){
+        $t = $this->get($id);
+        if($t == null || $t->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
+        }
+        $t->click_count = $t->click_count + 1;
+        $t->save();
+        $author = $t->author;
+        if($author){
+            $author->password = '***';
+        }else {
+            //add a anonymous user
+        }
+        $checker = $t->checker;
+        if($checker){
+            $checker->password = '***';
+        }
+        $t->tags;
+        event(new ReadArticleEvent($t, $uid));
+        return $this->success('', $t);
     }
 
     public function findById($id){
@@ -38,6 +71,8 @@ class ArticleRepository extends BaseRepository
         $author = $t->author;
         if($author){
             $author->password = '***';
+        }else {
+            //add a anonymous user
         }
         $checker = $t->checker;
         if($checker){
@@ -46,6 +81,16 @@ class ArticleRepository extends BaseRepository
         $t->tags;
         //$t['comments'] = $t->comments;
         return $this->success('', $t);
+    }
+
+    public function next($id){
+        $article = $this->model->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        return $this->success('', $article);
+    }
+
+    public function prev($id){
+        $article = $this->model->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        return $this->success('', $article);
     }
 
     public function listComment($id){
@@ -136,15 +181,29 @@ class ArticleRepository extends BaseRepository
         return $this->success('', $res);
     }
 
-    public function check($id, $operator){
+    public function check($id, $operator, $result, $message){
         $article = $this->get($id);
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }else {
+            if($article->has_checked == 1){
+                return $this->success();
+            }
             // if operator has permission?
-            $article->checker = $operator;
-            $article->has_checker = 1;
+            $article->checker_id = $operator;
+            $article->has_checked = 1;
             $article->save();
+            // save check log
+            $checkLog = array(
+                'checker' => $operator,
+                'type' => '0',
+                'ref_id' => $id,
+                'check_result' => $result,
+                'message' => $message,
+            );
+            $this->checkLogRep->insertInternal($checkLog);
+            // trigger check article event
+            event(new CheckArticleEvent($article, $checkLog));
             return $this->success();
         }
     }
@@ -160,6 +219,8 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
             DB::update('replace into user_collect_article (user_id, article_id) values (?, ?)', [$userid, $id]);
+            // trigger collect event
+            event(new CollectArticleEvent($article, $userid));
             return $this->success();
         }
     }
@@ -184,6 +245,7 @@ class ArticleRepository extends BaseRepository
                 DB::insert('insert into user_like_article (user_id, article_id) values (?, ?)', [$userid, $id]);
                 $article->likes = $article->likes+1;
                 $article->save();
+                event(new LikeArticleEvent($article, $userid));
                 return $this->success();
             }else {
                 return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, 'already like', ['id' => $id, 'userid' => $userid]);
@@ -198,9 +260,9 @@ class ArticleRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', ['id' => $id, 'userid' => $userid]);
         }else {
             $count = DB::select('select count(*) as c from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
-            if($count[0]['c'] > 0){
+            if($count[0]->c > 0){
                 DB::delete('delete from user_like_article where user_id = ? and article_id = ?', [$userid, $id]);
-                $article->likes = $article->likes - $count[0]['c'];
+                $article->likes = $article->likes - $count[0]->c;
                 $article->save();
             }
             return $this->success();
@@ -217,6 +279,8 @@ class ArticleRepository extends BaseRepository
             $params['type'] = 0;
             $article->comment_num = $article->comment_num + 1;
             $article->save();
+            // trigger comment article event
+            event(new CommentArticleEvent($article, $params));
             return $this->commentRep->insertInternal($params);
         }
     }

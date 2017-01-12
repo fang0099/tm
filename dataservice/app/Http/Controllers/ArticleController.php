@@ -26,6 +26,24 @@ class ArticleController
         return $this->articleRep->findById($id);
     }
 
+    public function read(Request $request){
+        $id = $request->input('id');
+        $uid = $request->input('uid', 0);
+        return $this->articleRep->read($id, $uid);
+    }
+
+    public function next(Request $request){
+        $id = $request->input('id');
+        //return $this->articleRep->page2(1, 1, ['id gt' => $id ], 'id desc');
+        return $this->articleRep->next($id);
+    }
+
+    public function prev(Request $request){
+        $id = $request->input('id');
+        //return $this->articleRep->page2(1, 1, ['id lt' => $id ], 'id desc');
+        return $this->articleRep->prev($id);
+    }
+
     public function create(Request $request){
         return $this->articleRep->create($request);
     }
@@ -60,7 +78,9 @@ class ArticleController
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');
-        return $this->articleRep->check($id, $operator);
+        $result = $request->input('result', '0');
+        $message = $request->input('message');
+        return $this->articleRep->check($id, $operator, $result, $message);
     }
 
     public function delete(Request $request){
@@ -130,5 +150,6 @@ class ArticleController
         $tagIds = $request->input('tags');
         return $this->articleRep->delTags($articleId, $tagIds);
     }
+
 
 }
