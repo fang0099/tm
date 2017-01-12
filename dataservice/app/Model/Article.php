@@ -47,4 +47,8 @@ class Article extends BaseModel
     public function comments(){
         return $this->hasMany('App\Model\Comments', 'article_id')->where('type', '=', '0')->where('del_flag', '=', '0');
     }
+
+    public function _readTime(){
+        return intval($this->word_count / 30 / 60);
+    }
 }

@@ -32,6 +32,18 @@
 			"type" : "textarea"
 		},
 		{
+			"label" : "热度周期",
+			"name" : "params[hot_interval]",
+			"value" : "hot_interval",
+			"type" : "text"
+		},
+		{
+			"label" : "推荐周期",
+			"name" : "params[recommend_interval]",
+			"value" : "recommend_interval",
+			"type" : "text"
+		},
+		{
 			"label" : "Email",
 			"name" : "params[email]",
 			"value" : "email",

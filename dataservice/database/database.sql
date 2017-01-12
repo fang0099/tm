@@ -7,6 +7,8 @@ create table web_info (
     icp varchar(24) not null default '',
     email varchar(128) not null default ''
 )engine=innodb charset=utf8 auto_increment=1;
+alter table web_info add column hot_interval int not null default 7;
+alter table web_info add column recommend_interval int not null default 7;
 
 -- +是否认证
 create table users (

@@ -297,23 +297,28 @@ class UserRepository extends BaseRepository
         }else {
             $offset = ($page - 1) * $pageSize;
             $sql = "select * from ("
-                ."select a.* from article as a inner join user_follows as uf "
+                ."select a.*, 2 as score from article as a inner join user_follows as uf "
                 . " on a.author_id = uf.user_id"
                 . " where a.del_flag = 0 and  uf.follower_id = ? "
                 . " union "
-                . "select a.* from article as a inner join tag_article_rel as tr "
+                . "select a.*, 1 as score from article as a inner join tag_article_rel as tr "
                 . " on a.id = tr.article_id "
                 . " inner join tag_subscriber as sr"
                 . " on tr.tag_id = sr.tag_id"
                 . " where a.del_flag = 0 and sr.subscriber_id = ?"
-                . ") as t  order by hot_num desc, publish_time desc limit $offset, $pageSize";
+                . " union "
+                . " select *, 0 as score from ( select * from article order by publish_time desc limit 100) as tt"
+                . ") as t  order by hot_num desc, publish_time desc, score desc limit $offset, $pageSize";
             $res = DB::select($sql, [$id, $id]);
             $res2 = [];
             $articleRep = app('App\Repositories\ArticleRepository');
+            $articleIds = array();
             foreach ($res as $r){
-                $a = $articleRep->get($r->id);
-                $this->invokeMyMagicMethod($a);
-                $res2[] = $a;
+                if(!in_array($r->id, $articleIds)){
+                    $a = $articleRep->get($r->id);
+                    $this->invokeMyMagicMethod($a);
+                    $res2[] = $a;
+                }
             }
             return $this->success('', $res2);
         }
