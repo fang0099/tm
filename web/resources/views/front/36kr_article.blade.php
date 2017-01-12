@@ -138,8 +138,11 @@
                                             <div class="content-font">
                                                 <div class="am-cf author-panel">
                                                     <div class="author am-fl">
-                                                        <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="am-fl"><span class="name" data-stat-click="wenzhang.zuozhexingming">{{$article["author"]["username"]}}</span></a>
+                                                        <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="am-fl">
+                                                            <span class="name" data-stat-click="wenzhang.zuozhexingming">{{$article["author"]["username"]}}</span></a>
                                                         <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">{{$article["publish_time"]}}</abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">共 50 字</abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度 {{$article["hot_num"]}}</abbr></span>
                                                     </div>
                                                 </div>
                                                 <section class="summary">

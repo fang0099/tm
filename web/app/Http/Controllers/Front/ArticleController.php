@@ -216,9 +216,6 @@ class ArticleController extends Controller
 
             $tags = $this->tagInvoker->list();
 
-            //print_r($tags);
-            //return;
-            //print_r($article);
             if ($author_id == $userid)
             {
                 return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
@@ -248,21 +245,14 @@ class ArticleController extends Controller
             return redirect("index");
         }
         $r = $this->articleInvoker->get(['id' => $id]);
+
         $authorid = $r["data"]["author"]["id"];
         $article_list = $this->userInvoker->lastedarticles(['userid' =>$authorid, 'pageSize'=>5]);
         $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
 
-
         $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1]);
-        //print_r($recommend_list);
-        //return;
         $next_article = $this->articleInvoker->prev(['id'=>$id]);
-        //print_r($next_article);
-        //print_r(1);
-        //return;
-
-        //Route::get('/article/next', 'ArticleController@next');
 
         return view("front/36kr_article",
         //return view("front/article",
