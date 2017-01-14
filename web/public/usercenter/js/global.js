@@ -8,8 +8,8 @@
 *
 **************************************************/ 
 define(function(require, exports, module){
-    var base = "http://localhost/tm/web/public/index.php";
-
+    //var base = "http://localhost/tm/web/public/index.php";
+    var base = "";
     exports.base = base;
 
     exports.reminder = function(option){
