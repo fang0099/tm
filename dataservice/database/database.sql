@@ -235,7 +235,7 @@ alter table article change column checker checker_id int not null default 0;
 
 alter table article add column copyright int not null default 1;
 
-alter table article add column status int not null default 0;
+alter table article add column status int not null default 1 COMMENT '0=draft, 1=publish, 2=checking, 3=reject';
 
 
 

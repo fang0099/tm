@@ -156,10 +156,27 @@ class UserController extends Controller
     public function recommend(Request $request){
         $uid = $request->input('id');
         $page = $request->input('page', 1);
-        return $this->userRep->recommend($uid, $page);
+        $pageSize = $request->input('pageSize', 10);
+        return $this->userRep->recommend($uid, $page, $pageSize);
     }
 
     public function draft(){
+        return ['success'=>true, 'data' => []];
+    }
+    public function checking(Request $request){
+        /*
+        $id = $request->input('id');
+        return $this->articleRep->page2(1, 15,
+            [
+                "params[status]" => " eq 1 ",
+                "params[has_checked]" => " eq 0 "
+            ],
+            "publish_time desc");
+        */
+        return ['success'=>true, 'data' => []];
+    }
+
+    public function reject(){
         return ['success'=>true, 'data' => []];
     }
 }

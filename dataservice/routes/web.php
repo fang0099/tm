@@ -61,6 +61,8 @@ Route::get('user/articleslasted', 'UserController@lastedArticles');
 Route::get('user/articleshotest', 'UserController@hotestArticles');
 Route::get('user/articlesrecommend', 'UserController@recommend');
 Route::get('user/articlesdraft', 'UserController@draft');
+Route::get('user/articleschecking', 'UserController@checking');
+Route::get('user/articlesreject', 'UserController@reject');
 
 Route::get('user/activities', 'UserController@activities');
 
