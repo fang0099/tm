@@ -3,6 +3,8 @@
 <head>
 	<title>User Center</title>
 	<meta charset="utf-8">
+
+	<base href="/tm/web/public/">
 	<!--
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	-->
@@ -76,37 +78,37 @@
 		        <div class="columns fl">
 		            <ul class="column-list nav-list fl">
 		                <li>
-		                	<a class="second-link index-first" href="index.php/uc#index" title="主页">主页<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	<a class="second-link index-first" href="/uc#index" title="主页">主页<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
 		                	</a>
 		                </li>
 		                <li>
-		                	<a class="second-link " href="index.php/uc#activity" title="动态">动态<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	<a class="second-link " href="/uc#activity" title="动态">动态<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
 		                	</a>
 		                </li>
 		                <li>
-		                	<a class="second-link " href="index.php/uc#article" title="文章">文章<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
-		                	</a>
-		                </li>
-		                
-		                <li>
-		                	<a class="second-link " href="index.php/uc#collect" title="收藏">收藏<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
-		                	</a>
-		                </li>
-		                <li>
-		                	<a class="second-link " href="index.php/uc#subscribe" title="订阅">订阅<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
-		                	</a>
-		                </li>
-		                <li>
-		                	<a class="second-link " href="index.php/uc#follow" title="关注">关注<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
-		                	</a>
-		                </li>
-		                <li>
-		                	<a class="second-link " href="index.php/uc#notice" title="通知">通知<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	<a class="second-link " href="/uc#article" title="文章">文章<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
 		                	</a>
 		                </li>
 		                
 		                <li>
-		                	<a class="second-link " href="index.php/uc#setting" title="设置">设置<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	<a class="second-link " href="/uc#collect" title="收藏">收藏<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	</a>
+		                </li>
+		                <li>
+		                	<a class="second-link " href="/uc#subscribe" title="订阅">订阅<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	</a>
+		                </li>
+		                <li>
+		                	<a class="second-link " href="/uc#follow" title="关注">关注<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	</a>
+		                </li>
+		                <li>
+		                	<a class="second-link " href="/uc#notice" title="通知">通知<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
+		                	</a>
+		                </li>
+		                
+		                <li>
+		                	<a class="second-link " href="/uc#setting" title="设置">设置<span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span>
 		                	</a>
 		                </li>
 		                
