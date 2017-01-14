@@ -4,7 +4,6 @@
 	<title>User Center</title>
 	<meta charset="utf-8">
 
-	<base href="/tm/web/public/">
 	<!--
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	-->
