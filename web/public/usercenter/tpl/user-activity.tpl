@@ -24,10 +24,10 @@
 					            <div class="inner">
 					                <h2 class="head-line show-left">{{title}}</h2>
 					                <h3 class="title show-left">
-										<a href="/article?id={{ref.id}}" target="_blank">{{ref.title }}
+										<a href="{{reflink}}" target="_blank">{{reft }}
 										</a>
 									</h3>
-					                <p class="intro show-left">{{ref.abstracts}}</p>
+					                <p class="intro show-left">{{refat}}</p>
 					            </div>
 					        </div>
 					    </li>
