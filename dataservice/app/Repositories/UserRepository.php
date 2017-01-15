@@ -307,7 +307,7 @@ class UserRepository extends BaseRepository
                 . " on tr.tag_id = sr.tag_id"
                 . " where a.del_flag = 0 and a.has_checked = 1 and sr.subscriber_id = ?"
                 . " union "
-                . " select * from ( select * from article where del_flag = 0 and a.has_checked = 1 order by publish_time desc limit 100) as tt"
+                . " select * from ( select * from article where del_flag = 0 and has_checked = 1 order by publish_time desc limit 100) as tt"
                 . ") as t  order by hot_num desc, publish_time desc limit $offset, $pageSize";
             $res = DB::select($sql, [$id, $id]);
             $res2 = [];
