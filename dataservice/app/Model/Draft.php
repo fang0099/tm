@@ -9,9 +9,8 @@
 namespace App\Model;
 
 
-use Illuminate\Database\Eloquent\Model;
 
-class Draft extends Model
+class Draft extends BaseModel
 {
     protected $table = 'draft';
 }
