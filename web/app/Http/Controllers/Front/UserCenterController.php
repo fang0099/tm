@@ -102,8 +102,9 @@ class UserCenterController extends Controller
     }
 
     public function info(){
-        $user = $this->userInvoker->get(['id'=>25]);
-        session($user['data']);
+        $uid = session('id');
+        $user = $this->userInvoker->get(['id'=>$uid]);
+        //session($user['data']);
         $info = [
             'id' => session('id'),
             'username' => session('username'),
