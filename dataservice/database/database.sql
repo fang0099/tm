@@ -86,6 +86,7 @@ create table draft(
     content longtext default null,
     publish_time datetime not null default CURRENT_TIMESTAMP,
     author_id int not null default 0,
+    tags varchar(128) not null default '',
     del_flag tinyint not null default 0 comment '1=delete, 0=not'
 )engine=innodb charset=utf8 AUTO_INCREMENT=1;
 

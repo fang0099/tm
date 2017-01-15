@@ -83,6 +83,20 @@ class ArticleController
         return $this->articleRep->check($id, $operator, $result, $message);
     }
 
+    public function bcheck(Request $request){
+        $ids = $request->input('ids');
+        $operator = $request->input('operator');
+        return $this->articleRep->bcheck($ids, $operator);
+    }
+
+    public function apage(Request $request){
+        $page = $request->input('page',1);
+        $pageSize = $request->input('pageSize', 150);
+        $filter = $request->input('filter', array());
+        $order = 'publish_time desc';
+        return $this->articleRep->page2($page, $pageSize, $filter, $order);
+    }
+
     public function delete(Request $request){
         $ids = $request->input('ids');
         return $this->articleRep->delete($ids);

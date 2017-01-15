@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ArticleRepository;
 use App\Repositories\DraftRepository;
+use App\Repositories\NoticeRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -19,12 +20,15 @@ class UserController extends Controller
     private $userRep;
     private $articleRep;
     private $draftRep;
+    private $noticeRep;
 
-    public function __construct(UserRepository $userRep, ArticleRepository $articleRep, DraftRepository $draftRep)
+    public function __construct(UserRepository $userRep, ArticleRepository $articleRep,
+                                DraftRepository $draftRep, NoticeRepository $noticeRep)
     {
         $this->userRep = $userRep;
         $this->articleRep = $articleRep;
         $this->draftRep = $draftRep;
+        $this->noticeRep = $noticeRep;
     }
 
     public function get(Request $request){
@@ -210,5 +214,11 @@ class UserController extends Controller
         $id = $request->input('id');
         $uid = $request->input('userid');
         return $this->articleRep->deleteByUid($id, $uid);
+    }
+
+    public function deleteNotice(Request $request){
+        $id = $request->input('id');
+        $uid = $request->input('userid');
+        return $this->noticeRep->deleteByUid($id, $uid);
     }
 }

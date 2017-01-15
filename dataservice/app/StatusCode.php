@@ -24,7 +24,8 @@ class StatusCode
         'news_flash' => '10',
         'comments' => '11',
         'check_log' => '12',
-        'activities' => '13'
+        'activities' => '13',
+        'draft' => '14'
     ];
 
     const OPERATE_SUCCESS = '00';
