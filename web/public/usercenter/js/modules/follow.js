@@ -5,7 +5,12 @@ define(function(require, exports, modules){
     var global = require('global');
     var tplUrl = "usercenter/tpl/user-followers.tpl";
     var dataUrl = "/uc/follows";
-    var unfollowUrl = "/uc/unfollow"
+    var unfollowUrl = "/uc/unfollow";
+
+    var emptyHtml = $.ajax({
+        url : "usercenter/tpl/user-empty-followers.tpl",
+        async : false
+    }).responseText;
 
     var bindUnfollowEvent = function () {
         $('.unfollow').click(function(){
@@ -30,6 +35,6 @@ define(function(require, exports, modules){
     exports.active = function(){
         render.renderMain(tplUrl, dataUrl, function(data){ return data}, function(){
             bindUnfollowEvent();
-        });
+        }, emptyHtml);
     };
 });

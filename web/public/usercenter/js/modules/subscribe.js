@@ -7,6 +7,11 @@ define(function(require, exports, modules){
     var dataUrl = "/uc/subscribe";
     var unfollowUrl = "/uc/unsubscribe"
 
+    var emptyHtml = $.ajax({
+        url : "usercenter/tpl/user-subscribe-empty-tag.tpl",
+        async : false
+    }).responseText;
+
     var bindUnSubscribeEvent = function () {
         $('.unsubscribe').click(function(){
             var id = $(this).attr('data');
@@ -31,6 +36,6 @@ define(function(require, exports, modules){
     exports.active = function(){
         render.renderMain(tplUrl, dataUrl, function(data){ return data}, function(){
             bindUnSubscribeEvent();
-        });
+        }, emptyHtml);
     };
 });
