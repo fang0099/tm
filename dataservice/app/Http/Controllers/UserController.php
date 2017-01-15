@@ -204,6 +204,10 @@ class UserController extends Controller
         return $this->draftRep->insert($request);
     }
 
+    public function getDraft(Request $request){
+        return $this->draftRep->findById($request->input('id'));
+    }
+
     public function deleteDraft(Request $request){
         $id = $request->input('id');
         $uid = $request->input('userid');
