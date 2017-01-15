@@ -12,6 +12,8 @@ define(function(require, exports, modules){
 		"#setting"		: require('modules/setting')
 	};
 
+	var base = "";
+
 	var route = function(){
         var hash = location.hash;
         var module = API_MAP[hash];
@@ -22,7 +24,7 @@ define(function(require, exports, modules){
         }
         $('.second-link').each(function(k, v){
         	var $v = $(v);
-        	if($v.attr('href') == 'index.php/uc' + hash){
+        	if($v.attr('href') == base + '/uc' + hash){
         		$v.addClass('current');
 			}else{
                 $v.removeClass('current');
