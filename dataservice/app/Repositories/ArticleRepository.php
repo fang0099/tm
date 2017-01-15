@@ -43,7 +43,7 @@ class ArticleRepository extends BaseRepository
 
     public function read($id, $uid){
         $t = $this->get($id);
-        if($t == null || $t->del_flag == 1){
+        if($t == null || $t->del_flag == 1 || $t->has_checked != 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }
         $t->click_count = $t->click_count + 1;
@@ -84,12 +84,12 @@ class ArticleRepository extends BaseRepository
     }
 
     public function next($id){
-        $article = $this->model->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        $article = $this->model->where('has_checked', '=', '1')->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
         return $this->success('', $article);
     }
 
     public function prev($id){
-        $article = $this->model->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        $article = $this->model->where('has_checked', '=', '1')->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
         return $this->success('', $article);
     }
 
@@ -136,7 +136,9 @@ class ArticleRepository extends BaseRepository
             $word_count = utf8_strlen($content);
             $params['word_count'] = $word_count;
         }
-        //$params['has_checked'] = 0;
+        if(isset($params['has_checked'])){
+            $params['has_checked'] = 0;
+        }
         //$params['checker'] = 0;
         $operator = isset($params['operator']) ? $params['operator'] : 0;
         // checke operator has permission?
@@ -186,12 +188,15 @@ class ArticleRepository extends BaseRepository
         if($article == null || $article->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article is not exist', $id);
         }else {
+            /*
             if($article->has_checked == 1){
                 return $this->success();
             }
+            */
             // if operator has permission?
             $article->checker_id = $operator;
-            $article->has_checked = 1;
+            // result = 0=checking, 1=checked, -1=reject
+            $article->has_checked = $result;
             $article->save();
             // save check log
             $checkLog = array(
@@ -206,6 +211,14 @@ class ArticleRepository extends BaseRepository
             event(new CheckArticleEvent($article, $checkLog));
             return $this->success();
         }
+    }
+
+    public function bcheck($ids, $operator){
+        $idsArr = explode(',', $ids);
+        foreach ($idsArr as $id){
+            $this->check($id, $operator, 1, '审核通过');
+        }
+        return $this->success();
     }
 
     public function delete($ids){
@@ -302,9 +315,13 @@ class ArticleRepository extends BaseRepository
         }else {
             $idsArr = explode(',', $tagIds);
             foreach ($idsArr as $t){
-                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+                if(ctype_digit($t)){
+                    DB::insert('replace into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+                }
+
             }
         }
+        return $this->success();
     }
 
     public function delTags($articleId, $tagIds){
@@ -314,15 +331,19 @@ class ArticleRepository extends BaseRepository
         }else {
             $idsArr = explode(',', $tagIds);
             foreach ($idsArr as $t){
-                DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+                if(ctype_digit($t)){
+                    DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+                }
+
             }
         }
+        return $this->success();
     }
 
 
     public function hotest($tagId, $page, $pageSize = 15){
         $offset = ($page - 1) * $pageSize;
-        $articles = $this->model->where('del_flag', '=', '0')->orderBy('hot_num', 'desc')->orderBy('click_count', 'desc')
+        $articles = $this->model->where('has_checked', '=', '1')->where('del_flag', '=', '0')->orderBy('hot_num', 'desc')->orderBy('click_count', 'desc')
                     ->offset($offset)->limit($pageSize)->get();
         return $this->success('', $articles);
     }
@@ -338,6 +359,26 @@ class ArticleRepository extends BaseRepository
             }
         }
         return $this->hotest(null, $page, $pageSize);
+    }
+
+    public function saveDraft(Request $request){
+        $params = $this->getParams($request);
+        return $this->insertOrUpdate($params);
+    }
+
+    public function deleteByUid($id, $uid){
+        $article = $this->get($id);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', [$id, $uid]);
+        }else {
+            if($article->author_id == $uid){
+                $article->del_flag = 1;
+                $article->save();
+                return $this->success();
+            }else {
+                return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', [$id, $uid]);
+            }
+        }
     }
 
 }

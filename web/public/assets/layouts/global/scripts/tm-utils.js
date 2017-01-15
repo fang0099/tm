@@ -24,7 +24,9 @@
 
 	__.utils.fixMainIframeSize = fixMainIframeSize;
 
-
+	__.utils.reminder = function(message){
+        alert(message);
+    };
 	__.utils.callback = __.utils.callback || {};
 	__.utils.callback.reminder = function(){
 		alert('操作成功');

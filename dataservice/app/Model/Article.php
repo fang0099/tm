@@ -21,6 +21,10 @@ class Article extends BaseModel
         return $this->belongsToMany('App\Model\User', 'user_collect_article', 'article_id', 'user_id');
     }
 
+    public function _collectCount(){
+        return $this->collectUsers()->count();
+    }
+
     public function _author(){
         return $this->belongsTo('App\Model\User', 'author_id')->where('del_flag', '=', 0)->first();
     }
@@ -46,5 +50,10 @@ class Article extends BaseModel
 
     public function comments(){
         return $this->hasMany('App\Model\Comments', 'article_id')->where('type', '=', '0')->where('del_flag', '=', '0');
+    }
+
+    public function _readTime(){
+        $time = intval($this->word_count / 10 / 60);
+        return $time > 0 ? $time : 1;
     }
 }

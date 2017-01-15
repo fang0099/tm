@@ -28,8 +28,8 @@ __.service.tab = __.service.tab || {};
 	var settingTemplate = $('#user-form-tpl').html();
 
 	var loading = $('#list-loading').html();
-	var base = "http://localhost/tm/web/public/index.php";
-    //var base = "";
+	//var base = "http://localhost/tm/web/public/index.php";
+    var base = "";
 
     var loadData = function(url, page){
     	if(page != undefined)

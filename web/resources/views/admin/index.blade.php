@@ -8,7 +8,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | Dashboard</title>
+        <title>后台管理</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -231,7 +231,7 @@
                     <ul class="nav nav-tabs">
                         <li>
                             <a href="javascript:;" class="page-quick-sidebar-back-to-list">
-                                <i class="icon-arrow-left"></i>Back
+                                <i class="icon-arrow-left"></i>返回
                             </a>
                         </li>
                     </ul>
@@ -245,7 +245,7 @@
             </div>   
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+            <div class="page-footer-inner">
                 
             </div>
             <div class="scroll-to-top">

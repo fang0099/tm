@@ -97,8 +97,33 @@
                                                     <button id="sample_editable_1_new" class="btn sbold red batch-delete" > 删除
                                                         <i class="fa fa-trash"></i>
                                                     </button>
+                                                    @if($model == 'article')
+                                                    <button id="sample_editable_1_new" class="btn sbold red batch-check" > 批量通过
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    @endif
                                                 
                                             </div>
+                                            @if($model == 'article')
+                                                @if(isset($_GET['checked']))
+                                                    <div class="col-md-6">
+                                                        <div class="btn-group pull-right">
+                                                            <button class="btn green  btn-outline show-all">
+                                                                显示全部
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <div class="btn-group pull-right">
+                                                            <button class="btn green  btn-outline show-unchecked">
+                                                                只显示未审核
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            @endif
                                             <!--
                                             <div class="col-md-6">
                                                 <div class="btn-group pull-right">
@@ -131,7 +156,12 @@
                                                     <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /> 
                                                 </th>
                                                 @foreach($config['list'] as $l)
-                                                <th> {{ $l['head'] }} </th>
+                                                    @if($loop->index == 0)
+                                                        <th width="30%"> {{ $l['head'] }} </th>
+                                                    @else
+                                                        <th> {{ $l['head'] }} </th>
+                                                    @endif
+
                                                 @endforeach
                                                 <th> 操作 </th>
 
@@ -153,7 +183,7 @@
                                                         @if($l['rel']['type'] == 'one')
                                                             <a href="javascript:;" class="show-page" data="{'model' : '{{ $l['rel']['ref']['model'] }}', 'id': {{ $d[$l['rel']['relation']['from']] }}}">{{ $d[$l['value']][$l['rel']['value']] }}</a>
                                                         @elseif($l['rel']['type'] == 'many')
-                                                            <a href="javascript:;" class="show-list">{{ $l['rel']['value'] }}({{ $d[$l['value']] }})</a>
+                                                            <a href="javascript:;" class="show-list" data="{{$d['id']}}">{{ $l['rel']['value'] }}({{ $d[$l['value']] }})</a>
                                                         @endif
                                                     @endif
                                                 </td>
@@ -165,6 +195,11 @@
                                                     <a href='javascript:;' class='red opt delete' title="delete" data="{{ $d['id'] }}">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
+                                                    @if($model == 'article')
+                                                        <a href='javascript:;' class='red opt check' data="{{ $d['id'] }}">
+                                                            <i class="fa fa-check"></i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -317,6 +352,46 @@
                 $('#sample_1_filter').addClass('pull-right');
                 $('.add').click(function(){
                     __.components.iframe.outOpenRightSlider();
+                });
+
+                $('.batch-check').click(function(){
+                    var ids = '';
+                    $('.checkboxes:checked').each(function (k, v) {
+                        ids += $(v).val() + ",";
+                    });
+                    if(ids == ''){
+                        __.utils.reminder('没有选中任何行');
+                    }else {
+                        // batch-check article/bcheck
+                        $.ajax({
+                            url : 'article/bcheck',
+                            data : {ids : ids},
+                            dataType : 'json',
+                            success : function(data){
+                                if(data.success){
+                                    //__.utils.reminder('操作成功');
+                                    location.reload();
+                                }else {
+                                    __.utils.reminder(data.message);
+                                }
+                            }
+                        });
+                    }
+                });
+                $('.show-unchecked').click(function(){
+                    var page = "list?model=article&checked=1&filter[has_checked eq]=0";
+                    $('body', parent.document).find('iframe[name=main]').attr('src', page);
+                    //location.href = page;
+                });
+                $('.show-all').click(function(){
+                    var page = "list?model=article";
+                    $('body', parent.document).find('iframe[name=main]').attr('src', page);
+                    //location.href = page;
+                });
+                $('.check').click(function(){
+                    var data = $(this).attr('data');
+                    var pageUrl = 'checkarticle?id=' + data;
+                    __.components.iframe.outOpenRightSlider(pageUrl);
                 });
             });
         </script>

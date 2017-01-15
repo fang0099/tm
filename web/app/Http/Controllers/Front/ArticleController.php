@@ -261,9 +261,9 @@ class ArticleController extends Controller
 
             if ($author_id == $userid)
             {
-                return view("front/edit", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
+                return view("front/edit_v2", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
             }
-            return view("front/edit", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"], 'menu_tags'=>$menu_tag_list["data"]]);
+            return view("front/edit_v2", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"], 'menu_tags'=>$menu_tag_list["data"]]);
         }
         //未登录
         else

@@ -10,7 +10,7 @@ namespace App\Traits;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-//use Log;
+use Log;
 trait ApiInvoker
 {
     protected $methodMap = [
@@ -103,7 +103,7 @@ trait ApiInvoker
         $baseUrl = env('BASE_URL');
         $url = $baseUrl . $module . '/' . $func ;
         $client = new Client();
-        //Log::debug('api url is ' . $url . '. params is ' . var_export($params, true));
+        Log::debug('api url is ' . $url . '. params is ' . var_export($params, true));
 
         $requestParam = [];
         foreach ($params as $p){
@@ -126,7 +126,7 @@ trait ApiInvoker
             $r = json_decode($r, true);
             return $r;
         }catch (ClientException $ce){
-            //Log::error($ce);
+            Log::error($ce);
         }
 
     }

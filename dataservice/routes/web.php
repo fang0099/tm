@@ -54,6 +54,12 @@ Route::get('/user/hasfollower', 'UserController@hasFollower');
 Route::get('/user/haslike', 'UserController@hasLike');
 Route::get('/user/hascollect', 'UserController@hasCollect');
 
+Route::post('/user/savedraft', 'UserController@saveDraft');
+Route::get('/user/getdraft', 'UserController@getDraft');
+Route::get('/user/deldraft', 'UserController@deleteDraft');
+Route::get('/user/delarticle', 'UserController@deleteArticle');
+Route::get('/user/deletenotice', 'UserController@deleteNotice');
+
 Route::get('user/articlescollect', 'UserController@collectArticles');
 Route::get('user/articlesfollowers', 'UserController@followerArticles');
 Route::get('user/articlestags', 'UserController@tagArticles');
@@ -61,6 +67,8 @@ Route::get('user/articleslasted', 'UserController@lastedArticles');
 Route::get('user/articleshotest', 'UserController@hotestArticles');
 Route::get('user/articlesrecommend', 'UserController@recommend');
 Route::get('user/articlesdraft', 'UserController@draft');
+Route::get('user/articleschecking', 'UserController@checking');
+Route::get('user/articlesreject', 'UserController@reject');
 
 Route::get('user/activities', 'UserController@activities');
 
@@ -73,9 +81,11 @@ Route::get('/article/prev', 'ArticleController@prev');
 Route::post('/article/create', 'ArticleController@create');
 Route::get('/article/list', 'ArticleController@list');
 Route::get('/article/page', 'ArticleController@page');
+Route::get('/article/apage', 'ArticleController@apage');
 Route::post('/article/update', 'ArticleController@update');
 Route::get('/article/delete', 'ArticleController@delete');
 Route::get('/article/check', 'ArticleController@check');
+Route::get('/article/bcheck', 'ArticleController@bcheck');
 Route::get('/article/collect', 'ArticleController@collect');
 Route::get('/article/uncollect', 'ArticleController@uncollect');
 Route::get('/article/like', 'ArticleController@like');
@@ -88,6 +98,8 @@ Route::get('/article/addtags', 'ArticleController@addTags');
 Route::get('/article/deltags', 'ArticleController@delTags');
 Route::get('/article/hotest', 'ArticleController@hot');
 Route::get('/article/recommend', 'ArticleController@recommend');
+Route::post('/article/savedraft', 'ArticleController@saveDraft');
+Route::get('/article/getdraft', 'ArticleController@getDraft');
 
 
 
@@ -133,6 +145,7 @@ Route::get('/slider/delete', 'SliderController@delete');
 
 Route::post('/notice/create', 'NoticeController@create');
 Route::get('/notice/delete', 'NoticeController@delete');
+
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 

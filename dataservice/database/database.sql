@@ -7,6 +7,8 @@ create table web_info (
     icp varchar(24) not null default '',
     email varchar(128) not null default ''
 )engine=innodb charset=utf8 auto_increment=1;
+alter table web_info add column hot_interval int not null default 7;
+alter table web_info add column recommend_interval int not null default 7;
 
 -- +是否认证
 create table users (
@@ -70,11 +72,23 @@ create table article (
     publish_time datetime not null default CURRENT_TIMESTAMP,
     last_modify_time datetime not null default CURRENT_TIMESTAMP,
     likes int not null default 0,
-    author int not null default 0,
-    has_checked tinyint not null default 0 comment '0, 1',
-    checker int not null default 0,
+    author_id int not null default 0,
+    has_checked tinyint not null default 0 comment '0, 1, -1=reject',
+    checker_id int not null default 0,
     del_flag tinyint not null default 0 comment '1=delete, 0=not'
 )engine=innodb charset=utf8 auto_increment=1;
+
+create table draft(
+    id int primary key auto_increment,
+    title varchar(64) not null default '',
+    face varchar(128) not null default '' comment '封面',
+    abstracts varchar(128) not null default '' comment '摘要',
+    content longtext default null,
+    publish_time datetime not null default CURRENT_TIMESTAMP,
+    author_id int not null default 0,
+    tags varchar(128) not null default '',
+    del_flag tinyint not null default 0 comment '1=delete, 0=not'
+)engine=innodb charset=utf8 AUTO_INCREMENT=1;
 
 create table user_like_article (
     user_id int not null default 0,
@@ -230,6 +244,10 @@ alter table tag add column show_index int not null default 0;
 
 alter table article change column author author_id int not null default 0;
 alter table article change column checker checker_id int not null default 0;
+
+alter table article add column copyright int not null default 1;
+
+alter table article add column status int not null default 1 COMMENT '0=draft, 1=publish, 2=checking, 3=reject';
 
 
 

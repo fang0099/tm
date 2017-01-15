@@ -135,10 +135,13 @@ abstract class BaseRepository
             $M = $this->get($params[$primaryKey]);
             unset($params[$primaryKey]);
             foreach ($params as $k => $v){
+                if($k == 'password'){
+                    $v = md5($v);
+                }
                 $M->$k = $v;
             }
             $M->save();
-            return $this->success();
+            return $this->success('', $M);
         }else {
             return $this->fail(StatusCode::UPDATE_ERROR_NO_PRIMARY_KEY, '没有主键');
         }
@@ -176,8 +179,7 @@ abstract class BaseRepository
                 $condition = $condition['raw'];
             }
             foreach ($condition as $con){
-                $opt = $con['opt'];
-                $builder = $builder->where($con['field'], "$opt", $con['param']);
+                $builder = $builder->where($con['field'], $con['opt'], $con['param']);
             }
         }
         if(strlen($order) != 0){
@@ -188,6 +190,7 @@ abstract class BaseRepository
                 $builder->orderBy($od[0]);
             }
         }
+        $count = $builder->count();
         $offset = ($page - 1) * $pageSize;
         $ls = $builder->offset($offset)->limit($pageSize)->get();
         foreach ($ls as $l){
@@ -195,7 +198,7 @@ abstract class BaseRepository
         }
         return [
             'success' => 'true',
-            'count' => $this->model->count(),
+            'count' => $count,
             'current_page' => $page,
             'page_size' => $pageSize,
             'filter' => $filter,

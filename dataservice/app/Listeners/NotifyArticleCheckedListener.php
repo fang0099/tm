@@ -33,7 +33,7 @@ class NotifyArticleCheckedListener extends BaseListener
         $author = $article->author()->first();
         $checkLog = $event->checkLog;
         // step 1 notify author
-        if($checkLog['check_result'] == 0){
+        if($checkLog['check_result'] == -1){
             $message = '您好' . $author->username . ', 您的文章 "'. $article->title . '" ' . '审核不通过('. $checkLog['message'] . ')';
         }else {
             $message = '您好' . $author->username .  ', 您的文章 "'. $article->title . '" 审核通过';
