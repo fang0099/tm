@@ -38,8 +38,9 @@ class ArticleController extends Controller
     public function comment_article(Request $request)
     {
         if (session("username")!=null) {
-            $id = $request->get("id");
-            $comment = $request->get("comment-content");
+            $id = $request->get("article_id");
+            $comment = $request->get("comment_content");
+            print_r($comment);
             $r = $this->articleInvoker->comment(
                 [
                     'params[article_id]' => $id,
@@ -91,8 +92,6 @@ class ArticleController extends Controller
         }
         else{
 
-
-            //return redirect("login");
         }
     }
 
@@ -182,13 +181,36 @@ class ArticleController extends Controller
         }
         $comments = $this->articleInvoker->lscomment(['pageSize' => 100, 'page' => $page, 'id' => $article_id]);
 
+        $current_user_id = null;
+
+        if ( null != session("id"))
+        {
+            $current_user_id = session("id");
+        }
+
+        for($i = 0; $i < count($comments["data"]);$i++)
+        {
+            if($current_user_id == null or $current_user_id != $comments["data"][$i]["user_id"])
+            {
+                $comments["data"][$i]["created_by_current_user"] = false;
+                //$comments["data"][$i]["created_by_current_user_debug"] = $comments["data"][$i]["id"];
+                //$comments["data"][$i]["created_by_current_user_debug2"] = $current_user_id;
+            }
+            else
+            {
+                $comments["data"][$i]["created_by_current_user"] = true;
+            }
+        }
         /*foreach ($comments["data"] as $comment) {
+            $
+
             $comment["upvote_count"] = $comment["up"];
             $comment["profile_picture_url"] = $comment["avatar"];
             //$comments["data"]["profile_picture_url"] = $comments["data"]["avatar"];
             $comment["created"] = $comment["publish_time"];
-        }*/
-
+        }
+        print_r($comments);
+        return;*/
         return json_encode($comments);
     }
 

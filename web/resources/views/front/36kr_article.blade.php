@@ -21,6 +21,8 @@
 
     <!--<base href="/tm/web/public/">-->
     <!--<link rel="stylesheet" type="text/css" href="uc/css/app.usercenter.css" />-->
+    <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
@@ -33,6 +35,8 @@
     <link href="./final2/css/36kr_app.css" rel="stylesheet" />
     <script src="./final2/js/jquery.min.js"></script>
     <script src="./final2/js/jquery.qrcode.min.js"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/jquery-comments/css/jquery-comments.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -75,7 +79,144 @@
         });
     </script>
     <script type="text/javascript">
+        function new_comment(data)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/article/comment",
+                    data: {
+                        comment_content: data["content"],
+                        article_id:{{$article["id"]}},
+                    },
+                    type: "POST",
+
+                    success:function(result){
+                        console.log(result);
+                        //var json_data = JSON.parse(result);
+                        //commentsArray2 = json_data["data"];
+                        //console.log(json_data);
+                    }
+                });
+        }
+
+        function edit_comment(data)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/article/comment",
+                    data: {
+                        comment_content: data["content"],
+                        article_id:{{$article["id"]}},
+                    },
+                    type: "POST",
+
+                    success:function(result){
+                        console.log(result);
+                        //var json_data = JSON.parse(result);
+                        //commentsArray2 = json_data["data"];
+                        //console.log(json_data);
+                    }
+                });
+        }
+
+        function delete_comment(data)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/article/comment_delete",
+                    data: {
+                        comment_id: data["id"],
+                        article_id:{{$article["id"]}},
+                    },
+                    type: "GET",
+
+                    success:function(result){
+                        console.log(result);
+                        //var json_data = JSON.parse(result);
+                        //commentsArray2 = json_data["data"];
+                        //console.log(json_data);
+                    }
+                });
+        }
+
         $(function() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            $('#like_btn').click(function(){
+                var article_id=$('#like_btn').attr("article_id");
+
+                old = parseInt($("#like_btn").attr('count'))+1;
+
+                $("#like_btn_count").html(old);
+                console.log(article_id);
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/article/like?id="+article_id,
+                    data: {username:$("#username").val(), content:$("#content").val()},
+                    dataType: "json",
+                    success: function(data){
+                        //alert("1");
+                        console.log(eval(data));
+                        /*
+                         $('#resText').empty();   //清空resText里面的所有内容
+                         var html = '';
+                         $.each(data, function(commentIndex, comment){
+                         html += '<div class="comment"><h6>' + comment['username']
+                         + ':</h6><p class="para"' + comment['content']
+                         + '</p></div>';
+                         });
+                         $('#resText').html(html);*/
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
+            });
+
+            $('#collect_btn').click(function(){
+                old = parseInt($("#collect_btn").attr('count'))+1;
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/article/collect?id="+$('#collect_btn').attr("article_id"),
+                    data: {username:$("#username").val(), content:$("#content").val()},
+                    dataType: "json",
+                    success: function(data){
+                        //alert("1");
+                        $("#collect_btn_count").html(old);
+                        toastr.success("收藏成功");
+                        console.log(eval(data));
+                        /*
+                         $('#resText').empty();   //清空resText里面的所有内容
+                         var html = '';
+                         $.each(data, function(commentIndex, comment){
+                         html += '<div class="comment"><h6>' + comment['username']
+                         + ':</h6><p class="para"' + comment['content']
+                         + '</p></div>';
+                         });
+                         $('#resText').html(html);*/
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
+            });
+
+
             var saveComment = function(data) {
 
                 // Convert pings to human readable format
@@ -115,6 +256,9 @@
                     }, 500);
                 },
                 postComment: function(data, success, error) {
+                    console.log(data);
+                    new_comment(data);
+
                     setTimeout(function() {
                         success(saveComment(data));
                     }, 500);
@@ -126,13 +270,7 @@
                 },
                 deleteComment: function(data, success, error) {
                     console.log(data);
-                    $.ajax({url:"<?php echo env('APP_URL');?>/article/comment_delete?article_id={{$article["id"]}}&comment_id="+data["id"],
-                        success:function(result){
-                            console.log(result);
-                            var json_data = JSON.parse(result);
-                            commentsArray2 = json_data["data"];
-                            console.log(json_data);
-                        }});
+                    delete_comment(data);
                     setTimeout(function(data) {
                         console.log(data);
                         success();
@@ -229,11 +367,11 @@
                                                 <div class="am-cf author-panel">
                                                     <div class="author am-fl">
                                                         <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="am-fl">
-                                                            <span class="name" data-stat-click="wenzhang.zuozhexingming">{{$article["author"]["username"]}}</span></a>
-                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">{{$article["publish_time"]}}</abbr></span>
+                                                            <span class="name" data-stat-click="wenzhang.zuozhexingming">{{$article["author"]["username"]}} </span></a>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">{{$article["publish_time"]}} </abbr></span>
                                                         <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">字数: {{$article["word_count"]}} </abbr></span>
-                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">阅读时长: {{$article["readTime"]}} 分钟</abbr></span>
-                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度: {{$article["hot_num"]}}</abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">阅读时长: {{$article["readTime"]}} 分钟 </abbr></span>
+                                                        <span class="time am-fl"><span class="dot">&nbsp;•&nbsp;</span><abbr class="time">热度: {{$article["hot_num"]}} </abbr></span>
                                                     </div>
                                                 </div>
                                                 <section class="summary">
@@ -274,19 +412,19 @@
                                                 </section>
                                                 <div class="fav-wrapper">
                                                     <div class="jianshu_btn like-group">
-                                                        <div class="btn-like">
-                                                            <a><i class="icon-ic_like"></i> 喜欢</a>
+                                                        <div class="btn-like" >
+                                                            <a  id="like_btn" article_id="{{$article["id"]}}" count="{{$article["likes"]}}"><i class="icon-ic_like"></i> 喜欢</a>
                                                         </div>
                                                         <div class="modal-wrap">
-                                                            <a>{{$article["likes"]}}</a>
+                                                            <a id="like_btn_count">{{$article["likes"]}}</a>
                                                         </div>
                                                     </div>
                                                     <div class="jianshu_btn like-group">
-                                                        <div class="btn-like">
-                                                            <a><i class="icon-ic_like"></i> 收藏</a>
+                                                        <div class="btn-like" >
+                                                            <a id="collect_btn" article_id="{{$article["id"]}}" count="{{$article["collectCount"]}}"><i class="icon-ic_column_like"></i> 收藏</a>
                                                         </div>
                                                         <div class="modal-wrap">
-                                                            <a>{{$article["collectCount"]}}</a>
+                                                            <a id="collect_btn_count">{{$article["collectCount"]}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
