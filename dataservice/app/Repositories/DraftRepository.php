@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Model\Draft;
+use Illuminate\Http\Request;
 
 class DraftRepository extends BaseRepository
 {

@@ -36,5 +36,19 @@ class NoticeRepository extends BaseRepository
         return $this->batchDeleteInternal($idsArr);
     }
 
+    public function deleteByUid($id, $uid){
+        $notice = $this->get($id);
+        if(!$notice || $notice->del_flag != 1){
+            if($notice->to_user == $uid){
+                $notice->del_flag = 1;
+                $notice->save();
+                return $this->success();
+            }else {
+                return $this->fail('', 'not find', [$id, $uid]);
+            }
+        }
+        return $this->success();
+    }
+
 
 }

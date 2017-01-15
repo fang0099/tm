@@ -135,6 +135,9 @@ abstract class BaseRepository
             $M = $this->get($params[$primaryKey]);
             unset($params[$primaryKey]);
             foreach ($params as $k => $v){
+                if($k == 'password'){
+                    $v = md5($v);
+                }
                 $M->$k = $v;
             }
             $M->save();

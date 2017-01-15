@@ -213,6 +213,14 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+    public function bcheck($ids, $operator){
+        $idsArr = explode(',', $ids);
+        foreach ($idsArr as $id){
+            $this->check($id, $operator, 1, '审核通过');
+        }
+        return $this->success();
+    }
+
     public function delete($ids){
         $idsArr = explode(',', $ids);
         return $this->batchDeleteInternal($idsArr);
@@ -307,9 +315,13 @@ class ArticleRepository extends BaseRepository
         }else {
             $idsArr = explode(',', $tagIds);
             foreach ($idsArr as $t){
-                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+                if(ctype_digit($t)){
+                    DB::insert('replace into tag_article_rel (article_id, tag_id) values (?, ?)', [$articleId, $t]);
+                }
+
             }
         }
+        return $this->success();
     }
 
     public function delTags($articleId, $tagIds){
@@ -319,9 +331,13 @@ class ArticleRepository extends BaseRepository
         }else {
             $idsArr = explode(',', $tagIds);
             foreach ($idsArr as $t){
-                DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+                if(ctype_digit($t)){
+                    DB::insert('delete from tag_article_rel where article_id = ? and tag_id = ?', [$articleId, $t]);
+                }
+
             }
         }
+        return $this->success();
     }
 
 
