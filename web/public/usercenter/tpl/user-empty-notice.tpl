@@ -4,7 +4,7 @@
 	        <h1>通知</h1>
 	        <div class="error_msg"></div>
 	        <div class="mod-article-list">
-				<p class="load-more hide follow">
+				<p class="load-more follow">
 					<button class="btn btn-normal gray btn-bordered">暂无通知</button>
 				</p>
 	        </div>
