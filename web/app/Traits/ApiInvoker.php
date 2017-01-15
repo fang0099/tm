@@ -62,6 +62,10 @@ trait ApiInvoker
             'articlescollect'=>'GET',
             'articlesfollowers'=>'GET',
             'articlesrecommend'=>'GET',
+
+            'getdraft'=>'GET',
+            'savedraft'=>'POST',
+            'deldraft'=>'GET',
         ],
         'tag' => [
             'get' => 'GET',
