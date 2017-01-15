@@ -89,4 +89,8 @@ class User extends BaseModel
         return $this->hasMany('App\Model\Draft', 'author_id')->where('del_flag', '=', '0');
     }
 
+    public function _draftCount(){
+        return $this->drafts()->count();
+    }
+
 }
