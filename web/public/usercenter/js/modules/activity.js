@@ -20,7 +20,7 @@ define(function(require, exports, modules){
 							d.reft = d.ref.name;
 							d.reflink = "/article/list?type=tag&id=" + d.ref.id;
 							d.refat = "";
-                        }else if(d.type === 2){
+                        }else if(d.type == 0){
                             // article
 							d.reft = d.ref.title;
 							d.reflink = "/article?id=" + d.ref.id;
