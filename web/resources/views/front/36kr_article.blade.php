@@ -378,8 +378,8 @@
                                                 <section class="ad" id="AD5061570" data-id="16"></section>
                                                 <section class="single-post-tags">
                                                     @foreach($article["tags"] as $tag)
-                                                        <span class="tag current">
-                                                            <a target="_blank" href="http://www.tmtpost.com/tag/299520" class="tag-a">{{$tag["name"]}}</a>
+                                                        <span class="tag">
+                                                            <a target="_blank" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
                                                             <span class="gap-line">|</span><span class="act follow">+</span>
                                                             <span class="act unfollow">-</span>
                                                         </span>
