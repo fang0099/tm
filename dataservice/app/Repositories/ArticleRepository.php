@@ -84,12 +84,12 @@ class ArticleRepository extends BaseRepository
     }
 
     public function next($id){
-        $article = $this->model->where('has_check', '=', '1')->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        $article = $this->model->where('has_checked', '=', '1')->where('id', '>', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
         return $this->success('', $article);
     }
 
     public function prev($id){
-        $article = $this->model->where('has_check', '=', '1')->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
+        $article = $this->model->where('has_checked', '=', '1')->where('id', '<', $id)->orderBy('id', 'desc')->where('del_flag', '=', '0')->first();
         return $this->success('', $article);
     }
 
