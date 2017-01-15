@@ -4,8 +4,8 @@ define(function(require, exports, modules){
     var render = require('render');
     var tplUrl = "usercenter/tpl/user-article.tpl";
     var dataUrl = "/uc/info";
-    var draftDelUrl = "/uc/deleteDraft";
-    var articleDelUrl = "uc/delarticle";
+    var draftDelUrl = "/uc/deletedraft";
+    var articleDelUrl = "uc/deletearticle";
 
     var bindArticleEvent = function () {
 		var $articleLink = $('.user-articles');
@@ -63,7 +63,7 @@ define(function(require, exports, modules){
                         }
                         $.getJSON(url, function(data){
                             if(data.success){
-
+                                $('.post-nav').find('a.current').click();
                             }else {
                                 global.reminder({message : data['message']});
                             }

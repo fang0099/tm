@@ -10,7 +10,7 @@
                 <span class="time">创建时间：{{publish_time}}</span>
                 <span class="gap-point">•</span>
                 <span class="tools">
-                        <a href="/edit?type={{type}}&id={{id}}" class="name">编辑</a>
+                        <a href="article/edit?status={{type}}&id={{id}}" class="name">编辑</a>
                         <span class="gap-point">•</span>
                         <a href="javascript:;" data='{ "type" : "{{type}}", "id" : "{{id}}" }' class="js-delete">删除</a>
                     </span>

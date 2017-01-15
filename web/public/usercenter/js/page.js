@@ -36,4 +36,5 @@ define(function(require, exports, modules){
         transition: '0.3s',
         scrolllock: true
     });
+
 });

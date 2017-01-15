@@ -104,9 +104,9 @@ Route::group(['namespace' => 'Front'], function (){
     Route::post('/uc/uncollect/{id}', 'UserCenterController@uncollect');
     Route::post('/uc/unfollow/{id}', 'UserCenterController@unfollow');
     Route::post('/uc/unsubscribe/{id}', 'UserCenterController@unsubscribe');
-    Route::post('/uc/deleteNotice/{id}', 'UserCenterController@deleteNotice');
-    Route::post('/uc/deleteDraft/{id}', 'UserCenterController@delDraft');
-    Route::post('/uc/deleteArticle/{id}', 'UserCenterController@delArticle');
+    Route::get('/uc/deletenotice/{id}', 'UserCenterController@deleteNotice');
+    Route::get('/uc/deletedraft/{id}', 'UserCenterController@delDraft');
+    Route::get('/uc/deletearticle/{id}', 'UserCenterController@delArticle');
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
@@ -126,6 +126,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
     Route::get('/admin/index', function(){
         return view('admin.index');
     });
+
+    Route::get('/admin/articletag', 'AdminArticleController@articleTags');
+    Route::get('/admin/articletag/delete', 'AdminArticleController@delTags');
+    Route::get('/admin/articletag/add', 'AdminArticleController@addTags');
+    Route::get('/admin/article/bcheck', 'AdminArticleController@bcheck');
+    Route::get('/admin/checkarticle', 'AdminArticleController@checkarticle');
+    Route::post('/admin/article/check', 'AdminArticleController@check');
 
     Route::get('/select/articles', 'AdminSelectController@articles');
 

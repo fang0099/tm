@@ -21,7 +21,7 @@ __.services.page = __.services.page || {};
             dataType : 'json',
             success : function (data) {
                 if(data.success){
-                    alert('delete success');
+                    __.utils.reminder('操作成功');
                     components.iframe.outRefreshMain();
                 }else {
                     alert('error' + data.message);
@@ -48,7 +48,7 @@ __.services.page = __.services.page || {};
                 ids += $(v).val() + ",";
             });
 			if(ids == ''){
-                alert('nothing selected');
+                __.utils.reminder('没有选中任何行');
             }else {
                 deleteData(deleteUrl, ids);
             }
@@ -61,6 +61,12 @@ __.services.page = __.services.page || {};
 		    //var data = JSON.parse(dataStr);
             var data = eval('(' + dataStr + ')')
 		    var pageUrl = 'page?model=' + data.model + '&id=' + data.id;
+            components.iframe.outOpenRightSlider(pageUrl);
+        });
+
+		$('.show-list').click(function(){
+		    var data = $(this).attr('data');
+		    var pageUrl = 'articletag?id=' + data;
             components.iframe.outOpenRightSlider(pageUrl);
         });
 

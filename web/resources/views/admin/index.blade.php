@@ -231,7 +231,7 @@
                     <ul class="nav nav-tabs">
                         <li>
                             <a href="javascript:;" class="page-quick-sidebar-back-to-list">
-                                <i class="icon-arrow-left"></i>Back
+                                <i class="icon-arrow-left"></i>返回
                             </a>
                         </li>
                     </ul>

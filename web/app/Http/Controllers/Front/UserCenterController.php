@@ -33,7 +33,13 @@ class UserCenterController extends Controller
     }
 
     public function index(){
-        $uid = session('id', 1);
+        $uid = session('id');
+        //test
+        if(!$uid){
+            $user = $this->userInvoker->get(['id' => 25]);
+            session($user['data']);
+        }
+        $uid = session('id');
         $user = $this->userInvoker->get(['id' => $uid]);
 
         return view('front/user_center_v2', $user['data']);
@@ -163,7 +169,8 @@ class UserCenterController extends Controller
         }
     }
     public function deleteNotice($id){
-        $data = $this->noticeInvoker->delete(["id" => $id]);
+        $uid = session('id');
+        $data = $this->userInvoker->deletenotice(["id" => $id, 'userid'=>$uid]);
         if ($data['success']){
             return ['success' => 'true'];
         }else {

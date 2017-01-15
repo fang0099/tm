@@ -129,6 +129,7 @@ class AdminIndexController extends AdminBaseController
 
     public function list(Request $request){
         $model = $request->input('model');
+        $filter = $request->input('filter', array());
         if($model){
             $path = 'models/' . $model . '.json';
             if(Storage::exists($path)){
@@ -137,7 +138,15 @@ class AdminIndexController extends AdminBaseController
                 $invoker = $m['invoker'];
                 try{
                     $invoker = $this->getInvoker($invoker);
-                    $data = $invoker->page();
+                    if($model == 'article'){
+                        $filterarr = [];
+                        foreach ($filter as $k => $v){
+                            $filterarr['filter['.$k.']'] =  $v;
+                        }
+                        $data = $invoker->apage($filterarr);
+                    }else {
+                        $data = $invoker->page();
+                    }
                     if ($data['success']){
                         return view('admin.list', [
                             'config' => $m,

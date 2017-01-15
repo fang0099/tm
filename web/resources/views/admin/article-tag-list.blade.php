@@ -24,6 +24,8 @@
         <link href="../../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="../../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
@@ -37,6 +39,7 @@
         <link href="../../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> 
         <style type="text/css">
@@ -78,13 +81,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 
-                                                    <button id="sample_editable_1_new" class="btn sbold green add" > 添加
+                                                    <button id="sample_editable_1_new" data-target="#tag-modal" class="btn sbold green tag-add" > 添加
                                                         <i class="fa fa-plus"></i>
                                                     </button>
-                                                    <button id="sample_editable_1_new" class="btn sbold red batch-delete" > 删除
+                                                <!--
+                                                    <button id="sample_editable_1_new" class="btn sbold red tag-batch-delete" > 删除
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                
+                                                -->
                                             </div>
                                             <!--
                                             <div class="col-md-6">
@@ -132,10 +136,7 @@
                                                     {{$d['name']}}
                                                 </td>
                                                 <td>
-                                                    <a href='javascript:;' class='green opt update' title="modify" data="{{ $d['id'] }}">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a href='javascript:;' class='red opt delete' title="delete" data="{{ $d['id'] }}">
+                                                    <a href='javascript:;' class='red opt tag-delete' title="delete" data="{{ $d['id'] }}">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -156,9 +157,36 @@
         <!-- END CONTAINER -->
 
         <!-- right slider bar -->
-        
+        <!-- select tag modal -->
+        <div id="modal_demo_1" class="modal fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">为文章添加标签</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-2">选择标签</label>
+                                <div class="col-xs-8">
+                                    <select class="form-control select2-multiple" id="tags" multiple>
+                                            @foreach($tags as $t)
+                                            <option value="{{$t['id']}}">{{$t['name']}}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">取消</button>
+                        <button class="btn green save-tags" data-dismiss="modal">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- BEGIN FOOTER -->
-<input type="hidden" name="model" id="model" value="{{ $model }}"/>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
 <script src="../../assets/global/plugins/respond.min.js"></script>
@@ -175,6 +203,7 @@
         <script src="../../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
         <script src="../../assets/global/plugins/moment.min.js" type="text/javascript"></script>
         <script src="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
         <script src="../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
@@ -183,7 +212,7 @@
         <script src="../../assets/global/scripts/datatable.js" type="text/javascript"></script>
         
         <script src="../../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        
+        <script src="../../chosen-master/chosen.jquery.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="../../assets/global/scripts/app.min.js" type="text/javascript"></script>
@@ -200,6 +229,7 @@
         <script src="../../assets/layouts/global/scripts/components/tm-iframe.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/services/tm-page.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var articleId = "<?php echo $_GET['id']; ?>";
             $(document).ready(function(){
                 (function () {
 
@@ -288,11 +318,165 @@
                     });
                 })();
                 $('#sample_1_filter').addClass('pull-right');
+
                 $('.add').click(function(){
                     __.components.iframe.outOpenRightSlider();
                 });
 
+                $('.tag-delete').click(function(){
+                    var id = $(this).attr('data');
+                    console.log(id);
+                    $.ajax({
+                        url : 'articletag/delete',
+                        data : {articleId : articleId, tags : id},
+                        dataType : 'json',
+                        success : function(data){
+                            if(data.success){
+                                location.reload();
+                            }else {
+                                __.utils.reminder(data.message);
+                            }
+                        }
+                    });
+                });
+                $('.tag-add').click(function(){
+                    $('#modal_demo_1').modal();
+                });
 
+                $('.save-tags').click(function(){
+                    var data = $('#tags').val();
+                    var ids = '';
+                    if(data.length > 0){
+                        for(var i = 0 ; i < data.length ; i++){
+                            ids += ',' + data[i];
+                        }
+                        $.ajax({
+                            url : 'articletag/add',
+                            data : {articleId : articleId, ids : ids},
+                            dataType : 'json',
+                            success : function(data) {
+                                if (data.success) {
+                                    location.reload();
+                                } else {
+                                    __.utils.reminder(data.message);
+                                }
+                            }
+                        });
+                    }
+
+                    console.log(data);
+                });
+
+                (function() {
+
+                    // Set the "bootstrap" theme as the default theme for all Select2
+                    // widgets.
+                    //
+                    // @see https://github.com/select2/select2/issues/2927
+                    $.fn.select2.defaults.set("theme", "bootstrap");
+
+                    var placeholder = "Select a State";
+
+                    $(".select2, .select2-multiple").select2({
+                        placeholder: '选择标签',
+                        width: null
+                    });
+
+                    $(".select2-allow-clear").select2({
+                        allowClear: true,
+                        placeholder: placeholder,
+                        width: null
+                    });
+
+                    // @see https://select2.github.io/examples.html#data-ajax
+                    function formatRepo(repo) {
+                        if (repo.loading) return repo.text;
+
+                        var markup = "<div class='select2-result-repository clearfix'>" +
+                            "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+                            "<div class='select2-result-repository__meta'>" +
+                            "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+
+                        if (repo.description) {
+                            markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+                        }
+
+                        markup += "<div class='select2-result-repository__statistics'>" +
+                            "<div class='select2-result-repository__forks'><span class='glyphicon glyphicon-flash'></span> " + repo.forks_count + " Forks</div>" +
+                            "<div class='select2-result-repository__stargazers'><span class='glyphicon glyphicon-star'></span> " + repo.stargazers_count + " Stars</div>" +
+                            "<div class='select2-result-repository__watchers'><span class='glyphicon glyphicon-eye-open'></span> " + repo.watchers_count + " Watchers</div>" +
+                            "</div>" +
+                            "</div></div>";
+
+                        return markup;
+                    }
+
+                    function formatRepoSelection(repo) {
+                        return repo.full_name || repo.text;
+                    }
+
+                    $(".js-data-example-ajax").select2({
+                        width: "off",
+                        ajax: {
+                            url: "https://api.github.com/search/repositories",
+                            dataType: 'json',
+                            delay: 250,
+                            data: function(params) {
+                                return {
+                                    q: params.term, // search term
+                                    page: params.page
+                                };
+                            },
+                            processResults: function(data, page) {
+                                // parse the results into the format expected by Select2.
+                                // since we are using custom formatting functions we do not need to
+                                // alter the remote JSON data
+                                return {
+                                    results: data.items
+                                };
+                            },
+                            cache: true
+                        },
+                        escapeMarkup: function(markup) {
+                            return markup;
+                        }, // let our custom formatter work
+                        minimumInputLength: 1,
+                        templateResult: formatRepo,
+                        templateSelection: formatRepoSelection
+                    });
+
+                    $("button[data-select2-open]").click(function() {
+                        $("#" + $(this).data("select2-open")).select2("open");
+                    });
+
+                    $(":checkbox").on("click", function() {
+                        $(this).parent().nextAll("select").prop("disabled", !this.checked);
+                    });
+
+                    // copy Bootstrap validation states to Select2 dropdown
+                    //
+                    // add .has-waring, .has-error, .has-succes to the Select2 dropdown
+                    // (was #select2-drop in Select2 v3.x, in Select2 v4 can be selected via
+                    // body > .select2-container) if _any_ of the opened Select2's parents
+                    // has one of these forementioned classes (YUCK! ;-))
+                    $(".select2, .select2-multiple, .select2-allow-clear, .js-data-example-ajax").on("select2:open", function() {
+                        if ($(this).parents("[class*='has-']").length) {
+                            var classNames = $(this).parents("[class*='has-']")[0].className.split(/\s+/);
+
+                            for (var i = 0; i < classNames.length; ++i) {
+                                if (classNames[i].match("has-")) {
+                                    $("body > .select2-container").addClass(classNames[i]);
+                                }
+                            }
+                        }
+                    });
+
+                    $(".js-btn-set-scaling-classes").on("click", function() {
+                        $("#select2-multiple-input-sm, #select2-single-input-sm").next(".select2-container--bootstrap").addClass("input-sm");
+                        $("#select2-multiple-input-lg, #select2-single-input-lg").next(".select2-container--bootstrap").addClass("input-lg");
+                        $(this).removeClass("btn-primary btn-outline").prop("disabled", true);
+                    });
+                })();
             });
         </script>
         <!-- END THEME LAYOUT SCRIPTS -->

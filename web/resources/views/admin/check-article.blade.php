@@ -70,63 +70,30 @@
                             <div class="portlet light portlet-fit portlet-form">
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="do/{{ $action }}" method = "POST" class="form-horizontal" id='form' callback="{{ $config['callback'] or 'closeAndRefreshMain' }}">
+                                    <form action="article/check" method = "POST" class="form-horizontal" id='form' callback="closeAndRefreshMain">
                                         <div class="form-body">
-                                            <input type="hidden" value="{{ $_GET['model'] }}" name="model" />
-                                            @foreach($config['fields'] as $f)
-                                                @if($f['type'] == 'hidden')
-                                                    <input type="hidden" name="{{ $f['name'] }}"
-                                                       @if($action == 'update')
-                                                       value = "{{ $data[$f['value']] }}"
-                                                       @endif
-                                                    />
-                                                @else
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-2" for="{{ $f['name']  }}">{{ $f['label'] }}</label>
-                                                        <div class="col-xs-10">
-                                                            <?php
-                                                                $atts = 'id="' . $f['name'] . '" name="' . $f['name'] . '" ';
-                                                                if(isset($f['attribute'])){
-                                                                    foreach ($f['attribute'] as $k => $v){
-                                                                        $atts .= $k . ' = "' . $v . '" ';
-                                                                    }
-                                                                }
-                                                            ?>
-                                                            @if($f['type'] == 'text')
-                                                            <input type="text" class="form-control" {!! $atts !!}
-                                                                @if($action == 'update')
-                                                                    value = "{{ $data[$f['value']] }}"
-                                                                @endif
-                                                            />
-                                                            @elseif($f['type'] == 'textarea')
-                                                            <textarea class="form-control" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
-                                                            @elseif($f['type'] == 'file')
-                                                            <input class="form-control ajax" type="file" id="{{$f['value']}}" name="{{$f['value']}}" ref="{{ $f['value'] }}" />
-                                                            <input class="form-control" {!! $atts !!} type="hidden" value="@if($action == 'update'){{ $data[$f['value']] }}@endif"/>
-                                                            @elseif($f['type'] == 'preview')
-                                                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                                <img src="@if($action == 'update')../../{{ $data[$f['value']] }}@else http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image @endif" alt="" preview="{{ $f['value'] }}">
-                                                            </div>
-                                                            @elseif($f['type'] == 'select')
-                                                                    @if($f['select']['type'] == 'ajax')
-                                                                    <select class="bs-select form-control" select-type="ajax" url="{{$f['select']['data']}}" {!! $atts !!}>
-
-                                                                    </select>
-                                                                    @else
-                                                                    <select class="bs-select form-control"  {!! $atts !!}>
-                                                                        @foreach($f['select']['data'] as $k => $v)
-                                                                            <option value="{{$v}}">{{$k}}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @endif
-                                                            @elseif($f['type'] == 'wysihtml5')
-                                                                    <textarea class="wysihtml5 form-control" rows="6" {!! $atts !!}>@if($action == 'update'){{ $data[$f['value']] }}@endif</textarea>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-
+                                            <input type="hidden" name="id" value="{{$id}}">
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-2" for="params[title]">文章标题</label>
+                                                <div class="col-xs-10">
+                                                    <input type="text" class="form-control" id="params[title]" name="title" disabled required="required" value="{{$title}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-2" for="params[has_checked]">审核结果</label>
+                                                <div class="col-xs-10">
+                                                    <select class="bs-select form-control" id="params[has_checked]" name="result">
+                                                        <option value="-1">审核不通过</option>
+                                                        <option value="1">审核通过</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-2" for="params[message]">原因</label>
+                                                <div class="col-xs-10">
+                                                    <textarea class="form-control" id="params[message]" name="message"></textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-actions">
                                             <div class="row">
@@ -200,7 +167,9 @@
         <script src="../../assets/layouts/global/scripts/components/tm-iframe.js" type="text/javascript"></script>
         <script src="../../assets/layouts/global/scripts/services/tm-form.js" type="text/javascript"></script>
         <!-- END TM SCRIPTS --> 
+        <script>
 
+        </script>
     </body>
 
 </html>

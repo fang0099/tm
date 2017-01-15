@@ -4,7 +4,7 @@
             <div class="user-set-cont">
                 <h1 class="title">账号设置</h1>
                 <div class="avatar change-avatar_open" data-popup-ordinal="0" id="open_2047384">
-                    <img width="100" height="100" src="{{data.avatar}}" >
+                    <img width="100" height="100" src="{{data.avatar}}" id="user-setting-avatar" >
                     <span class="change-avatar">修改头像</span>
                 </div>
                 <div class="user-form">
@@ -48,7 +48,7 @@
 
                     <div class="form-part">
                         <label>修改密码</label>
-                        <input type="password" value="Superoutman" class="input_profile" disabled="">
+                        <input type="password" value="***" name="params[password]" class="input_profile password" disabled="">
                         <div class="right-button">
                             <button class="btn-bordered gray btn-small btn change-password_open" data-popup-ordinal="0" id="open_39302769">修改</button>
                         </div>
