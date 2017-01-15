@@ -9,7 +9,7 @@
 		            <div class="top-circle">
 					    <div class="circle-b">
 					        <span class="circle-c">
-							              </span>
+							</span>
 					    </div>
 					</div>
 

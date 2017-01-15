@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User Center</title>
+	<title>个人中心</title>
 	<meta charset="utf-8">
-
+<!--
+	<base href="/tm/web/public/">
+	-->
 	<!--
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	-->
@@ -37,13 +39,13 @@
 		                <div id="user-nav" class="dropdown-menu user-dropdown">
 		                    <div class="common-nav user-nav">
 		                        <ul>
-		                            <li><a href="index.php/uc#index" title="我的主页"><i class="icon-head"></i>我的主页</a></li>
-		                            <li><a href="index.php/uc#article" title="我的文章"><i class="icon-paper"></i>我的文章</a></li>
-		                            <li><a href="index.php/uc#collect" title="我的收藏"><i class="icon-ribbon"></i>我的收藏</a></li>
-		                            <li><a href="index.php/uc#subscribe" title="我的订阅"><i class="icon-circle-plus"></i>我的订阅</a></li>
-		                            <li><a href="index.php/uc#notice" class="notifications" title="我的通知"><i class="icon-bell2"></i>我的通知</a></li>
-		                            <li><a href="index.php/uc#setting" title="账号设置"><i class="icon-cog"></i>账号设置</a></li>
-		                            <li class="last"><a href="/account/logout" title="退出"><i class="icon-power"></i>退出</a></li>
+		                            <li><a href="/uc#index" title="我的主页"><i class="icon-head"></i>我的主页</a></li>
+		                            <li><a href="/uc#article" title="我的文章"><i class="icon-paper"></i>我的文章</a></li>
+		                            <li><a href="/uc#collect" title="我的收藏"><i class="icon-ribbon"></i>我的收藏</a></li>
+		                            <li><a href="/uc#subscribe" title="我的订阅"><i class="icon-circle-plus"></i>我的订阅</a></li>
+		                            <li><a href="/uc#notice" class="notifications" title="我的通知"><i class="icon-bell2"></i>我的通知</a></li>
+		                            <li><a href="/uc#setting" title="账号设置"><i class="icon-cog"></i>账号设置</a></li>
+		                            <li class="last"><a href="/logout" title="退出"><i class="icon-power"></i>退出</a></li>
 		                        </ul>
 		                    </div>
 		                </div>

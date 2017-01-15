@@ -55,7 +55,7 @@ class ArticleController
     public function page(Request $request){
         $page = $request->input('page',1);
         $pageSize = $request->input('pageSize', 15);
-        $filter = $request->input('filter', array());
+        $filter = $request->input('filter', array("has_checked eq" => 1));
         $order = 'publish_time desc';
         return $this->articleRep->page2($page, $pageSize, $filter, $order);
     }
@@ -78,7 +78,7 @@ class ArticleController
     public function check(Request $request){
         $id = $request->input('id');
         $operator = $request->input('operator');
-        $result = $request->input('result', '0');
+        $result = $request->input('result', '-1');
         $message = $request->input('message');
         return $this->articleRep->check($id, $operator, $result, $message);
     }

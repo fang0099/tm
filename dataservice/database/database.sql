@@ -72,11 +72,22 @@ create table article (
     publish_time datetime not null default CURRENT_TIMESTAMP,
     last_modify_time datetime not null default CURRENT_TIMESTAMP,
     likes int not null default 0,
-    author int not null default 0,
-    has_checked tinyint not null default 0 comment '0, 1',
-    checker int not null default 0,
+    author_id int not null default 0,
+    has_checked tinyint not null default 0 comment '0, 1, -1=reject',
+    checker_id int not null default 0,
     del_flag tinyint not null default 0 comment '1=delete, 0=not'
 )engine=innodb charset=utf8 auto_increment=1;
+
+create table draft(
+    id int primary key auto_increment,
+    title varchar(64) not null default '',
+    face varchar(128) not null default '' comment '封面',
+    abstracts varchar(128) not null default '' comment '摘要',
+    content longtext default null,
+    publish_time datetime not null default CURRENT_TIMESTAMP,
+    author_id int not null default 0,
+    del_flag tinyint not null default 0 comment '1=delete, 0=not'
+)engine=innodb charset=utf8 AUTO_INCREMENT=1;
 
 create table user_like_article (
     user_id int not null default 0,

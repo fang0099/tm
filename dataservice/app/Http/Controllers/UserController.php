@@ -9,16 +9,22 @@
 namespace App\Http\Controllers;
 
 
+use App\Repositories\ArticleRepository;
+use App\Repositories\DraftRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private $userRep;
+    private $articleRep;
+    private $draftRep;
 
-    public function __construct(UserRepository $userRep)
+    public function __construct(UserRepository $userRep, ArticleRepository $articleRep, DraftRepository $draftRep)
     {
         $this->userRep = $userRep;
+        $this->articleRep = $articleRep;
+        $this->draftRep = $draftRep;
     }
 
     public function get(Request $request){
@@ -160,23 +166,49 @@ class UserController extends Controller
         return $this->userRep->recommend($uid, $page, $pageSize);
     }
 
-    public function draft(){
-        return ['success'=>true, 'data' => []];
+    public function draft(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        return $this->userRep->draft($id, $page, $pageSize);
     }
     public function checking(Request $request){
-        /*
         $id = $request->input('id');
-        return $this->articleRep->page2(1, 15,
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        return $this->articleRep->page2($page, $pageSize,
             [
-                "params[status]" => " eq 1 ",
-                "params[has_checked]" => " eq 0 "
+                "author_id eq " => $id,
+                "has_checked eq " => "0"
             ],
             "publish_time desc");
-        */
-        return ['success'=>true, 'data' => []];
     }
 
-    public function reject(){
-        return ['success'=>true, 'data' => []];
+    public function reject(Request $request){
+        $id = $request->input('id');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 10);
+        return $this->articleRep->page2($page, $pageSize,
+            [
+                "author_id eq " => $id,
+                "has_checked eq " => "-1"
+            ],
+            "publish_time desc");
+    }
+
+    public function saveDraft(Request $request){
+        return $this->draftRep->insert($request);
+    }
+
+    public function deleteDraft(Request $request){
+        $id = $request->input('id');
+        $uid = $request->input('userid');
+        return $this->draftRep->deleteByUid($id, $uid);
+    }
+
+    public function deleteArticle(Request $request){
+        $id = $request->input('id');
+        $uid = $request->input('userid');
+        return $this->articleRep->deleteByUid($id, $uid);
     }
 }

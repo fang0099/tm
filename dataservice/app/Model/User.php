@@ -42,7 +42,7 @@ class User extends BaseModel
     }
 
     public function likeArticles(){
-        return $this->belongsToMany('App\Model\Article', 'user_like_article', 'user_id', 'article_id')->where('del_flag', '=', 0);
+        return $this->belongsToMany('App\Model\Article', 'user_like_article', 'user_id', 'article_id')->where('has_checked', '=', '1')->where('del_flag', '=', 0);
     }
 
     public function _likeCount(){
@@ -50,7 +50,7 @@ class User extends BaseModel
     }
 
     public function collectArticles(){
-        return $this->belongsToMany('App\Model\Article', 'user_collect_article', 'user_id', 'article_id')->where('del_flag', '=', 0);
+        return $this->belongsToMany('App\Model\Article', 'user_collect_article', 'user_id', 'article_id')->where('has_checked', '=', '1')->where('del_flag', '=', 0);
     }
 
     public function _collectCount(){
@@ -83,6 +83,10 @@ class User extends BaseModel
 
     public function optLogs(){
         return $this->hasMany('App\Model\OptLog', 'user_id');
+    }
+
+    public function drafts(){
+        return $this->hasMany('App\Model\Draft', 'author_id')->where('del_flag', '=', '0');
     }
 
 }

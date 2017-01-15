@@ -14,9 +14,7 @@
           </a>
         </nav>
         <div class="mod-article-list">
-            <ul>
 
-            </ul>
         </div>
         <!-- 判断是否需要加载更多 -->
   </div>

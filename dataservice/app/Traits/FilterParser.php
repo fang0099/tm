@@ -21,7 +21,7 @@ trait FilterParser
             $condition[] = $fs[0] . ' ' . $opt . ' ? ';
             $raw[] = [
                 'field' => $fs[0],
-                'opt' => $opt,
+                'opt' => trim($opt),
                 'param' => $v
             ];
             $params[] = $v;

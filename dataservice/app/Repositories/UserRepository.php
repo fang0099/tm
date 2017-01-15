@@ -181,7 +181,7 @@ class UserRepository extends BaseRepository
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$userId]);
         }else {
             $offset = ($page - 1) * $pageSize;
-            $articles = $user->articles()->orderBy($order, 'desc')->offset($offset)->limit($pageSize)->get();
+            $articles = $user->articles()->where('has_checked', '=', '1')->orderBy($order, 'desc')->offset($offset)->limit($pageSize)->get();
             /*
             foreach ($tagArr as $t) {
                 $articles->where();
@@ -270,7 +270,7 @@ class UserRepository extends BaseRepository
                     . " on a.id = tr.article_id "
                     . " inner join tag_subscriber as sr"
                     . " on tr.tag_id = sr.tag_id"
-                    . " where a.del_flag = 0 and sr.subscriber_id = ?"
+                    . " where a.del_flag = 0 and a.has_checked = 1 and sr.subscriber_id = ?"
                     . " limit $offset ," . $pageSize;
             return  $this->success('', DB::select($sql, [$id]));
         }
@@ -284,7 +284,7 @@ class UserRepository extends BaseRepository
             $offset = ($page - 1) * $pageSize;
             $sql = "select a.* from article as a inner join user_follows as uf "
                 . " on a.author_id = uf.user_id"
-                . " where a.del_flag = 0 and  uf.follower_id = ?"
+                . " where a.del_flag = 0 and a.has_checked = 1 and  uf.follower_id = ?"
                 . " limit $offset ," . $pageSize;
             return $this->success('', DB::select($sql, [$id]));
         }
@@ -299,15 +299,15 @@ class UserRepository extends BaseRepository
             $sql = "select * from ("
                 ."select a.* from article as a inner join user_follows as uf "
                 . " on a.author_id = uf.user_id"
-                . " where a.del_flag = 0 and  uf.follower_id = ? "
+                . " where a.del_flag = 0 and a.has_checked = 1 and  uf.follower_id = ? "
                 . " union "
                 . "select a.* from article as a inner join tag_article_rel as tr "
                 . " on a.id = tr.article_id "
                 . " inner join tag_subscriber as sr"
                 . " on tr.tag_id = sr.tag_id"
-                . " where a.del_flag = 0 and sr.subscriber_id = ?"
+                . " where a.del_flag = 0 and a.has_checked = 1 and sr.subscriber_id = ?"
                 . " union "
-                . " select * from ( select * from article order by publish_time desc limit 100) as tt"
+                . " select * from ( select * from article where del_flag = 0 and a.has_checked = 1 order by publish_time desc limit 100) as tt"
                 . ") as t  order by hot_num desc, publish_time desc limit $offset, $pageSize";
             $res = DB::select($sql, [$id, $id]);
             $res2 = [];
@@ -322,6 +322,17 @@ class UserRepository extends BaseRepository
                 }
             }
             return $this->success('', $res2);
+        }
+    }
+
+    public function draft($id, $page, $pageSize){
+        $user = $this->get($id);
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
+        }else {
+            $offset = ($page - 1) * $pageSize;
+            $res = $user->drafts()->orderBy('id', 'desc')->offset($offset)->limit($pageSize)->get();
+            return $this->success('', $res);
         }
     }
 

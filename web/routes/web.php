@@ -102,6 +102,8 @@ Route::group(['namespace' => 'Front'], function (){
     Route::post('/uc/unfollow/{id}', 'UserCenterController@unfollow');
     Route::post('/uc/unsubscribe/{id}', 'UserCenterController@unsubscribe');
     Route::post('/uc/deleteNotice/{id}', 'UserCenterController@deleteNotice');
+    Route::post('/uc/deleteDraft/{id}', 'UserCenterController@delDraft');
+    Route::post('/uc/deleteArticle/{id}', 'UserCenterController@delArticle');
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){

@@ -54,6 +54,11 @@ Route::get('/user/hasfollower', 'UserController@hasFollower');
 Route::get('/user/haslike', 'UserController@hasLike');
 Route::get('/user/hascollect', 'UserController@hasCollect');
 
+Route::post('/user/savedraft', 'UserController@saveDraft');
+Route::get('/user/getdraft', 'UserController@getDraft');
+Route::get('/user/deldraft', 'UserController@deleteDraft');
+Route::get('/user/delarticle', 'UserController@deleteArticle');
+
 Route::get('user/articlescollect', 'UserController@collectArticles');
 Route::get('user/articlesfollowers', 'UserController@followerArticles');
 Route::get('user/articlestags', 'UserController@tagArticles');
@@ -137,6 +142,7 @@ Route::get('/slider/delete', 'SliderController@delete');
 
 Route::post('/notice/create', 'NoticeController@create');
 Route::get('/notice/delete', 'NoticeController@delete');
+
 
 Route::get('/key/fucs', 'KeyController@functionsCount');
 

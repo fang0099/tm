@@ -29,9 +29,15 @@ define(function(require, exports, modules){
 			// to do something
 			var articleTplUrl = "usercenter/tpl/user-article-list.tpl";
 			var url = $(this).attr('data');
-			render.render(articleTplUrl, url, function(data){ return data;},function(html){
-				$('.mod-article-list').html(html);
-			});
+			render.render(articleTplUrl,
+							url,
+							function(data){ return data;},
+							function(data, html){
+								var $wrap = $('.mod-article-list');
+								$wrap.html(html);
+							},
+							''
+			);
 		});
 	};
 
@@ -40,6 +46,6 @@ define(function(require, exports, modules){
             bindUserInfoEvent();
             bindArticleEvent();
             $('.first').click();
-		});
+		}, '');
 	};
 });

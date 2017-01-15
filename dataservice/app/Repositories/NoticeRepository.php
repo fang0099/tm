@@ -31,5 +31,10 @@ class NoticeRepository extends BaseRepository
         return $this->select($request);
     }
 
+    public function delete($ids){
+        $idsArr = explode(',', $ids);
+        return $this->batchDeleteInternal($idsArr);
+    }
+
 
 }

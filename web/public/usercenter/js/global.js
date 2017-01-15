@@ -8,11 +8,15 @@
 *
 **************************************************/ 
 define(function(require, exports, module){
-    //var base = "http://localhost/tm/web/public/index.php";
-    var base = "";
+    var base = "http://localhost/tm/web/public/index.php";
+    //var base = "";
     exports.base = base;
 
     exports.reminder = function(option){
         alert(option.message);
+    };
+    
+    exports.getJson = function (str) {
+        return JSON.parse(str);
     }
 });

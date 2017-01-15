@@ -43,7 +43,7 @@ class UserCenterController extends Controller
         $uid = 1;//session('id', 1);
         $result = $this->userInvoker->activities(['userid'=>$uid, 'page'=>$page]);
         if($result['success']){
-            return $this->jsonResult(true, '', $result['data']);
+            return $this->jsonResult(true, '', []);
         }else {
             return $this->jsonResult(true, $result['message'], []);
         }
@@ -64,7 +64,8 @@ class UserCenterController extends Controller
         $method = 'articles' . $type;
         $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page]);
         if($result['success']){
-            return $this->jsonResult(true, '', $result['data']);
+            $data = isset($result['data']) ? $result['data'] : (isset($result['list']) ? $result['list'] : []);
+            return $this->jsonResult(true, '', $data);
         }else {
             return $this->jsonResult(true, $result['message'], []);
         }
@@ -172,6 +173,26 @@ class UserCenterController extends Controller
     public function uncollect($id){
         $uid = session('id', 1);
         $data = $this->articleInvoker->uncollect(["id" => $id, "userid" => $uid]);
+        if ($data['success']){
+            return ['success' => 'true'];
+        }else {
+            return ['success' => 'false', 'message' => $data['message']];
+        }
+    }
+
+    public function delDraft($id){
+        $uid = session('id');
+        $data = $this->userInvoker->deldraft(["id" => $id, "userid" => $uid]);
+        if ($data['success']){
+            return ['success' => 'true'];
+        }else {
+            return ['success' => 'false', 'message' => $data['message']];
+        }
+    }
+
+    public function delArticle($id){
+        $uid = session('id');
+        $data = $this->userInvoker->delarticle(["id" => $id, "userid" => $uid]);
         if ($data['success']){
             return ['success' => 'true'];
         }else {
