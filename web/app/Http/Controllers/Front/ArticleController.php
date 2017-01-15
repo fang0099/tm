@@ -235,22 +235,35 @@ class ArticleController extends Controller
     {
         $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
 
+        $status = $request->get('status');
+        if ($status != "draft")
+        {
+            $status = "article";
+        }
+
         if (session("username")!=null) {
             $username = session("username");
             $userid = session("id");
             //控制样式
             $page_class = "page-write2";
             $article_id = $request->get('id');
-            $article = $this->articleInvoker->get(['id'=>$article_id]);
+            if ($status == "article") {
+                $article = $this->articleInvoker->get(['id' => $article_id]);
+            }
+            else
+            {
+                $article = $this->userInvoker->getdraft(['id' => $article_id]);
+            }
+
             $author_id = $article["data"]["author"]["id"];
 
             $tags = $this->tagInvoker->list();
 
             if ($author_id == $userid)
             {
-                return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
+                return view("front/edit", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'article'=>$article, 'tags'=>$tags["list"]]);
             }
-            return view("front/edit", ['page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"], 'menu_tags'=>$menu_tag_list["data"]]);
+            return view("front/edit", ['status'=>$status, 'page_class' => $page_class, 'username'=>$username, 'tags'=>$tags["list"], 'menu_tags'=>$menu_tag_list["data"]]);
         }
         //未登录
         else
@@ -301,14 +314,13 @@ class ArticleController extends Controller
     //修改文章
     public function update(Request $request)
     {
-        if (session("username")!=null) {
+        if (session("username")!=null)
+        {
             $id = $request->get("id");
             $title = $request->get("title");
             $content = $request->get("content");
             $file = $request->file('face');
-
             $face = "default";
-
             if ($file != null && $file->isValid()) {
                 // 获取文件相关信息
                 $originalName = $file->getClientOriginalName(); // 文件原名
@@ -323,10 +335,6 @@ class ArticleController extends Controller
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
-            //$abstracts = $content;
-            //$abstracts = strip_tags($content);
-            //$tags = 1;
-
             $params =
                 [
                     'params[id]' => $id,
@@ -347,6 +355,50 @@ class ArticleController extends Controller
             return redirect("login");
         }
     }
+    //修改文章
+    public function update_draft(Request $request)
+    {
+        if (session("username")!=null)
+        {
+            $id = $request->get("id");
+            $title = $request->get("title");
+            $content = $request->get("content");
+            $file = $request->file('face');
+            $face = "default";
+            if ($file != null && $file->isValid()) {
+                // 获取文件相关信息
+                $originalName = $file->getClientOriginalName(); // 文件原名
+                $ext = $file->getClientOriginalExtension();     // 扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();     // image/jpeg
+                // 上传文件
+                $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
+                // 使用我们新建的uploads本地存储空间（目录）
+                $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+                //var_dump($bool);
+                $face = env("APP_URL") . "/uploads/" . $filename;
+            }
+            $abstracts = strip_tags($this->substr_cut($content,15));
+            $params =
+                [
+                    'params[id]' => $id,
+                    'params[title]' => $title,
+                    'params[abstracts]' => $abstracts,
+                    'params[content]' => $content,
+                    //'params[tags]' => $tags
+                ];
+            if ($face!="default")
+            {
+                $params["params[face]"] = $face;
+            }
+            $r = $this->userInvoker->savedraft($params);
+            return redirect("article/list?id=".session("id"));
+        }
+        else
+        {
+            return redirect("login");
+        }
+    }
     //删除文章
     public function delete(Request $request)
     {
@@ -356,6 +408,22 @@ class ArticleController extends Controller
             $r = $this->articleInvoker->delete(
                 [
                     'ids' => $id,
+                ]
+            );
+            return redirect("article/list?id=" . session("id"));
+        }
+        return redirect("article?id=" . $id);
+    }
+    //删除草稿
+    public function delete_draft(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("id")!=null) {
+            $id = (string)$id;
+            $r = $this->userInvoker->deldraft(
+                [
+                    'id' => $id,
+                    'userid'=>session("id"),
                 ]
             );
             return redirect("article/list?id=" . session("id"));
@@ -406,10 +474,75 @@ class ArticleController extends Controller
 
             //$abstracts = "abstract";
             $abstracts = strip_tags($this->substr_cut($content,15));
+            $abstracts = "abstract";
             //$abstracts = strip_tags($content);
             $author = session("id");
             //$tags = "6,";
             $r = $this->articleInvoker->create(
+                [
+                    'params[title]' => $title,
+                    'params[face]' => $face,
+                    'params[abstracts]' => $abstracts,
+                    'params[content]' => $content,
+                    'params[author_id]' => $author,
+                    'params[tags]' => $the_tag,
+                ]);
+            return redirect("article/list?id=".$author);
+        }
+        else
+        {
+            return redirect("login");
+        }
+    }
+
+    public function create_draft(Request $request)
+    {
+        if (session("username")!=null) {
+            $title = $request->get("title");
+            $content = $request->get("content");
+            $file = $request->file('face');
+            $tags = $request->get("tags");
+            //print_r($tags);
+            $the_tag = "";
+            if ($tags != null)
+            {
+                foreach ($tags as $tag_id)
+                {
+                    settype($tag_id,"string");
+                    $the_tag.=$tag_id.",";
+                }
+            }
+            else
+            {
+                $the_tag=",";
+            }
+
+            $the_tag = substr($the_tag,0,strlen($the_tag)-1);
+            //print_r ($the_tag);
+            //return;
+            $face = "default";
+
+            if ($file != null && $file->isValid()) {
+                // 获取文件相关信息
+                $originalName = $file->getClientOriginalName(); // 文件原名
+                $ext = $file->getClientOriginalExtension();     // 扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();     // image/jpeg
+                // 上传文件
+                $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
+                // 使用我们新建的uploads本地存储空间（目录）
+                $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+                //var_dump($bool);
+                $face = env("APP_URL") . "/uploads/" . $filename;
+            }
+
+            $abstracts = "abstract";
+            $abstracts = strip_tags($this->substr_cut($content,15));
+            $abstracts = "abstract";
+            //$abstracts = strip_tags($content);
+            $author = session("id");
+            //$tags = "6,";
+            $r = $this->userInvoker->savedraft(
                 [
                     'params[title]' => $title,
                     'params[face]' => $face,

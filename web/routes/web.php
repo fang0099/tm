@@ -28,7 +28,10 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/signup', 'UserController@signup');
     //创建文章
     Route::post('/article/create', 'ArticleController@create');
+    Route::post('/article/create_draft', 'ArticleController@create_draft');
+    Route::get('/article/delete_draft', 'ArticleController@delete_draft');
     Route::post('/article/update', 'ArticleController@update');
+    Route::post('/article/update_draft', 'ArticleController@update_draft');
     Route::post('/article/comment', 'ArticleController@comment_article');
     Route::get('/article/delete', 'ArticleController@delete');
     Route::get('/article/like', 'ArticleController@like');

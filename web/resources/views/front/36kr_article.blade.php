@@ -132,9 +132,6 @@
 
                     success:function(result){
                         console.log(result);
-                        //var json_data = JSON.parse(result);
-                        //commentsArray2 = json_data["data"];
-                        //console.log(json_data);
                     }
                 });
         }
@@ -168,17 +165,7 @@
                     data: {username:$("#username").val(), content:$("#content").val()},
                     dataType: "json",
                     success: function(data){
-                        //alert("1");
                         console.log(eval(data));
-                        /*
-                         $('#resText').empty();   //清空resText里面的所有内容
-                         var html = '';
-                         $.each(data, function(commentIndex, comment){
-                         html += '<div class="comment"><h6>' + comment['username']
-                         + ':</h6><p class="para"' + comment['content']
-                         + '</p></div>';
-                         });
-                         $('#resText').html(html);*/
                     },
                     error: function(data)
                     {
@@ -195,19 +182,9 @@
                     data: {username:$("#username").val(), content:$("#content").val()},
                     dataType: "json",
                     success: function(data){
-                        //alert("1");
                         $("#collect_btn_count").html(old);
                         toastr.success("收藏成功");
                         console.log(eval(data));
-                        /*
-                         $('#resText').empty();   //清空resText里面的所有内容
-                         var html = '';
-                         $.each(data, function(commentIndex, comment){
-                         html += '<div class="comment"><h6>' + comment['username']
-                         + ':</h6><p class="para"' + comment['content']
-                         + '</p></div>';
-                         });
-                         $('#resText').html(html);*/
                     },
                     error: function(data)
                     {

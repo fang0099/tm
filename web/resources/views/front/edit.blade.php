@@ -20,7 +20,7 @@
     @section("content")
         <main class="main-container ng-scope" ng-view="">
             <div class="main post-write ng-scope ng-invalid ng-invalid-required ng-invalid-content-required ng-dirty ng-invalid-word-min" ng-form="postForm" ng-class="{&#39;full-screen-cover&#39;: draft.isTitleImageFullScreen}">
-                <form method="post" action="{{isset($article)?'update':'create'}}" enctype="multipart/form-data">
+                <form method="post" action="{{isset($article)?'update':'create_draft'}}" enctype="multipart/form-data">
                 <section class="receptacle">
                     <div id="js-title-img" class="title-img" ui-droppable="" ng-class="{&#39;has-img&#39;: draft.titleImage}">
                         <div id="preview" onclick="$('#previewImg').click();">
