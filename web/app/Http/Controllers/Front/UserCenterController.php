@@ -40,7 +40,7 @@ class UserCenterController extends Controller
     }
 
     public function activities($page = 1){
-        $uid = 1;//session('id', 1);
+        $uid = session('id', 1);
         $result = $this->userInvoker->activities(['userid'=>$uid, 'page'=>$page]);
         if($result['success']){
             return $this->jsonResult(true, '', []);
