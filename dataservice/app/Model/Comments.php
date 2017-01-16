@@ -19,7 +19,7 @@ class Comments extends BaseModel
 
     public function _parent(){
     	//return $this->hasOne('App\Model\Comments', 'id', 'pid')->where('del_flag', '=', '0')->first();
-        return $this->pid;
+        return $this->pid == 0 ? null : $this->pid;
     }
 
     public function _commenter(){
