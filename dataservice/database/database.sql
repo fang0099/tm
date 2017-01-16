@@ -118,6 +118,13 @@ create table comments (
     KEY type_del_article_idx (`type`, `del_flag`, `article_id`)
 )engine=innodb charset=utf8 auto_increment=1;
 
+create table user_comment_opt (
+    user_id int not null default 0,
+    comment_id int not null default 0,
+    opt int not null default 0 comment '1=up, -1=down',
+    primary key (`user_id`, `comment_id`)
+)engine=innodb charset=utf8;
+
 create table tag_article_rel (
     tag_id int not null default 0,
     article_id int not null default 0,

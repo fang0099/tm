@@ -146,3 +146,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
     Route::get('/check', 'TestController@check');\
     */
 });
+
+Route::get('/captcha', function()
+    return Captcha::src();
+});

@@ -206,6 +206,19 @@ class UserController extends Controller
     {
         $username = $request->get('username');
         $password=$request->get("password");
+
+        // validate captcha
+        $loginFailedTimes = session('login_failed_times', 0);
+        if($loginFailedTimes >= 3){
+            $captcha = $request->get('captcha');
+            if(!Captcha::check($captcha)){
+                $loginFailedTimes++;
+                session(['login_failed_times' => $loginFailedTimes]);
+                echo json_encode(['success' : false, 'message' => '验证码错误', 'login_failed_times' => $loginFailedTimes]]);
+                return;
+            }
+        }
+
         //echo $username;
         $r = $this->userInvoker->getbyname(
             ['username'=>$username]
@@ -217,13 +230,16 @@ class UserController extends Controller
         if (md5($password) == $r["data"]["password"])
         {
             $result["success"] = true;
-            $result["message"] = "login success";
+            $result["message"] = "登录成功";
             session($r["data"]);
         }
         else
         {
             $result["success"] = false;
-            $result["message"] = "login failed";
+            $result["message"] = "登录失败";
+            $loginFailedTimes++;
+            session(['login_failed_times' => $loginFailedTimes]);
+            $result["login_failed_times"] = $loginFailedTimes;
         }
 
         echo json_encode($result);
