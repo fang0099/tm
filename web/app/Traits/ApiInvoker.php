@@ -42,6 +42,7 @@ trait ApiInvoker
             'read'=>'GET',
             'next'=>'GET',
             'prev'=>'GET',
+            'relate'=>'GET',
         ],
         'comment'=>[
             'create'=>"POST",

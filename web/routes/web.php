@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/index', 'IndexController@show_index');
 
     Route::get('/suggestion_user', 'IndexController@show_suggest_user');
-    Route::get('/suggestion_article', 'IndexController@show_suggest_article');
+    Route::get('/suggestion_tag', 'IndexController@show_suggest_tag');
     //登录
     Route::get('/login', 'UserController@login');
     Route::get('/logout', 'UserController@logout');

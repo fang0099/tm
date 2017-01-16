@@ -9,6 +9,8 @@
 <body itemscope="" class="browser-chrome os-mac is-withMagicUnderlines is-js" data-action-scope="_actionscope_0">
 <script>document.body.className = document.body.className.replace(/(^|\s)is-noJs(\s|$)/, "$1is-js$2")</script>
 <div class="site-main surface-container" id="container">
+    <div class="surface">
+        <div id="prerendered" class="screenContent">
     <div class="butterBar butterBar--error" data-action-scope="_actionscope_1"></div>
     <div id="_obv.shell._surface_1484562685269" class="surface" style="visibility: visible; display: block;">
         <div class="screenContent surface-content">
@@ -55,13 +57,21 @@
             <div class="u-sizeViewHeightMin100 u-backgroundGrayLightest">
                 <div class="u-backgroundWhite">
                     <div class="container u-maxWidth1040">
-                        <div class="hero hero--standalone hero--alignLeft u-paddingTop40 u-paddingBottom20">
+                        <!--<div class="hero hero--standalone hero--alignLeft u-paddingTop40 u-paddingBottom20">
                             <h1 class="hero-title">推荐页面</h1>
-                        </div>
+                        </div>-->
                         <div class="js-followTabs u-paddingBottom10">
                             <ul class="browsableStreamTabs u-borderTopLightest">
-                                <li class="browsableStreamTabs-item"><a class="link link--darken u-accentColor--textDarken u-baseColor--link" href="https://medium.com/me/following/tags">标签</a></li>
-                                <li class="browsableStreamTabs-item"><a class="link link--darker link--darken u-accentColor--textDarken u-baseColor--link" href="https://medium.com/me/following/people">作者</a></li>
+                                <li class="browsableStreamTabs-item"><a class="link
+                                        @if(isset($tags))
+                                            link--darker
+                                        @endif
+                                            link--darken u-accentColor--textDarken u-baseColor--link" href="<?php echo env('APP_URL');?>/suggestion_tag">标签</a></li>
+                                <li class="browsableStreamTabs-item"><a class="link
+                                        @if(isset($users))
+                                            link--darker
+                                        @endif
+                                            link--darken u-accentColor--textDarken u-baseColor--link" href="<?php echo env('APP_URL');?>/suggestion_user">作者</a></li>
                             </ul>
                         </div>
                     </div>
@@ -81,17 +91,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(isset($users))
+                                    @foreach($users as $user)
                                 <div class="streamItem streamItem--userPreview js-streamItem">
                                     <div class="streamItem-card streamItem-card--userPreview u-marginBottom0 u-backgroundWhite">
                                         <div class="streamItem-cardInner streamItem-cardInner--userPreview u-paddingRight20 u-paddingLeft20">
+
                                             <div class="u-flexCenter">
                                                 <div class="u-width60 u-flex0 u-marginRight20">
-                                                    <a class="link avatar u-baseColor--link" href="https://medium.com/@aizolnai?source=personalization_main---------1----------" data-action="show-user-card" data-action-source="personalization_main---------1----------" data-action-value="3401caea7d08" data-action-type="hover" data-user-id="3401caea7d08" dir="auto"><img src="https://cdn-images-1.medium.com/fit/c/120/120/0*ZOIvz3V9M6F0WSBK." class="avatar-image avatar-image--small" alt="Go to the profile of Andrew Zolnai" /></a>
+                                                    <a class="link avatar u-baseColor--link" href="" ><img src="{{$user["avatar"]}}" class="avatar-image avatar-image--small" alt="Go to the profile of Andrew Zolnai" /></a>
                                                 </div>
                                                 <div class="u-flex1 u-flexCenter u-xs-inline">
                                                     <div class="u-flex1 u-overflowHidden u-marginRight20">
-                                                        <a class="link link--darker link--darken u-accentColor--textDarken u-block u-fontSizeSmall u-baseColor--link" href="https://medium.com/@aizolnai" data-action="show-user-card" data-action-value="3401caea7d08" data-action-type="hover" data-user-id="3401caea7d08" dir="auto">Andrew Zolnai</a>
-                                                        <a class="link link--darken u-accentColor--textDarken u-block u-fontSizeSmaller u-textColorNormal u-textOverflowEllipsis u-xs-lineClamp2 u-baseColor--link" href="https://medium.com/@aizolnai" title="Go to the profile of Andrew Zolnai" aria-label="Go to the profile of Andrew Zolnai" data-user-id="3401caea7d08" dir="auto">Citizen of the World, geologist, entrepreneur and volunteered geographer.</a>
+                                                        <a class="link link--darker link--darken u-accentColor--textDarken u-block u-fontSizeSmall u-baseColor--link" href="" >{{$user["username"]}}</a>
+                                                        <a class="link link--darken u-accentColor--textDarken u-block u-fontSizeSmaller u-textColorNormal u-textOverflowEllipsis u-xs-lineClamp2 u-baseColor--link" href="https://medium.com/@aizolnai" title="Go to the profile of Andrew Zolnai" >{{$user["brief"]}}</a>
                                                     </div>
                                                     <div class="u-flex0 u-xs-floatLeft">
                                                         <span class="followState js-followState buttonSet-inner" data-user-id="3401caea7d08">
@@ -107,9 +120,48 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
+                                    @endforeach
+                                    @endif
+                                    @if(isset($tags))
+                                        @foreach($tags as $tag)
+                                            <div class="streamItem streamItem--userPreview js-streamItem">
+                                                <div class="streamItem-card streamItem-card--userPreview u-marginBottom0 u-backgroundWhite">
+                                                    <div class="streamItem-cardInner streamItem-cardInner--userPreview u-paddingRight20 u-paddingLeft20">
+
+                                                        <div class="u-flexCenter">
+                                                            <div class="u-width60 u-flex0 u-marginRight20">
+                                                                <a class="link avatar u-baseColor--link" href="" ><img src="{{$tag["face"]}}" class="avatar-image avatar-image--small" alt="Go to the profile of Andrew Zolnai" /></a>
+                                                            </div>
+                                                            <div class="u-flex1 u-flexCenter u-xs-inline">
+                                                                <div class="u-flex1 u-overflowHidden u-marginRight20">
+                                                                    <a class="link link--darker link--darken u-accentColor--textDarken u-block u-fontSizeSmall u-baseColor--link" href="" >{{$tag["name"]}}</a>
+                                                                    <a class="link link--darken u-accentColor--textDarken u-block u-fontSizeSmaller u-textColorNormal u-textOverflowEllipsis u-xs-lineClamp2 u-baseColor--link" href="https://medium.com/@aizolnai" title="Go to the profile of Andrew Zolnai" >{{$tag["brief"]}}</a>
+                                                                </div>
+                                                                <div class="u-flex0 u-xs-floatLeft">
+                                                        <span class="followState js-followState buttonSet-inner" data-user-id="3401caea7d08">
+                                                            <button class="button u-noUserSelect button--withChrome u-baseColor--buttonNormal button--withHover button--unblock js-unblockButton" data-action="toggle-block-user" data-action-value="3401caea7d08" data-action-source="personalization_main---------1----------">
+                                                                <span class="button-label  button-defaultState">Blocked</span>
+                                                                <span class="button-label button-hoverState">Unblock</span>
+                                                            </button>
+                                                            <button class="button button--primary u-noUserSelect button--withChrome u-accentColor--buttonNormal button--follow js-followButton is-touched" data-action="toggle-subscribe-user" data-action-value="3401caea7d08" data-action-source="personalization_main---------1----------_follow" data-subscribe-source="personalization_main---------1----------">
+                                                                <span class="button-label  button-defaultState js-buttonLabel">关注</span>
+                                                                <span class="button-label button-activeState">已关注</span>
+                                                            </button>
+                                                        </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                </div>
+                                        @endforeach
+                                    @endif
                             </div>
                         </div>
                         <aside class="col u-size4of12 u-xs-hide u-paddingBottom20" data-scroll="native">
@@ -149,6 +201,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
         </div>
     </div>
 </div>

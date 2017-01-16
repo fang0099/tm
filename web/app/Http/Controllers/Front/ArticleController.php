@@ -362,8 +362,10 @@ class ArticleController extends Controller
         $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
 
-        $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1, 'pageSize'=>6]);
+        //$recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1, 'pageSize'=>6]);
+        $recommend_list = $this->articleInvoker->relate(['id'=>$id, 'page'=> 1, 'pageSize'=>6]);
         $next_article = $this->articleInvoker->prev(['id'=>$id]);
+
 
         return view("front/36kr_article",
         //return view("front/article",

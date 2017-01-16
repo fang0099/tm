@@ -126,8 +126,8 @@
                 </div>
                 <div class="options">
                     <span class="autosave"></span>
-                    <a href="#" class="btn btn-small gray btn-bordered save-post">保存草稿</a> 
-                    <a href="#" class="btn btn-small orange btn-bordered confrim-post_open" data-popup-ordinal="0" id="open_77949845">提交审核</a>
+                    <a href="javascript:;" id="savedraft" class="btn btn-small gray btn-bordered save-post">保存草稿</a> 
+                    <a href="javascript:;" id="savearticle" class="btn btn-small orange btn-bordered confrim-post_open" data-popup-ordinal="0" id="open_77949845">提交审核</a>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
 
         <main class="main-container ng-scope" ng-view="">
             <div class="main post-write ng-scope ng-invalid ng-invalid-required ng-invalid-content-required ng-dirty ng-invalid-word-min" ng-form="postForm" ng-class="{&#39;full-screen-cover&#39;: draft.isTitleImageFullScreen}">
-                <form method="post" action="{{isset($article)?'update':'create_draft'}}" enctype="multipart/form-data">
+                <form method="post" action="{{isset($article)?'update':'create'}}" enctype="multipart/form-data">
                 <section class="receptacle">
                     <div id="js-title-img" class="title-img" ui-droppable="" ng-class="{&#39;has-img&#39;: draft.titleImage}">
                         <div id="preview" onclick="$('#previewImg').click();">
@@ -178,6 +178,9 @@
                 </form>
             </div>
         </main>
+
+
+
         <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery.pin/jquery.pin.js"></script>
         <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/module.js"></script>

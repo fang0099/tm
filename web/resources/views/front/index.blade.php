@@ -20,7 +20,11 @@
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
                                 <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
-                                <li><a class="" href="#tab-3">推荐</a></li>
+                                @if(null==session("username"))
+                                    <li><a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a></li>
+                                @else
+                                    <li><a class="" href="#tab-3">推荐</a></li>
+                                @endif
                             </ul>
 
                         <div id="tab-1">
@@ -45,7 +49,7 @@
                                                         <div class="entry-meta" style="margin-bottom: 5px;">
                                                             <i class="icon-x" style=""></i>
                                                             @if(isset($article["author"]["username"]))
-                                                            <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+                                                            <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
 
                                                                 <span>{{$article["author"]["username"]}}</span></a>
                                                                 @endif
@@ -121,7 +125,7 @@
                                                         <div class="entry-meta" style="margin-bottom: 5px;">
                                                             <i class="icon-x" style=""></i>
                                                             @if(isset($article["author"]["username"]))
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+                                                                <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
 
                                                                     <span>{{$article["author"]["username"]}}</span></a>
                                                             @endif
@@ -197,7 +201,7 @@
                                                             <div class="entry-meta" style="margin-bottom: 5px;">
                                                                 <i class="icon-x" style=""></i>
                                                                 @if(isset($article["author"]["username"]))
-                                                                    <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+                                                                    <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
 
                                                                         <span>{{$article["author"]["username"]}}</span></a>
                                                                 @endif

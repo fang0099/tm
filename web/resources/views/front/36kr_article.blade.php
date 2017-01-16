@@ -142,6 +142,25 @@
                 });
         }
 
+        function guanzhu(id)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/user/follow",
+                    data: {
+                        id: id,
+                    },
+                    type: "POST",
+
+                    success:function(result){
+                        console.log(result);
+                        //var json_data = JSON.parse(result);
+                        //commentsArray2 = json_data["data"];
+                        //console.log(json_data);
+                    }
+                });
+        }
+
         function delete_comment(data)
         {
             $.ajax(
@@ -212,6 +231,12 @@
                         console.log(eval(data));
                     }
                 });
+            });
+
+            $("#guanzhu_user").click(function()
+            {
+                var id = {{$article["author"]["id"]}}
+                guanzhu(id);
             });
 
             $('#collect_btn').click(function(){
