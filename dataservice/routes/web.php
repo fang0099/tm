@@ -100,6 +100,7 @@ Route::get('/article/hotest', 'ArticleController@hot');
 Route::get('/article/recommend', 'ArticleController@recommend');
 Route::post('/article/savedraft', 'ArticleController@saveDraft');
 Route::get('/article/getdraft', 'ArticleController@getDraft');
+Route::get('/article/relate', 'ArticleController@relate');
 
 
 

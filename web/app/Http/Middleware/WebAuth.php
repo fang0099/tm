@@ -22,7 +22,7 @@ class WebAuth
             return $response;
         }
 
-        return redirect(env('APP_URL').'/login');
+        return redirect('/login');
         */
     }
 }
