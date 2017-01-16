@@ -147,6 +147,17 @@ Route::post('/notice/create', 'NoticeController@create');
 Route::get('/notice/delete', 'NoticeController@delete');
 
 
+// comment
+// params : see article/comment
+Route::post('/comment/create', 'CommentController@create');
+// params : id, userid
+Route::get('/comment/delete', 'CommentController@delete');
+// params : id, userid
+Route::get('/comment/up', 'CommentController@up');
+// params : id, userid
+Route::get('/comment/cancleup', 'CommentController@cancleUp');
+
+
 Route::get('/key/fucs', 'KeyController@functionsCount');
 
 

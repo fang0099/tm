@@ -17,5 +17,13 @@ class Comments extends BaseModel
         return $this->belongsTo('App\Model\Article', 'article_id');
     }
 
+    public function _parent(){
+    	return $this->hasOne('App\Model\Comments', 'id', 'pid')->where('del_flag', '=', '0')->first();
+    }
+
+    public function _commenter(){
+    	return $this->hasOne('App\Model\User', 'id', 'user_id')->where('del_flag', '=', '0')->first();
+    }
+
 
 }
