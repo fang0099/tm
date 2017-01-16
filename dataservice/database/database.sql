@@ -258,4 +258,5 @@ alter table article add column status int not null default 1 COMMENT '0=draft, 1
 
 
 
-alter table users add column nickname varchar(32) not null default after id;
+alter table users add column nickname varchar(32) not null default '' after username ;
+alter table users add column openid varchar(32) not null default '' after wexin;
