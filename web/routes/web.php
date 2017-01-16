@@ -147,6 +147,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
     */
 });
 
-Route::get('/captcha', function()
+Route::get('/captcha', function(){
     return Captcha::src();
 });
