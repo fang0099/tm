@@ -21,6 +21,9 @@ Route::group(['namespace' => 'Front'], function (){
     //首页
     Route::get('/', 'IndexController@show_index');
     Route::get('/index', 'IndexController@show_index');
+
+    Route::get('/suggestion_user', 'IndexController@show_suggest_user');
+    Route::get('/suggestion_article', 'IndexController@show_suggest_article');
     //登录
     Route::get('/login', 'UserController@login');
     Route::get('/logout', 'UserController@logout');
@@ -147,6 +150,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
     */
 });
 
-Route::get('/captcha', function()
+Route::get('/captcha', function(){
     return Captcha::src();
 });
