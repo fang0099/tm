@@ -387,7 +387,7 @@
 
 
                                                 </section>
-                                                <div class="fav-wrapper">
+                                                <!--<div class="fav-wrapper">
                                                     <div class="jianshu_btn like-group">
                                                         <div class="btn-like" >
                                                             <a  id="like_btn" article_id="{{$article["id"]}}" count="{{$article["likes"]}}"><i class="icon-ic_like"></i> 喜欢</a>
@@ -404,7 +404,21 @@
                                                             <a id="collect_btn_count">{{$article["collectCount"]}}</a>
                                                         </div>
                                                     </div>
+                                                </div>-->
+                                                <div class="fav-wrapper">
+                                                    <div class="common-post-like-wrapper" data-stat-click="article.like.5061756">
+                                                        <a class="post-pc-like" style="text-decoration: none;">
+                                                            <span class="icon-ic_like"></span>
+                                                            <span style="margin-left: 4px;">
+                                                                <!-- react-text: 58 -->喜欢<!-- /react-text -->
+                                                            </span>
+                                                        </a>
+                                                        <span class="count-box">
+                                                            <span class="count kr-animated ">+1</span>
+                                                        </span>
+                                                    </div>
                                                 </div>
+
                                                 <div class="share-nav">
                                                     <div class="inner fixed" style="width: 720px;z-index:10;">
                                                         <div class="box am-cf">
@@ -489,6 +503,7 @@
                                                 <div class="display-module"></div>
                                             </section>-->
                                         </div>
+                                        <!--
                                         <div>
                                             <div class="related-articles">
                                                 <h4>猜你喜欢</h4>
@@ -528,6 +543,7 @@
 
                                             </div>
                                         </div>
+                                        -->
                                     </div>
                                 </div>
                                 <div class="post-detail-plan-bottom">
