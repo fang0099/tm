@@ -1,0 +1,33 @@
+@media (min-width: 800px){
+    body .common-wide-form {
+        width: 1170px;
+        margin: 30px auto;
+    }
+}
+@media (min-width: 1200px){
+    body .common-wide-form {
+        width: 970px;
+    }
+}
+@media (min-width: 768px){
+    body .common-wide-form {
+        width: 750px;
+    }
+}
+.common-wide-form {
+    width: 1170px;
+    margin: 30px auto;
+}
+body .common-wide-form {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+    border-radius: 3px;
+    padding-bottom: 80px;
+}
+body .common-form {
+    padding: 20px;
+    position: relative;
+}
