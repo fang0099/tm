@@ -87,6 +87,29 @@
                     data: {
                         comment_content: data["content"],
                         article_id:{{$article["id"]}},
+                        parent:data["parent"],
+                    },
+                    type: "POST",
+
+                    success:function(result){
+                        console.log(result);
+                        //var json_data = JSON.parse(result);
+                        //commentsArray2 = json_data["data"];
+                        //console.log(json_data);
+                    }
+                });
+        }
+
+        function update_comment(data)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/comment/update",
+                    data: {
+                        comment_content: data["content"],
+                        article_id:{{$article["id"]}},
+                        parent:data["parent"],
+                        id:data["id"],
                     },
                     type: "POST",
 
@@ -127,6 +150,23 @@
                     data: {
                         comment_id: data["id"],
                         article_id:{{$article["id"]}},
+                    },
+                    type: "GET",
+
+                    success:function(result){
+                        console.log(result);
+                    }
+                });
+        }
+
+        function up_comment(data)
+        {
+            $.ajax(
+                {
+                    url:"<?php echo env('APP_URL');?>/comment/up",
+                    data: {
+                        comment_id: data["id"],
+                        //article_id:{{$article["id"]}},
                     },
                     type: "GET",
 
@@ -204,14 +244,7 @@
                 //console.log(data);
                 return data;
             }
-            var commentsArray2 = [];
-            $.ajax({url:"<?php echo env('APP_URL');?>/article/ajax_comment_list?article_id={{$article["id"]}}",
-                success:function(result){
-                console.log(result);
-                var json_data = JSON.parse(result);
-                commentsArray2 = json_data["data"];
-                console.log(json_data);
-            }});
+
 
             //var commentsArrays
             $('#comments-container').comments({
@@ -228,9 +261,19 @@
                     }, 500);
                 },
                 getComments: function(success, error) {
+                    var commentsArray2 = [];
+                    $.ajax({url:"<?php echo env('APP_URL');?>/article/ajax_comment_list?article_id={{$article["id"]}}",
+                        success:function(result){
+                            console.log(result);
+                            var json_data = JSON.parse(result);
+                            commentsArray2 = json_data["data"];
+                            //console.log(json_data);
+                            success(commentsArray2);
+                        }});
+
                     setTimeout(function() {
-                        success(commentsArray2);
-                    }, 500);
+                        //success(commentsArray2);
+                    }, 1000);
                 },
                 postComment: function(data, success, error) {
                     console.log(data);
@@ -241,6 +284,8 @@
                     }, 500);
                 },
                 putComment: function(data, success, error) {
+                    console.log(data);
+                    update_comment(data);
                     setTimeout(function() {
                         success(saveComment(data));
                     }, 500);
@@ -254,6 +299,7 @@
                     }, 500);
                 },
                 upvoteComment: function(data, success, error) {
+                    up_comment(data);
                     setTimeout(function() {
                         success(data);
                     }, 500);
@@ -366,12 +412,6 @@
                                                         <span>原创文章，作者：{{$article["author"]["username"]}}</span>
                                                         <span>，如若转载，请注明出处：</span>
                                                         <span><?php echo env('APP_URL');?>/article?id={{$article["id"]}}</span>
-                                                        <!--<div>
-                                                            看完这篇还不够？如果你也在创业，并希望自己的项目被报道，请
-
-                                                            <a href="#" target="_blank" rel="nofollow">戳这里</a>
-                                                            <span> 告诉我们！</span>
-                                                        </div>-->
                                                     </section>
                                                         @endif
                                                 </div>
@@ -387,30 +427,12 @@
 
 
                                                 </section>
-                                                <!--<div class="fav-wrapper">
-                                                    <div class="jianshu_btn like-group">
-                                                        <div class="btn-like" >
-                                                            <a  id="like_btn" article_id="{{$article["id"]}}" count="{{$article["likes"]}}"><i class="icon-ic_like"></i> 喜欢</a>
-                                                        </div>
-                                                        <div class="modal-wrap">
-                                                            <a id="like_btn_count">{{$article["likes"]}}</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="jianshu_btn like-group">
-                                                        <div class="btn-like" >
-                                                            <a id="collect_btn" article_id="{{$article["id"]}}" count="{{$article["collectCount"]}}"><i class="icon-ic_column_like"></i> 收藏</a>
-                                                        </div>
-                                                        <div class="modal-wrap">
-                                                            <a id="collect_btn_count">{{$article["collectCount"]}}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                                                 <div class="fav-wrapper">
                                                     <div class="common-post-like-wrapper" data-stat-click="article.like.5061756">
                                                         <a class="post-pc-like" style="text-decoration: none;">
                                                             <span class="icon-ic_like"></span>
                                                             <span style="margin-left: 4px;">
-                                                                <!-- react-text: 58 -->喜欢<!-- /react-text -->
+                                                                喜欢
                                                             </span>
                                                         </a>
                                                         <span class="count-box">
@@ -423,10 +445,13 @@
                                                     <div class="inner fixed" style="width: 720px;z-index:10;">
                                                         <div class="box am-cf">
                                                             <div class="share-author am-cf am-fl">
-                                                                <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}"><img class="avatar" data-stat-click="wenzhang.share.zuozhetouxiang" src="{{$article["author"]["avatar"]}}" alt="" /><span class="name" data-stat-click="wenzhang.share.zuozhexingming">{{$article["author"]["username"]}}</span></a>
-                                                                <span class="kr-tag-arrow-blue kr-size-min">
+                                                                <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}">
+                                                                    <img class="avatar" data-stat-click="wenzhang.share.zuozhetouxiang" src="{{$article["author"]["avatar"]}}" alt="" />
+                                                                    <span class="name" data-stat-click="wenzhang.share.zuozhexingming">{{$article["author"]["username"]}}</span>
+                                                                </a>
+                                                                <!--<span class="kr-tag-arrow-blue kr-size-min">
                                                                     <span class="arrow"><em></em></span><span>{{$article["publish_time"]}}</span>
-                                                                </span>
+                                                                </span>-->
                                                                 <a href="#" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
                                                                 <!--<a class="btn" style="float:right;">关注</a>-->
                                                             </div>
@@ -461,12 +486,11 @@
                                                                 </div>
                                                                </div></span>
                                                                 <a class="icon-weibo weibo cell" target="_blank" data-stat-click="webtoolbar.weibo" href="http://share.baidu.com/s?type=text&amp;searchPic=1&amp;sign=on&amp;to=tsina&amp;key=595885820&amp;url=http://36kr.com/p/5061570.html&amp;title=%20%E3%80%90%E8%BD%AC%E6%9D%BF%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A%E3%80%91%E6%96%B0%E4%B8%89%E6%9D%BF%E8%BD%AC%E6%9D%BF%E5%A4%A7%E6%BD%AE%EF%BC%9A%E8%AD%A6%E6%83%95%E4%B8%80%E5%93%84%E8%80%8C%E4%B8%8A%E7%9A%84%E9%AB%98%E4%BC%B0%E5%80%BC%E6%8A%95%E8%B5%84%E9%A3%8E%E9%99%A9%20"></a>
-                                                                <a class="icon-youdao youdao cell" title="收藏文章至有道云笔记" data-stat-click="webtoolbar.youdao" target="_blank" href="http://note.youdao.com/memory/?url=http://36kr.com/p/5061570.html&amp;title=%20%E3%80%90%E8%BD%AC%E6%9D%BF%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A%E3%80%91%E6%96%B0%E4%B8%89%E6%9D%BF%E8%BD%AC%E6%9D%BF%E5%A4%A7%E6%BD%AE%EF%BC%9A%E8%AD%A6%E6%83%95%E4%B8%80%E5%93%84%E8%80%8C%E4%B8%8A%E7%9A%84%E9%AB%98%E4%BC%B0%E5%80%BC%E6%8A%95%E8%B5%84%E9%A3%8E%E9%99%A9%20&amp;summary=%E6%96%B0%E4%B8%89%E6%9D%BF2016%E5%B9%B4%E7%9A%84%E6%94%B6%E5%AE%98%E4%B9%8B%E6%88%98%E5%B7%B2%E7%BB%8F%E5%91%8A%E4%B8%80%E6%AE%B5%E8%90%BD%EF%BC%8C%E7%BA%B5%E8%A7%822016%E5%B9%B4%E5%BA%A6%E5%85%A8%E5%B9%B4%EF%BC%8C%E6%96%B0%E4%B8%89%E6%9D%BF%E6%8C%82%E7%89%8C%E4%BC%81%E4%B8%9A%E6%95%B0%E9%87%8F%E5%92%8C%E6%80%BB%E5%B8%82%E5%80%BC%E8%A7%84%E6%A8%A1%E5%9D%87%E5%91%88%E7%8E%B0%E5%BF%AB%E9%80%9F%E5%A2%9E%E9%95%BF%E3%80%82%09%20%20%20&amp;pic=&amp;product=%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F&amp;vendor=36krweb"></a>
                                                             </div>
                                                             <div class="user-ctrl ctrl-box am-fr">
 
                                                                 <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
-                                                                <span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
+                                                                <span id="collect_btn" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
                                                                 <span data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></span>
                                                             </div>
                                                             <div></div>
@@ -487,63 +511,7 @@
                                         <div></div>
                                         <div class="mobile_article">
                                             <div id="comments-container"></div>
-                                            <!--<section class="single-post-comment">
-                                                <h4><a name="comment">参与讨论</a></h4>
-                                                <div class="input-module notlogin">
-                                                    <textarea id="J_comment_area_5061570" disabled="" placeholder="请登录后参与评论..."></textarea>
-                                                    <div class="user">
-                                                        <button type="button" disabled="" title="请登录后参与评论"><a data-stat-click="pinglun.fabupinglun" href="http://passport.36kr.com/pages/?ok_url=http://36kr.com%2Fp%2F5061570.html">提交评论</a></button>
-                                                        <div class="current-user">
-                                                            <span class="img" style="background: url(&quot;http://krplus-pic.b0.upaiyun.com/201601/28103657/f3a5016d8jzc4auz.png&quot;) center center / 80% no-repeat rgb(241, 241, 241);"></span>
-                                                            <a href="http://passport.36kr.com/pages/?ok_url=http://36kr.com%2Fp%2F5061570.html" class="name">登录</a>
-                                                            <span>后参与讨论</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="display-module"></div>
-                                            </section>-->
                                         </div>
-                                        <!--
-                                        <div>
-                                            <div class="related-articles">
-                                                <h4>猜你喜欢</h4>
-                                                <div class="row layout-image-display" style="margin-left: -10px; margin-right: -10px;">
-                                                    @foreach($recommend_list as $a)
-                                                    <div class="col-8" style="padding-left: 10px; padding-right: 10px;">
-                                                        <div class="each-cell" data-stat-click="guess.1">
-                                                            <div class="img-box">
-                                                                <a href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}" target="_blank" class="fadeIn" style="background-image: url(&quot;{{$a["face"]}}&quot;);">
-                                                                    <img class="load-img fade" src="{{$a["face"]}}" /></a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="desc-inner">
-                                                                    <a target="_blank" href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}">{{$a["title"]}}</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                        @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="related-articles-h5">
-                                            <h4>相关文章</h4>
-                                            <div class="list">
-                                                @foreach($recommend_list as $a)
-                                                <div class="each-cell am-cf">
-                                                    <div class="img-box">
-                                                        <a href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}" target="_blank" style="background-image: url(&quot;{{$a["face"]}}&quot;);"></a>
-                                                    </div>
-                                                    <div class="info">
-                                                        <p class="name"><a target="_blank" href="<?php echo env('APP_URL');?>/article?id={{$a["id"]}}">{{$a["title"]}}</a></p>
-                                                        <p class="note"><span>文</span><span>/</span><a target="_blank" href="<?php echo env('APP_URL');?>/article/list?id={{$a["author"]["id"]}}">{{$a["author"]["username"]}}</a></p>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-
-                                            </div>
-                                        </div>
-                                        -->
                                     </div>
                                 </div>
                                 <div class="post-detail-plan-bottom">

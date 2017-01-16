@@ -55,11 +55,11 @@
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
 
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
 <!--<link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">-->
     <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/usercenter/css/style.css" />
+    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
 </head>
 <body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">
 <!--[if lt IE 8]>
@@ -84,7 +84,6 @@
                     <div id="user-nav" class="dropdown-menu user-dropdown">
                         <div class="common-nav user-nav">
                             <ul>
-                                <li><a href="/uc#index" title="我的主页"><i class="icon-head"></i>我的主页</a></li>
                                 <li><a href="/uc#article" title="我的文章"><i class="icon-paper"></i>我的文章</a></li>
                                 <li><a href="/uc#collect" title="我的收藏"><i class="icon-ribbon"></i>我的收藏</a></li>
                                 <li><a href="/uc#subscribe" title="我的订阅"><i class="icon-circle-plus"></i>我的订阅</a></li>

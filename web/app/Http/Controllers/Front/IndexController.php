@@ -86,6 +86,14 @@ class IndexController extends Controller
        // return view("front/36kr_index", $params);
     }
 
+    public function suggest_user()
+    {
+        $user_list = $this->userInvoker->page(['pageSize'=>8]);
+        print_r($user_list);
+        return;
+        //$params = [];
+    }
+
     //上传图片
     public function upload_img(Request $request)
     {
