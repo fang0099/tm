@@ -174,6 +174,10 @@ class ArticleController
         return $this->articleRep->findById($id);
     }
 
-
+    public function relate(Request $request){
+        $id = $request->input('id');
+        $pageSize = $request->input('pageSize', 10);
+        return $this->articleRep->relate($id, $pageSize);
+    }
 
 }

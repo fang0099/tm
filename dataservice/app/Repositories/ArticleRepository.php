@@ -27,18 +27,21 @@ class ArticleRepository extends BaseRepository
     private $tagRep;
     private $userRep;
     private $checkLogRep;
+    private $webInfoRep;
 
     public function __construct(Article $model,
                                 CommentRepository $commentRep,
                                 TagRepository $tagRep,
                                 UserRepository $userRep,
-                                CheckLogRepository $checkLogRep)
+                                CheckLogRepository $checkLogRep,
+                                WebInfoRepository $webInfoRep)
     {
         $this->model = $model;
         $this->commentRep = $commentRep;
         $this->tagRep = $tagRep;
         $this->userRep = $userRep;
         $this->checkLogRep = $checkLogRep;
+        $this->webInfoRep = $webInfoRep;
     }
 
     public function read($id, $uid){
@@ -378,6 +381,31 @@ class ArticleRepository extends BaseRepository
                 return $this->success();
             }else {
                 return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', [$id, $uid]);
+            }
+        }
+    }
+
+    public function relate($id, $pageSize){
+        $article = $this->get($id);
+        if($article == null || $article->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'article id not exist', [$id]);
+        }else {
+            $tags = $article->tags()->get();
+            if($tags != null && !$tags->isEmpty()){
+                $ids = [];
+                foreach ($tags as $t){
+                    $ids[] = $t->id;
+                }
+                $recommendInterval = $this->webInfoRep->getRecommendInterval();
+                $idsStr = implode(',', $ids);
+                $query = "select a.* from article as a inner join tag_article_rel as rel "
+                        . " on a.id = rel.article_id where rel.tag_id in (" . $idsStr .") "
+                        . " and a.publish_time >= DATE_SUB(now(), INTERVAL ". $recommendInterval ." day) "
+                        . " order by a.hot_num desc limit " . $pageSize;
+                $articles = DB::select($query);
+                return $this->success('', $articles);
+            }else {
+                return $this->success('', []);
             }
         }
     }

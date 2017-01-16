@@ -15,7 +15,6 @@ use App\StatusCode;
 
 class WebInfoRepository extends BaseRepository
 {
-
     public function __construct(WebInfo $model)
     {
         $this->model = $model;
@@ -27,5 +26,12 @@ class WebInfoRepository extends BaseRepository
         return $this->updateInternal($params);
     }
 
+    public function fetch(){
+        return $this->get(1);
+    }
+
+    public function getRecommendInterval(){
+        return $this->fetch()->recommend_interval;
+    }
 
 }

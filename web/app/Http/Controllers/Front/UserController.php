@@ -214,7 +214,7 @@ class UserController extends Controller
             if(!Captcha::check($captcha)){
                 $loginFailedTimes++;
                 session(['login_failed_times' => $loginFailedTimes]);
-                echo json_encode(['success' : false, 'message' => '验证码错误', 'login_failed_times' => $loginFailedTimes]);
+                echo json_encode(['success' => false, 'message' => '验证码错误', 'login_failed_times' => $loginFailedTimes]);
                 return;
             }
         }

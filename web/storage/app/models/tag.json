@@ -66,7 +66,7 @@
 			}
 		},
 		{
-			"label" : "显示在首页",
+			"label" : "显示在话题",
 			"value" : "show_index",
 			"name" : "params[show_index]",
 			"type" : "select",
