@@ -20,6 +20,10 @@ class CommentController extends Controller
     	return $this->commentRep->create($request);
     }
 
+    public function update(Request $request){
+        return $this->commentRep->update($request);
+    }
+
     public function delete(Request $request){
     	$id = $request->input('id');
     	$operator = $request->input('userid');

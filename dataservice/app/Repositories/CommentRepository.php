@@ -31,6 +31,11 @@ class CommentRepository extends BaseRepository
 		return $this->success('', $comment);
     }
 
+    public function update(Request $request){
+        $params = $this->getParams($request);
+        return $this->updateInternal($params);
+    }
+
     public function delete($id, $operator){
     	$comment = $this->get($id);
     	if($comment != null && $comment->del_flag != 1 && $comment->user_id == $operator){
