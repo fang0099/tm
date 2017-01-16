@@ -3,7 +3,10 @@
 	border:none;
 }
 
-
+.home
+{
+    background-color:#ffffff;
+}
 
 .entry-content
 {
@@ -49,13 +52,18 @@
 }
 
 
-
+/*
 .grid
 {
     color: gray;
     box-sizing: border-box;
     box-shadow: 0 8px 18px rgba(0,0,0,.06);
     border-radius: 4px;
+}*/
+
+.mod-tit.r-tabs-nav a
+{
+    color:#666;
 }
 
 .main_page  .tag
@@ -69,8 +77,13 @@
 
 .simditor .simditor-wrapper.toolbar-floating .simditor-toolbar {
 
-    margin-top: 46px;
+    margin-top: 130px;
 
+}
+
+.page-write2 #header-holder
+{
+    height: 150px;
 }
 
 .tag_index {
@@ -291,3 +304,80 @@ body{
     color: #fff;
 }
 /*end 钛媒体*/
+.find_nav_cur a {
+    color: #666 !important;
+}
+
+.sideline
+{
+    background-color: #21B890 !important;
+}
+
+.real_time_intelligence li .triangle {
+    border-color: #fff #fff #fff #21B890;
+}
+
+.page-write2 .header-holder
+{
+    height: 150px;
+}
+
+.article-detail .content-wrapper .author a {
+    color: #21B890;
+}
+
+.article-detail .article-section a, .article-detail .article-section a:hover {
+    color: #21B890;
+}
+
+.article-detail .share-nav {
+    height: 0px;
+}
+
+.kr-tag-arrow-blue {
+    vertical-align: middle;
+    padding: 0 10px;
+    border: 1px solid #21B890;
+    color: #21B890;
+    position: relative;
+}
+
+.right-author .enter-report a {
+    display: block;
+    border-radius: 4px;
+    background-color: #21B890;
+    color: #fff;
+    text-align: center;
+    padding: 6px;
+    font-size: 16px;
+}
+
+.common-post-like-wrapper a.post-pc-like {
+    display: inline-block;
+    padding: .25rem 1.5rem;
+    background-color: #21B890;
+    border-radius: 4px;
+    color: #fff;
+    font-size: .9rem;
+}
+
+.kr-tag-arrow-blue .arrow {
+    border-color: #333 transparent transparent;
+    border-color: transparent #21B890 transparent transparent;
+    left: -10px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+a {
+    color: #21B890;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-blue, .zg-btn-blue, .modal-dialog-buttons>button[name=ok], .modal-dialog-buttons>button[name=yes], .navbar-publish-container .pop-button {
+    border-color: #21B890;
+    color: #21B890;
+}
