@@ -162,7 +162,7 @@ class UserController extends Controller
         {
             return redirect("/index");
         }
-        return view("front/user_login");
+        return view("front/login");
     }
 
     public function logout(Request $request)

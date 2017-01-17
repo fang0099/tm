@@ -150,3 +150,10 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['webAuth']], function (){
 Route::get('/captcha', function(){
     return Captcha::src();
 });
+
+Route::get('/mail', function(){
+    Mail::send('mail',['name'=>'Bean'],function($message){
+        $to = '234616116@qq.com';
+        $message ->to($to)->subject('邮件测试');
+    });
+});
