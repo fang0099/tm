@@ -76,7 +76,6 @@ class ArticleController extends Controller
             $pid = $request->get("parent");
             $comment_id = $request->get("id");
             $comment = $request->get("comment_content");
-            print_r($comment);
             $params = [
                 'params[article_id]' => $id,
                 'params[content]' => $comment,
@@ -132,10 +131,7 @@ class ArticleController extends Controller
                     'userid'=>$userid,
                 ]
             );
-
             return json_encode($r);
-
-            //return redirect(env("APP_URL")."/article?id=".$id);
         }
         else{
 
@@ -155,10 +151,9 @@ class ArticleController extends Controller
             );
 
             return json_encode($r);
-
-            //return redirect(env("APP_URL")."/article?id=".$id);
         }
-        else{
+        else
+        {
 
         }
     }
@@ -194,9 +189,6 @@ class ArticleController extends Controller
                 ]
             );
             return json_encode($r);
-
-            //return redirect(env("APP_URL")."/article?id=".$id);
-
         }
         else{
             //return redirect("account#login");
@@ -261,24 +253,12 @@ class ArticleController extends Controller
             if($current_user_id == null or $current_user_id != $comments["data"][$i]["user_id"])
             {
                 $comments["data"][$i]["created_by_current_user"] = false;
-                //$comments["data"][$i]["created_by_current_user_debug"] = $comments["data"][$i]["id"];
-                //$comments["data"][$i]["created_by_current_user_debug2"] = $current_user_id;
             }
             else
             {
                 $comments["data"][$i]["created_by_current_user"] = true;
             }
         }
-        /*foreach ($comments["data"] as $comment) {
-            $
-
-            $comment["upvote_count"] = $comment["up"];
-            $comment["profile_picture_url"] = $comment["avatar"];
-            //$comments["data"]["profile_picture_url"] = $comments["data"]["avatar"];
-            $comment["created"] = $comment["publish_time"];
-        }
-        print_r($comments);
-        return;*/
         return json_encode($comments);
     }
 
@@ -664,6 +644,8 @@ class ArticleController extends Controller
             //print_r($tag);
             //return;
             $article = $this->tagInvoker->articles(['id'=>$id]);
+            //print_r($article);
+            //return;
             $is_follower = $this->tagInvoker->hassubscriber(['id'=>$id, 'userid'=>$userid]);
             $params = [
                 'page_class'=>$page_class,
@@ -689,6 +671,8 @@ class ArticleController extends Controller
             }
             $is_follower = $this->userInvoker->hasfollower(['id'=>$id, 'userid'=>$userid]);
             //print_r($is_follower);
+            //print_r($article);
+            //;
             $params = [
                 'page_class'=>$page_class,
                 'user'=>$user["data"],
