@@ -11,6 +11,7 @@
 	-->
 	<link rel="stylesheet" type="text/css" href="usercenter/css/style.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
+	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 	<!--
 	<link rel="stylesheet" type="text/css" href="usercenter/css/fonts.css">
 	-->

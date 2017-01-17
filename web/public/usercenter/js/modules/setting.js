@@ -40,7 +40,7 @@ define(function(require, exports, modules){
                         $parent.find('.modify-btns').addClass('hide');
                         $parent.find('.js-modify').removeClass('hide');
                     }else {
-                        global.reminder({message : data.message});
+                        global.reminder({type : 'error', message : data.message});
                     }
 
                 }

@@ -127,7 +127,9 @@ class ArticleRepository extends BaseRepository
         $article = $this->insertWithId($params);
         $tagIdsArr = explode(',', $tagIds);
         foreach ($tagIdsArr as $t){
-            DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+            if ($t != '' && ctype_digit($t)){
+                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+            }
         }
         //$article->tags->sync($tagIdsArr);
         return $this->success('', $article);
@@ -159,7 +161,9 @@ class ArticleRepository extends BaseRepository
             $tagIdsArr = explode(',', $tagIds);
             DB::delete('delete from tag_article_rel where article_id = ?', [$article->id]);
             foreach ($tagIdsArr as $t){
-                DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+                if ($t != '' && ctype_digit($t)){
+                    DB::insert('insert into tag_article_rel (article_id, tag_id) values (?, ?)', [$article->id, $t]);
+                }
             }
         }
         return $this->success('', $article);
@@ -220,7 +224,9 @@ class ArticleRepository extends BaseRepository
     public function bcheck($ids, $operator){
         $idsArr = explode(',', $ids);
         foreach ($idsArr as $id){
-            $this->check($id, $operator, 1, '审核通过');
+            if($id != '' && ctype_digit($id)){
+                $this->check($id, $operator, 1, '审核通过');
+            }
         }
         return $this->success();
     }

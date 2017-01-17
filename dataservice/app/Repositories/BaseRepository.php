@@ -56,7 +56,9 @@ abstract class BaseRepository
     public function batchDeleteInternal(array $ids)
     {
         foreach ($ids as $id) {
-            $this->deleteById($id);
+            if(ctype_digit($id)){
+                $this->deleteById($id);
+            }
         }
         return $this->success();
     }

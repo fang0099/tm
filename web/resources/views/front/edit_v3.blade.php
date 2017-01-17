@@ -78,7 +78,7 @@
                 <div class="dropdown-menu-part">
 		                <span class="setting">
 		                    <a title="{{ $username }}" href="javascript:void(0)" class="avatar" id="user-avatar">
-		                        <img width="34" height="34" alt="{{$username}}" src="http://tm.paososo.com/{{ session('avatar') }}">
+		                        <img width="34" height="34" alt="{{$username}}" src="{{ session('avatar') }}">
 		                    </a>
 		                </span>
                     <!-- user login info -->
@@ -111,7 +111,7 @@
                 <nav>
                     <ul>
 
-                        <li class=""><a href="index.php" title="首页">首页</a>
+                        <li class=""><a href="/" title="首页">首页</a>
                         </li>
                     </ul>
                 </nav>

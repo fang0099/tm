@@ -115,7 +115,7 @@
 
                             <div class="form-group hide captcha-div">
                                 <input type="text" class="form-control" name="captcha" placeholder="请输入验证码" style='width:160px;display: inline;margin-right:10px'>
-                                <img src='http://bean/index.php/captcha/default?1kGzAchb' id='captcha-img' width="120">
+                                <img src='' id='captcha-img' width="120">
                             </div>
                             <input type="submit" class="btn btn-primary" id='confirm-login' value='登录'></input>
                             <div class="form-group">

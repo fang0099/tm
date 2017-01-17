@@ -8,6 +8,7 @@ define(function(require, exports, modules){
     var $loginBtn = $('#confirm-login');
     var $verifyBtn = $('#confirm-verify');
     var $captchaDiv = $('.captcha-div');
+    var $captchaImg = $('#captcha-img');
 
     var loginUrl = 'signin';
     var regUrl = 'signup';
@@ -67,6 +68,7 @@ define(function(require, exports, modules){
 						$error.removeClass('hide');
 						$error.find('.error').removeClass('hide');
 						if(data.login_failed_times >= 3){
+                            $captchaImg.click();
 							$captchaDiv.removeClass('hide');
 						}
 					}
@@ -168,8 +170,8 @@ define(function(require, exports, modules){
 			return false;
 	});
 
-	var captchaImg = $('#captcha-img');
-	captchaImg.click(function(){
+
+	$captchaImg.click(function(){
 		var $this = $(this);
 		$.ajax({
 			url : 'captcha',
@@ -180,6 +182,8 @@ define(function(require, exports, modules){
 			}
 		});
 	});
+
+	$captchaImg.click();
 
 	if(loginFailedTimes >= 3){
 		$captchaDiv.removeClass('hide');
