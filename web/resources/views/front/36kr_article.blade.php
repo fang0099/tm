@@ -144,16 +144,16 @@
 
         function guanzhu(id)
         {
+            console.log(id);
             $.ajax(
                 {
-                    url:"<?php echo env('APP_URL');?>/user/follow",
+                    url:"/user/follow",
                     data: {
                         id: id,
                     },
                     type: "POST",
-
                     success:function(result){
-                        toastr.success("收藏成功");
+                        toastr.success("关注成功");
                         console.log(result);
                         //var json_data = JSON.parse(result);
                         //commentsArray2 = json_data["data"];
@@ -226,6 +226,7 @@
                     dataType: "json",
                     success: function(data){
                         console.log(eval(data));
+                        toastr.success("喜欢成功");
                     },
                     error: function(data)
                     {
@@ -236,7 +237,7 @@
 
             $("#guanzhu_user").click(function()
             {
-                var id = {{$article["author"]["id"]}}
+                var id = {{$article["author"]["id"]}};
                 guanzhu(id);
             });
 
@@ -438,7 +439,7 @@
                                                     <section class="article-footer-label">
                                                         <span>原创文章，作者：{{$article["author"]["username"]}}</span>
                                                         <span>，如若转载，请注明出处：</span>
-                                                        <span><?php echo env('APP_URL');?>/article?id={{$article["id"]}}</span>
+                                                        <span><?php echo env('APP_URL');?>article?id={{$article["id"]}}</span>
                                                     </section>
                                                         @endif
                                                 </div>
@@ -456,7 +457,7 @@
                                                 </section>
                                                 <div class="fav-wrapper">
                                                     <div class="common-post-like-wrapper" data-stat-click="article.like.5061756">
-                                                        <a class="post-pc-like" style="text-decoration: none;">
+                                                        <a class="post-pc-like" article_id="{{$article["id"]}}" id="like_btn" style="text-decoration: none;">
                                                             <span class="icon-ic_like"></span>
                                                             <span style="margin-left: 4px;">
                                                                 喜欢
@@ -512,7 +513,7 @@
                                                                  </div>
                                                                 </div>
                                                                </div></span>
-                                                                <a class="icon-weibo weibo cell" target="_blank" data-stat-click="webtoolbar.weibo" href="http://share.baidu.com/s?type=text&amp;searchPic=1&amp;sign=on&amp;to=tsina&amp;key=595885820&amp;url=http://36kr.com/p/5061570.html&amp;title=%20%E3%80%90%E8%BD%AC%E6%9D%BF%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A%E3%80%91%E6%96%B0%E4%B8%89%E6%9D%BF%E8%BD%AC%E6%9D%BF%E5%A4%A7%E6%BD%AE%EF%BC%9A%E8%AD%A6%E6%83%95%E4%B8%80%E5%93%84%E8%80%8C%E4%B8%8A%E7%9A%84%E9%AB%98%E4%BC%B0%E5%80%BC%E6%8A%95%E8%B5%84%E9%A3%8E%E9%99%A9%20"></a>
+                                                                <a class="icon-weibo weibo cell" target="_blank" data-stat-click="webtoolbar.weibo" href="http://share.baidu.com/s?type=text&amp;searchPic=1&amp;sign=on&amp;to=tsina&amp;key=595885820&amp;url=<?php echo env('APP_URL');?>article?id={{$article["id"]}}&amp;title={{$article["title"]}}"></a>
                                                             </div>
                                                             <div class="user-ctrl ctrl-box am-fr">
 
