@@ -136,6 +136,7 @@ class UserCenterController extends Controller
         ];
         $data = $this->userInvoker->update($params);
         if ($data['success']){
+            session([$name => $value]);
             return ['success' => 'true'];
         }else {
             return ['success' => 'false', 'message' => $data['message']];

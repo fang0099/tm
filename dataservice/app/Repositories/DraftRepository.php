@@ -24,7 +24,7 @@ class DraftRepository extends BaseRepository
 
     public function insert(Request $request){
         $params = $this->getParams($request);
-        return $this->insertInternal($params);
+        return $this->insertOrUpdate($params);
     }
 
     public function update(Request $request){

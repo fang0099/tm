@@ -9,7 +9,7 @@
                 </div>
                 <div class="user-form">
                     <div class="form-part">
-                        <label for="nickname">用户名</label>
+                        <label for="nickname">昵称</label>
                         <input type="text" name="params[username]" id="username" value="{{data.username}}" class="input_profile hide">
                         <div class="input_profile_txt">{{data.username}}</div>
                         <div class="right-button">

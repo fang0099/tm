@@ -42,13 +42,13 @@ class TagController extends Controller
         if(session("username")!=null)
         {
             $r = $this->tagInvoker->subscribe(['id'=>$id, 'userid'=> session('id')]);
-            print_r($r);
+            return redirect("article/list?type=tag&id=".$id);
         }
         else
         {
-
+            return redirect('/account#login');
         }
-        return redirect("article/list?type=tag&id=".$id);
+
     }
 
     public function unsubscribe(Request $request)
@@ -57,13 +57,13 @@ class TagController extends Controller
         if(session("username")!=null)
         {
             $r = $this->tagInvoker->unsubscribe(['id'=>$id, 'userid'=> session('id')]);
-            print_r($r);
+            return redirect("article/list?type=tag&id=".$id);
         }
         else
         {
-
+            return redirect('/account#login');
         }
-        return redirect("article/list?type=tag&id=".$id);
+
     }
 
     public function tag_article_list(Request $request)

@@ -179,13 +179,13 @@ class UserController extends Controller
         if(session("username")!=null)
         {
             $r = $this->userInvoker->follow(['id'=>$id, 'follower'=> session('id')]);
-            print_r($r);
+            return redirect("article/list?id=".$id);
         }
         else
         {
-
+            return redirect('/account#login');
         }
-        return redirect("article/list?id=".$id);
+
     }
 
     public function unfollow(Request $request)
@@ -194,13 +194,13 @@ class UserController extends Controller
         if(session("username")!=null)
         {
             $r = $this->userInvoker->unfollow(['id'=>$id, 'follower'=> session('id')]);
-            print_r($r);
+            return redirect("article/list?id=".$id);
         }
         else
         {
-
+            return redirect('/account#login');
         }
-        return redirect("article/list?id=".$id);
+
     }
 
 

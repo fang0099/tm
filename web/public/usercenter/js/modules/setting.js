@@ -130,7 +130,7 @@ define(function(require, exports, modules){
                     dataType : 'json',
                     type : 'post',
                     success : function (data) {
-                        if(data.success){
+                        if(data.success == 'success' || data.success){
                             $('#user-setting-avatar').attr('src', path);
                             $('#user-avatar').find('img').attr('src', path);
                         }else {

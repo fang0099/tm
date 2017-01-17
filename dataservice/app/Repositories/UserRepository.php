@@ -93,6 +93,23 @@ class UserRepository extends BaseRepository
         if(isset($params['password']) && $params['password'] == '***'){
             unset($params['password']);
         }
+        // check username , email duplicate
+        if(isset($params['username'])){
+            $username = $params['username'];
+            $count = DB::select('select count(*) as c from users where username = ? and del_flag = 0', [$username]);
+            $c = $count[0]->c;
+            if($c > 0){
+                return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, '昵称已被占用', 'username');
+            }
+        }
+        if(isset($params['email'])){
+            $email = $params['email'];
+            $count = DB::select('select count(*) as c from users where email = ? and del_flag = 0', [$email]);
+            $c = $count[0]->c;
+            if($c > 0){
+                return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, '邮箱已被占用', 'email');
+            }
+        }
         return $this->updateInternal($params);
     }
 

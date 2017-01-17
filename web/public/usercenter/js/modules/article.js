@@ -28,8 +28,11 @@ define(function(require, exports, modules){
                         for(var i = 0 ; i < data.data.length ; i++){
                             if(data.data[i].hot_num != undefined){
                                 data.data[i]['type'] = 'article';
+                                data.data[i]['link'] = '/article?id=';
                             }else {
                                 data.data[i]['type'] = 'draft';
+                                data.data[i]['style'] = "color:#21B890;font-weight: bold"
+                                data.data[i]['link'] = '/article/edit?status=draft&id=';
                             }
                         }
                     }
