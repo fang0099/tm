@@ -9,7 +9,7 @@
 	<!--
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="usercenter/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 	<!--
@@ -230,7 +230,10 @@
 	<script>
 	var user = {!!$json!!};
 	</script>
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="/usercenter/js/vendor/jquery.iframe-transport.js"></script>
+	<script src="/usercenter/js/vendor/jquery.ui.widget.js"></script>
+	<script src="/usercenter/js/vendor/jquery.fileupload.js"></script>
 	<script src="usercenter/js/sea.js"></script>
 	<script src="usercenter/js/beta-usercenter-init.js"></script>
 	
