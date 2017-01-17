@@ -31,6 +31,15 @@ class UserRepository extends BaseRepository
         }
     }
 
+    public function findByEmail($email){
+        $user = $this->model->where('email', '=', $email)->first();
+        if($user == null || $user->del_flag == 1){
+            return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['email'=>$email]);
+        }else {
+            return $this->success('', $user);
+        }
+    }
+
     public function findById($id){
         $user = $this->get($id);
         if($user == null || $user->de_flag == 1){
@@ -46,14 +55,31 @@ class UserRepository extends BaseRepository
     public function create(Request $request){
         $params = $this->getParams($request);
         $username = $params['username'];
-        $count = DB::select('select count(*) as c from users where username = ?', [$username]);
+        $email = $params['email'];
+        $password = $params['password'];
+        if($username == ''){
+            return $this->fail('', '昵称不能为空', $params);
+        }
+        if($email == ''){
+            return $this->fail('', '邮箱不能为空', $params);   
+        }
+        if($password == ''){
+            return $this->fail('', '密码不能为空', $params);       
+        }
+        $count = DB::select('select count(*) as c from users where username = ? and del_flag = 0', [$username]);
         $c = $count[0]->c;
         if($c == 0){
-            $params['password'] = md5($params['password']);
-            $params['is_auth'] = 0;
-            return $this->insertInternal($params);
+            $count = DB::select('select count(*) as c from users where email = ? and del_flag = 0', [$email]);
+            $c = $count[0]->c;
+            if($c == 0){
+                $params['password'] = md5($params['password']);
+                $params['is_auth'] = 0;
+                return $this->insertInternal($params);
+            }else {
+                return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, '邮箱已被占用', 'email');
+            }
         }else {
-            return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, 'username is exist', $params);
+            return $this->fail(StatusCode::UPDATE_ERROR_ALREADY_EXIST, '昵称已被占用', 'username');
         }
 
     }
@@ -249,13 +275,13 @@ class UserRepository extends BaseRepository
     }
 
 
-    public function collectArticles($id, $page, $pageSize = 10){
+    public function collectArticles($id, $page, $pageSize = 10, $sort = 'id'){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
             $offset = ($page - 1) * $pageSize;
-            $as = $user->collectArticles()->where('del_flag', '=', 0)->orderBy('id', 'desc')->offset($offset)->limit($pageSize)->get();
+            $as = $user->collectArticles()->where('del_flag', '=', 0)->orderBy($sort, 'desc')->offset($offset)->limit($pageSize)->get();
             return $this->success('', $as);
         }
     }

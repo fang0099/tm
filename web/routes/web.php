@@ -22,10 +22,12 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/', 'IndexController@show_index');
     Route::get('/index', 'IndexController@show_index');
     //登录
-    Route::get('/login', 'UserController@login');
+    Route::get('/account', 'UserController@login');
     Route::get('/logout', 'UserController@logout');
     //注册
     Route::get('/signup', 'UserController@signup');
+    Route::get('/check-mail', 'UserController@verify');
+    Route::get('/send-check-mail/{mail}', 'UserController@sendVerfyMail');
     //创建文章
     Route::post('/article/create', 'ArticleController@create');
     Route::post('/article/create_draft', 'ArticleController@create_draft');
@@ -94,7 +96,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/uc', 'UserCenterController@index');
     Route::get('/uc/activities/{page?}', 'UserCenterController@activities');
     Route::get('/uc/notices/{page?}', 'UserCenterController@notices');
-    Route::get('/uc/articles/{type}/{page?}', 'UserCenterController@articles');
+    Route::get('/uc/articles/{type}/{page?}/{sort?}', 'UserCenterController@articles');
     Route::get('/uc/subscribe/{page?}', 'UserCenterController@subscribe');
     Route::get('/uc/follows/{page?}', 'UserCenterController@follows');
     Route::get('/uc/followers/{page?}', 'UserCenterController@followers');
@@ -151,9 +153,3 @@ Route::get('/captcha', function(){
     return Captcha::src();
 });
 
-Route::get('/mail', function(){
-    Mail::send('mail',['name'=>'Bean'],function($message){
-        $to = '234616116@qq.com';
-        $message ->to($to)->subject('邮件测试');
-    });
-});

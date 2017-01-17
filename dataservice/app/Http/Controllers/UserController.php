@@ -41,6 +41,11 @@ class UserController extends Controller
         return $this->userRep->findByUsername($username);
     }
 
+    public function getByEmail(Request $request){
+        $email = $request->input('email');
+        return $this->userRep->findByEmail($email);
+    }
+
     public function create(Request $request){
         return $this->userRep->create($request);
     }
@@ -147,7 +152,8 @@ class UserController extends Controller
     public function collectArticles(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
-        return $this->userRep->collectArticles($id, $page);
+        $sort = $request->input('sort');
+        return $this->userRep->collectArticles($id, $page, $sort);
     }
 
     public function tagArticles(Request $request){

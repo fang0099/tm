@@ -227,12 +227,12 @@
 		</div>
 	</div>
 	-->
-
+	<script>
+	var user = {{session('json')}};
+	</script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<script src="usercenter/js/sea.js"></script>
 	<script src="usercenter/js/beta-usercenter-init.js"></script>
-	<script>
-
-	</script>
+	
 </body>
 </html>

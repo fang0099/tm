@@ -50,6 +50,7 @@ Route::get('user/hotestarticles', 'UserController@hotestArticles');
 Route::get('user/notice', 'UserController@notice');
 Route::get('user/optlog', 'UserController@optLog');
 Route::get('user/getbyname', 'UserController@getByUsername');
+Route::get('user/getbyemail', 'UserController@getByEmail');
 Route::get('/user/hasfollower', 'UserController@hasFollower');
 Route::get('/user/haslike', 'UserController@hasLike');
 Route::get('/user/hascollect', 'UserController@hasCollect');

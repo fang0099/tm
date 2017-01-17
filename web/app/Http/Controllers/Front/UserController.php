@@ -15,6 +15,7 @@ use App\Invokers\FriendLinkInvoker;
 use App\Invokers\WebInfoInvoker;
 use App\Invokers\UserInvoker;
 use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 use Storage;
 
@@ -158,6 +159,7 @@ class UserController extends Controller
 
     public function login()
     {
+        //session(['login_failed_times' => 0]);
         if (session("username")!=null)
         {
             return redirect("/index");
@@ -204,14 +206,14 @@ class UserController extends Controller
 
     public function signin(Request $request)
     {
-        $username = $request->get('username');
+        $email = $request->get('email');
         $password=$request->get("password");
 
         // validate captcha
         $loginFailedTimes = session('login_failed_times', 0);
         if($loginFailedTimes >= 3){
             $captcha = $request->get('captcha');
-            if(!Captcha::check($captcha)){
+            if(!\Mews\Captcha\Facades\Captcha::check($captcha)){
                 $loginFailedTimes++;
                 session(['login_failed_times' => $loginFailedTimes]);
                 echo json_encode(['success' => false, 'message' => '验证码错误', 'login_failed_times' => $loginFailedTimes]);
@@ -219,18 +221,18 @@ class UserController extends Controller
             }
         }
 
-        //echo $username;
-        $r = $this->userInvoker->getbyname(
-            ['username'=>$username]
+        //echo $email;
+        $r = $this->userInvoker->getbyemail(
+            ['email'=>$email]
         );
-
         //print_r($r);
 
         $result = Array();
-        if (md5($password) == $r["data"]["password"])
+        if ($r['success'] && md5($password) == $r["data"]["password"])
         {
             $result["success"] = true;
             $result["message"] = "登录成功";
+            session(['login_failed_times' => 0]);
             session($r["data"]);
         }
         else
@@ -252,21 +254,63 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
+        $email = $request->input('email');
         $username = $request->get('username');
         $password=$request->get("password");
         $avatar="upload/3bab7c10-d1cc-11e6-a3a8-c93836a12d10.png";
+
         //$avatar="/resources/assets/img/user.png";
         $brief="这家伙很懒，什么也没留下";
 
         $r = $this->userInvoker->create(
-            ['params[username]' => $username,
-            'params[password]' => $password,
-            'params[avatar]'=>$avatar,
-            'params[brief]'=>$brief,
-        ]);
+            [
+                'params[email]' => $email,
+                'params[username]' => $username,
+                'params[password]' => $password,
+                'params[avatar]'=>$avatar,
+                'params[brief]'=>$brief,
+                'params[del_flag]' => 1
+            ]
+        );
+        if(isset($r['success']) && $r['success']){
+            // send email    
+            session(['email'=>$email]);
+            session(['id' => $r['data']['id']]);
+            session(['data'=>$r['data']]);
+            $this->sendVerfyMail();
+        }else {
+            echo json_encode($r);    
+        }
+    }
 
-        //return redirect("/");
-        echo json_encode($r);
+    public function sendVerfyMail($email){
+        $uuid = Uuid::generate();
+        $code = substr($uuid, 0, 6);
+        session(['code' => $code ]);
+        
+        Mail::send('mail',['username'=>$email, 'code' => $code],function($message){
+            $message ->to($email)->subject('贝塔区块链邮箱验证');
+        });
+        
+        echo json_encode(['success' => true, 'message' => '']);
+    }
+
+    public function verify(Request $request){
+        $code = $request->input('code');
+        if($code == session('code')){
+            //update user
+            $r = $this->userInvoker->update(
+                [
+                    'params[id]' => session('id'),
+                    'params[del_flag]' => 0
+                ]
+            );
+            $data = session('data');
+            session($data);
+            echo json_encode(['success' => true, 'message' => '']);
+        }else {
+            echo json_encode(['success' => false, 'message' => '邮箱验证失败']);
+        }
     }
 
     public function user_list()
