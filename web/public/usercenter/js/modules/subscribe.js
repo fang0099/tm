@@ -21,7 +21,7 @@ define(function(require, exports, modules){
                 dataType : 'json',
                 type : 'post',
                 success : function (data) {
-                    if(data.success){
+                    if(data.success == 'success' || data.success == true){
                         render.renderMain(tplUrl, dataUrl, function(data){ return data}, function(){
                             bindUnSubscribeEvent();
                         });

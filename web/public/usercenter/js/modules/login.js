@@ -156,7 +156,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == true){
+					if(data.success == 'success' || data.success == true){
 						location.href = '/';
 					}else {
 						var $error = $verifyForm.find('div.verify-error');

@@ -152,8 +152,9 @@ class UserController extends Controller
     public function collectArticles(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
         $sort = $request->input('sort');
-        return $this->userRep->collectArticles($id, $page, $sort);
+        return $this->userRep->collectArticles($id, $page, $pageSize, $sort);
     }
 
     public function tagArticles(Request $request){
