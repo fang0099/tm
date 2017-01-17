@@ -1,6 +1,6 @@
 <div class="m">
 	    <div class="list-page my_post my_bookmark">
-	        <h1>我的收藏</h1>
+	        <h1>我的收藏(<span id='collect-num'></span>)</h1>
 	        <div class="error_msg"></div>
 	        <div class="mod-article-list">
 	            <ul class="bookmark-list">

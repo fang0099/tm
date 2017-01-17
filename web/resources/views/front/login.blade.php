@@ -3,8 +3,9 @@
 <head>
     <title>账号中心</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="usercenter/css/style.css">
-    <link rel="stylesheet" type="text/css" href="usercenter/css/login.css">
+    <bese href='/'/>
+    <link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/usercenter/css/login.css">
     <style>
         html { font-size: 62.5%; }
         .form .form-control {
@@ -46,88 +47,119 @@
 
         <div class="form common-form common-wide-form">
             <legend>
-                <h2 class="ng-scope">注册贝塔区块链</h2>
+                <h2 class="ng-scope title">注册贝塔区块链</h2>
             </legend>
 
             <div class="reg">
                 <!--第一步：填写注册信息-->
-                <!--<div class="reg-info">-->
-                <!-- ngIf: emailRegStep==1 -->
-                <div class="reg-info ng-scope">
-                    <form action="" method="post" role="form" name="RegisterForm" class="">
+                <div class="reg-div reg-info">
+                    <form action="user/create" method="post" id='reg-form' role="form" name="RegisterForm" class="">
                         <div class="form-group">
                             <label class="icon-envelop"></label>
-                            <input type="email" class="form-control" name="username" placeholder="请输入邮箱" required="">
+                            <input type="email" class="form-control" name="email" placeholder="请输入邮箱" required="">
+                            <div class="error hide email-error" >
+                                <span class="ng-scope">请输入合法的邮箱地址</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="icon-person"></label>
+                            <input type="text" class="form-control" name="username" placeholder="请输入昵称" required="">
+                            <div class="error hide username-error" >
+                                <span class="ng-scope">请输入昵称</span>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label class="icon-lock"></label>
-                            <input type="password" class="form-control" name="password" ng-model="formData.password" minlength="6" maxlength="16" required="" placeholder="密码">
+                            <input type="password" class="form-control" name="password"  minlength="6" maxlength="16" required="" placeholder="密码">
+                            <div class="error hide password-error" >
+                                <span class="ng-scope">密码不能为空</span>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label class="icon-lock"></label>
-                            <input type="password" class="form-control ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-compare-to" name="passwordConfirm" ng-model="formData.passwordConfirm" compare-to="formData.password" placeholder="确认密码">
-
-                            <!-- ngIf: RegisterForm.passwordConfirm.$invalid && RegisterForm.passwordConfirm.$dirty -->
+                            <input type="password" class="form-control" name="passwordConfirm"  placeholder="确认密码">
+                            <div class="error hide confirm-password-error" >
+                                <span class="ng-scope">两次输入密码不一样</span>
+                            </div>
                         </div>
 
-                        <button type="button" ng-click="submitEmailFirstStepForm($event)" class="btn btn-primary">注册账号</button>
+                        <button type="submit"  class="btn btn-primary " id='confirm-reg'>注册账号</button>
                         <div class="form-group">
                             <a href="javascript:void(0)"  class="left change-login">使用已有账号登录</a>
                         </div>
                     </form>
                 </div><!-- end ngIf: emailRegStep==1 -->
-                <!--第二步：发送验证码-->
-            </div>
-            <div class="login hide">
-                <div class="reg-info ng-scope">
-                    <form action="" method="post" role="form" name="RegisterForm" class="">
-                        <div class="form-group">
-                            <label class="icon-envelop"></label>
-                            <input type="email" class="form-control" name="username" placeholder="请输入邮箱" required="">
-                        </div>
 
-                        <div class="form-group">
-                            <label class="icon-lock"></label>
-                            <input type="password" class="form-control" name="password" ng-model="formData.password" minlength="6" maxlength="16" required="" placeholder="密码">
-                        </div>
+                <div class="login login-div hide">
+                    <div class="reg-info ng-scope">
+                        <form action="user/signin" id='login-form' method="post" role="form" class="">
+                            <div class="error-wrapper icon-circle-with-minus ng-scope hide login-error" >
+                                <i></i>
+                                <div class="error">
+                                    <span class="ng-binding ng-scope">账户输入有误</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="icon-envelop"></label>
+                                <input type="email" class="form-control" name="email" placeholder="请输入邮箱" required="">
+                                <div class="error hide email-error" >
+                                        <span class="ng-scope">请输入合法的邮箱地址</span>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label class="icon-lock"></label>
-                            <input type="password" class="form-control" name="passwordConfirm" ng-model="formData.passwordConfirm" compare-to="formData.password" placeholder="确认密码">
+                            <div class="form-group">
+                                <label class="icon-lock"></label>
+                                <input type="password" class="form-control" name="password" ng-model="formData.password" minlength="6" maxlength="16" required="" placeholder="密码">
+                            </div>
+
+                            <div class="form-group hide captcha-div">
+                                <input type="text" class="form-control" name="captcha" placeholder="请输入验证码" style='width:160px;display: inline;margin-right:10px'>
+                                <img src='http://bean/index.php/captcha/default?1kGzAchb' id='captcha-img' width="120">
+                            </div>
+                            <input type="submit" class="btn btn-primary" id='confirm-login' value='登录'></input>
+                            <div class="form-group">
+                            <a href="javascript:void(0)"  class="left change-reg">注册账号</a>
                         </div>
-                        <button type="button" class="btn btn-primary">注册账号</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="verify-code verify-div hide">
+                    <form action="user/check-mail" method="post" role="form" class="" id='verify-form'>
+                        <div class="error-wrapper icon-circle-with-minus ng-scope hide verify-error" >
+                                <i></i>
+                                <div class="error">
+                                    <span class="ng-binding ng-scope">验证失败</span>
+                                </div>
+                        </div>
+                        <div class="normal-tip">
+                            <p>为了账号安全，需要验证邮箱有效性</p>
+
+                            <div class="desc">
+                                一封包含有验证码的邮件已经发送至邮箱：
+                                <div class="mail ng-binding"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="icon-eye"></label>
+                            <div class="actions col-actions ng-scope">
+                                <a href="javascript:void(0)" class="wide" id="re-send-email">重新发送</a>
+                            </div>
+                            <div class="col-input">
+                                <input type="text" class="form-control" name="verifyCode"  placeholder="验证码" required="">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="confirm-verify">确定</button>
+                        <div class="form-group">
+                            <a href="javascript:void(0)"  class="left change-login">使用已有账号登录</a>
+                        </div>
                     </form>
                 </div>
             </div>
 
-            <div class="verify-code hide">
-                <form action="" method="post" role="form" name="RegisterForm" ng-submit="submitRegForm($event)" class="ng-pristine ng-invalid ng-invalid-required">
-                    <div class="normal-tip">
-                        <p>为了账号安全，需要验证邮箱有效性</p>
-
-                        <div class="desc">
-                            一封包含有验证码的邮件已经发送至邮箱：
-                            <div class="mail ng-binding">234616116@qq.com</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="icon-eye"></label>
-                        <div class="actions col-actions ng-scope">
-                            <a href="javascript:void(0)" class="wide" id="re-send-email">重新发送</a>
-                        </div>
-
-                        <div class="col-input">
-                            <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="verifyCode" ng-model="formData.verifyCode" placeholder="验证码" required="">
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="confirm-verify">确定</button>
-                    <div class="form-group">
-                        <a href="javascript:void(0)"  class="left change-login">使用已有账号登录</a>
-                    </div>
-                </form>
-            </div>
+            
 
         </div>
 
@@ -140,9 +172,13 @@
 
 
 
-
+<script>
+    var loginFailedTimes = {{session('login_failed_times', 0)}}
+</script>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="usercenter/js/sea.js"></script>
-<script src="usercenter/js/modules/login.js"></script>
+<script src="/usercenter/js/sea.js"></script>
+<script type="text/javascript">
+    seajs.use('modules/login');
+</script>
 </body>
 </html>

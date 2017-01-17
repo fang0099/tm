@@ -41,7 +41,7 @@ class UserCenterController extends Controller
         }
         $uid = session('id');
         $user = $this->userInvoker->get(['id' => $uid]);
-
+        $user['data']['json'] = json_encode($user);
         return view('front/user_center_v2', $user['data']);
     }
 
@@ -65,10 +65,10 @@ class UserCenterController extends Controller
         }
     }
 
-    public function articles($type, $page = 1){
+    public function articles($type, $page = 1, $sort = 'id'){
         $uid = session('id',1);
         $method = 'articles' . $type;
-        $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page]);
+        $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page, 'sort' => $sort]);
         if($result['success']){
             $data = isset($result['data']) ? $result['data'] : (isset($result['list']) ? $result['list'] : []);
             return $this->jsonResult(true, '', $data);

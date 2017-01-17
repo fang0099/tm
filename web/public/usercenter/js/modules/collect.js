@@ -11,6 +11,7 @@ define(function(require, exports, modules){
 
 	exports.active = function(){
         render.renderMain(tplUrl, dataUrl, function(data){ return data}, function(){
+            $('#collect-num').html(user.collectCount);
         }, emptyHtml);
 	};
 });
