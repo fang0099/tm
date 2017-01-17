@@ -86,6 +86,31 @@ class IndexController extends Controller
        // return view("front/36kr_index", $params);
     }
 
+    public function show_suggest_user()
+    {
+        $user_list = $this->userInvoker->page(['pageSize'=>8]);
+        //print_r($user_list);
+        $params = [
+            'users' => $user_list["list"],
+            ];
+        return view("front/medium_suggestion", $params);
+        //$params = [];
+    }
+
+    public function show_suggest_tag()
+    {
+        $tag = $this->tagInvoker->list(['pageSize'=>8]);
+        //print_r($tag);
+        //return;
+        $params = [
+            'tags' => $tag["list"],
+        ];
+        return view("front/medium_suggestion", $params);
+        //print_r($tag);
+        //return;
+        //$params = [];
+    }
+
     //上传图片
     public function upload_img(Request $request)
     {

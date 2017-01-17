@@ -42,6 +42,14 @@ trait ApiInvoker
             'read'=>'GET',
             'next'=>'GET',
             'prev'=>'GET',
+            'relate'=>'GET',
+        ],
+        'comment'=>[
+            'create'=>"POST",
+            'delete'=>'GET',
+            'up'=>'GET',
+            'cancleup'=>'GET',
+            'update'=>'POST',
         ],
         'user' => [
             'get' => 'GET',

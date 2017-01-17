@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 
 use App\Invokers\ArticleInvoker;
+use App\Invokers\CommentInvoker;
 use App\Invokers\TagInvoker;
 use App\Invokers\UserInvoker;
 use Illuminate\Http\Request;
@@ -17,11 +18,12 @@ class ArticleController extends Controller
 
     public function __construct(ArticleInvoker $articleInvoker,
                                 UserInvoker $userInvoker,
-                                TagInvoker $tagInvoker)
+                                TagInvoker $tagInvoker, CommentInvoker $commentInvoker)
     {
         $this->articleInvoker = $articleInvoker;
         $this->userInvoker = $userInvoker;
         $this->tagInvoker = $tagInvoker;
+        $this->commentInvoker = $commentInvoker;
     }
 
     function substr_cut($str_cut,$length)
@@ -39,21 +41,66 @@ class ArticleController extends Controller
     {
         if (session("username")!=null) {
             $id = $request->get("article_id");
+            $pid = $request->get("parent");
             $comment = $request->get("comment_content");
             print_r($comment);
+            $params = [
+                'params[article_id]' => $id,
+                'params[content]' => $comment,
+                'params[avatar]' => session("avatar"),
+                'params[username]' => session("username"),
+                'params[user_id]' => (int)session("id"),
+
+                'params[type]'=>1
+            ];
+            if($pid != null)
+            {
+                $params["params[pid]"] = $pid;
+            }
+
             $r = $this->articleInvoker->comment(
-                [
-                    'params[article_id]' => $id,
-                    'params[content]' => $comment,
-                    'params[avatar]' => session("avatar"),
-                    'params[username]' => session("username"),
-                    'params[user_id]' => (int)session("id"),
-                ]);
-            return redirect(env("APP_URL")."/article?id=".$id);
+                $params
+                );
+            //return redirect(env("APP_URL")."/article?id=".$id);
         }
         else
         {
-            return redirect(env("APP_URL")."/login");
+            //return redirect(env("APP_URL")."/login");
+        }
+    }
+
+    public function update_comment(Request $request)
+    {
+        if (session("username")!=null) {
+            $id = $request->get("article_id");
+            $pid = $request->get("parent");
+            $comment_id = $request->get("id");
+            $comment = $request->get("comment_content");
+            print_r($comment);
+            $params = [
+                'params[article_id]' => $id,
+                'params[content]' => $comment,
+                'params[avatar]' => session("avatar"),
+                'params[username]' => session("username"),
+                'params[user_id]' => (int)session("id"),
+                'params[id]'=>$comment_id,
+                'params[type]'=>1
+            ];
+            if($pid != null)
+            {
+                $params["params[pid]"] = $pid;
+            }
+
+            $r = $this->commentInvoker->update(
+                $params
+            );
+            print_r($r);
+            return json_encode($r);
+            //return redirect(env("APP_URL")."/article?id=".$id);
+        }
+        else
+        {
+            //return redirect(env("APP_URL")."/login");
         }
     }
 
@@ -71,6 +118,27 @@ class ArticleController extends Controller
             $id = $request->get("id");
             return 1;
             //return redirect(env("APP_URL")."/login");
+        }
+    }
+
+    public function up_comment(Request $request)
+    {
+        if (session("username")!=null) {
+            $id = $request->get("id");
+            $userid = session("id");
+            $r = $this->commentInvoker->up(
+                [
+                    'id'=>$id,
+                    'userid'=>$userid,
+                ]
+            );
+
+            return json_encode($r);
+
+            //return redirect(env("APP_URL")."/article?id=".$id);
+        }
+        else{
+
         }
     }
 
@@ -294,8 +362,10 @@ class ArticleController extends Controller
         $author = $this->userInvoker->get(['id'=>$authorid]);
         $comment_list = $this->articleInvoker->lscomment(['id'=>$id]);
 
-        $recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1, 'pageSize'=>6]);
+        //$recommend_list = $this->userInvoker->articlesrecommend(['id'=>$userid, 'page'=> 1, 'pageSize'=>6]);
+        $recommend_list = $this->articleInvoker->relate(['id'=>$id, 'page'=> 1, 'pageSize'=>6]);
         $next_article = $this->articleInvoker->prev(['id'=>$id]);
+
 
         return view("front/36kr_article",
         //return view("front/article",
@@ -487,7 +557,8 @@ class ArticleController extends Controller
                     'params[author_id]' => $author,
                     'params[tags]' => $the_tag,
                 ]);
-            return redirect("article/list?id=".$author);
+            return json_encode($r);
+            //return redirect("article/list?id=".$author);
         }
         else
         {

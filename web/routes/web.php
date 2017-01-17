@@ -21,6 +21,9 @@ Route::group(['namespace' => 'Front'], function (){
     //首页
     Route::get('/', 'IndexController@show_index');
     Route::get('/index', 'IndexController@show_index');
+
+    Route::get('/suggestion_user', 'IndexController@show_suggest_user');
+    Route::get('/suggestion_tag', 'IndexController@show_suggest_tag');
     //登录
     Route::get('/account', 'UserController@login');
     Route::get('/logout', 'UserController@logout');
@@ -43,6 +46,9 @@ Route::group(['namespace' => 'Front'], function (){
     //Route::get('/article/edit', 'ArticleController@edit_article');
     Route::get('/article/edit', 'ArticleController@show_edit');
     Route::get('/article', 'ArticleController@show_article');
+
+    Route::get('/comment/up', 'ArticleController@up_comment');
+    Route::post('/comment/update', 'ArticleController@update_comment');
 
 
     Route::get('/article/ajax_article_list', 'ArticleController@ajax_article_list');
