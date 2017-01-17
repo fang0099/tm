@@ -33,7 +33,7 @@
                 <nav>
                     <ul>
 
-                        <li class=""><a href="index.php" title="首页">首页</a>
+                        <li class=""><a href="/" title="首页">首页</a>
                         </li>
                     </ul>
                 </nav>

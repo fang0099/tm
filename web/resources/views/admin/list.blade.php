@@ -389,6 +389,7 @@
                     //location.href = page;
                 });
                 $('.check').click(function(){
+                    console.log('xx');
                     var data = $(this).attr('data');
                     var pageUrl = 'checkarticle?id=' + data;
                     __.components.iframe.outOpenRightSlider(pageUrl);
