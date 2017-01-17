@@ -226,7 +226,7 @@
                     }
                     else
                     {
-                        $("#post_article").attr("action","update");
+                        $("#post_article").attr("action","create");
                     }
                     $("#submit_script").click();
                 });
@@ -385,7 +385,7 @@
             success: function (data) {
                 //toastr.success(eval(data));
                 var obj =  eval('(' + data + ')');
-
+                console.log(obj);
                 if (true == obj.success)
                 {
                     toastr.success("保存成功");
