@@ -22,7 +22,7 @@ class Comments extends BaseModel
         return $this->pid == 0 ? null : $this->pid;
     }
 
-    public function _commenter(){
+    public function commenter(){
     	return $this->hasOne('App\Model\User', 'id', 'user_id')->where('del_flag', '=', '0')->first();
     }
 

@@ -65,7 +65,7 @@ class ArticleController extends Controller
         }
         else
         {
-            //return redirect(env("APP_URL")."/login");
+            //return redirect(env("APP_URL")."/account#login");
         }
     }
 
@@ -100,7 +100,7 @@ class ArticleController extends Controller
         }
         else
         {
-            //return redirect(env("APP_URL")."/login");
+            //return redirect(env("APP_URL")."/account#login");
         }
     }
 
@@ -117,7 +117,7 @@ class ArticleController extends Controller
         {
             $id = $request->get("id");
             return 1;
-            //return redirect(env("APP_URL")."/login");
+            //return redirect(env("APP_URL")."/account#login");
         }
     }
 
@@ -178,7 +178,7 @@ class ArticleController extends Controller
 
         }
         else{
-            //return redirect("login");
+            //return redirect("account#login");
         }
     }
 
@@ -199,7 +199,7 @@ class ArticleController extends Controller
 
         }
         else{
-            //return redirect("login");
+            //return redirect("account#login");
         }
     }
 
@@ -218,7 +218,7 @@ class ArticleController extends Controller
             //return redirect(env("APP_URL")."/article?id=".$id);
         }
         else{
-            //return redirect("login");
+            //return redirect("account#login");
         }
     }
 
@@ -336,7 +336,7 @@ class ArticleController extends Controller
         //未登录
         else
         {
-            return redirect("login");
+            return redirect("account#login");
         }
     }
     //文章详情页
@@ -422,7 +422,7 @@ class ArticleController extends Controller
         }
         else
         {
-            return redirect("login");
+            return redirect("account#login");
         }
     }
     //修改文章
@@ -466,7 +466,7 @@ class ArticleController extends Controller
         }
         else
         {
-            return redirect("login");
+            return redirect("account#login");
         }
     }
     //删除文章
@@ -562,7 +562,7 @@ class ArticleController extends Controller
         }
         else
         {
-            return redirect("login");
+            return redirect("account#login");
         }
     }
 
@@ -626,7 +626,7 @@ class ArticleController extends Controller
         }
         else
         {
-            return redirect("login");
+            return redirect("account#login");
         }
     }
     //文章列表页

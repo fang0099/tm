@@ -47,7 +47,7 @@ class UserController extends Controller
             $r = $request->session()->all();
             return view("front/user_edit",["data"=> $r]);
         }
-        return redirect("/login");
+        return redirect("/account#login");
 
     }
 
@@ -153,14 +153,13 @@ class UserController extends Controller
 
             return redirect("/user/profile");
         }
-        return redirect("/login");
+        return redirect("/account#login");
 
 
     }
 
     public function login()
     {
-        //session(['login_failed_times' => 0]);
         if (session("username")!=null)
         {
             return redirect("/index");

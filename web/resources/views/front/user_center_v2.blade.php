@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	-->
 	<link rel="stylesheet" type="text/css" href="usercenter/css/style.css">
+	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<!--
 	<link rel="stylesheet" type="text/css" href="usercenter/css/fonts.css">
 	-->
@@ -29,6 +30,9 @@
 		            </div>
 		            -->
 		            <a href="/article/edit" class="btn btn-x-small orange post-edit">写稿</a>
+					<!--
+					<a href="/uc#notice"> <i class="icon-bell2"  style="width: 20px"></i></a>
+					-->
 		            <div class="dropdown-menu-part">
 		                <span class="setting">
 		                    <a title="{{ $username }}" href="javascript:void(0)" class="avatar" id="user-avatar">
@@ -65,11 +69,6 @@
 
 		                    <li class=""><a href="index.php" title="首页">首页</a>
 		                    </li>
-							<!--
-		                    <li class=""><a href="/trendmakers" title="我造社区">我造社区</a></li>
-		                    <li class=""><a href="/events" title="活动">活动</a></li>
-		                    <li class=""><a href="/pro/index" title="专业版">专业版</a></li>
-		                    -->
 		                </ul>
 		            </nav>
 		        </div>

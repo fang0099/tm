@@ -12,18 +12,26 @@ define(function(require, exports, modules){
     var loginUrl = 'signin';
     var regUrl = 'signup';
 
+    var changeLogin = function () {
+        $('.login-div').removeClass('hide');
+        $('.reg-div, .verify-div').addClass('hide');
+        $('.title').html('登录贝塔区块链');
+        location.hash = '#login';
+    };
+
+    var changeReg = function () {
+        $('.reg-div').removeClass('hide');
+        $('.login-div, .verify-div').addClass('hide');
+        $('.title').html('注册贝塔区块链');
+        location.hash = '#reg';
+    };
+
     $changeLogin.click(function(){
-    	$('.login-div').removeClass('hide');
-    	$('.reg-div, .verify-div').addClass('hide');
-    	$('.title').html('登录贝塔区块链');
-    	location.hash = '#login';
+		changeLogin();
     });
 
     $changeReg.click(function(){
-    	$('.reg-div').removeClass('hide');
-    	$('.login-div, .verify-div').addClass('hide');
-    	$('.title').html('注册贝塔区块链');
-    	location.hash = '#reg';
+		changeReg();
     });
 
     var isEmail = function(str){
@@ -184,5 +192,10 @@ define(function(require, exports, modules){
 		}	
 	};
 	select();
-
+	$('#login-a').click(function(){
+		changeLogin();
+	});
+	$('#reg-a').click(function(){
+        changeReg();
+	});
 });

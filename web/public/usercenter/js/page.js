@@ -1,5 +1,8 @@
 define(function(require, exports, modules){
     require('popup');
+    require('vendor/jquery.iframe-transport');
+    require('vendor/jquery.ui.widget');
+    require('upload');
     var $userAvatar = $('#user-avatar');
     var $userNav = $('#user-nav');
 

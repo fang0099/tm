@@ -3,7 +3,6 @@
 <head>
     <title>账号中心</title>
     <meta charset="utf-8">
-    <bese href='/'/>
     <link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
     <link rel="stylesheet" type="text/css" href="/usercenter/css/login.css">
     <style>
@@ -27,8 +26,8 @@
                     </form>
                 </div>
                 -->
-                <a href="/article/edit" class="btn btn-x-small btn-bordered gray" style="color:#666666">登录</a>
-                <a href="/article/edit" class="btn btn-x-small btn-bordered orange" style="color:#666666">注册</a>
+                <a href="account#login" id="login-a" class="btn btn-x-small btn-bordered gray" style="color:#666666">登录</a>
+                <a href="account#reg" id="reg-a" class="btn btn-x-small btn-bordered orange" style="color:#666666">注册</a>
             </div>
             <div class="left-c">
                 <nav>
