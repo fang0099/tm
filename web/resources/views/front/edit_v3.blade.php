@@ -127,6 +127,7 @@
                 </div>
                 <div class="options">
                     <span class="autosave"></span>
+                    <input id="is_edit" value="{{isset($article)?'update':'create'}}" style="display:none;" />
                     <a href="javascript:;" id="savedraft" class="btn btn-small gray btn-bordered save-post">保存草稿</a> 
                     <a href="javascript:;" id="savearticle" class="btn btn-small orange btn-bordered confrim-post_open" data-popup-ordinal="0" id="open_77949845">提交审核</a>
                 </div>
@@ -173,8 +174,8 @@
                         <input type="button" name="保存草稿" class="btn btn-green write-btn" style="float: right; margin-left: 15px;" value="修改" onClick="form[this].action='{{isset($article)?'update2':'create2'}}';form[this].submit();">-->
 
                             <!--<div class="status" ng-if="status" ng-class="status.type">saving</div>-->
-                        <input type="submit" value="保存草稿" id="submit_script" class="btn btn-small gray btn-bordered save-post" style="float: right; margin-left: 15px;"/>
-                        <input type="submit" value="提交审核" id="submit" class="btn btn-small orange btn-bordered confrim-post_open write-btn"/>
+                        <input style="display:none;" type="submit" value="保存草稿" id="submit_script" class="btn btn-small gray btn-bordered save-post" style="float: right; margin-left: 15px;"/>
+                        <input style="display:none;" type="submit" value="提交审核" id="submit" class="btn btn-small orange btn-bordered confrim-post_open write-btn"/>
                     </section>
                 </form>
             </div>
@@ -202,6 +203,46 @@
                 oForm.submit();
                 return false;
             }
+        </script>
+        <script>
+            $(function()
+            {
+
+                $("#savedraft").click(function(){
+                    if ($("#is_edit").val()=="create")
+                    {
+                        $("#post_article").attr("action","create_draft");
+                    }
+                    else
+                    {
+                        $("#post_article").attr("action","update_draft");
+                    }
+                    $("#submit_script").click();
+                });
+                $("#savearticle").click(function(){
+                    if ($("#is_edit").val()=="create")
+                    {
+                        $("#post_article").attr("action","create");
+                    }
+                    else
+                    {
+                        $("#post_article").attr("action","update");
+                    }
+                    $("#submit_script").click();
+                });
+                /*
+
+                $("#savedraft").click(function(){
+
+                    $("#post_article").attr("action","update_draft");
+                    $("#submit_script").click();
+                });
+                $("#savearticle").click(function(){
+                    $("#post_article").attr("action","update");
+                    $("#submit_script").click();
+                });
+                */
+            });
         </script>
 
         <script type="text/javascript">
@@ -347,7 +388,7 @@
 
                 if (true == obj.success)
                 {
-                    toastr.success("发布成功");
+                    toastr.success("保存成功");
                     //setTimeout("window.location.href='/';",3000);
                 }
                 else{

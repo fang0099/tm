@@ -622,7 +622,8 @@ class ArticleController extends Controller
                     'params[author_id]' => $author,
                     'params[tags]' => $the_tag,
                 ]);
-            return redirect("article/list?id=".$author);
+            return json_encode($r);
+            //return redirect("article/list?id=".$author);
         }
         else
         {
