@@ -91,7 +91,7 @@ class ArticleController
 
     public function apage(Request $request){
         $page = $request->input('page',1);
-        $pageSize = $request->input('pageSize', 150);
+        $pageSize = $request->input('pageSize', 500);
         $filter = $request->input('filter', array());
         $order = 'publish_time desc';
         return $this->articleRep->page2($page, $pageSize, $filter, $order);

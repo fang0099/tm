@@ -145,7 +145,7 @@ class AdminIndexController extends AdminBaseController
                         }
                         $data = $invoker->apage($filterarr);
                     }else {
-                        $data = $invoker->page();
+                        $data = $invoker->page(['pageSize' => 500]);
                     }
                     if ($data['success']){
                         return view('admin.list', [

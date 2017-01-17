@@ -14,7 +14,7 @@ define(function(require, exports, modules){
         	if(data.data instanceof Array && data.data.length > 0){
         		for(var i = 0 ; i < data.data.length ; i++){
         			var d = data.data[i];
-					if(d.ref.id != undefined){
+					if(d.ref != null && d.ref.id != undefined){
                         if(d.type == 1){
                             // tag
 							d.reft = d.ref.name;
