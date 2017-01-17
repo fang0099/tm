@@ -11,7 +11,7 @@ http://viima.github.io/jquery-comments/*/
 }
 
 .jquery-comments a[href] {
-	color: #2793e6;
+	color: #21B890;
 	text-decoration: none;
 }
 
@@ -54,7 +54,7 @@ http://viima.github.io/jquery-comments/*/
 .jquery-comments .tag:hover {
 	text-decoration: none;
 	background-color: #d8edf8;
-	border-color: #2793e6;
+	border-color: #21B890;
 }
 
 .jquery-comments [contentEditable=true]:empty:not(:focus):before{

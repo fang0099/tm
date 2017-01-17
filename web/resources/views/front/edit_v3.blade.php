@@ -46,6 +46,7 @@
     <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor.css" />
     <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/usercenter/css/style.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor-fullscreen.css" />
+    <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <style>
         #submit
         {
@@ -143,7 +144,7 @@
 
         <main class="main-container ng-scope" ng-view="">
             <div class="main post-write ng-scope ng-invalid ng-invalid-required ng-invalid-content-required ng-dirty ng-invalid-word-min" ng-form="postForm" ng-class="{&#39;full-screen-cover&#39;: draft.isTitleImageFullScreen}">
-                <form method="post" action="{{isset($article)?'update':'create'}}" enctype="multipart/form-data">
+                <form id="post_article" method="post" action="{{isset($article)?'update':'create'}}" enctype="multipart/form-data">
                 <section class="receptacle">
                     <div id="js-title-img" class="title-img" ui-droppable="" ng-class="{&#39;has-img&#39;: draft.titleImage}">
                         <div id="preview" onclick="$('#previewImg').click();">
@@ -172,8 +173,8 @@
                         <input type="button" name="保存草稿" class="btn btn-green write-btn" style="float: right; margin-left: 15px;" value="修改" onClick="form[this].action='{{isset($article)?'update2':'create2'}}';form[this].submit();">-->
 
                             <!--<div class="status" ng-if="status" ng-class="status.type">saving</div>-->
-                        <!--<input type="submit" value="保存草稿" id="submit_script" class="btn btn-small gray btn-bordered save-post" style="float: right; margin-left: 15px;"/>
-                        <input type="submit" value="提交审核" id="submit" class="btn btn-small orange btn-bordered confrim-post_open write-btn"/>-->
+                        <input type="submit" value="保存草稿" id="submit_script" class="btn btn-small gray btn-bordered save-post" style="float: right; margin-left: 15px;"/>
+                        <input type="submit" value="提交审核" id="submit" class="btn btn-small orange btn-bordered confrim-post_open write-btn"/>
                     </section>
                 </form>
             </div>
@@ -333,6 +334,36 @@
     </script>
 <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-wznav/js.js"></script>
 <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
+<script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+<script src="<?php echo env('APP_URL');?>/assets/global/scripts/jquery.form.js" type="text/javascript"></script>
+<script>
+    $(function()
+    {
+        var options1 = {
+            success: function (data) {
+                //toastr.success(eval(data));
+                var obj =  eval('(' + data + ')');
+
+                if (true == obj.success)
+                {
+                    toastr.success("发布成功");
+                    //setTimeout("window.location.href='/';",3000);
+                }
+                else{
+                    toastr.error(obj.message);
+                }
+            },
+            error: function()
+            {
+                toastr.error("server is down");
+            }
+        };
+
+        // ajaxForm
+        $("#post_article").ajaxForm(options1);
+    });
+</script>
 </body>
 
 </html>
