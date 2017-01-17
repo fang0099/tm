@@ -33,7 +33,6 @@ class UserCenterController extends Controller
     }
 
     public function index(){
-        $this->checkLogin();
         $uid = session('id');
         $user = $this->userInvoker->get(['id' => $uid]);
         $user['data']['json'] = json_encode($user['data']);
@@ -41,7 +40,6 @@ class UserCenterController extends Controller
     }
 
     public function activities($page = 1){
-        $this->checkLogin();
         $uid = session('id', 1);
         $result = $this->userInvoker->activities(['userid'=>$uid, 'page'=>$page]);
         if($result['success']){
@@ -52,7 +50,6 @@ class UserCenterController extends Controller
     }
 
     public function notices($page = 1){
-        $this->checkLogin();
         $uid = session('id', 1);
         $result = $this->userInvoker->notice(['userid'=>$uid, 'page'=>$page]);
         if($result['success']){
@@ -63,7 +60,6 @@ class UserCenterController extends Controller
     }
 
     public function articles($type, $page = 1, $sort = 'id'){
-        $this->checkLogin();
         $uid = session('id',1);
         $method = 'articles' . $type;
         $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page, 'sort' => $sort]);
@@ -76,7 +72,6 @@ class UserCenterController extends Controller
     }
 
     public function subscribe($page = 1){
-        $this->checkLogin();
         $uid = session('id', 1);
         $result = $this->userInvoker->tags(['id'=>$uid, 'page'=>$page]);
         if($result['success']){
@@ -87,7 +82,6 @@ class UserCenterController extends Controller
     }
 
     public function follows($page = 1){
-        $this->checkLogin();
         $uid = session('id');
         $result = $this->userInvoker->follows(['id'=>$uid, 'page'=>$page]);
         if($result['success']){
@@ -98,7 +92,6 @@ class UserCenterController extends Controller
     }
 
     public function followers($page = 1){
-        $this->checkLogin();
         $uid = session('id');
         $result = $this->userInvoker->followers(['id'=>$uid, 'page'=>$page]);
         if($result['success']){
@@ -109,7 +102,6 @@ class UserCenterController extends Controller
     }
 
     public function info(){
-        $this->checkLogin();
         $uid = session('id');
         $user = $this->userInvoker->get(['id'=>$uid]);
         $info = [
@@ -125,7 +117,6 @@ class UserCenterController extends Controller
     }
 
     public function updateInfo(Request $request){
-        $this->checkLogin();
         $params = $request->all();
         $data = $this->userInvoker->update($params);
         if ($data['success']){
@@ -136,7 +127,6 @@ class UserCenterController extends Controller
     }
 
     public function update(Request $request){
-        $this->checkLogin();
         $id = session('id');
         $name = $request->input('name');
         $value = $request->input('value');
@@ -153,7 +143,6 @@ class UserCenterController extends Controller
     }
 
     public function unsubscribe($id){
-        $this->checkLogin();
         $uid = session('id');
         $data = $this->tagInvoker->unsubscribe(["id" => $id, "userid" => $uid]);
         if ($data['success']){
@@ -164,7 +153,6 @@ class UserCenterController extends Controller
     }
 
     public function unfollow($id){
-        $this->checkLogin();
         $follower = session('id');
         $data = $this->userInvoker->unfollow(["id" => $id, "follower" => $follower]);
         if ($data['success']){
@@ -174,7 +162,6 @@ class UserCenterController extends Controller
         }
     }
     public function deleteNotice($id){
-        $this->checkLogin();
         $uid = session('id');
         $data = $this->userInvoker->deletenotice(["id" => $id, 'userid'=>$uid]);
         if ($data['success']){
@@ -185,7 +172,6 @@ class UserCenterController extends Controller
     }
 
     public function uncollect($id){
-        $this->checkLogin();
         $uid = session('id');
         $data = $this->articleInvoker->uncollect(["id" => $id, "userid" => $uid]);
         if ($data['success']){
@@ -196,7 +182,6 @@ class UserCenterController extends Controller
     }
 
     public function delDraft($id){
-        $this->checkLogin();
         $uid = session('id');
         $data = $this->userInvoker->deldraft(["id" => $id, "userid" => $uid]);
         if ($data['success']){
@@ -207,7 +192,6 @@ class UserCenterController extends Controller
     }
 
     public function delArticle($id){
-        $this->checkLogin();
         $uid = session('id');
         $data = $this->userInvoker->delarticle(["id" => $id, "userid" => $uid]);
         if ($data['success']){
@@ -217,9 +201,4 @@ class UserCenterController extends Controller
         }
     }
 
-    private function checkLogin(){
-        if (session('id', -1) == -1){
-            return redirect('/account#login');
-        }
-    }
 }

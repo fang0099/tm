@@ -171,7 +171,6 @@ abstract class BaseRepository
     }
 
     public function page2($page, $pageSize, $filter, $order){
-        $condition = array();
         $builder = $this->model->where('del_flag', '=', 0);
         if(!empty($filter)){
             $condition = $this->parser($filter);

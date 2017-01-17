@@ -98,6 +98,10 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 
+
+});
+
+Route::group(['namespace' => 'Front', 'middleware' => ['checkSession']], function (){
     //user-center
     Route::get('/uc', 'UserCenterController@index');
     Route::get('/uc/activities/{page?}', 'UserCenterController@activities');

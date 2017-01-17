@@ -88,10 +88,16 @@ class IndexController extends Controller
 
     public function show_suggest_user()
     {
+        $index_tag_list = $this->tagInvoker->indextags(['pageSize'=>8]);
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
         $user_list = $this->userInvoker->page(['pageSize'=>8]);
+        $hot_tag = $this->tagInvoker->page(['pageSize'=>10, 'order' => 'fans_num desc']);
         //print_r($user_list);
         $params = [
             'users' => $user_list["list"],
+            'menu_tags'=>$menu_tag_list["data"],
+            'index_tags'=>$index_tag_list["data"],
+            'hot_tag' => $hot_tag['list'],
             ];
         return view("front/medium_suggestion", $params);
         //$params = [];
@@ -99,11 +105,17 @@ class IndexController extends Controller
 
     public function show_suggest_tag()
     {
+        $index_tag_list = $this->tagInvoker->indextags(['pageSize'=>8]);
+        $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
+        $hot_tag = $this->tagInvoker->page(['pageSize'=>10, 'order' => 'fans_num desc']);
         $tag = $this->tagInvoker->list(['pageSize'=>8]);
         //print_r($tag);
         //return;
         $params = [
             'tags' => $tag["list"],
+            'menu_tags'=>$menu_tag_list["data"],
+            'index_tags'=>$index_tag_list["data"],
+            'hot_tag' => $hot_tag['list'],
         ];
         return view("front/medium_suggestion", $params);
         //print_r($tag);
