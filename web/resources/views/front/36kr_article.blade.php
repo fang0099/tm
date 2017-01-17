@@ -153,6 +153,7 @@
                     type: "POST",
 
                     success:function(result){
+                        toastr.success("收藏成功");
                         console.log(result);
                         //var json_data = JSON.parse(result);
                         //commentsArray2 = json_data["data"];
@@ -358,23 +359,24 @@
                         <!--<div class="status loading ng-binding ng-scope" ng-if="status" ng-class="status.type">saving</div>-->
                     </div>
                     @if( !isset($username) )
-                        <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
+                        <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="/account#login">登录</a>
                     @else
                         <div class="navbar-menu-container ui-menu-button ng-scope" >
                             <a href="javascript:;" class="menu-button ng-scope" aria-label="更多选项" id="navbar_menu_btn">
                                 <i class="icon-th-menu-outline"></i>
                             </a>
                             <menu class="menu navbar-menu ng-scope" id="navbar_menu">
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?id=<?php echo session('id');?>" tabindex="0">我的文章</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/user/follower?id=<?php echo session('id');?>" tabindex="0">我的粉丝</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/user/liker?id=<?php echo session('id');?>" tabindex="0">关注作者</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=liker&id=<?php echo session('id');?>" tabindex="0">关注作者文章</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=collect&id=<?php echo session('id');?>" tabindex="0">收藏文章列表</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/article/list?list_type=tag&id=<?php echo session('id');?>" tabindex="0">订阅标签文章列表</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/index.php/admin/index" tabindex="0">后台管理</a>
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/uc" tabindex="0">用户中心</a>
-                                <hr ng-if="inWrite &amp;&amp; !hideDelete" class="ng-scope">
-                                <a class="menu-item" href="<?php echo env('APP_URL');?>/logout" target="_blank" tabindex="0">退出</a>
+                                <a class="menu-item" href="/uc#index" tabindex="0">我的主页</a>
+                                <a class="menu-item" href="/uc#article" tabindex="0">我的文章</a>
+                                <a class="menu-item" href="/uc#collect" tabindex="0">我的收藏</a>
+                                <a class="menu-item" href="/uc#subscribe" tabindex="0">我的订阅</a>
+                                <a class="menu-item" href="/uc#notice" tabindex="0">我的通知</a>
+                                <a class="menu-item" href="/uc#setting" tabindex="0">账号设置</a>
+                                @if(session('is_admin') == 1)
+                                    <a class="menu-item" href="/admin/index" tabindex="0">后台管理</a>
+                                @endif
+                                <hr>
+                                <a class="menu-item" href="/logout"  tabindex="0">退出</a>
                             </menu>
                         </div>
                     @endif
@@ -477,7 +479,7 @@
                                                                 <!--<span class="kr-tag-arrow-blue kr-size-min">
                                                                     <span class="arrow"><em></em></span><span>{{$article["publish_time"]}}</span>
                                                                 </span>-->
-                                                                <a href="#" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
+                                                                <a href="javascript:;" id="guanzhu_user" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
                                                                 <!--<a class="btn" style="float:right;">关注</a>-->
                                                             </div>
                                                             <div class="other-ctrl ctrl-box am-fr">

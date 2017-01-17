@@ -25,17 +25,6 @@
                             @endif
                         @endif
 
-                    <!--<div ng-transclude="" class="more-funcs menu-button-no-arrow ui-menu-button ng-scope" ng-class="{ true: &#39;open&#39;, false: &#39;close&#39; }[open]" ui-menu-button="">
-                        <span class="menu-button ng-scope">
-                          <i class="icon-ic_unfold"></i>
-                        </span>
-                            <menu class="menu navbar-menu ng-scope">
-                                <a href="https://zhuanlan.zhihu.com/girlslovebreakfast/about" class="menu-item" tabindex="0">关于</a>
-
-                                <a ng-if="column.acceptSubmission" href="javascript:;" class="menu-item ng-scope" ng-click="handleContribute()" tabindex="0">投稿到该专栏</a>
-
-                             </menu>
-                        </div>-->
                     </div>
 
                     <div class="followers ng-scope" ng-switch-when="false" ng-hide="column.activateState != &#39;activated&#39;">
@@ -82,7 +71,7 @@
                                         <div class="entry-meta" style="margin-bottom: 5px;">
                                             <i class="icon-x" style=""></i>
                                             @if(isset($article["author"]["username"]))
-                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
+                                                <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" class="vote-num ng-binding" ng-show="post.likesCount" style="color:#21B890;">
 
                                                     <span>{{$article["author"]["username"]}}</span></a>
                                             @endif
@@ -90,18 +79,9 @@
                                             <time ng-class="{short: timeStyle == &#39;short&#39;}" ui-hover-title="2016 年 11 月 12 日星期六晚上 11 点 54 分" ui-time="" datetime="2016-11-12T23:54:39+08:00" class="published ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
                                             <div class="entry-func ng-scope" style="float:right; display:inline;position: relative;">
 
-                                            <!--<i class="icon-thumbs-up"></i>
+                                                <i class="icon-fire"></i>
 
-                                                                <a href="#" class="vote-num ng-binding" ng-show="post.likesCount">{{$article["likes"]}}
-                                                    <span></span></a>-->
-
-                                                @if($article["comment_num"]>=1)
-                                                    <i class="icon-fire"></i>
-                                                @else
-                                                    <i class="icon-message"></i>
-                                                @endif
-
-                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["comment_num"]}}
+                                                <a href="#comments" style="display: inline-block;" class="comment ng-binding" ng-show="post.commentsCount">{{$article["hot_num"]}}
                                                     <span></span></a>
                                             </div>
 
@@ -118,7 +98,7 @@
                                                 <i class="icon-tags" ></i>
                                                 @if(isset($article["tagList"]))
                                                     @foreach($article["tagList"] as $tag)
-                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
+                                                        <a class="" style="display: inline-block;position: relative;margin-top: 5px;" href="/article/list?type=tag&id={{$tag["id"]}}">{{$tag["name"]}}</a>
                                                     @endforeach
                                                 @endif
                                             </div>
