@@ -115,7 +115,7 @@ create table comments (
     user_id int not null default 0,
     type tinyint not null default 0 comment '评论类型:0=文章评论，1=评论评论，2=网站吐槽',
     del_flag tinyint not null default 0,
-    KEY type_del_article_idx (`type`, `del_flag`, `article_id`)
+    KEY del_article_idx (`del_flag`, `article_id`)
 )engine=innodb charset=utf8 auto_increment=1;
 
 create table user_comment_opt (

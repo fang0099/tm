@@ -151,6 +151,8 @@ Route::get('/notice/delete', 'NoticeController@delete');
 // comment
 // params : see article/comment
 Route::post('/comment/create', 'CommentController@create');
+Route::post('/comment/update', 'CommentController@update');
+
 // params : id, userid
 Route::get('/comment/delete', 'CommentController@delete');
 // params : id, userid

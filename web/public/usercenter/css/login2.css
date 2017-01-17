@@ -1,0 +1,126 @@
+body, html {
+    background: #e9eaec;
+}
+@media (min-width: 768px){
+    body .common-wide-form {
+        width: 750px;
+    }
+}
+@media (min-width: 1200px){
+    body .common-wide-form {
+        width: 970px;
+    }
+}
+@media (min-width: 800px){
+    body .common-wide-form {
+        width: 1170px;
+        margin: 30px auto;
+    }
+}
+
+
+
+body .common-wide-form {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+    border-radius: 3px;
+    padding-bottom: 80px;
+}
+body .common-form {
+    padding: 20px;
+    position: relative;
+}
+body .common-form legend {
+    margin: 0 -20px 20px;
+    padding: 0 20px;
+    display: block;
+    box-sizing: content-box;
+}
+fieldset, legend {
+    padding: 0;
+    border: 0;
+}
+legend, pre {
+    display: block;
+    color: #333;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+body .common-form legend h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 -1px;
+    line-height: 38px;
+    border-bottom: solid 3px #008df3;
+    display: inline-block;
+}
+legend {
+    width: 100%;
+    margin-bottom: 18px;
+    font-size: 19.5px;
+    line-height: inherit;
+    border-bottom: 1px solid #e5e5e5;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+body .common-form .form-group {
+    max-width: 333px;
+    margin: 0 auto 15px;
+    position: relative;
+}
+body .common-form .form-group:after, body .common-form .form-group:before {
+    content: " ";
+    display: table;
+}
+body .common-form .form-group label[class*=" icon-"], body .common-form .form-group label[class^=icon-] {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+}
+[class*=" icon-"], [class^=icon-] {
+    font-family: icomoon;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+.form-control, output {
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    display: block;
+}
+.form-control {
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -ms-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.navbar, body .common-form .form-control {
+    min-height: 50px;
+}
+body .common-form .form-group label[class*=" icon-"]+input, body .common-form .form-group label[class*=" icon-"]~* input, body .common-form .form-group label[class^=icon-]+input, body .common-form .form-group label[class^=icon-]~* input {
+    padding-left: 40px;
+}
