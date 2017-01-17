@@ -517,7 +517,7 @@
                                                             <div class="user-ctrl ctrl-box am-fr">
 
                                                                 <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
-                                                                <span id="collect_btn" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
+                                                                <span id="collect_btn" article_id="{{$article["id"]}}" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
                                                                 <span data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></span>
                                                             </div>
                                                             <div></div>
