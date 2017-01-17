@@ -16,6 +16,7 @@ use App\Invokers\WebInfoInvoker;
 use App\Invokers\UserInvoker;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
+use Mail;
 
 use Storage;
 
@@ -275,9 +276,9 @@ class UserController extends Controller
         if(isset($r['success']) && $r['success']){
             // send email    
             session(['email'=>$email]);
-            session(['id' => $r['data']['id']]);
+            session(['_id' => $r['data']['id']]);
             session(['data'=>$r['data']]);
-            $this->sendVerfyMail();
+            $this->sendVerfyMail($email);
         }else {
             echo json_encode($r);    
         }
@@ -288,7 +289,7 @@ class UserController extends Controller
         $code = substr($uuid, 0, 6);
         session(['code' => $code ]);
         
-        Mail::send('mail',['username'=>$email, 'code' => $code],function($message){
+        Mail::send('mail',['username'=>$email, 'code' => $code], function($message) use ($email) {
             $message ->to($email)->subject('贝塔区块链邮箱验证');
         });
         
@@ -296,12 +297,13 @@ class UserController extends Controller
     }
 
     public function verify(Request $request){
-        $code = $request->input('code');
+        $code = $request->input('verifyCode');
+        
         if($code == session('code')){
             //update user
             $r = $this->userInvoker->update(
                 [
-                    'params[id]' => session('id'),
+                    'params[id]' => session('_id'),
                     'params[del_flag]' => 0
                 ]
             );

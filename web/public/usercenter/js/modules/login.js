@@ -97,7 +97,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == 'true'){
+					if(data.success == true){
 						$('.mail').html($regForm.find('[name=email]').val());
 						$('.login-div, .reg-div').addClass('hide');
 						$('.verify-div').removeClass('hide');
@@ -148,7 +148,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == 'true'){
+					if(data.success == true){
 						location.href = '/';
 					}else {
 						var $error = $verifyForm.find('div.verify-error');

@@ -228,7 +228,7 @@
 	</div>
 	-->
 	<script>
-	var user = {{session('json')}};
+	var user = {!!$json!!};
 	</script>
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<script src="usercenter/js/sea.js"></script>

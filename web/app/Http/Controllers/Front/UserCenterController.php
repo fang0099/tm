@@ -41,7 +41,7 @@ class UserCenterController extends Controller
         }
         $uid = session('id');
         $user = $this->userInvoker->get(['id' => $uid]);
-        $user['data']['json'] = json_encode($user);
+        $user['data']['json'] = json_encode($user['data']);
         return view('front/user_center_v2', $user['data']);
     }
 
