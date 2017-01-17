@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/logout', 'UserController@logout');
     //注册
     Route::get('/signup', 'UserController@signup');
-    Route::get('/check-mail', 'UserController@verify');
+    Route::post('/user/check-mail', 'UserController@verify');
     Route::get('/send-check-mail/{mail}', 'UserController@sendVerfyMail');
     //创建文章
     Route::post('/article/create', 'ArticleController@create');
