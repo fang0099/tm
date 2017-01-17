@@ -226,7 +226,7 @@
                     }
                     else
                     {
-                        $("#post_article").attr("action","update");
+                        $("#post_article").attr("action","create");
                     }
                     $("#submit_script").click();
                 });
