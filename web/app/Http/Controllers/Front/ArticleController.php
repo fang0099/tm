@@ -321,6 +321,8 @@ class ArticleController extends Controller
             else
             {
                 $article = $this->userInvoker->getdraft(['id' => $article_id]);
+                //print_r($article);
+                //return;
             }
 
             $author_id = $article["data"]["author"]["id"];
@@ -418,7 +420,8 @@ class ArticleController extends Controller
                 $params["params[face]"] = $face;
             }
             $r = $this->articleInvoker->update($params);
-            return redirect("article/list?id=".session("id"));
+            return json_encode($r);
+            //return redirect("article/list?id=".session("id"));
         }
         else
         {
@@ -449,12 +452,14 @@ class ArticleController extends Controller
                 $face = env("APP_URL") . "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
+            $author = session("id");
             $params =
                 [
                     'params[id]' => $id,
                     'params[title]' => $title,
                     'params[abstracts]' => $abstracts,
                     'params[content]' => $content,
+                    'params[author_id]' => $author,
                     //'params[tags]' => $tags
                 ];
             if ($face!="default")
@@ -462,7 +467,8 @@ class ArticleController extends Controller
                 $params["params[face]"] = $face;
             }
             $r = $this->userInvoker->savedraft($params);
-            return redirect("article/list?id=".session("id"));
+            return json_encode($r);
+            //return redirect("article/list?id=".session("id"));
         }
         else
         {
