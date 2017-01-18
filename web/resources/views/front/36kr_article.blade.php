@@ -147,13 +147,14 @@
             console.log(id);
             $.ajax(
                 {
-                    url:"/user/follow",
+                    url:"/user/follow_ajax",
                     data: {
                         id: id,
                     },
-                    type: "POST",
+                    type: "get",
                     success:function(result){
                         toastr.success("关注成功");
+                        $("#guanzhu_user").text("已关注");
                         console.log(result);
                         //var json_data = JSON.parse(result);
                         //commentsArray2 = json_data["data"];
@@ -237,7 +238,7 @@
 
             $("#guanzhu_user").click(function()
             {
-                var id = {{$article["author"]["id"]}};
+                var id = $("#author_id").val();
                 guanzhu(id);
             });
 
@@ -404,7 +405,7 @@
                     </div>
                 </div>
             </div>
-
+            <input style="display:none;" id="author_id" value="{{$article["author"]["id"]}}"/>
             <div class="article-detail ">
                 <div class="post-wrapper">
                     <div id="J_normal_read_5061570" class="post-detail-con-box full-reading mainlib_flex_wapper">
