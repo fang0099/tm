@@ -10,15 +10,18 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\ArticleRepository;
+use App\Repositories\DraftRepository;
 use Illuminate\Http\Request;
 
 class ArticleController
 {
     private $articleRep;
+    private $draftRep;
 
-    public function __construct(ArticleRepository $articleRep)
+    public function __construct(ArticleRepository $articleRep, DraftRepository $draftRep)
     {
         $this->articleRep = $articleRep;
+        $this->draftRep = $draftRep;
     }
 
     public function get(Request $request){
@@ -166,12 +169,12 @@ class ArticleController
     }
 
     public function saveDraft(Request $request){
-        return $this->articleRep->saveDraft($request);
+        return $this->draftRep->insert($request);
     }
 
     public function getDraft(Request $request){
         $id = $request->input('id');
-        return $this->articleRep->findById($id);
+        return $this->draftRep->findById($id);
     }
 
     public function relate(Request $request){

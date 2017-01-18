@@ -37,7 +37,7 @@ class Article extends BaseModel
     }
 
     public function tags(){
-        return $this->belongsToMany('App\Model\Tag', 'tag_article_rel', 'article_id', 'tag_id');
+        return $this->belongsToMany('App\Model\Tag', 'tag_article_rel', 'article_id', 'tag_id')->where('del_flag', '=', '0');
     }
 
     public function _tagList(){

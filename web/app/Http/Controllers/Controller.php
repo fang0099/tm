@@ -35,7 +35,9 @@ class Controller extends BaseController
         $path = '';
         foreach ($files as $file){
             $uuid = Uuid::generate();
-            $file = $file;
+            if(is_array($file)){
+                $file = $file[0];
+            }
             $fileName = $uuid . '.' . $file->getClientOriginalExtension();
             $path = '/upload/' . $fileName;
             $file->move(public_path('upload'), $fileName);

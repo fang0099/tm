@@ -161,7 +161,7 @@ abstract class BaseRepository
 
     protected function insertOrUpdate($params){
         $primaryKey = $this->getPrimaryKey();
-        if(isset($params[$primaryKey])){
+        if(isset($params[$primaryKey]) && $params[$primaryKey]){
             return $this->updateInternal($params);
         }else {
             return $this->insertInternal($params);
