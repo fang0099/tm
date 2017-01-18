@@ -32,7 +32,7 @@ class UserRepository extends BaseRepository
     }
 
     public function findByEmail($email){
-        $user = $this->model->where('email', '=', $email)->first();
+        $user = $this->model->where('del_flag', '=', 0)->where('email', '=', $email)->first();
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['email'=>$email]);
         }else {
