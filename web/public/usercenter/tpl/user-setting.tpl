@@ -38,10 +38,12 @@
                         <div class="input_profile_txt">{{data.email}}</div>
                         <p class="part-reminder hide">您的邮箱还没有验证激活，部分网站功能无法使用。您可以选择<a href="/account/verification" class="key-link verification_popup_open" data-popup-ordinal="0" id="open_84079044">重发激活邮件</a></p>
                         <div class="right-button top">
+                            <!--
                             <button class="btn-bordered gray btn-small btn js-modify">修改</button>
                             <span class="modify-btns hide">
                                 <button class="btn-bordered orange btn-small btn modify_nickname_open js-save">保存</button> <button class="btn-bordered gray btn-small btn modify_nickname_open js-cancel">取消</button>
                             </span>
+                            -->
                         </div>
                     </div>
 
