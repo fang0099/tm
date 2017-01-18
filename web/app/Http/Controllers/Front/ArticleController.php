@@ -402,9 +402,12 @@ class ArticleController extends Controller
         if(session('id') == null){
             return json_encode(['success' => false, 'message' => '登录超时' ]);
         }
+        $uid = session('id');
         $params = $request->all();
         $type = $params['type'];
         unset($params['type']);
+        $draftId = $params['draftId'];
+        unset($params['draftId']);
         $tags = '';
         if(isset($params['tags'])){
             $tagsArr = $params['tags'];
@@ -422,6 +425,9 @@ class ArticleController extends Controller
                 $r = $this->articleInvoker->update($data);
             }else {
                 $r = $this->articleInvoker->create($data);
+            }
+            if($draftId){
+                $this->userInvoker->deldraft(['id'=>$draftId, 'userid' => $uid]);
             }
         }else {
             $r = $this->articleInvoker->savedraft($data);

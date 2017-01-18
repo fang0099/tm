@@ -118,9 +118,10 @@
                 </select>
                 <input type="hidden" value="{{$article["id"] or ''}}" name="id"/>
                 <input type="hidden" value="{{ $type or '' }}" name="type">
-                <input type='hidden' name="abstracts" id="abstracts"/>
-                <input type='hidden' name="face"/>
-                <input type="hidden" name="original" id="original" value='0'>
+                <input type='hidden' name="abstracts" id="abstracts" value="{{$article['abstracts'] or ''}}"/>
+                <input type='hidden' name="face" value="{{$article['face'] or ''}}"/>
+                <input type="hidden" name="original" id="original" value='{{$article['original'] or ''}}'>
+                <input type="hidden" name="draftId" >
             </section>
         </form>
     </div>
@@ -339,9 +340,12 @@
             }
             isAutoSave = false;
             clearInterval(saveDraftInterval);
+
             $form.find('[name=type]').val('article');
             $form.find('[name=title]').val($('#modal-title').val());
-            $form.find('[name=id]').val('');
+            var $id = $form.find('[name=id]');
+            $form.find('[name=draftId]').val($id.val());
+            $id.val('');
             $form.submit();
         });
 
