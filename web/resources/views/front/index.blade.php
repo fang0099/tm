@@ -16,12 +16,14 @@
             <div class="grid grid-pad" style="background-color: #ffffff; padding-top: 46px; margin-top: 20px;">
                 <div class="col-8-12 mobile-col-1-1">
                     <div id="responsiveTabsDemo" >
+
                         @if(null==session("username"))
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
                                 <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
+                                <li><a id="the_sugg" href="#tab-3">推荐</a></li>
                             </ul>
-                            <a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a>
+                            <!--<a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a>-->
                         @else
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
                                 <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
@@ -263,10 +265,6 @@
                 </div>
                 <div class="col-4-12 mobile-col-1-1 hide-on-mobile">
                     <div class="content">
-                        <!--<div class="block-title ng-scope" ng-class="scope.help &amp;&amp; block-title-help" ng-show="posts.length" ng-if="!currentAuthor">
-                              <span ng-transclude="">
-                                <span class="ng-binding ng-scope">热门话题</span></span>
-                        </div>-->
                         <div class="mod-tit"><span><h3>热门话题</h3></span></div>
 
                         <div class="column-about" ng-switch="columnType == 'user'" >
@@ -279,22 +277,6 @@
                            </div>
                         </div>
                     </div>
-                    <!--<div class="content">
-                        <div class="mod-tit"><span><h3>7×24h 快讯</h3></span></div>
-                        <div class="draft-items-container settings-posts-container ui-infinite" ui-infinite="" data-source="draftsSource">
-                            <ul class="items draft-list" ng-show="drafts.length">
-
-                                @foreach($fast_news as $article)
-                                <li class="item fx-draft-item-fade ng-scope" ng-repeat="draft in drafts">
-                                    <div class="entry-title"><a href="{{$article["link"]}}" class="ng-binding" target="_blank">{{$article["title"]}}</a></div>
-                                    <div class="entry-meta">
-                                        <time class="updated ng-binding ng-isolate-scope hover-title">{{$article["publish_time"]}}</time>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>-->
                     <div class="content">
                         <div class="mod-tit"><span><h3>7&times;24h 快讯</h3></span></div>
                         <div class="real_time_intelligence pad_inner">
@@ -419,6 +401,14 @@
 @section("page_level_js")
     <script src="responsive-tabs_/js/jquery.responsiveTabs.js"></script>
     <script>
+        $(document).ready(function(){
+            $("#the_sugg").click(function() {
+                    window.location.href = "/suggestion_tag";
+                }
+            );
+        });
+    </script>
+    <script>
         $('#responsiveTabsDemo').responsiveTabs({
             startCollapsed: 'accordion'
         });
@@ -493,39 +483,6 @@
                         console.log(eval(data));
                     }
                 });
-                /*$.ajax({
-                    type: "GET",
-                    url: "<?php echo env('APP_URL');?>/article/ajax_article_list?page="+count,
-                    data: {username:$("#username").val(), content:$("#content").val()},
-                    dataType: "json",
-                    success: function(data){
-                        //alert("1");
-                        console.log(eval(data));
-
-                        $.each(data["list"], function (index, article) {
-                            html+= "<li class=\"post-card-item ng-scope\">"+
-                                "<a ui-open-blank=\"\" href=\"<?php echo env('APP_URL');?>/article?id="+article["id"]+"\">"+
-                                "<p class=\"post-img ng-scope\" style=\"background-image: url(&quot; "+ article["face"]+" &quot;);\"></p>"+
-                                "<p class=\"title ng-binding\">"+article["title"]+"</p>"+
-                                "<p class=\"content ng-binding ng-hide\">"+article["abstracts"]+"…"+
-                                "<span class=\"read-all\">查看全文<i class=\"icon-ic_unfold\"></i></span></p></a><p class=\"meta\"><span class=\"author ellipsis\">"+
-                                "<a target=\"_blank\" href=\"<?php echo env('APP_URL');?>/article/list?id="+article["author"]["id"]+"\" class=\"ng-binding\">"+article["author"]["username"]+"</a>"+
-                                "</span><span class=\"source ellipsis ng-scope\">发表于"+
-                                "<a href=\"<?php echo env('APP_URL');?>/article?id="+article["id"]+"\" class=\"ng-binding\">"+article["publish_time"]+"</a></span></p></li>";
-
-                        });
-                        $(".post-card-list").html($(".post-card-list").html()+ html);
-
-                        //console.log(eval(data));
-
-                    },
-                    error: function(data)
-                    {
-                        console.log(eval(data));
-                    }
-                });*/
-
-                //$(".items").html($(".items").html()+html);
             }
         });
     </script>
