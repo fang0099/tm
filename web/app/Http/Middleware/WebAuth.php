@@ -13,16 +13,16 @@ class WebAuth
 {
     public function handle($request, Closure $next)
     {
+        /*
         $request->session()->set('is_admin', '1');
         $response = $next($request);
         return $response;
-        /*
-        if($request->session()->get('id')){
+        */
+        if($request->session()->get('id') && $request->session()->get('is_admin') == 1){
             $response = $next($request);
             return $response;
         }
 
-        return redirect('/login');
-        */
+        return redirect('/account#login');
     }
 }

@@ -41,7 +41,7 @@ class UserCenterController extends Controller
 
     public function activities($page = 1){
         $uid = session('id', 1);
-        $result = $this->userInvoker->activities(['userid'=>$uid, 'page'=>$page]);
+        $result = $this->userInvoker->activities(['userid'=>$uid, 'page'=>$page, 'pageSize' => 30]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
         }else {
@@ -51,7 +51,7 @@ class UserCenterController extends Controller
 
     public function notices($page = 1){
         $uid = session('id', 1);
-        $result = $this->userInvoker->notice(['userid'=>$uid, 'page'=>$page]);
+        $result = $this->userInvoker->notice(['userid'=>$uid, 'page'=>$page, 'pageSize' => 30]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
         }else {
@@ -62,7 +62,7 @@ class UserCenterController extends Controller
     public function articles($type, $page = 1, $sort = 'id'){
         $uid = session('id',1);
         $method = 'articles' . $type;
-        $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page, 'sort' => $sort]);
+        $result = $this->userInvoker->$method(['id'=>$uid,'userid' => $uid, 'page'=>$page, 'sort' => $sort, 'pageSize' => 30]);
         if($result['success']){
             $data = isset($result['data']) ? $result['data'] : (isset($result['list']) ? $result['list'] : []);
             return $this->jsonResult(true, '', $data);
@@ -73,7 +73,7 @@ class UserCenterController extends Controller
 
     public function subscribe($page = 1){
         $uid = session('id', 1);
-        $result = $this->userInvoker->tags(['id'=>$uid, 'page'=>$page]);
+        $result = $this->userInvoker->tags(['id'=>$uid, 'page'=>$page, 'pageSize' => 30]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
         }else {
@@ -83,7 +83,7 @@ class UserCenterController extends Controller
 
     public function follows($page = 1){
         $uid = session('id');
-        $result = $this->userInvoker->follows(['id'=>$uid, 'page'=>$page]);
+        $result = $this->userInvoker->follows(['id'=>$uid, 'page'=>$page, 'pageSize' => 30]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
         }else {
@@ -93,7 +93,7 @@ class UserCenterController extends Controller
 
     public function followers($page = 1){
         $uid = session('id');
-        $result = $this->userInvoker->followers(['id'=>$uid, 'page'=>$page]);
+        $result = $this->userInvoker->followers(['id'=>$uid, 'page'=>$page, 'pageSize' => 30]);
         if($result['success']){
             return $this->jsonResult(true, '', $result['data']);
         }else {
