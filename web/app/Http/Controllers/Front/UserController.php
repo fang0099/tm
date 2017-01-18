@@ -179,7 +179,24 @@ class UserController extends Controller
         if(session("username")!=null)
         {
             $r = $this->userInvoker->follow(['id'=>$id, 'follower'=> session('id')]);
+            //return json_encode($r);
             return redirect("article/list?id=".$id);
+        }
+        else
+        {
+            return redirect('/account#login');
+        }
+
+    }
+
+    public function follow_ajax(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->userInvoker->follow(['id'=>$id, 'follower'=> session('id')]);
+            return json_encode($r);
+            //return redirect("article/list?id=".$id);
         }
         else
         {
@@ -194,6 +211,7 @@ class UserController extends Controller
         if(session("username")!=null)
         {
             $r = $this->userInvoker->unfollow(['id'=>$id, 'follower'=> session('id')]);
+            //return json_encode($r);
             return redirect("article/list?id=".$id);
         }
         else
@@ -202,7 +220,21 @@ class UserController extends Controller
         }
 
     }
+    public function unfollow_ajax(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->userInvoker->unfollow(['id'=>$id, 'follower'=> session('id')]);
+            return json_encode($r);
+            //return redirect("article/list?id=".$id);
+        }
+        else
+        {
+            return redirect('/account#login');
+        }
 
+    }
 
     public function signin(Request $request)
     {

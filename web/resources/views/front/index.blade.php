@@ -16,16 +16,19 @@
             <div class="grid grid-pad" style="background-color: #ffffff; padding-top: 46px; margin-top: 20px;">
                 <div class="col-8-12 mobile-col-1-1">
                     <div id="responsiveTabsDemo" >
-
+                        @if(null==session("username"))
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
                                 <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
-                                @if(null==session("username"))
-                                    <li><a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a></li>
-                                @else
-                                    <li><a class="" href="#tab-3">推荐</a></li>
-                                @endif
                             </ul>
+                            <a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a>
+                        @else
+                            <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
+                                <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
+                                <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
+                                <li><a class="" href="#tab-3">推荐</a></li>
+                            </ul>
+                        @endif
 
                         <div id="tab-1">
                             <div class="content">
@@ -253,36 +256,7 @@
                                     </div>
 
                                 </div>
-
                             @else
-                                <ul class="column-followers clearfix">
-                                    @foreach($users as $user)
-                                        <li class="ui-user-item ng-isolate-scope" ng-repeat="user in followers" user="user">
-                                            <a href="article/list?id={{$user["id"]}}" target="_blank" class="user-avatar">
-                                                <img class="avatar avatar-mid" ng-src="{{$user["avatar"]}}" alt="" src="{{$user["avatar"]}}"></a>
-                                            <div class="user-intro">
-                                                <a href="article/list?id={{$user["id"]}}" target="_blank">
-                                                    <strong class="ng-binding">{{$user["username"]}}</strong></a>
-                                                <p>{{$user["brief"]}}</p>
-                                                <span ng-if="user.bio" class="bio ng-binding ng-scope"></span>
-                                                <a class="btn btn-green" href="<?php echo env('APP_URL');?>/user/follow?id={{$user["id"]}}" style="float:right">关注</a>
-                                            </div>
-                                        </li>
-                                        @endforeach
-                                    @foreach($tags as $tag)
-                                            <li class="ui-user-item ng-isolate-scope" ng-repeat="user in followers" user="user">
-                                                <a href="article/list?id={{$tag["id"]}}" target="_blank" class="user-avatar">
-                                                    <img class="avatar avatar-mid" ng-src="{{$tag["face"]}}" alt="" src="{{$user["avatar"]}}"></a>
-                                                <div class="user-intro">
-                                                    <a href="article/list?type=tag&id={{$tag["id"]}}" target="_blank">
-                                                        <strong class="ng-binding">{{$tag["name"]}}</strong></a>
-                                                    <p>{{$user["brief"]}}</p>
-                                                    <span ng-if="user.bio" class="bio ng-binding ng-scope"></span>
-                                                    <a class="btn btn-green" href="<?php echo env('APP_URL');?>/tag/subscribe?id={{$tag["id"]}}" style="float:right">关注</a>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                </ul>
                             @endif
                         </div>
                     </div>
