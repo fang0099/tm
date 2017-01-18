@@ -400,6 +400,7 @@ class ArticleController extends Controller
                 $params["params[face]"] = $face;
             }
             $r = $this->articleInvoker->update($params);
+            $r['type'] = 'article';
             return json_encode($r);
             //return redirect("article/list?id=".session("id"));
         }
@@ -447,6 +448,7 @@ class ArticleController extends Controller
                 $params["params[face]"] = $face;
             }
             $r = $this->userInvoker->savedraft($params);
+            $r['type'] = 'draft';
             return json_encode($r);
             //return redirect("article/list?id=".session("id"));
         }
@@ -543,6 +545,7 @@ class ArticleController extends Controller
                     'params[author_id]' => $author,
                     'params[tags]' => $the_tag,
                 ]);
+            $r['type'] = 'article';
             return json_encode($r);
             //return redirect("article/list?id=".$author);
         }
@@ -608,6 +611,7 @@ class ArticleController extends Controller
                     'params[author_id]' => $author,
                     'params[tags]' => $the_tag,
                 ]);
+            $r['type'] = 'draft';
             return json_encode($r);
             //return redirect("article/list?id=".$author);
         }

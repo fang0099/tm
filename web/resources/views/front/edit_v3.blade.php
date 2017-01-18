@@ -29,38 +29,38 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
     <!--[if lt IE 9]>
-    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/es5-shim.js"></script>
-    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/html5shiv.js"></script>
+    <script src="/zhuanlan/js/es5-shim.js"></script>
+    <script src="/zhuanlan/js/html5shiv.js"></script>
     <![endif]-->
     <!--[if lt IE 8]>
-    <script src="<?php echo env('APP_URL');?>/zhuanlan/js/json3.min.js"></script>
+    <script src="/zhuanlan/js/json3.min.js"></script>
     <![endif]-->
     <script>document.documentElement.className += ('ontouchstart' in window) ? ' touch': ' no-touch'</script>
-<!--<link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/docsupport/style.css">
+<!--<link rel="stylesheet" href="/chosen-master/docsupport/style.css">
 
-        <link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/docsupport/prism.css">-->
+        <link rel="stylesheet" href="/chosen-master/docsupport/prism.css">-->
 
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/chosen-master/chosen.css">
+    <link rel="stylesheet" href="/chosen-master/chosen.css">
 
-    <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/font-awesome.css" />
-    <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor.css" />
-    <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/usercenter/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/styles/simditor-fullscreen.css" />
-    <link href="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link media="all" rel="stylesheet" type="text/css" href="/zhuanlan/plugins/simditor/styles/font-awesome.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="/zhuanlan/plugins/simditor/styles/simditor.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="/usercenter/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/zhuanlan/plugins/simditor/styles/simditor-fullscreen.css" />
+    <link href="/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <style>
         #submit
         {
             float:right;
         }
     </style>
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/jquery-wznav/css.css">
+    <link rel="stylesheet" href="/jquery-wznav/css.css">
 
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/main.css">
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/simple_grid/simplegrid.css">
-<!--<link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">-->
-    <link media="all" rel="stylesheet" type="text/css" href="<?php echo env('APP_URL');?>/usercenter/css/style.css" />
-    <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/icomoon.css">
+    <link rel="stylesheet" href="/zhuanlan/css/main.css">
+    <link rel="stylesheet" href="/zhuanlan/css/mine.css">
+    <link rel="stylesheet" href="/simple_grid/simplegrid.css">
+<!--<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">-->
+    <link media="all" rel="stylesheet" type="text/css" href="/usercenter/css/style.css" />
+    <link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 </head>
 <body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">
 <!--[if lt IE 8]>
@@ -73,7 +73,7 @@
     <header class="p-header new-header p-header-show">
         <div class="first-nav">
             <div class="options">
-                <a href="<?php echo env('APP_URL');?>/article/edit" class="btn btn-x-small orange post-edit">写稿</a>
+                <a href="/article/edit" class="btn btn-x-small orange post-edit">写稿</a>
                 @if(isset($username))
                 <div class="dropdown-menu-part">
 		                <span class="setting">
@@ -85,19 +85,19 @@
                     <div id="user-nav" class="dropdown-menu user-dropdown">
                         <div class="common-nav user-nav">
                             <ul>
-                                <li><a href="<?php echo env('APP_URL');?>/uc#article" title="我的文章"><i class="icon-paper"></i>我的文章</a></li>
-                                <li><a href="<?php echo env('APP_URL');?>/uc#collect" title="我的收藏"><i class="icon-ribbon"></i>我的收藏</a></li>
-                                <li><a href="<?php echo env('APP_URL');?>/uc#subscribe" title="我的订阅"><i class="icon-circle-plus"></i>我的订阅</a></li>
-                                <li><a href="<?php echo env('APP_URL');?>/uc#notice" class="notifications" title="我的通知"><i class="icon-bell2"></i>我的通知</a></li>
-                                <li><a href="<?php echo env('APP_URL');?>/uc#setting" title="账号设置"><i class="icon-cog"></i>账号设置</a></li>
-                                <li class="last"><a href="<?php echo env('APP_URL');?>/logout" title="退出"><i class="icon-power"></i>退出</a></li>
+                                <li><a href="/uc#article" title="我的文章"><i class="icon-paper"></i>我的文章</a></li>
+                                <li><a href="/uc#collect" title="我的收藏"><i class="icon-ribbon"></i>我的收藏</a></li>
+                                <li><a href="/uc#subscribe" title="我的订阅"><i class="icon-circle-plus"></i>我的订阅</a></li>
+                                <li><a href="/uc#notice" class="notifications" title="我的通知"><i class="icon-bell2"></i>我的通知</a></li>
+                                <li><a href="/uc#setting" title="账号设置"><i class="icon-cog"></i>账号设置</a></li>
+                                <li class="last"><a href="/logout" title="退出"><i class="icon-power"></i>退出</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- user login info end -->
                 </div>
                 @else
-                    <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="<?php echo env('APP_URL');?>/login">登录</a>
+                    <a class="navbar-login btn btn-blue btn-72_32 ng-scope" href="/login">登录</a>
                 @endif
             </div>
             <div class="left-c">
@@ -123,7 +123,7 @@
                 <div class="columns fl">
                     <!-- <span class="column-icon fl"><i class="icon-comment icon-Shape2"></i></span> -->
                     <!-- <div class="column-title fl">写稿</div> -->
-                    <a href="<?php echo env('APP_URL');?>/uc#article" target="_blank" class="draft pop-close orange">草稿<span class="num">(<strong>{{session('draftCount')}}</strong>)</span></a>
+                    <a href="/uc#article" target="_blank" class="draft pop-close orange">草稿<span class="num">(<strong>{{session('draftCount')}}</strong>)</span></a>
                 </div>
                 <div class="options">
                     <span class="autosave"></span>
@@ -139,6 +139,7 @@
     </div>
 
 </div>
+
 <div class="ui-alertbar info ng-hide" ng-show="show" ui-alertbar="" data-alert="globalAlert" ui-sticky="" data-align="bottom" data-target="#header-holder">
     <i class="icon-ic_prompt_done ng-scope" ng-if="alert.type == &#39;info&#39;"></i>
 </div>
@@ -176,37 +177,93 @@
                             <!--<div class="status" ng-if="status" ng-class="status.type">saving</div>-->
                         <input style="display:none;" type="submit" value="保存草稿" id="submit_script" class="btn btn-small gray btn-bordered save-post" style="float: right; margin-left: 15px;"/>
                         <input style="display:none;" type="submit" value="提交审核" id="submit" class="btn btn-small orange btn-bordered confrim-post_open write-btn"/>
+                        <input type='hidden' name="abstracts" id="abstracts"/>
+                        <input type="hidden" name="original" id="original" value='0'>
                     </section>
                 </form>
             </div>
         </main>
 
-
+<div id="confrim-post" class="hide">
+  <div class="reminder-cont center-block universal-container">
+    <h1 class="txt">确认提交审核？</h1>
+    <p class="info">点击提交审核之后，将无法修改文章</p>
+    <!-- <p class="info status"></p> -->
+    <div class="error_msg" style="display: inline-block; margin-top: 30px; height:38px; overflow:hidden"></div>
+    <div class="reset_password_form">
+        <div class="m-bg">
+          <div class="input-part clear">
+              <input type="text" name="title" disabled placeholder="请输入标题" class="input_decoration">
+              <input type="text" name="summary" placeholder="请输入摘要" class="input_decoration digest" id='digest'>
+              <div class="btn-part clear">
+                <label for="first" class="fl first">
+                    <input type="checkbox" name="is_first_publish" id="first"> 首发贝塔区块链
+                </label>
+                <div class="btns fr">
+                    <span class="status"></span>
+                    <button class="btn btn-bordered btn-normal gray confrim-post_close">取消</button>
+                    <button id="confrim-btn" class="btn btn-bordered btn-normal red ">提交</button>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
         <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery.pin/jquery.pin.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/module.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/uploader.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/hotkeys.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-dropzone.js"></script>
-        <script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
-        <script src="<?php echo env('APP_URL');?>/chosen-master/chosen.jquery.js" type="text/javascript"></script>
-        <script src="<?php echo env('APP_URL');?>/chosen-master/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            function aa(oForm){
-                oForm.action="http://bbs.51js.com";
-                oForm.target="fA"
-                oForm.submit();
-                oForm.action="http://www.iecn.net/bbs/";
-                oForm.target="fB"
-                oForm.submit();
-                return false;
-            }
-        </script>
+        <script type="text/javascript" src="/jquery.pin/jquery.pin.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/module.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/uploader.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/hotkeys.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/simditor.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/simditor-dropzone.js"></script>
+        <script type="text/javascript" src="/zhuanlan/plugins/simditor/scripts/simditor-fullscreen.js"></script>
+        <script src="/chosen-master/chosen.jquery.js" type="text/javascript"></script>
+        <script src="/chosen-master/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/usercenter/js/vendor/jquery.popupoverlay.js"></script>
         <script>
             $(function()
             {
+                // auto save draft
+                var saveSeconds = 10 * 1000;
+                var saveDraftInterval = setInterval(function(){
+                    // if has title ?
+                    var title = $('#js-textarea').val();
+                    if(title){
+                        $('#savedraft').click();
+                        //show status
+                        var d = new Date();
+                        $('.autosave').html('saved ' + d.getHours() + ":" + d.getMinutes());    
+                    }
+                }, saveSeconds);
+                var $confirmPost = $('#confrim-post');
+                $confirmPost.popup({
+                    color: 'white',
+                    opacity: 1,
+                    transition: '0.3s',
+                    scrolllock: true
+                });
+                $('.confrim-post_close').click(function(){
+                    $confirmPost.popup('hide');
+                });
+
+                $('#confrim-btn').click(function(){
+                    if($('#first').prop('checked')){
+                        $('#original').val(1);
+                    }
+                    $('#abstracts').val($('#digest').val());
+                    if ($("#is_edit").val()=="create")
+                    {
+                        $("#post_article").attr("action","create");
+                    }
+                    else
+                    {
+                        $("#post_article").attr("action","create");
+                    }
+                    $("#submit_script").click();
+                    clearInterval(saveDraftInterval);
+                });
 
                 $("#savedraft").click(function(){
                     if ($("#is_edit").val()=="create")
@@ -220,16 +277,10 @@
                     $("#submit_script").click();
                 });
                 $("#savearticle").click(function(){
-                    if ($("#is_edit").val()=="create")
-                    {
-                        $("#post_article").attr("action","create");
-                    }
-                    else
-                    {
-                        $("#post_article").attr("action","create");
-                    }
-                    $("#submit_script").click();
+                    $('input[name=title]').val($('#js-textarea').val());
+                    $confirmPost.popup('show');
                 });
+                
                 /*
 
                 $("#savedraft").click(function(){
@@ -295,7 +346,7 @@
                     'fullscreen',
                 ],
                 upload: {
-                    url: '<?php echo env('APP_URL');?>/upload_img',
+                    url: '/upload_img',
                     fileKey: 'img_name',
                     params: null,
                     connectionCount: 3,
@@ -373,11 +424,11 @@
 
         });
     </script>
-<script type="text/javascript" src="<?php echo env('APP_URL');?>/jquery-wznav/js.js"></script>
-<script type="text/javascript" src="<?php echo env('APP_URL');?>/zhuanlan/js/main.js"></script>
-<script src="<?php echo env('APP_URL');?>/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
-<script src="<?php echo env('APP_URL');?>/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
-<script src="<?php echo env('APP_URL');?>/assets/global/scripts/jquery.form.js" type="text/javascript"></script>
+<script type="text/javascript" src="/jquery-wznav/js.js"></script>
+<script type="text/javascript" src="/zhuanlan/js/main.js"></script>
+<script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="/assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+<script src="/assets/global/scripts/jquery.form.js" type="text/javascript"></script>
 <script>
     $(function()
     {
@@ -388,7 +439,12 @@
                 console.log(obj);
                 if (true == obj.success)
                 {
-                    toastr.success("保存成功");
+
+                    if(obj.type == 'article'){
+                        setTimeout("window.location.href='/uc#article';",2000);
+                    }else {
+                        toastr.success("保存成功");    
+                    }
                     //setTimeout("window.location.href='/';",3000);
                 }
                 else{
