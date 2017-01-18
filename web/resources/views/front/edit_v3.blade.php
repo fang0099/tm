@@ -120,7 +120,7 @@
                 <input type="hidden" value="{{ $type or '' }}" name="type">
                 <input type='hidden' name="abstracts" id="abstracts" value="{{$article['abstracts'] or ''}}"/>
                 <input type='hidden' name="face" value="{{$article['face'] or ''}}"/>
-                <input type="hidden" name="original" id="original" value='{{$article['original'] or ''}}'>
+                <input type="hidden" name="original" id="original" value='{{$article['original'] or 0}}'>
                 <input type="hidden" name="draftId" >
             </section>
         </form>
