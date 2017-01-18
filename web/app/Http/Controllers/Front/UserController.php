@@ -257,7 +257,7 @@ class UserController extends Controller
         $email = $request->input('email');
         $username = $request->get('username');
         $password=$request->get("password");
-        $avatar="upload/3bab7c10-d1cc-11e6-a3a8-c93836a12d10.png";
+        $avatar="/upload/3bab7c10-d1cc-11e6-a3a8-c93836a12d10.png";
 
         //$avatar="/resources/assets/img/user.png";
         $brief="这家伙很懒，什么也没留下";

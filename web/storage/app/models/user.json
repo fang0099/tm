@@ -11,12 +11,6 @@
 			"type" : "hidden"
 		},
 		{
-			"label" : "昵称",
-			"value" : "nickname",
-			"name" : "params[nickname]",
-			"type" : "text"
-		},
-		{
 			"label" : "用户名",
 			"value" : "username",
 			"name" : "params[username]",
@@ -86,11 +80,6 @@
 		{
 			"head" : "用户名",
 			"value" : "username",
-			"type" : "text"
-		},
-		{
-			"head" : "昵称",
-			"value" : "nickname",
 			"type" : "text"
 		}
 	],
