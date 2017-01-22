@@ -516,7 +516,8 @@
 
                                                                 <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
                                                                 <span id="collect_btn" article_id="{{$article["id"]}}" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
-                                                                <span data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></span>
+                                                                
+                                                                <a href="#comment_achor" data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></a>
                                                             </div>
                                                             <div></div>
                                                         </div>
@@ -535,7 +536,7 @@
                                         </div>
                                         <div></div>
                                         <div class="mobile_article">
-                                            <a style="display:none;" href="#comment" name="1F">锚点1</a>
+                                            <a style="display:block;" name="comment_achor"></a>
                                             <div id="comments-container"></div>
                                         </div>
                                     </div>
