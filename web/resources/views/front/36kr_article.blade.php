@@ -277,7 +277,7 @@
             //var commentsArrays
             $('#comments-container').comments({
                 profilePictureURL: '<?php echo session("avatar");?>',
-                currentUserId: <?php echo session("id");?>,
+                currentUserId: <?php if(null!=session("id")) {echo session("id");} else{echo -1;}?>,
                 roundProfilePictures: true,
                 textareaRows: 1,
                 enableAttachments: false,
@@ -478,9 +478,6 @@
                                                                     <img class="avatar" data-stat-click="wenzhang.share.zuozhetouxiang" src="{{$article["author"]["avatar"]}}" alt="" />
                                                                     <span class="name" data-stat-click="wenzhang.share.zuozhexingming">{{$article["author"]["username"]}}</span>
                                                                 </a>
-                                                                <!--<span class="kr-tag-arrow-blue kr-size-min">
-                                                                    <span class="arrow"><em></em></span><span>{{$article["publish_time"]}}</span>
-                                                                </span>-->
                                                                 <a href="javascript:;" id="guanzhu_user" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
                                                                 <!--<a class="btn" style="float:right;">关注</a>-->
                                                             </div>
@@ -531,7 +528,7 @@
                                                         <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank"><img src="{{$article["author"]["avatar"]}}" /></a>
                                                     </div>
                                                     <div class="info">
-                                                        <p class="name"><a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank">{{$article["author"]["username"]}}</a><span class="kr-tag-arrow-blue kr-size-min"><span class="arrow"><em></em></span><span></span></span></p>
+                                                        <p class="name"><a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank">{{$article["author"]["username"]}}</a><!--<span class="kr-tag-arrow-blue kr-size-min"><span class="arrow"><em></em></span><span></span></span>--></p>
                                                         <p class="intro">{{$article["author"]["brief"]}}</p>
                                                     </div>
                                                 </div>
@@ -539,6 +536,7 @@
                                         </div>
                                         <div></div>
                                         <div class="mobile_article">
+                                            <a style="display:none;" href="#comment" name="1F">锚点1</a>
                                             <div id="comments-container"></div>
                                         </div>
                                     </div>
@@ -627,6 +625,7 @@
                                                 <li> </li>
                                             </ul>
                                         </div>-->
+                                        @if(isset($next_article["id"]))
                                         <div class="next-post-wrapper show">
                                             <h4>下一篇</h4>
                                             <div class="item" data-stat-click="articles.next">
@@ -641,6 +640,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>

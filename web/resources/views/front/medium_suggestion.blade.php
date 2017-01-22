@@ -17,7 +17,7 @@
 <div id="header-holder">
     <header id="header" class="navbar ng-scope ng-isolate-scope" fixed="scrollBackFixedNavbar">
         <div class="navbar-logo-container">
-            <a href="" class="logo icon-ic_zhihu_logo" aria-label="首页"></a>
+            <a href="<?php echo env('APP_URL');?>/" class="logo icon-ic_zhihu_logo" aria-label="首页"></a>
         </div>
         <div class="navbar-title-container clearfix show" ng-class="{show: showTitle}" ng-click="handleTitleClick($event)">
             <div class="titles oneline ng-hide" ng-class="{oneline: !title.subtitle || !title.main}" ng-hide="!title.subtitle &amp;&amp; !title.main">
@@ -216,7 +216,7 @@
                                 <div class="streamItem streamItem--userPreview js-streamItem">
                                     <div class="u-flexCenter u-paddingBottom10 u-paddingTop10">
                                         <div class="u-width50">
-                                            <a class="link avatar u-baseColor--link" href="#" data-action="show-user-card" >
+                                            <a class="link avatar u-baseColor--link" href="/article/list?type=tag&id={{$t['id']}}" data-action="show-user-card" >
                                                 <img src="{{ $t['face'] }}" class="avatar-image avatar-image--smaller"  />
                                             </a>
                                         </div>
