@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./final2/css/36kr_style.css" />
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
     <link href="./final2/css/36kr_app.css" rel="stylesheet" />
-
+    <link href="/csstab/css/style.css" rel="stylesheet" />
     @stop
 @section("content")
     <main class="main-container ng-scope" ng-view="">
@@ -263,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4-12 mobile-col-1-1 hide-on-mobile">
+               <div class="col-4-12 mobile-col-1-1 hide-on-mobile">
                     <div class="content">
                         <div class="mod-tit"><span><h3>热门话题</h3></span></div>
 
@@ -389,12 +389,12 @@
                     @endforeach
                 </ul>
             </section>-->
-            <!--<div class="bottom">
+            <div class="bottom">
                 <h3>在贝塔区块链创作</h3>
                 <p class="copyright">
-                    <a ui-open-blank="" href="" class="about">关于专栏</a>
+                    <!--<a ui-open-blank="" href="" class="about">关于专栏</a>-->
                     <span>©️2016 贝塔区块链</span></p>
-            </div>-->
+            </div>
         </div>
     </main>
 @stop

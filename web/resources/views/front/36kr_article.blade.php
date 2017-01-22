@@ -516,7 +516,7 @@
 
                                                                 <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
                                                                 <span id="collect_btn" article_id="{{$article["id"]}}" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
-                                                                
+                                                                <a data-stat-click="webtoolbar.comment" class="icon-thumbs-up cell"></a>
                                                                 <a href="#comment_achor" data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></a>
                                                             </div>
                                                             <div></div>

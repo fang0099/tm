@@ -381,3 +381,46 @@ a {
     border-color: #21B890;
     color: #21B890;
 }
+
+.tabs {
+    width: 100%;
+    box-shadow: none;
+    padding:0px;
+}
+
+.tabs ul.items {
+    list-style-type: inherit;
+    padding-left: inherit;
+    display: inherit;
+    display: inherit;
+    display: inherit;
+    display: inherit;
+    -webkit-box-orient: inherit;
+    -webkit-box-direction: inherit;
+    -webkit-flex-direction: inherit;
+    -ms-flex-direction: inherit;
+    flex-direction: inherit;
+    margin-bottom: inherit;
+    -webkit-box-pack: inherit;
+    -webkit-justify-content: inherit;
+    -ms-flex-pack: inherit;
+    justify-content: inherit;
+    -webkit-box-align: inherit;
+    -webkit-align-items: inherit;
+    -ms-flex-align: inherit;
+    align-items: inherit;
+    -webkit-flex-wrap: inherit;
+    -ms-flex-wrap: inherit;
+    flex-wrap: inherit;
+}
+
+.tabs ul li.item {
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    padding: 0 10px;
+    text-align: left;
+}
