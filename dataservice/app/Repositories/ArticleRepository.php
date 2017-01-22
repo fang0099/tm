@@ -407,7 +407,7 @@ class ArticleRepository extends BaseRepository
                 $query = "select a.* from article as a inner join tag_article_rel as rel "
                         . " on a.id = rel.article_id where rel.tag_id in (" . $idsStr .") "
                         . " and a.publish_time >= DATE_SUB(now(), INTERVAL ". $recommendInterval ." day) "
-                        . " order by a.hot_num desc limit " . $pageSize;
+                        . " and a.del_flag = 0 and a.has_checked = 1 order by a.hot_num desc limit " . $pageSize;
                 $articles = DB::select($query);
                 return $this->success('', $articles);
             }else {

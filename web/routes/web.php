@@ -44,8 +44,9 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/article/collect', 'ArticleController@collect');
     Route::get('/article/uncollect', 'ArticleController@uncollect');
     //Route::get('/article/edit', 'ArticleController@edit_article');
-    Route::get('/article/edit', 'ArticleController@show_edit');
+    Route::get('/article/edit', 'ArticleController@edit');
     Route::get('/article', 'ArticleController@show_article');
+    Route::post('/article/post', 'ArticleController@post');
 
     Route::get('/comment/up', 'ArticleController@up_comment');
     Route::post('/comment/update', 'ArticleController@update_comment');

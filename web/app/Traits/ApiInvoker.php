@@ -43,6 +43,7 @@ trait ApiInvoker
             'next'=>'GET',
             'prev'=>'GET',
             'relate'=>'GET',
+            'savedraft' => 'POST',
         ],
         'comment'=>[
             'create'=>"POST",

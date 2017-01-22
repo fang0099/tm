@@ -108,7 +108,7 @@ define(function(require, exports, modules){
     require('upload');
     //require('vendor/cropper.min');
 
-    var uploadUrl = "index.php/uc/upload";
+    var uploadUrl = "/uc/upload";
     var $ca = $('#change-avatar');
     $('#fileupload').fileupload({
         dataType: 'json',

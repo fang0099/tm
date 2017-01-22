@@ -82,11 +82,11 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="<?php echo env('APP_URL');?>">
+                                    <a href="/">
                                          返回前台 </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo env('APP_URL');?>/logout">
+                                    <a href="/logout">
                                          退出 </a>
                                 </li>
                             </ul>
@@ -146,6 +146,11 @@
                                         <span class="title"> 赞助商管理 </span>
                                     </a>
                                 </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" data="list?model=sliders" class="nav-link link">
+                                        <span class="title"> 首页幻灯管理 </span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         
@@ -157,11 +162,7 @@
                                 <span class="selected"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" data="list?model=sliders" class="nav-link link">
-                                        <span class="title"> 首页幻灯管理 </span>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item  ">
                                     <a href="javascript:;" data="list?model=newsflash" class="nav-link link">
                                         <span class="title"> 快讯管理 </span>

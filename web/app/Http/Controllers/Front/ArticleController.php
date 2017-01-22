@@ -363,6 +363,79 @@ class ArticleController extends Controller
                 'next_article'=>$next_article["data"]
             ]);
     }
+
+    public function edit(Request $request){
+        $uid = session('id');
+        if(!$uid){
+            return redirect('/account#login');
+        }
+        $id = $request->input('id', '-1');
+        $status = $request->input('status', '');
+        $type = 'article';
+        if($status == 'draft' || $id == -1){
+            $type = 'draft';
+        }
+        $data = [];
+        if($id != '-1'){
+            if($type == 'article'){
+                $r = $this->articleInvoker->get(['id' => $id]);
+            }else {
+                $r = $this->articleInvoker->getdraft(['id' => $id]);
+            }
+            if($r['success']){
+                $data = $r['data'];
+                if($data['author_id'] != $uid) {
+                    $data = [];
+                }
+            }
+        }
+        $tags = $this->tagInvoker->list();
+        if($tags['success']){
+            $tags = $tags['list'];
+        }else {
+            $tags = [];
+        }
+        return view("front/edit_v3", ['article' => $data, 'tags' => $tags, 'type' => $type]);
+    }
+
+    public function post(Request $request){
+        if(session('id') == null){
+            return json_encode(['success' => false, 'message' => '登录超时' ]);
+        }
+        $uid = session('id');
+        $params = $request->all();
+        $type = $params['type'];
+        unset($params['type']);
+        $draftId = $params['draftId'];
+        unset($params['draftId']);
+        $tags = '';
+        if(isset($params['tags'])){
+            $tagsArr = $params['tags'];
+            $tags = implode(',', $tagsArr);
+            unset($params['tags']);
+        }
+        $data = [];
+        foreach ($params as $k => $v){
+            $data['params['.$k.']'] = $v;
+        }
+        $data['params[tags]'] = $tags;
+        $data['params[author_id]'] = session('id');
+        if($type == 'article'){
+            if(isset($params['id']) && $params['id'] != ''){
+                $r = $this->articleInvoker->update($data);
+            }else {
+                $r = $this->articleInvoker->create($data);
+            }
+            if($draftId){
+                $this->userInvoker->deldraft(['id'=>$draftId, 'userid' => $uid]);
+            }
+        }else {
+            $r = $this->articleInvoker->savedraft($data);
+        }
+        $r['type'] = $type;
+        return json_encode($r);
+    }
+
     //修改文章
     public function update(Request $request)
     {
@@ -384,7 +457,7 @@ class ArticleController extends Controller
                 // 使用我们新建的uploads本地存储空间（目录）
                 $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 //var_dump($bool);
-                $face = env("APP_URL") . "/uploads/" . $filename;
+                $face = "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
             $params =
@@ -430,7 +503,7 @@ class ArticleController extends Controller
                 // 使用我们新建的uploads本地存储空间（目录）
                 $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 //var_dump($bool);
-                $face = env("APP_URL") . "/uploads/" . $filename;
+                $face = "/uploads/" . $filename;
             }
             $abstracts = strip_tags($this->substr_cut($content,15));
             $author = session("id");
