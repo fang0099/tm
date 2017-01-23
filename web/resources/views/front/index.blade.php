@@ -19,14 +19,14 @@
 
                         @if(null==session("username"))
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
-                                <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
+                                <li ><a id="the_newest" class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
                                 <li><a id="the_sugg" href="#tab-3">推荐</a></li>
                             </ul>
                             <!--<a class="" href="<?php echo env('APP_URL');?>/suggestion_tag">推荐</a>-->
                         @else
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
-                                <li ><a class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
+                                <li ><a id="the_newest" class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-2">最热 </a></li>&nbsp;|&nbsp;
                                 <li><a class="" href="#tab-3">推荐</a></li>
                             </ul>
@@ -402,6 +402,8 @@
     <script src="responsive-tabs_/js/jquery.responsiveTabs.js"></script>
     <script>
         $(document).ready(function(){
+            $("#the_newest").click();
+
             $("#the_sugg").click(function() {
                     window.location.href = "/suggestion_tag";
                 }
