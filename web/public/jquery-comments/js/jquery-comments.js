@@ -136,7 +136,7 @@
                 replyText: '回复',
                 editText: '修改',
                 editedText: '修改于',
-                youText: '你',
+                youText: '我',
                 saveText: '保存',
                 deleteText: '删除',
                 viewAllRepliesText: '查看 全部 __replyCount__ 条回复',

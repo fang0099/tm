@@ -67,8 +67,8 @@
 
             $('#code').qrcode({
             render: "table", //table方式
-                width: 64, //宽度
-                height:64, //高度
+                width: 55, //宽度
+                height:55, //高度
                 text: window.location.href //任意内容
             });
             $('.back').click(function(){
@@ -80,6 +80,11 @@
     <script type="text/javascript">
         function new_comment(data)
         {
+            var userid = $("#the_user_id").val();
+            if (userid == "" || userid==null)
+            {
+                window.location.href="/account#login";
+            }
             $.ajax(
                 {
                     url:"<?php echo env('APP_URL');?>/article/comment",
@@ -213,11 +218,18 @@
             };
 
             $('#like_btn').click(function(){
+
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
+
                 var article_id=$('#like_btn').attr("article_id");
+                console.log($("#like_btn").attr("count"));
+                old = parseInt($("#like_btn").attr("count"))+1;
 
-                old = parseInt($("#like_btn").attr('count'))+1;
-
-                $("#like_btn_count").html(old);
+                $("#the_like_count").html(old);
                 console.log(article_id);
                 $.ajax({
                     type: "GET",
@@ -237,11 +249,74 @@
 
             $("#guanzhu_user").click(function()
             {
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
                 var id = $("#author_id").val();
                 guanzhu(id);
             });
 
+            $(".follow").click(function(){
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
+
+                var tag_id = $(this).parent().find("a").attr("tag_id");
+                $(this).parent().addClass("current");
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/tag/subscribe_ajax?id="+tag_id,
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        console.log(eval(data));
+                        toastr.success("订阅成功");
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
+            });
+
+            $(".unfollow").click(function(){
+
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
+                $(this).parent().removeClass("current");
+                var tag_id = $(this).parent().find("a").attr("tag_id");
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/tag/unsubscribe_ajax?id="+tag_id,
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        console.log(eval(data));
+                        toastr.success("取消订阅成功");
+
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
+
+
+            });
+
             $('#collect_btn').click(function(){
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
                 old = parseInt($("#collect_btn").attr('count'))+1;
                 $.ajax({
                     type: "GET",
@@ -276,7 +351,7 @@
             //var commentsArrays
             $('#comments-container').comments({
                 profilePictureURL: '<?php echo session("avatar");?>',
-                currentUserId: <?php echo session("id");?>,
+                currentUserId: <?php if(null!=session("id")) {echo session("id");} else{echo -1;}?>,
                 roundProfilePictures: true,
                 textareaRows: 1,
                 enableAttachments: false,
@@ -405,6 +480,7 @@
                 </div>
             </div>
             <input style="display:none;" id="author_id" value="{{$article["author"]["id"]}}"/>
+            <input style="display:none;" id="the_user_id" value="{{session("id")}}"/>
             <div class="article-detail ">
                 <div class="post-wrapper">
                     <div id="J_normal_read_5061570" class="post-detail-con-box full-reading mainlib_flex_wapper">
@@ -447,8 +523,8 @@
                                                 <section class="single-post-tags">
                                                     @foreach($article["tags"] as $tag)
                                                         <span class="tag">
-                                                            <a target="_blank" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
-                                                            <span class="gap-line">|</span><span class="act follow">+</span>
+                                                            <a target="_blank" tag_id="{{$tag["id"]}}" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
+                                                            <span class="gap-line">|</span> <span class="act follow">+</span>
                                                             <span class="act unfollow">-</span>
                                                         </span>
                                                     @endforeach
@@ -457,16 +533,18 @@
                                                 </section>
                                                 <div class="fav-wrapper">
                                                     <div class="common-post-like-wrapper" data-stat-click="article.like.5061756">
-                                                        <a class="post-pc-like" article_id="{{$article["id"]}}" id="like_btn" style="text-decoration: none;">
+                                                        <a class="post-pc-like" count="{{$article["likes"]}}" article_id="{{$article["id"]}}" id="like_btn" style="text-decoration: none;">
                                                             <span class="icon-ic_like"></span>
                                                             <span style="margin-left: 4px;">
                                                                 喜欢
+                                                                <span class="total-count-box"><!-- react-text: 629 -->(<!-- /react-text --><b id="the_like_count">{{$article["likes"]}}</b><!-- react-text: 631 -->)<!-- /react-text --></span>
                                                             </span>
                                                         </a>
                                                         <span class="count-box">
                                                             <span class="count kr-animated ">+1</span>
                                                         </span>
                                                     </div>
+
                                                 </div>
 
                                                 <div class="share-nav">
@@ -477,9 +555,6 @@
                                                                     <img class="avatar" data-stat-click="wenzhang.share.zuozhetouxiang" src="{{$article["author"]["avatar"]}}" alt="" />
                                                                     <span class="name" data-stat-click="wenzhang.share.zuozhexingming">{{$article["author"]["username"]}}</span>
                                                                 </a>
-                                                                <!--<span class="kr-tag-arrow-blue kr-size-min">
-                                                                    <span class="arrow"><em></em></span><span>{{$article["publish_time"]}}</span>
-                                                                </span>-->
                                                                 <a href="javascript:;" id="guanzhu_user" class="btn" style="float:right;margin-top: 5px;margin-left: 8px;">关注作者</a>
                                                                 <!--<a class="btn" style="float:right;">关注</a>-->
                                                             </div>
@@ -519,7 +594,8 @@
 
                                                                 <!--<span data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>-->
                                                                 <span id="collect_btn" article_id="{{$article["id"]}}" data-stat-click="webtoolbar.favorite" class="icon-collect-min cell"></span>
-                                                                <span data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></span>
+                                                                <a data-stat-click="webtoolbar.comment" class="icon-thumbs-up cell"></a>
+                                                                <a href="#comment_achor" data-stat-click="webtoolbar.comment" class="icon-comment-min cell"></a>
                                                             </div>
                                                             <div></div>
                                                         </div>
@@ -530,7 +606,7 @@
                                                         <a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank"><img src="{{$article["author"]["avatar"]}}" /></a>
                                                     </div>
                                                     <div class="info">
-                                                        <p class="name"><a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank">{{$article["author"]["username"]}}</a><span class="kr-tag-arrow-blue kr-size-min"><span class="arrow"><em></em></span><span></span></span></p>
+                                                        <p class="name"><a href="<?php echo env('APP_URL');?>/article/list?id={{$article["author"]["id"]}}" target="_blank">{{$article["author"]["username"]}}</a><!--<span class="kr-tag-arrow-blue kr-size-min"><span class="arrow"><em></em></span><span></span></span>--></p>
                                                         <p class="intro">{{$article["author"]["brief"]}}</p>
                                                     </div>
                                                 </div>
@@ -538,6 +614,7 @@
                                         </div>
                                         <div></div>
                                         <div class="mobile_article">
+                                            <a style="display:block;" name="comment_achor"></a>
                                             <div id="comments-container"></div>
                                         </div>
                                     </div>
@@ -626,6 +703,7 @@
                                                 <li> </li>
                                             </ul>
                                         </div>-->
+                                        @if(isset($next_article["id"]))
                                         <div class="next-post-wrapper show">
                                             <h4>下一篇</h4>
                                             <div class="item" data-stat-click="articles.next">
@@ -640,6 +718,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
@@ -667,10 +746,10 @@
                 </div>
             </div>
 
-            <div class="article-detail" id="readmode_win" style="display:none;">
+            <div class="article-detail" id="readmode_win" style="display:none;position: relative; z-index: 1111;">
                 <a class="am-icon-reply back-to-normal"></a>
                 <div class="only-article-shadow show-model"></div>
-                <div class="only-article show-model" style="height: 2211px;">
+                <div class="only-article show-model" style="height: 1094px; display: block;">
                     <div class="center-content" style="">
                         <div class="content-wrapper">
                             <div class="post-wrapper" id="J_pure_read_5061570">

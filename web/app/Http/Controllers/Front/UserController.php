@@ -270,7 +270,7 @@ class UserController extends Controller
         else
         {
             $result["success"] = false;
-            $result["message"] = "登录失败";
+            $result["message"] = "您的邮箱或密码错误";
             $loginFailedTimes++;
             session(['login_failed_times' => $loginFailedTimes]);
             $result["login_failed_times"] = $loginFailedTimes;

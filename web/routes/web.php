@@ -98,6 +98,9 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/tag/subscribe', 'TagController@subscribe');
     Route::get('/tag/unsubscribe', 'TagController@unsubscribe');
 
+    Route::get('/tag/subscribe_ajax', 'TagController@subscribe_ajax');
+    Route::get('/tag/unsubscribe_ajax', 'TagController@unsubscribe_ajax');
+
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 
     Route::get('/user/{uid}/{type}/{page?}', 'UserController@articles');
