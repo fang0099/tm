@@ -100,6 +100,7 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 
+    Route::get('/user/{uid}/{type}/{page?}', 'UserController@articles');
 
 });
 
