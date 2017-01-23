@@ -668,10 +668,10 @@
                 </div>
             </div>
 
-            <div class="article-detail" id="readmode_win" style="display:none;">
+            <div class="article-detail" id="readmode_win" style="display:none;position: relative; z-index: 1111;">
                 <a class="am-icon-reply back-to-normal"></a>
                 <div class="only-article-shadow show-model"></div>
-                <div class="only-article show-model" style="height: 2211px;">
+                <div class="only-article show-model" style="height: 1094px; display: block;">
                     <div class="center-content" style="">
                         <div class="content-wrapper">
                             <div class="post-wrapper" id="J_pure_read_5061570">
