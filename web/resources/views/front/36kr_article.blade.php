@@ -258,6 +258,15 @@
                 guanzhu(id);
             });
 
+            $(".follow").click(function(){
+                $(this).parent().addClass("current");
+            });
+
+            $(".unfollow").click(function(){
+                $(this).parent().removeClass("current");
+
+            });
+
             $('#collect_btn').click(function(){
                 var userid = $("#the_user_id").val();
                 if (userid == "" || userid==null)
@@ -471,7 +480,7 @@
                                                     @foreach($article["tags"] as $tag)
                                                         <span class="tag">
                                                             <a target="_blank" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
-                                                            <span class="gap-line">|</span><span class="act follow">+</span>
+                                                            <span class="gap-line">|</span> <span class="act follow">+</span>
                                                             <span class="act unfollow">-</span>
                                                         </span>
                                                     @endforeach
