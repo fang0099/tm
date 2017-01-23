@@ -67,8 +67,8 @@
 
             $('#code').qrcode({
             render: "table", //table方式
-                width: 64, //宽度
-                height:64, //高度
+                width: 55, //宽度
+                height:55, //高度
                 text: window.location.href //任意内容
             });
             $('.back').click(function(){
@@ -226,10 +226,10 @@
                 }
 
                 var article_id=$('#like_btn').attr("article_id");
+                console.log($("#like_btn").attr("count"));
+                old = parseInt($("#like_btn").attr("count"))+1;
 
-                old = parseInt($("#like_btn").attr('count'))+1;
-
-                $("#like_btn_count").html(old);
+                $("#the_like_count").html(old);
                 console.log(article_id);
                 $.ajax({
                     type: "GET",
@@ -480,16 +480,18 @@
                                                 </section>
                                                 <div class="fav-wrapper">
                                                     <div class="common-post-like-wrapper" data-stat-click="article.like.5061756">
-                                                        <a class="post-pc-like" article_id="{{$article["id"]}}" id="like_btn" style="text-decoration: none;">
+                                                        <a class="post-pc-like" count="{{$article["likes"]}}" article_id="{{$article["id"]}}" id="like_btn" style="text-decoration: none;">
                                                             <span class="icon-ic_like"></span>
                                                             <span style="margin-left: 4px;">
                                                                 喜欢
+                                                                <span class="total-count-box"><!-- react-text: 629 -->(<!-- /react-text --><b id="the_like_count">{{$article["likes"]}}</b><!-- react-text: 631 -->)<!-- /react-text --></span>
                                                             </span>
                                                         </a>
                                                         <span class="count-box">
                                                             <span class="count kr-animated ">+1</span>
                                                         </span>
                                                     </div>
+
                                                 </div>
 
                                                 <div class="share-nav">
