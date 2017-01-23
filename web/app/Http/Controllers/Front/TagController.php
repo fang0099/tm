@@ -66,6 +66,38 @@ class TagController extends Controller
 
     }
 
+    public function subscribe_ajax(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->tagInvoker->subscribe(['id'=>$id, 'userid'=> session('id')]);
+            return json_encode($r);
+            //return redirect("article/list?type=tag&id=".$id);
+        }
+        else
+        {
+            return redirect('/account#login');
+        }
+
+    }
+
+    public function unsubscribe_ajax(Request $request)
+    {
+        $id = $request->get("id");
+        if(session("username")!=null)
+        {
+            $r = $this->tagInvoker->unsubscribe(['id'=>$id, 'userid'=> session('id')]);
+            return json_encode($r);
+            //return redirect("article/list?type=tag&id=".$id);
+        }
+        else
+        {
+            return redirect('/account#login');
+        }
+
+    }
+
     public function tag_article_list(Request $request)
     {
 

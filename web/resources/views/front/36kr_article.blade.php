@@ -259,11 +259,55 @@
             });
 
             $(".follow").click(function(){
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
+
+                var tag_id = $(this).parent().find("a").attr("tag_id");
                 $(this).parent().addClass("current");
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/tag/subscribe_ajax?id="+tag_id,
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        console.log(eval(data));
+                        toastr.success("订阅成功");
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
             });
 
             $(".unfollow").click(function(){
+
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
                 $(this).parent().removeClass("current");
+                var tag_id = $(this).parent().find("a").attr("tag_id");
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo env('APP_URL');?>/tag/unsubscribe_ajax?id="+tag_id,
+                    data: {},
+                    dataType: "json",
+                    success: function(data){
+                        console.log(eval(data));
+                        toastr.success("取消订阅成功");
+
+                    },
+                    error: function(data)
+                    {
+                        console.log(eval(data));
+                    }
+                });
+
 
             });
 
@@ -479,7 +523,7 @@
                                                 <section class="single-post-tags">
                                                     @foreach($article["tags"] as $tag)
                                                         <span class="tag">
-                                                            <a target="_blank" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
+                                                            <a target="_blank" tag_id="{{$tag["id"]}}" href="<?php echo env('APP_URL');?>/article/list?type=tag&id={{$tag["id"]}}" class="tag-a">{{$tag["name"]}}</a>
                                                             <span class="gap-line">|</span> <span class="act follow">+</span>
                                                             <span class="act unfollow">-</span>
                                                         </span>
