@@ -65,7 +65,7 @@ define(function(require, exports, modules){
                             url = articleDelUrl + '/' + data.id;
                         }
                         $.getJSON(url, function(data){
-                            if(data.success){
+                            if(data.success || data.success == 'true'){
                                 $('.post-nav').find('a.current').click();
                             }else {
                                 global.reminder({message : data['message']});

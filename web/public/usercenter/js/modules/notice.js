@@ -15,7 +15,7 @@ define(function(require, exports, modules){
             console.log(data);
             var url = deleteUrl + '/' + data;
             $.getJSON(url, function(data){
-                if(data.success == 'success' || data.success == true){
+                if(data.success == 'true' || data.success == true){
                     render.renderMain(tplUrl, dataUrl, function(data){ return data}, function(){
                         bindDeleteEvent();
                     }, emptyHtml);
