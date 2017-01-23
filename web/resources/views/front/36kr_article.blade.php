@@ -80,6 +80,11 @@
     <script type="text/javascript">
         function new_comment(data)
         {
+            var userid = $("#the_user_id").val();
+            if (userid == "" || userid==null)
+            {
+                window.location.href="/account#login";
+            }
             $.ajax(
                 {
                     url:"<?php echo env('APP_URL');?>/article/comment",
@@ -213,6 +218,13 @@
             };
 
             $('#like_btn').click(function(){
+
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
+
                 var article_id=$('#like_btn').attr("article_id");
 
                 old = parseInt($("#like_btn").attr('count'))+1;
@@ -237,11 +249,21 @@
 
             $("#guanzhu_user").click(function()
             {
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
                 var id = $("#author_id").val();
                 guanzhu(id);
             });
 
             $('#collect_btn').click(function(){
+                var userid = $("#the_user_id").val();
+                if (userid == "" || userid==null)
+                {
+                    window.location.href="/account#login";
+                }
                 old = parseInt($("#collect_btn").attr('count'))+1;
                 $.ajax({
                     type: "GET",
@@ -405,6 +427,7 @@
                 </div>
             </div>
             <input style="display:none;" id="author_id" value="{{$article["author"]["id"]}}"/>
+            <input style="display:none;" id="the_user_id" value="{{session("id")}}"/>
             <div class="article-detail ">
                 <div class="post-wrapper">
                     <div id="J_normal_read_5061570" class="post-detail-con-box full-reading mainlib_flex_wapper">

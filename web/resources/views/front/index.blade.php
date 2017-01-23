@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./final2/css/36kr_style.css" />
     <link rel="stylesheet" href="<?php echo env('APP_URL');?>/zhuanlan/css/mine.css">
     <link href="./final2/css/36kr_app.css" rel="stylesheet" />
-    <link href="/csstab/css/style.css" rel="stylesheet" />
+    <!--<link href="/csstab/css/style.css" rel="stylesheet" />-->
     @stop
 @section("content")
     <main class="main-container ng-scope" ng-view="">
