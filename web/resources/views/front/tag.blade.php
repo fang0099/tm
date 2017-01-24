@@ -3,8 +3,9 @@
 <head>
 	<title>{{$tag['name']}}</title>
 	<meta charset="utf-8">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 
@@ -29,10 +30,8 @@
 		                    </a>
 		                </span>
 		                @else
-		                <span class="unlogin">
-		                    <a href="/account#login" title="登录" rel="nofollow" class="login">登录</a>
-		                    <span class="line"></span>
-		                    <a href="/account#reg"  title="注册" rel="nofollow" class="reg">注册</a>
+						<span class="unlogin">
+		                    <a href="/account#login" title="登录" rel="nofollow" class="btn-login btn btn-x-small orange btn-bordered ">登录</a>
 		                 </span>
 		                 @endif
 		                <!-- user login info -->

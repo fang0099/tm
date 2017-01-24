@@ -23,6 +23,7 @@
 }
 
 /* Accordion responsive breakpoint */
+/*
 @media only screen and (max-width: 768px) {
     .r-tabs .r-tabs-nav {
         display: none;
@@ -32,3 +33,4 @@
         display: block;
     }
 }
+*/

@@ -16,7 +16,7 @@
             <div class="grid grid-pad" style="background-color: #ffffff; padding-top: 46px; margin-top: 20px;">
                 <div class="col-8-12 mobile-col-1-1">
                     <div id="responsiveTabsDemo" >
-
+                        <h3><span>最新文章</span></h3>
                         @if(null==session("username"))
                             <ul class="mod-tit" style="padding-bottom:10px; margin-bottom: 25px;">
                                 <li ><a id="the_newest" class="" href="#tab-1">最新</a></li>&nbsp;|&nbsp;
@@ -34,7 +34,7 @@
 
                         <div id="tab-1">
                             <div class="content">
-                                <div class="items-container ng-scope ui-infinite" ui-infinite="" data-source="postsSource" ng-if="postsSource" ng-hide="!postsSource.pending &amp;&amp; !posts.length &amp;&amp; !recommendPosts.length">
+                                <div class="items-container ng-scope ui-infinite">
 
                                     <ul class="items" id="article_items" ng-show="posts.length">
                                         @foreach($articles as $article)

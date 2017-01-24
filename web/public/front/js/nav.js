@@ -18,4 +18,13 @@ $(function(){
             $nav.addClass('second-nav-large');
         }
     });
+    var $userAvatar = $('#user-avatar');
+    var $userNav = $('#user-nav');
+    $userAvatar.click(function(){
+        if($userNav.hasClass('visible')){
+            $userNav.removeClass('visible');
+        }else {
+            $userNav.addClass('visible');
+        }
+    });
 });

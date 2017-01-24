@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
     <link rel="stylesheet" href="/zhuanlan/css/mine.css">
     <link rel="stylesheet" href="/simple_grid/simplegrid.css">
+    <link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
     <!--<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">-->
 </head>
 <body ng-app="columnWebApp" ng-controller="AppCtrl" ng-class="pageClass" class="ng-scope {{$page_class}}">

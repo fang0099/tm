@@ -31,9 +31,7 @@
 		                </span>
 		                @else
 		                <span class="unlogin">
-		                    <a href="/account#login" title="登录" rel="nofollow" class="login">登录</a>
-		                    <span class="line"></span>
-		                    <a href="/account#reg"  title="注册" rel="nofollow" class="reg">注册</a>
+		                    <a href="/account#login" title="登录" rel="nofollow" class="btn-login btn btn-x-small orange btn-bordered ">登录</a>
 		                 </span>
 		                 @endif
 		                <!-- user login info -->

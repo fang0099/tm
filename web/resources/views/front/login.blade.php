@@ -3,7 +3,9 @@
 <head>
     <title>账号中心</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="/usercenter/css/login.css">
     <style>
         html { font-size: 62.5%; }
@@ -25,9 +27,10 @@
                         <button class="search"><i class="icon-search"></i></button>
                     </form>
                 </div>
-                -->
-                <a href="account#login" id="login-a" class="btn btn-x-small btn-bordered gray" style="color:#666666">登录</a>
+
+                <a href="/account#login" id="login-a" title="登录" rel="nofollow" class="btn-login btn btn-x-small orange btn-bordered ">登录</a>
                 <a href="account#reg" id="reg-a" class="btn btn-x-small btn-bordered orange" style="color:#666666">注册</a>
+                -->
             </div>
             <div class="left-c">
                 <nav>

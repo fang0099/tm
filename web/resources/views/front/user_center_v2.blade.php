@@ -3,13 +3,9 @@
 <head>
 	<title>个人中心</title>
 	<meta charset="utf-8">
-<!--
-	<base href="/tm/web/public/">
-	-->
-	<!--
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 	<!--
