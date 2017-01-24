@@ -8,7 +8,8 @@
 	 position: absolute;
 	 top: 8px;
 	 left: 0;
-	 background: #d9d9d9
+	 background: #d9d9d9;
+
  }
 @media screen and (max-width : 660px){
 	.second-nav {
@@ -98,7 +99,13 @@
 		width: auto;
 		margin: 0 auto 30px;
 		font-size: 14px;
-		position: relative
+		position: relative;
+	}
+	#responsiveTabsDemo h3 span {
+		padding: 0 16px;
+		background: #fbfbfb;
+		z-index: 1;
+		position: relative;
 	}
 	.r-tabs .r-tabs-panel {
 		padding: 0px;
