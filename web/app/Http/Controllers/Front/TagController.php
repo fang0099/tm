@@ -12,16 +12,19 @@ use App\Http\Controllers\Controller;
 
 use App\Invokers\TagInvoker;
 use Illuminate\Http\Request;
+use App\Invokers\ArticleInvoker;
 
 use Storage;
 
 class TagController extends Controller
 {
     private $tagInvoker;
+    private $articleInvoker;
 
-    public function __construct(TagInvoker $tagInvoker)
+    public function __construct(TagInvoker $tagInvoker, ArticleInvoker $articleInvoker)
     {
         $this->tagInvoker = $tagInvoker;
+        $this->articleInvoker = $articleInvoker;
     }
 
     public function index(Request $request)
@@ -244,5 +247,25 @@ class TagController extends Controller
     {
         $r = $this->tag->list();
         print_r($r);
+    }
+
+    public function articles($id, $type, $page = 1){
+        $tagR = $this->tagInvoker->get(['id' => $id]);
+        if($tagR['success']){
+            $tag = $tagR['data'];
+            //var_dump($tag);
+            $articles = [];
+            if($type == 'last'){
+                $articles = $this->tagInvoker->articles(['id'=>$id, 'page'=>$page]);
+            }else {
+                $articles = $this->tagInvoker->articles(['id'=>$id, 'page'=>$page, 'sort' => 'hot_num']);
+            }
+            
+            if(isset($articles['data'])){
+                $articles = $articles['data'];
+            }
+            return view('front/tag', ['page' => $page, 'tag' => $tag, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($tag)]);
+        }   
+        return view('front/notfound');
     }
 }

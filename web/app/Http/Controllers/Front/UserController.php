@@ -357,17 +357,24 @@ class UserController extends Controller
         $authorR = $this->userInvoker->get(['id' => $uid]);
         if($authorR['success']){
             $author = $authorR['data'];
+            //var_dump($author);
+            $author['weixin'] = '';
+            $author['qq'] = '';
+            $author['email'] = '';
+            $author['weibo'] = '';
+            unset($author['is_admin']);
+
             $articles = [];
             if($type == 'last'){
                 $articles = $this->userInvoker->lastedarticles(['userid'=>$uid, 'page'=>$page]);
             }else {
                 $articles = $this->userInvoker->hotestarticles(['userid'=>$uid, 'page'=>$page]);
             }
-            var_dump($articles);
+            
             if(isset($articles['data'])){
                 $articles = $articles['data'];
             }
-            return view('front/author', ['author' => $author, 'articles'=>$articles]);
+            return view('front/author', ['page' => $page, 'author' => $author, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($author)]);
         }   
         return view('front/notfound');
     }

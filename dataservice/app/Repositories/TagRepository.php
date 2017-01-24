@@ -106,7 +106,7 @@ class TagRepository extends BaseRepository
         }
     }
 
-    public function articles($id, $page){
+    public function articles($id, $order, $page){
         $tag = $this->get($id);
         if($tag == null || $tag->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'tag is not exist', ['id'=>$id]);
@@ -114,10 +114,12 @@ class TagRepository extends BaseRepository
         else {
             $pageSize = 10;
             $offset = ($page - 1) * $pageSize;
-            $articles = $tag->articles()->orderBy('publish_time', 'desc')->offset($offset)->limit($pageSize)->get();
+            $articles = $tag->articles()->orderBy($order, 'desc')->offset($offset)->limit($pageSize)->get();
             return $this->success('', $articles);
         }
     }
+
+    
 
     public function subscriber($id, $page){
         $tag = $this->get($id);

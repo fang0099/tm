@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{$author['username']}}</title>
+	<title>{{$tag['name']}}</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 
@@ -73,15 +72,14 @@
 		<div class="second-nav second-nav-large">
 		    <div class="inner">
 		        <div class="columns fl">
-	            	<div class="column-title fl">作者</div>
+	            	<div class="column-title fl">标签</div>
 	            	<div class="column-second-title fl">
-	                	{{$author['username']}}                            
+	                	{{$tag['name']}}                            
 	                </div>
 		            <ul class="column-list info-list fl">
-		                <li>关注（<span class="num">{{$author['followsCount']}}</span>）</li>
-		                <li class="fans">粉丝（<span class="num">{{$author['followersCount']}}</span>）</li>
+		                <li class="fans">粉丝（<span class="num">{{$tag['subscriberCount']}}</span>）</li>
 		            </ul>
-		             <button data-id="{{$author['id']}}" href="#" class="js-follow btn btn-small orange btn-bordered follow">
+		             <button data-id="{{$tag['id']}}" href="#" class="js-follow btn btn-small orange btn-bordered follow">
 		             	<span class="txt">关注</span>
 		             </button>
 	            </div>
@@ -95,28 +93,21 @@
 	  <div class="list-page user-detail" >
 	    <div class="mod-user-info">
 	      <div class="pic center">
-	        <img src="{{$author['avatar']}}" width="100" height="100" >
-	        	@if($author['is_auth'])
-	                <span class="level blue-v"><i class="icon-iconfont-v"></i></span>
-	            @endif
+	        <img src="{{$tag['face']}}" width="100" height="100" >
 	      </div>
-	      <h1 class="name">{{$author['username']}} </h1>
-	      <p class="bio">{{$author['brief']}}</p>
-	      <div class="info center">
-	        <div class="child num-follows "><span class="t follow">关注</span><strong class="num">{{$author['followsCount']}}</strong></div>
-	        <div class="line"> </div>
-	        <div class="child num-fans "><span class="t fans">粉丝</span><strong class="num">{{$author['followersCount']}}</strong></div>
-	      </div>
+	      <h1 class="name">{{$tag['name']}} </h1>
+	      <p class="bio">{{$tag['brief']}}</p>
+	      <div id="number_of_followers"><span class="num">{{$tag['subscriberCount']}}</span>&ensp;粉丝</div>
 	      <div class="options">
-	                <button data-id="{{$author['id']}}" class="btn btn-normal orange btn-bordered follow">关注</button>
-	              </div>
+	                <button data-id="{{$tag['id']}}" class="btn btn-normal orange btn-bordered follow">关注</button>
+	      </div>
 	    </div>
 	    <div class="user-article-list">
 		      <div class="user-nav tc">
 		        <div class="parts">
-		          <a class="part @if($type == 'last') current @endif" href="/user/{{$author['id']}}/last">最新文章</a>
+		          <a class="part @if($type == 'last') current @endif" href="/tag/{{$tag['id']}}/last">最新文章</a>
 		          <span class="line"></span>
-		          <a class="part @if($type == 'hot') current @endif" href="/user/{{$author['id']}}/hot">最热文章</a>
+		          <a class="part @if($type == 'hot') current @endif" href="/tag/{{$tag['id']}}/hot">最热文章</a>
 		        </div>
 		      </div>
               <div class="mod-article-list clear">
@@ -158,7 +149,7 @@
 	                }
 	              </style>
 	          		<ul class="pagination">
-
+		          		
 	          		</ul>                    
 	    </div>
 	  </div>
@@ -173,37 +164,18 @@
 	</div>	
 
 
-	<!-- popup -->
-
-	<!-- 关注信息弹窗 -->
-	<div id="show-detail" class="hide pp">
-		<div class="cont">
-			<span class="close-btn show-detail_close"><i class="icon-cross"></i></span>
-			<div class="list-page hot-list">
-				<p class="h-t"></p>
-				<p class="tit-info"></p>
-				<div class="recommend-list">
-					<div class="loading"><br><br>加载中...</div>
-					<ul class="r-author-list hide"></ul>
-					<p class="load-more hide" >
-						<button class="btn btn-normal gray btn-bordered">加载更多</button>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
 	<script type="text/javascript">
 		var _ = {!! $json !!};
 		var page = {{ $page }};
-		var count = _.articlesCount;
+		var count = _.articleCount;
 	</script>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
 	<script src="/front/js/nav.js"></script>
 	<script src="/front/js/front.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var html = F.mp('/user/' + _.id + '/{{$type}}', count, 10, page);
+			var html = F.mp('/tag/' + _.id + '/{{$type}}', count, 10, page);
 			$('.pagination').html(html);
 		});
 	</script>

@@ -696,7 +696,7 @@ class ArticleController extends Controller
     //文章列表页
     public function show_list(Request $request)
     {
-        /*
+        
         $type = $request->get('type');
         $id = $request->get('id');
         if($type == null){
@@ -704,7 +704,8 @@ class ArticleController extends Controller
         }else {
             return redirect("/tag/".$id."/last");
         }
-        */
+    
+        /*
         $menu_tag_list = $this->tagInvoker->menutags(['pageSize'=>8]);
 
         $id = $request->get('id');
@@ -776,6 +777,7 @@ class ArticleController extends Controller
         $params["list_type"] = $list_type;
         $params['menu_tags']= $menu_tag_list["data"];
         return view("front/list",$params);
+        */
     }
 
     public function show_list_ajax(Request $request)
