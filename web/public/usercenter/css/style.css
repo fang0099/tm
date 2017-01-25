@@ -3900,4 +3900,7 @@ a.key-link { color: #FD6639; text-decoration: underline; margin-left: 5px; }
 .m-app-down h3:before, .m-app-down h3:after { content: ""; display: inline-block; height: 1px; width: 10px; background-color: #FFF; vertical-align: middle; margin: 0 10px; }
 .m-app-down .btn { display: block; margin: 0 auto; margin-bottom: 20px; font-weight: bold; }
 .show-left {text-align: left}
+.p-header .columns .unsubscribe {
+    color: #fff;
+}
 /*# sourceMappingURL=style_v1.css.map */

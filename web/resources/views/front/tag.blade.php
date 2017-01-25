@@ -76,11 +76,17 @@
 	                	{{$tag['name']}}                            
 	                </div>
 		            <ul class="column-list info-list fl">
-		                <li class="fans">粉丝（<span class="num">{{$tag['subscriberCount']}}</span>）</li>
+		                <li class="fans">粉丝（<span class="num subscriber-num">{{$tag['subscriberCount']}}</span>）</li>
 		            </ul>
-		             <button data-id="{{$tag['id']}}" href="#" class="js-follow btn btn-small orange btn-bordered follow">
-		             	<span class="txt">关注</span>
+		            @if($subscribed)
+		             <button data-id="{{$tag['id']}}" href="#" class="js-subscribe btn btn-small orange btn-bordered unsubscribe hover">
+		             	<span class="txt">取消订阅</span>
 		             </button>
+		            @else
+		             <button data-id="{{$tag['id']}}" href="#" class="js-subscribe btn btn-small orange btn-bordered subscribe">
+		             	<span class="txt">订阅</span>
+		             </button>
+		            @endif 
 	            </div>
 		    </div>
 		</div>
@@ -96,9 +102,13 @@
 	      </div>
 	      <h1 class="name">{{$tag['name']}} </h1>
 	      <p class="bio">{{$tag['brief']}}</p>
-	      <div id="number_of_followers"><span class="num">{{$tag['subscriberCount']}}</span>&ensp;粉丝</div>
+	      <div id="number_of_followers"><span class="num subscriber-num">{{$tag['subscriberCount']}}</span>&ensp;粉丝</div>
 	      <div class="options">
-	                <button data-id="{{$tag['id']}}" class="btn btn-normal orange btn-bordered follow">关注</button>
+	      		@if($subscribed)
+	            <button data-id="{{$tag['id']}}" class="js-subscribe btn btn-normal orange btn-bordered unsubscribe hover">取消订阅</button>
+	            @else
+	            <button data-id="{{$tag['id']}}" class="js-subscribe btn btn-normal orange btn-bordered subscribe">订阅</button>
+	            @endif
 	      </div>
 	    </div>
 	    <div class="user-article-list">

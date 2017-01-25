@@ -77,11 +77,17 @@
 	                </div>
 		            <ul class="column-list info-list fl">
 		                <li>关注（<span class="num">{{$author['followsCount']}}</span>）</li>
-		                <li class="fans">粉丝（<span class="num">{{$author['followersCount']}}</span>）</li>
+		                <li class="fans">粉丝（<span class="num fans-num">{{$author['followersCount']}}</span>）</li>
 		            </ul>
+		             @if($followed)
+		             <button data-id="{{$author['id']}}" href="#" class="js-follow btn btn-small orange btn-bordered unfollow hover">
+		             	<span class="txt">取消关注</span>
+		             </button>
+		             @else
 		             <button data-id="{{$author['id']}}" href="#" class="js-follow btn btn-small orange btn-bordered follow">
 		             	<span class="txt">关注</span>
 		             </button>
+		             @endif
 	            </div>
 		    </div>
 		</div>
@@ -103,11 +109,15 @@
 	      <div class="info center">
 	        <div class="child num-follows "><span class="t follow">关注</span><strong class="num">{{$author['followsCount']}}</strong></div>
 	        <div class="line"> </div>
-	        <div class="child num-fans "><span class="t fans">粉丝</span><strong class="num">{{$author['followersCount']}}</strong></div>
+	        <div class="child num-fans "><span class="t fans">粉丝</span><strong class="num fans-num">{{$author['followersCount']}}</strong></div>
 	      </div>
 	      <div class="options">
-	                <button data-id="{{$author['id']}}" class="btn btn-normal orange btn-bordered follow">关注</button>
-	              </div>
+	      		@if($followed)
+	            <button data-id="{{$author['id']}}" class="js-follow btn btn-normal orange btn-bordered unfollow hover">取消关注</button>
+	            @else
+	            <button data-id="{{$author['id']}}" class="js-follow btn btn-normal orange btn-bordered follow">关注</button>
+	            @endif
+	      </div>
 	    </div>
 	    <div class="user-article-list">
 		      <div class="user-nav tc">

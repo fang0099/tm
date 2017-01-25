@@ -264,7 +264,8 @@ class TagController extends Controller
             if(isset($articles['data'])){
                 $articles = $articles['data'];
             }
-            return view('front/tag', ['page' => $page, 'tag' => $tag, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($tag)]);
+            $hasSubscribe = $this->tagInvoker->hassubscriber(['id' => $tag['id'], 'userid' => session('id', -1)]);
+            return view('front/tag', ['subscribed'=> $hasSubscribe['success'] , 'page' => $page, 'tag' => $tag, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($tag)]);
         }   
         return view('front/notfound');
     }

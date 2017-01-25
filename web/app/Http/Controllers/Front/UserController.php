@@ -200,7 +200,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect('/account#login');
+            return json_encode(['success' => false, 'message' => '请先登陆']);
         }
 
     }
@@ -231,7 +231,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect('/account#login');
+            return json_encode(['success' => false, 'message' => '请先登陆']);
         }
 
     }
@@ -374,7 +374,8 @@ class UserController extends Controller
             if(isset($articles['data'])){
                 $articles = $articles['data'];
             }
-            return view('front/author', ['page' => $page, 'author' => $author, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($author)]);
+            $hasFollowed = $this->userInvoker->hasfollower(['id' => $author['id'], 'userid' => session('id', -1)]);
+            return view('front/author', ['followed' => $hasFollowed['success'], 'page' => $page, 'author' => $author, 'articles'=>$articles, 'type' => $type, 'json' => json_encode($author)]);
         }   
         return view('front/notfound');
     }
