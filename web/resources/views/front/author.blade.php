@@ -208,7 +208,7 @@
 				<p class="h-t">{{$author['username']}}</p>
 				<p class="tit-info">{{$author['followersCount']}}粉丝</p>
 				<div class="recommend-list">
-					<ul class="r-author-list hide"></ul>
+					<ul class="r-author-list"></ul>
 					<p class="load-more hide" >
 						<input type="hidden" id="followers-page" value="1">
 						<button class="btn btn-normal gray btn-bordered followers-more">加载更多</button>
