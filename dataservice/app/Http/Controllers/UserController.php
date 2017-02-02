@@ -72,15 +72,15 @@ class UserController extends Controller
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);
         $operator = $request->input('operator');
-        return $this->userRep->followers($id, $page, $pageSize);
+        return $this->userRep->followers($id, $page, $pageSize, $operator);
     }
 
     public function follows(Request $request){
         $id = $request->input('id');
         $page = $request->input('page', 1);
-        $pageSize = $request->input('pageSize', 15);
+        $pageSize = $request->input('pageSize', 10);
         $operator = $request->input('operator');
-        return $this->userRep->follows($id, $page, $pageSize);
+        return $this->userRep->follows($id, $page, $pageSize, $operator);
     }
 
     public function follow(Request $request){

@@ -17,10 +17,34 @@ var F = (function(){
 		}
 		return html;
 	};
-
+	var renderFollow = function(url, success, error){
+        $.ajax({
+            url : url,
+            dataType : 'json',
+            success : function(data){
+                if(data.success == 'true' || data.success){
+                    var html = Mustache.render($('#follow-li').html(), {data : data.data});
+                    success(data, html);
+                }else {
+                    error(data.message);
+                }
+            }
+        });
+	}
+	var getFollowsUrl = '/follows/';
+	var renderFollows = function(uid, page, success, error){
+		var url = getFollowsUrl + uid + '/' + page;
+		renderFollow(url, success, error);
+	};
+	var renderFollowers = function(uid, page, success, error){
+        var url = "/followers/" + uid + '/' + page;
+        renderFollow(url, success, error);
+	};
 
 	return {
-		'mp' : makePagination
+		'mp' : makePagination,
+		'renderFollows' : renderFollows,
+		'renderFollowers' : renderFollowers
 	};
 
 })();

@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
-	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 
 </head>
@@ -107,9 +106,9 @@
 	      <h1 class="name">{{$author['username']}} </h1>
 	      <p class="bio">{{$author['brief']}}</p>
 	      <div class="info center">
-	        <div class="child num-follows "><span class="t follow">关注</span><strong class="num">{{$author['followsCount']}}</strong></div>
+	        <div class="child num-follows " data="{{ $author['id'] }}"><span class="t follow">关注</span><strong class="num">{{$author['followsCount']}}</strong></div>
 	        <div class="line"> </div>
-	        <div class="child num-fans "><span class="t fans">粉丝</span><strong class="num fans-num">{{$author['followersCount']}}</strong></div>
+	        <div class="child num-fans data="{{ $author['id'] }}"><span class="t fans">粉丝</span><strong class="num fans-num">{{$author['followersCount']}}</strong></div>
 	      </div>
 	      <div class="options">
 	      		@if($followed)
@@ -184,29 +183,67 @@
 	<!-- popup -->
 
 	<!-- 关注信息弹窗 -->
-	<div id="show-detail" class="hide pp">
+	<div id="follows-pop" class="hide pp">
 		<div class="cont">
 			<span class="close-btn show-detail_close"><i class="icon-cross"></i></span>
 			<div class="list-page hot-list">
-				<p class="h-t"></p>
-				<p class="tit-info"></p>
+				<p class="h-t">{{$author['username']}}</p>
+				<p class="tit-info">{{$author['followsCount']}}关注</p>
 				<div class="recommend-list">
-					<div class="loading"><br><br>加载中...</div>
-					<ul class="r-author-list hide"></ul>
+					<ul class="r-author-list">
+
+					</ul>
 					<p class="load-more hide" >
-						<button class="btn btn-normal gray btn-bordered">加载更多</button>
+						<input type="hidden" id="follows-page" value="1">
+						<button class="btn btn-normal gray btn-bordered follows-more">加载更多</button>
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<div id="followers-pop" class="hide pp">
+		<div class="cont">
+			<span class="close-btn show-detail_close"><i class="icon-cross"></i></span>
+			<div class="list-page hot-list">
+				<p class="h-t">{{$author['username']}}</p>
+				<p class="tit-info">{{$author['followersCount']}}粉丝</p>
+				<div class="recommend-list">
+					<ul class="r-author-list hide"></ul>
+					<p class="load-more hide" >
+						<input type="hidden" id="followers-page" value="1">
+						<button class="btn btn-normal gray btn-bordered followers-more">加载更多</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	@verbatim
+	<script type="text/html" id="follow-li">
+		{{#data}}
+		<li>
+			<div class="author-info clear">
+				<a href="/user/{{id}}/lasted"  target="_blank" class="author-avatar fl">
+					<img src="{{avatar}}" width="40" height="40" >
+				</a>
+				<div class="author-cont">
+					<a href="/user/{{id}}/lasted"  target="_blank" class="author-name color-orange">{{username}}</a>
+					<p class="pos">{{brief}}</p>
+					<button class="btn btn-bordered btn-normal red follow" data="{{id}}">关注</button>
+				</div>
+			</div>
+		</li>
+		{{/data}}
+	</script>
+	@endverbatim
 	<script type="text/javascript">
 		var _ = {!! $json !!};
 		var page = {{ $page }};
 		var count = _.articlesCount;
 	</script>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="/usercenter/js/vendor/jquery.popupoverlay.js"></script>
+	<script src="/usercenter/js/vendor/toastr.js"></script>
+	<script src="/usercenter/js/vendor/mustache.js"></script>
 	<script src="/front/js/nav.js"></script>
 	<script src="/front/js/front.js"></script>
 	<script type="text/javascript">

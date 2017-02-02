@@ -27,7 +27,20 @@ $(function(){
             $userNav.addClass('visible');
         }
     });
-
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
 
     // follow
     var $follow = $('.js-follow');
@@ -57,6 +70,7 @@ $(function(){
                         $fansNum.html(parseInt(fans) + 1);
                     }else {
                         // login first
+                        toastr.error(data.message);
                     }
                 }
             });
@@ -82,6 +96,7 @@ $(function(){
                         $fansNum.html(parseInt(fans) - 1);
                     }else {
                         // login first
+                        toastr.error(data.message);
                     }
                 }
             });
@@ -119,6 +134,7 @@ $(function(){
                         $subscribeNUm.html(parseInt(fans) + 1);
                     }else {
                         // login first
+                        toastr.error(data.message);
                     }
                 }
             });
@@ -144,6 +160,7 @@ $(function(){
                         $subscribeNUm.html(parseInt(fans) - 1);
                     }else {
                         // login first
+                        toastr.error(data.message);
                     }
                 }
             });
@@ -152,4 +169,82 @@ $(function(){
     $subscribe.click(function(){
         toggleSubscribe($(this));
     });
+
+    $('.pp').popup({
+        color: 'white',
+        opacity: 1,
+        transition: '0.3s',
+        scrolllock: true
+    });
+
+    $('.close-btn').click(function(){
+        $('body').click();
+    });
+
+
+
+    var $follows = $('#follows-pop');
+
+    $('.num-follows').click(function(){
+        F.renderFollows(_.id, 1, function(data, html){
+            $follows.find('.r-author-list').html(html);
+            if(data.length == 10){
+                $follows.find('.load-more').removeClass('hide');
+            }else {
+                $follows.find('.load-more').addClass('hide');
+            }
+            $follows.popup('show');
+        }, function(message){
+            toastr.error(message);
+        });
+
+    });
+    var $followers = $('#followers-pop');
+
+    $('.num-fans').click(function(){
+        F.renderFollowers(_.id, 1, function(data, html){
+            $followers.find('.r-author-list').html(html);
+            if(data.length == 10){
+                $followers.find('.load-more').removeClass('hide');
+            }else {
+                $followers.find('.load-more').addClass('hide');
+            }
+            $followers.popup('show');
+        }, function(message){
+            toastr.error(message);
+        });
+
+    });
+
+    $('.follows-more').click(function () {
+        var $page = $('#follows-page');
+        var page = $page.val() + 1;
+        F.renderFollows(_.id, page, function(data, html){
+            $follows.find('.r-author-list').append(html);
+            if(data.length == 10){
+                $follows.find('.load-more').removeClass('hide');
+            }else {
+                $follows.find('.load-more').addClass('hide');
+            }
+            $page.val(page);
+        }, function(message){
+            toastr.error(message);
+        });
+    });
+    $('.followers-more').click(function () {
+        var $page = $('#followers-page');
+        var page = $page.val() + 1;
+        F.renderFollows(_.id, page, function(data, html){
+            $followers.find('.r-author-list').append(html);
+            if(data.length == 10){
+                $followers.find('.load-more').removeClass('hide');
+            }else {
+                $followers.find('.load-more').addClass('hide');
+            }
+            $page.val(page);
+        }, function(message){
+            toastr.error(message);
+        });
+    });
+
 });

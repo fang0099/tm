@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
-	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 
 </head>
@@ -180,6 +179,8 @@
 		var count = _.articleCount;
 	</script>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="/usercenter/js/vendor/jquery.popupoverlay.js"></script>
+	<script src="/usercenter/js/vendor/toastr.js"></script>
 	<script src="/front/js/nav.js"></script>
 	<script src="/front/js/front.js"></script>
 	<script type="text/javascript">

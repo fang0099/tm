@@ -352,6 +352,23 @@ class UserController extends Controller
         print_r($r);
     }
 
+    public function follows($uid, $page = 1){
+        $res = $this->userInvoker->follows(['id' => $uid, 'page' => $page, 'operator' => session('id')]);
+        if($res['success']){
+            return json_encode(['success' => true, 'data' => $res['data']]);
+        }else {
+            return json_encode(['success' => false, 'message' => $res['message']]);
+        }
+    }
+
+    public function followers($uid, $page = 1){
+        $res = $this->userInvoker->followers(['id' => $uid, 'page' => $page, 'operator' => session('id')]);
+        if($res['success']){
+            return json_encode(['success' => true, 'data' => $res['data']]);
+        }else {
+            return json_encode(['success' => false, 'message' => $res['message']]);
+        }
+    }
 
     public function articles($uid, $type, $page = 1){
         $authorR = $this->userInvoker->get(['id' => $uid]);

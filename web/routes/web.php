@@ -106,6 +106,10 @@ Route::group(['namespace' => 'Front'], function (){
     Route::get('/user/{uid}/{type}/{page?}', 'UserController@articles');
     Route::get('/tag/{id}/{type}/{page?}', 'TagController@articles');
 
+    Route::get('/follows/{uid}/{page?}', 'UserController@follows');
+    Route::get('/followers/{uid}/{page?}', 'UserController@followers');
+
+
 });
 
 Route::group(['namespace' => 'Front', 'middleware' => ['checkSession']], function (){
