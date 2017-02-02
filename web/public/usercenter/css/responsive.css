@@ -110,6 +110,9 @@
 	.r-tabs .r-tabs-panel {
 		padding: 0px;
 	}
+	.follows-btn {
+		display: none;
+	}
 }
 @media screen and (min-width: 1020px) {
 	#responsiveTabsDemo h3 {

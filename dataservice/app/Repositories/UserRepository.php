@@ -147,6 +147,7 @@ class UserRepository extends BaseRepository
 
     private function checkIfFollowed($res, $operator){
         foreach ($res as $r) {
+            $r->password = '***';
             if($operator != null){
                 $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$r->id, $operator]);
                 $c = $count[0]->c;

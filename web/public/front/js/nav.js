@@ -247,4 +247,42 @@ $(function(){
         });
     });
 
+    $('.r-author-list').on('click', '.follows-btn', function(e){
+        var $this = $(this);
+        var id = $this.attr('data');
+        if($this.hasClass('follow')){
+            // follow
+            $.ajax({
+                url : '/user/follow_ajax?id=' + id,
+                dataType : 'json',
+                success : function(data){
+                    if(data.success  || data.success == 'true'){
+                        $this.removeClass('follow');
+                        $this.addClass('unfollow');
+                        $this.addClass('hover');
+                        $this.html('已关注');
+                    }else {
+                        // login first
+                        toastr.error(data.message);
+                    }
+                }
+            });
+        }else {
+            $.ajax({
+                url : '/user/unfollow_ajax?id=' + id,
+                dataType : 'json',
+                success : function(data){
+                    if(data.success  || data.success == 'true'){
+                        $this.removeClass('hover');
+                        $this.removeClass('unfollow');
+                        $this.addClass('follow');
+                        $this.html('关注');
+                    }else {
+                        // login first
+                        toastr.error(data.message);
+                    }
+                }
+            });
+        }
+    });
 });

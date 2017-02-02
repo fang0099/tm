@@ -228,7 +228,7 @@
 				<div class="author-cont">
 					<a href="/user/{{id}}/lasted"  target="_blank" class="author-name color-orange">{{username}}</a>
 					<p class="pos">{{brief}}</p>
-					<button class="btn btn-bordered btn-normal red follow" data="{{id}}">关注</button>
+					<button class="btn btn-bordered btn-normal red {{class}} follows-btn" data="{{id}}">{{btn}}</button>
 				</div>
 			</div>
 		</li>

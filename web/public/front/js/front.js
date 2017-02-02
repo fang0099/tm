@@ -17,12 +17,23 @@ var F = (function(){
 		}
 		return html;
 	};
+
 	var renderFollow = function(url, success, error){
         $.ajax({
             url : url,
             dataType : 'json',
             success : function(data){
                 if(data.success == 'true' || data.success){
+                	data.data = data.data || [];
+                	for(var i = 0; i < data.data.length; i++){
+						if(data.data[i].followed){
+							data.data[i].class = 'unfollow hover';
+							data.data[i].btn = '已关注'
+						}else {
+                            data.data[i].class = 'follow';
+                            data.data[i].btn = '关注'
+						}
+					}
                     var html = Mustache.render($('#follow-li').html(), {data : data.data});
                     success(data, html);
                 }else {
