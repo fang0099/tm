@@ -424,3 +424,6 @@ a {
     padding: 0 10px;
     text-align: left;
 }
+.item+.item {
+ margin-top:0px;
+}
