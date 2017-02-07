@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>账号中心</title>
+    <title>重置密码</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
@@ -49,7 +49,7 @@
 
         <div class="form common-form common-wide-form">
             <legend>
-                <h2 class="ng-scope title">注册贝塔区块链</h2>
+                <h2 class="ng-scope title">重置密码</h2>
             </legend>
 
             <div class="reg">
@@ -58,38 +58,14 @@
                     <form action="user/create" method="post" id='reg-form' role="form" name="RegisterForm" class="">
                         <div class="form-group">
                             <label class="icon-envelop"></label>
-                            <input type="email" class="form-control" name="email" placeholder="请输入邮箱" required="">
+                            <input type="email" class="form-control" name="email" placeholder="请输入注册邮箱" required="">
                             <div class="error hide email-error" >
                                 <span class="ng-scope">请输入合法的邮箱地址</span>
                             </div>
                         </div>
+                        <button type="submit"  class="btn btn-primary " id='step1'>下一步</button>
                         <div class="form-group">
-                            <label class="icon-person"></label>
-                            <input type="text" class="form-control" name="username" placeholder="请输入昵称" required="">
-                            <div class="error hide username-error" >
-                                <span class="ng-scope">请输入昵称</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="icon-lock"></label>
-                            <input type="password" class="form-control" name="password"  minlength="6" maxlength="16" required="" placeholder="密码">
-                            <div class="error hide password-error" >
-                                <span class="ng-scope">密码不能为空</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="icon-lock"></label>
-                            <input type="password" class="form-control" name="passwordConfirm"  placeholder="确认密码">
-                            <div class="error hide confirm-password-error" >
-                                <span class="ng-scope">两次输入密码不一样</span>
-                            </div>
-                        </div>
-
-                        <button type="submit"  class="btn btn-primary " id='confirm-reg'>注册账号</button>
-                        <div class="form-group">
-                            <a href="javascript:void(0)"  class="left change-login">使用已有账号登录</a>
+                            <a href="/account#login"  class="left">使用已有账号登录</a>
                         </div>
                     </form>
                 </div><!-- end ngIf: emailRegStep==1 -->
@@ -122,9 +98,8 @@
                             </div>
                             <input type="submit" class="btn btn-primary" id='confirm-login' value='登录'></input>
                             <div class="form-group">
-                                <a href="javascript:void(0)"  class="left change-reg">注册账号</a>
-                                <a href="/forget-pwd"  class="right">忘记密码</a>
-                            </div>
+                            <a href="javascript:void(0)"  class="left change-reg">注册账号</a>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -138,8 +113,6 @@
                                 </div>
                         </div>
                         <div class="normal-tip">
-                            <p>为了账号安全，需要验证邮箱有效性</p>
-
                             <div class="desc">
                                 一封包含有验证码的邮件已经发送至邮箱：
                                 <div class="mail ng-binding"></div>
@@ -154,9 +127,9 @@
                                 <input type="text" class="form-control" name="verifyCode"  placeholder="验证码" required="">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="confirm-verify">确定</button>
+                        <button type="submit" class="btn btn-primary" id="step2">下一步</button>
                         <div class="form-group">
-                            <a href="javascript:void(0)"  class="left change-login">使用已有账号登录</a>
+                            <a href="/account#login"  class="left change-login">使用已有账号登录</a>
                         </div>
                     </form>
                 </div>
@@ -175,9 +148,6 @@
 
 
 
-<script>
-    var loginFailedTimes = {{session('login_failed_times', 0)}}
-</script>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="/usercenter/js/sea.js"></script>
 <script type="text/javascript">

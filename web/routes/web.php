@@ -108,7 +108,9 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/follows/{uid}/{page?}', 'UserController@follows');
     Route::get('/followers/{uid}/{page?}', 'UserController@followers');
-
+    Route::get('/forget-pwd', function (){
+       return view('/front/resetpwd');
+    });
 
 });
 
