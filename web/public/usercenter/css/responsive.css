@@ -91,9 +91,9 @@
 		overflow: hidden;
 		width: auto !important;
 	}
-	.r-tabs-nav {
+	/*.r-tabs-nav {
 		display: none;
-	}
+	}*/
 	#responsiveTabsDemo h3 {
 		text-align:left;
 		width: auto;
