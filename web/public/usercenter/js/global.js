@@ -41,4 +41,26 @@ define(function(require, exports, module){
     exports.getJson = function (str) {
         return JSON.parse(str);
     }
+
+    exports.makePagination = function(url, count, pageSize, currentPage){
+        var allPage = Math.ceil(count / pageSize);
+        var html = "";
+        if(allPage > 1){
+            var begin = currentPage - 4 > 0 ? currentPage - 4 : 1;
+            var end = allPage - currentPage > 4 ? currentPage + 4 : allPage;
+            for(var i = begin ; i <= end; i++){
+                if(i == currentPage){
+                    html += '<li class="page current"><a href="javascrit:;">' + i + '</a></li>';
+                }else {
+                    if(url == 'javascrit:;'){
+                        html += '<li class="page"><a href="javascript:;">'+ i +'</a></li>'
+                    }else {
+                        html += '<li class="page"><a href="'+ url +'/'+ i +'">'+ i +'</a></li>'
+                    }
+
+                }
+            }
+        }
+        return html;
+    };
 });

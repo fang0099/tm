@@ -113,6 +113,12 @@
 	.follows-btn {
 		display: none;
 	}
+	.unsubscribe {
+		display: none;
+	}
+	.unfollow {
+		display: none;
+	}
 }
 @media screen and (min-width: 1020px) {
 	#responsiveTabsDemo h3 {

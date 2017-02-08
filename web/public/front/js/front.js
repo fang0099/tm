@@ -7,7 +7,7 @@ var F = (function(){
 		if(allPage > 1){
 			var begin = currentPage - 4 > 0 ? currentPage - 4 : 1;
 			var end = allPage - currentPage > 4 ? currentPage + 4 : allPage;
-			for(var i = begin ; i < end; i++){
+			for(var i = begin ; i <= end; i++){
 				if(i == currentPage){
 					html += '<li class="page current"><a>' + i + '</a></li>';
 				}else {

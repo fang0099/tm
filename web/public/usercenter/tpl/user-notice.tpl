@@ -26,5 +26,9 @@
 	            min-height: initial !important;
 	        }
 	        </style>
+			<ul class="pagination">
+
+			</ul>
 	    </div>
 </div>
+<input type="hidden" name="page" value="1">

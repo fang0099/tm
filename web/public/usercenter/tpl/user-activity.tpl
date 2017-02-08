@@ -50,3 +50,4 @@
 
 	</section>
 </div>
+<input type="hidden" name="page" value="1">
