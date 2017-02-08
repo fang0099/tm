@@ -127,12 +127,12 @@ define(function(require, exports, modules){
     var sendMail = function(){
     	$.get('send-check-mail/' + $regForm.find('[name=email]').val(), function(data){
     		
-    		$btn.html('(60)秒后重新发送');
+    		$btn.html('(60)秒后再发送');
     		$btn.attr('disabled', true);
     		var m = 60;
     		var interval = setInterval(function(){
     			m--;
-    			$btn.html('('+m+')秒后重新发送');
+    			$btn.html('('+m+')秒后再发送');
     		}, 1 * 1000);
     		setTimeout(function(){
     			$btn.html('重新发送');
@@ -142,7 +142,10 @@ define(function(require, exports, modules){
     	});
     };
     $btn.click(function(){
-    	sendMail();
+    	if(!$btn.attr('disabled')){
+            sendMail();
+		}
+
     });
 
 	var $verifyForm = $('#verify-form');

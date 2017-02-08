@@ -54,8 +54,8 @@
 
             <div class="reg">
                 <!--第一步：填写注册信息-->
-                <div class="reg-div reg-info">
-                    <form action="user/create" method="post" id='reg-form' role="form" name="RegisterForm" class="">
+                <div class="step1-div reg-info">
+                    <form id='reg-form' role="form" name="RegisterForm" class="">
                         <div class="form-group">
                             <label class="icon-envelop"></label>
                             <input type="email" class="form-control" name="email" placeholder="请输入注册邮箱" required="">
@@ -63,49 +63,36 @@
                                 <span class="ng-scope">请输入合法的邮箱地址</span>
                             </div>
                         </div>
-                        <button type="submit"  class="btn btn-primary " id='step1'>下一步</button>
+                        <button type="button"  class="btn btn-primary " id='step1'>下一步</button>
                         <div class="form-group">
                             <a href="/account#login"  class="left">使用已有账号登录</a>
                         </div>
                     </form>
                 </div><!-- end ngIf: emailRegStep==1 -->
 
-                <div class="login login-div hide">
+                <div class="login step3-div hide">
                     <div class="reg-info ng-scope">
-                        <form action="user/signin" id='login-form' method="post" role="form" class="">
+                        <form  id='login-form' method="post" role="form" class="">
                             <div class="error-wrapper icon-circle-with-minus ng-scope hide login-error" >
                                 <i></i>
                                 <div class="error">
                                     <span class="ng-binding ng-scope">账户输入有误</span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="icon-envelop"></label>
-                                <input type="email" class="form-control" name="email" placeholder="请输入邮箱" required="">
-                                <div class="error hide email-error" >
-                                        <span class="ng-scope">请输入合法的邮箱地址</span>
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label class="icon-lock"></label>
-                                <input type="password" class="form-control" name="password" ng-model="formData.password" minlength="6" maxlength="16" required="" placeholder="密码">
+                                <input type="password" class="form-control" name="newpwd"  minlength="6" maxlength="16" required="" placeholder="新密码">
                             </div>
 
-                            <div class="form-group hide captcha-div">
-                                <input type="text" class="form-control" name="captcha" placeholder="请输入验证码" style='width:160px;display: inline;margin-right:10px'>
-                                <img src='' id='captcha-img' width="120">
-                            </div>
-                            <input type="submit" class="btn btn-primary" id='confirm-login' value='登录'></input>
-                            <div class="form-group">
-                            <a href="javascript:void(0)"  class="left change-reg">注册账号</a>
-                        </div>
+                            <input type="button" class="btn btn-primary" id='step3' value='提交'></input>
+
                         </form>
                     </div>
                 </div>
 
-                <div class="verify-code verify-div hide">
-                    <form action="user/check-mail" method="post" role="form" class="" id='verify-form'>
+                <div class="verify-code step2-div hide">
+                    <form  role="form" class="" id='verify-form'>
                         <div class="error-wrapper icon-circle-with-minus ng-scope hide verify-error" >
                                 <i></i>
                                 <div class="error">
@@ -127,7 +114,7 @@
                                 <input type="text" class="form-control" name="verifyCode"  placeholder="验证码" required="">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="step2">下一步</button>
+                        <button type="button" class="btn btn-primary" id="step2">下一步</button>
                         <div class="form-group">
                             <a href="/account#login"  class="left change-login">使用已有账号登录</a>
                         </div>
@@ -151,7 +138,7 @@
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="/usercenter/js/sea.js"></script>
 <script type="text/javascript">
-    seajs.use('modules/login');
+    seajs.use('modules/resetpwd');
 </script>
 </body>
 </html>

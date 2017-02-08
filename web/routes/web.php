@@ -112,6 +112,10 @@ Route::group(['namespace' => 'Front'], function (){
        return view('/front/resetpwd');
     });
 
+    Route::get('/reset/sendmail/{email}', 'UserController@resetSendMail');
+    Route::get('/reset/verify/{code}', 'UserController@resetVerify');
+    Route::post('/reset/pwd', 'UserController@resetPwd');
+
 });
 
 Route::group(['namespace' => 'Front', 'middleware' => ['checkSession']], function (){

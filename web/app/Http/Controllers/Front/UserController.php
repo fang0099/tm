@@ -397,4 +397,50 @@ class UserController extends Controller
         return view('front/notfound');
     }
 
+    // reset pwd
+    public function resetSendMail($email){
+        $r = $this->userInvoker->getbyemail(
+            ['email'=>$email]
+        );
+        if($r['success']){
+            session(['r' => $r['data']]);
+            $uuid = Uuid::generate();
+            $code = substr($uuid, 0, 6);
+            session(['code' => $code ]);
+
+            Mail::send('mail',['username'=>$email, 'code' => $code], function($message) use ($email) {
+                $message ->to($email)->subject('贝塔区块链找回密码');
+            });
+
+            echo json_encode(['success' => true, 'message' => '']);
+        }else {
+            echo json_encode(['success' => false, 'message' => '该邮箱未注册']);
+        }
+
+    }
+
+    public function resetVerify($code){
+
+        if($code == session('code')){
+            echo json_encode(['success' => true, 'message' => '']);
+        }else {
+            echo json_encode(['success' => false, 'message' => '验证失败', 'sendCode' => $code, 'session' => session('code')]);
+        }
+    }
+
+    public function resetPwd(Request $request){
+        $newPwd = $request->input('pwd');
+        $user = session('r');
+        $params = [
+            'params[id]' => $user['id'],
+            'params[password]' => $newPwd
+        ];
+        $r = $this->userInvoker->update($params);
+        if ($r['success']){
+            session($user);
+            return ['success' => 'true'];
+        }else {
+            return ['success' => 'false', 'message' => $r['message']];
+        }
+    }
 }
