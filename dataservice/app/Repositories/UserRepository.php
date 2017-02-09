@@ -118,15 +118,49 @@ class UserRepository extends BaseRepository
         return $this->batchDeleteInternal($idsArr);
     }
 
-    public function followers($id, $page, $pageSize){
+    public function followers($id, $page, $pageSize, $operator = null){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
             $offset = ($page - 1) * $pageSize;
             $res = $user->followers()->offset($offset)->limit($pageSize)->get();
+            /*
+            foreach ($res as $r) {
+                if($operator != null){
+                    $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$r->id, $operator]);
+                    $c = $count[0]->c;
+                    if($c > 0){
+                        $r->followed = true;
+                    }else {
+                        $r->followed = false;    
+                    }
+                }else {
+                    $r->followed = false;
+                }    
+            }
+            */
+            $res = $this->checkIfFollowed($res, $operator);
             return $this->success('', $res);
         }
+    }
+
+    private function checkIfFollowed($res, $operator){
+        foreach ($res as $r) {
+            $r->password = '***';
+            if($operator != null){
+                $count = DB::select('select count(*) as c from user_follows where user_id = ? and follower_id = ?', [$r->id, $operator]);
+                $c = $count[0]->c;
+                if($c > 0){
+                    $r->followed = true;
+                }else {
+                    $r->followed = false;    
+                }
+            }else {
+                $r->followed = false;
+            }    
+        }
+        return $res;
     }
 
     public function hasFollower($id, $follower){
@@ -174,13 +208,14 @@ class UserRepository extends BaseRepository
         }
     }
 
-    public function follows($id, $page, $pageSize){
+    public function follows($id, $page, $pageSize, $operator = null){
         $user = $this->get($id);
         if($user == null || $user->del_flag == 1){
             return $this->fail(StatusCode::SELECT_ERROR_RESULT_NULL, 'user is not exist', ['id'=>$id]);
         }else {
             $offset = ($page - 1) * $pageSize;
             $res = $user->follows()->offset($offset)->limit($pageSize)->get();
+            $res = $this->checkIfFollowed($res, $operator);
             return $this->success('', $res);
         }
     }

@@ -3,13 +3,9 @@
 <head>
 	<title>个人中心</title>
 	<meta charset="utf-8">
-<!--
-	<base href="/tm/web/public/">
-	-->
-	<!--
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" type="text/css" href="/usercenter/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/usercenter/css/responsive.css">
 	<link rel="stylesheet" href="/zhuanlan/css/icomoon.css">
 	<link rel="stylesheet" href="/usercenter/css/toastr.css">
 	<!--
@@ -166,67 +162,44 @@
 
 	<!-- modify avatar -->
 	<input id="fileupload" type="file" name="userfile" class="upload_input" style="display: none;">
-	<!--
-	<div id="change-avatar" class="hide pp">
-		<div class="cont">
-			<span class="close-btn change-avatar_close"><i class="icon-cross"></i></span>
-			<div class="reminder-cont center-block universal-container">
-				<h1 class="txt">修改头像</h1>
-				<div class="error_msg"></div>
-				<div class="reset_avatar ">
-					<p class="current_avatar">
-						<img width="100" height="100" src="{{$avatar}}" class="upload-avatar" >
-					</p>
-					<div class="upload">
-						<button class="select btn-bordered red btn-normal btn select-avatar-btn">选择图片</button>
-						<input id="fileupload" type="file" name="userfile" class="upload_input">
-					</div>
-					<div class="process_s hide">上传成功</div>
-					<div class="process hide">头像上传中<div id="floatingCirclesG">
-							<div class="f_circleG" id="frotateG_01"></div>
-							<div class="f_circleG" id="frotateG_02"></div>
-							<div class="f_circleG" id="frotateG_03"></div>
-							<div class="f_circleG" id="frotateG_04"></div>
-							<div class="f_circleG" id="frotateG_05"></div>
-							<div class="f_circleG" id="frotateG_06"></div>
-							<div class="f_circleG" id="frotateG_07"></div>
-							<div class="f_circleG" id="frotateG_08"></div>
-						</div>
-
-					</div>
-					<p class="info">支持png、jpg格式的图片，且图片大小不超过2M</p>
-					<button class="js-confirm btn-bordered red btn-normal btn confirm-avatar" style="display:none">确定</button>
+	@verbatim
+	<script type="text/html" id="activities-for">
+		{{#data}}
+		<li>
+			<div class="l-cont">
+				<time>{{publish_time}}</time>
+				<span class="point"></span>
+			</div>
+			<div class="r-cont">
+				<div class="inner">
+					<h2 class="head-line show-left">{{title}}</h2>
+					<h3 class="title show-left">
+						<a href="{{reflink}}" target="_blank">{{reft }}
+						</a>
+					</h3>
+					<p class="intro show-left">{{refat}}</p>
 				</div>
-				<div class="edit-avatar hide">
-					<div class="crop_wrap">
-						<img src="" data-url="" class="crop_img">
-					</div>
-					<div class="crop_wrap_zoom">
-						<span class="small"><i class="icon-pic icon-image"></i></span>
-						<div class="nstSlider" data-range_min="-10" data-range_max="10"
-							 data-cur_min="0">
-							<div class="leftGrip"></div>
-						</div>
-						<span class="big"><i class="icon-pic icon-image"></i></span>
-					</div>
-					<div class="process hide">头像剪切中<div id="floatingCirclesG">
-							<div class="f_circleG" id="frotateG_01"></div>
-							<div class="f_circleG" id="frotateG_02"></div>
-							<div class="f_circleG" id="frotateG_03"></div>
-							<div class="f_circleG" id="frotateG_04"></div>
-							<div class="f_circleG" id="frotateG_05"></div>
-							<div class="f_circleG" id="frotateG_06"></div>
-							<div class="f_circleG" id="frotateG_07"></div>
-							<div class="f_circleG" id="frotateG_08"></div>
-						</div>
-					</div>
-					<button class="js-confirm btn-bordered red btn-normal btn">确定</button>
+			</div>
+		</li>
+		{{/data}}
+	</script>
+	<script type="text/html" id="notice-for">
+		{{#data}}
+		<li id="{{id}}">
+			<div class="cont" style="">
+				<h3>{{title}}</h3>
+				<div class="info"><span class="time">创建时间：{{publish_time}}</span>
+					<span class="gap-point-large">•</span>
+					<span class="tools">
+									<a href="javascript:;" class="js-delete" data="{{id}}">删除</a>
+								</span>
 				</div>
 
 			</div>
-		</div>
-	</div>
-	-->
+		</li>
+		{{/data}}
+	</script>
+	@endverbatim
 	<script>
 	var user = {!!$json!!};
 	</script>

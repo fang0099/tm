@@ -103,6 +103,18 @@ Route::group(['namespace' => 'Front'], function (){
 
     Route::get('/tag/subscribers', 'TagController@show_subscribers_list');
 
+    Route::get('/user/{uid}/{type}/{page?}', 'UserController@articles');
+    Route::get('/tag/{id}/{type}/{page?}', 'TagController@articles');
+
+    Route::get('/follows/{uid}/{page?}', 'UserController@follows');
+    Route::get('/followers/{uid}/{page?}', 'UserController@followers');
+    Route::get('/forget-pwd', function (){
+       return view('/front/resetpwd');
+    });
+
+    Route::get('/reset/sendmail/{email}', 'UserController@resetSendMail');
+    Route::get('/reset/verify/{code}', 'UserController@resetVerify');
+    Route::post('/reset/pwd', 'UserController@resetPwd');
 
 });
 

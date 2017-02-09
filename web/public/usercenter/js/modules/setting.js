@@ -33,7 +33,7 @@ define(function(require, exports, modules){
                 dataType : 'json',
                 type : 'post',
                 success : function (data) {
-                    if(data.success == 'success' || data.success == true){
+                    if(data.success == 'true' || data.success == true){
                         $parent.find('.input_profile_txt').html(value);
                         $parent.find('.input_profile').css('display', 'none');
                         $parent.find('.input_profile_txt').css('display', 'block');
@@ -70,7 +70,7 @@ define(function(require, exports, modules){
                         dataType : 'json',
                         type : 'post',
                         success : function (data) {
-                            if(data.success == 'success' || data.success == true){
+                            if(data.success == 'true' || data.success == true){
                                 $input.attr('disabled', true);
                                 $this.html('修改');
                                 $this.addClass('gray');
@@ -130,7 +130,7 @@ define(function(require, exports, modules){
                     dataType : 'json',
                     type : 'post',
                     success : function (data) {
-                        if(data.success == 'success' || data.success == true){
+                        if(data.success == 'true' || data.success == true){
                             $('#user-setting-avatar').attr('src', path);
                             $('#user-avatar').find('img').attr('src', path);
                         }else {

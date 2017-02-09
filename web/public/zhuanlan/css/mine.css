@@ -424,3 +424,13 @@ a {
     padding: 0 10px;
     text-align: left;
 }
+.item+.item {
+ margin-top:30px;
+}
+
+.item article {
+    border-bottom: 1px solid #F2F2F2;
+}
+.entry-summary {
+    padding-bottom: 0px;
+}

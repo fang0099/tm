@@ -65,8 +65,9 @@ class TagController extends Controller
 
     public function articles(Request $request){
         $id = $request->input('id');
+        $order = $request->input('order', 'publish_time');
         $page = $request->input('page', 1);
-        return $this->tagRep->articles($id, $page);
+        return $this->tagRep->articles($id, $order, $page);
     }
 
 

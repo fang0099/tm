@@ -7,9 +7,11 @@
 	  <h1 class="name">{{ data.username }}</h1>
 	  <p class="bio"></p>
 	  <div class="info center">
-		<div class="child num-follows "><span class="t follow">关注</span><strong class="num">{{ data.follow_count }}</strong></div>
+		<div class="child num-follows " style="cursor: auto"><span class="t follow">关注</span>
+			<strong class="num">{{ data.follow_count }}</strong>
+		</div>
 		<div class="line"> </div>
-		<div class="child num-fans"><span class="t fans">粉丝</span><strong class="num">{{ data.followers_count }}</strong></div>
+		<div class="child num-fans" style="cursor: auto"><span class="t fans">粉丝</span><strong class="num">{{ data.followers_count }}</strong></div>
 	  </div>
 	  <div class="options">
 	  </div>

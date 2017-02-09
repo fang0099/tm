@@ -1,0 +1,127 @@
+.btn-login {
+	color : #21B890 !important;
+}
+#responsiveTabsDemo h3:after {
+	 content: '';
+	 width: 100%;
+	 height: 1px;
+	 position: absolute;
+	 top: 8px;
+	 left: 0;
+	 background: #d9d9d9;
+
+ }
+@media screen and (max-width : 660px){
+	.second-nav {
+		display : none
+	}
+	.post-edit {
+		display: none;
+	}
+	.new-header .first-nav {
+		padding: 0px 20px;
+	}
+	.user-detail {
+		width: auto;
+	}
+	.mod-user-info .bio {
+		width: auto;
+	}
+	.parts {
+		width: 100% !important;
+	}
+	.part {
+		width: 45% !important;
+	}
+	.user-detail .user-article-list .mod-article-list {
+		width: auto;
+		padding: 0px 20px;
+	}
+	.mod-article-list li .pic {
+		display: none;
+	}
+	.mod-article-list li .cont {
+		width: auto;
+	}
+	.list-page {
+		width: auto;
+		margin-top : 50px !important;
+	}
+	.post-nav .user-articles {
+		width: 15% !important;
+		margin : 0px auto !important;
+	}
+	.user-index-article {
+		width: 20% !important;
+	}
+	.mod-article-list {
+		padding: 0px 20px;
+	}
+	.list-page.my_post .mod-article-list li .cont {
+		width: auto;
+	}
+	section.wrapper {
+		margin-top: 80px !important;
+	}
+	.recommend-list .r-author-list li {
+		width: auto;
+		margin: 0px 20px !important;
+	}
+	.author-info .author-cont .btn {
+	}
+	.author-info .pos {
+		width: auto;
+	}
+	.home-tags {
+		width: auto;
+	}
+	.c-page {
+		width: auto;
+	}
+	.user-set-cont {
+		width: auto;
+	}
+	.user-form {
+		padding: 0px 20px;
+	}
+	.user-set-cont .user-form .form-part .input_profile, .user-set-cont .user-form .form-part .input_profile_txt {
+		width: auto;
+	}
+	body .common-wide-form {
+		overflow: hidden;
+		width: auto !important;
+	}
+	/*.r-tabs-nav {
+		display: none;
+	}*/
+	#responsiveTabsDemo h3 {
+		text-align:left;
+		width: auto;
+		margin: 0 auto 30px;
+		font-size: 14px;
+		position: relative;
+	}
+	#responsiveTabsDemo h3 span {
+		padding: 0 16px;
+		background: #fbfbfb;
+		z-index: 1;
+		position: relative;
+	}
+	.r-tabs .r-tabs-panel {
+		padding: 0px;
+	}
+	.follows-btn {
+		display: none;
+	}
+	.unsubscribe {
+		display: none;
+	}
+	.unfollow {
+		display: none;
+	}
+}
+@media screen and (min-width: 1020px) {
+	#responsiveTabsDemo h3 {
+		display: none;
+	}
+}

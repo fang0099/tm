@@ -61,7 +61,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == true){
+					if(data.success == true || data.success == 'true'){
 						location.href = '/';
 					}else {
 						$error.find('span').html(data.message);
@@ -107,7 +107,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == true){
+					if(data.success == true || data.success == 'true'){
 						$('.mail').html($regForm.find('[name=email]').val());
 						$('.login-div, .reg-div').addClass('hide');
 						$('.verify-div').removeClass('hide');
@@ -127,12 +127,12 @@ define(function(require, exports, modules){
     var sendMail = function(){
     	$.get('send-check-mail/' + $regForm.find('[name=email]').val(), function(data){
     		
-    		$btn.html('(60)秒后重新发送');
+    		$btn.html('(60)秒后再发送');
     		$btn.attr('disabled', true);
     		var m = 60;
     		var interval = setInterval(function(){
     			m--;
-    			$btn.html('('+m+')秒后重新发送');
+    			$btn.html('('+m+')秒后再发送');
     		}, 1 * 1000);
     		setTimeout(function(){
     			$btn.html('重新发送');
@@ -142,7 +142,10 @@ define(function(require, exports, modules){
     	});
     };
     $btn.click(function(){
-    	sendMail();
+    	if(!$btn.attr('disabled')){
+            sendMail();
+		}
+
     });
 
 	var $verifyForm = $('#verify-form');
@@ -158,7 +161,7 @@ define(function(require, exports, modules){
 				},
 				dataType : 'json',
 				success : function(data){
-					if(data.success == 'success' || data.success == true){
+					if(data.success == 'true' || data.success == true){
 						location.href = '/';
 					}else {
 						var $error = $verifyForm.find('div.verify-error');
