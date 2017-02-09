@@ -55,6 +55,40 @@
             border-top: 1px solid #d3d7db;
         }
     </style>
+    <style type="text/css">
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 15px 0;
+        }
+
+        table thead {
+            background-color: #f9f9f9;
+        }
+
+        table td{
+            min-width: 40px;
+            height: 30px;
+            border: 1px solid #ccc;
+            vertical-align: top;
+            padding: 2px 4px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        table th {
+            min-width: 40px;
+            height: 30px;
+            border: 1px solid #ccc;
+            vertical-align: top;
+            padding: 2px 4px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+    </style>
     <script>
         $(function(){
             $(".back-to-normal").click(function(){
